@@ -98,14 +98,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</section>
 		<!--跳转页面-->
-		<section class="pageSkining">
-			<div class="container">
-				<button class="btn btnPrev pull-left ">上一页</button>
-				<input class="pull-left text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
-				<button class="btn btnJump pull-left">跳转</button>
-				<button class="btn btnNext pull-left">下一页</button>
-			</div>
-		</section>
+		<center>
+			<section class="pageSkining">
+				<div class="container">
+					<button class="btn btnPrev pull-left ">上一页</button>
+					<input class="pull-left text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
+					<button class="btn btnJump pull-left">跳转</button>
+					<button class="btn btnNext pull-left">下一页</button>
+				</div>
+			</section>
+		</center>
 		<!--返回顶部-->
 		<div class="toTop">
 			<span class="glyphicon glyphicon-open"></span>

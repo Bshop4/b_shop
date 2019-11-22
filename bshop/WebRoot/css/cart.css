@@ -1,0 +1,107 @@
+<style>
+	*{margin: 0px;padding: 0px;}
+	a{text-decoration: none;}
+	li{list-style: none;}
+	img{border: none;vertical-align: bottom;}
+	h3{
+		width: 1200px;
+		margin: 50px auto 20px;
+		line-height: 60px;
+		border-bottom: 2px solid #666;
+	}
+	table{
+		width: 1200px;
+		margin: 0 auto;
+		/*background: red;*/
+		background: url(../img/cartbg2.png);
+	}
+	table th{
+		border-bottom: 1px solid #999;
+		line-height: 30px;
+		text-align: center;
+	}
+	table td {
+		width: 170px;
+		font-size: 14px;
+		padding: 10px;
+		border-bottom: 1px solid #999;
+	}			
+	table tr{
+		text-align: center;
+	}
+	table .left{
+		text-align: left;
+		width: 120px;
+		height: 40px;
+	}			
+	table .desc{
+		width: 300px;
+		height: 180px;
+	}			
+	table td img{
+		width: 70px;
+		vertical-align: top;
+	}
+	.count{
+		display: inline-block;
+		width: 20px;
+		margin: 0px auto;
+	}		
+	.reduce,.add{
+		width: 30px;
+		height: 30px;
+		font-size: 20px;
+		line-height: 30px;
+		text-align: center;
+		display: inline-block;
+		background: #eee;
+		cursor: pointer;
+		color: #333;
+		border: 1px solid #eee;
+		background: bisque;
+	}			
+	.reduce:hover,
+	.add:hover{
+		border: 1px solid orange;
+		color: orange;
+	}
+	.footer{
+		width: 1200px;
+		margin: 20px auto;
+	}
+	.footer .sum-all{
+		font-size: 14px;
+		/*text-align: right;*/
+		float: right;
+	}
+	.account{
+		width: 1200px;
+		height: 40px;
+		margin: 0px auto;
+	}
+	.btn-account{
+		width: 172px;
+		height: 40px;
+		background: black;
+		color: white;
+		cursor: pointer;
+		float: right;
+	}
+	.dele{
+		padding-left: 80px;
+	}
+	divvv{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		color: white;
+		background: red;
+		text-align: center;
+		line-height: 100px;
+		position: fixed;
+		right: 0px;
+		bottom: 0px;
+		cursor: pointer;
+		display: none;
+	}
+</style>

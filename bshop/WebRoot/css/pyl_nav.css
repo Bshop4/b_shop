@@ -1,0 +1,34 @@
+.pyl_logo{
+	margin-right:50px ;
+}
+
+
+/*导航条*/
+.pyl_navbar_nav li {
+	padding: 0px 20px;
+	border-bottom: 2px solid #333333;
+	
+}
+
+.aimg img{
+	height: 52px;
+}
+
+.aimg img{
+	position: relative; top: -16px;
+}
+
+
+.pyl_navbar_nav li:hover{
+	border-bottom: 2px solid white;
+}
+
+/*登录注册按钮*/
+.pyl_login_btn{
+	margin: 5px 20px 0px 0px;
+}
+
+.pyl_login_btn a:hover span{
+	color: white;
+}
+

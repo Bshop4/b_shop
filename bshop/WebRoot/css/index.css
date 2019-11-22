@@ -1,0 +1,278 @@
+/*鍏ㄥ眬鏍峰紡*/
+* {
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+img {
+	border: none;
+	vertical-align: bottom;
+}
+/*杞挱鍥�*/
+.section-banner{
+	width:100%;
+	height: 610px;
+}
+.section-banner>.banner{
+	width: 1200px;
+	height: 610px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.section-banner .banner ul{
+	position: absolute;
+	left:0px; top:0px;
+	z-index: 9;
+}
+.banner ul li {
+	width: 1200px;
+	height: 610px;
+	float: left;
+}
+.banner ul li a img {
+	width: 100%;
+	height: 100%;
+}
+.banner>a {
+	width: 59px;
+	height: 80px;
+	position: absolute;
+	top: 50%;
+	margin-top: -40px;
+	z-index: 10;
+	opacity: 0.5;
+	/*鍏煎IE*/
+	filter: alpha(opacity=50);
+}
+.banner>a:hover {
+	opacity: 0.8;
+	/*鍏煎IE*/
+	filter: alpha(opacity=80);
+}
+.banner a.prev {
+	background: url(../img/prev.png);
+	left: 0;
+}
+.banner a.next {
+	background: url(../img/next.png);
+	right: 0px;
+}
+.number {
+	position: absolute;
+	left: 50%;
+	margin-left: -187px;
+	bottom: 10px;
+	z-index: 10;
+}
+.number span {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	background: #CCCCCC;
+	margin: 0px 15px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.number span.current {
+	background: #707070;
+}
+/*绌虹櫧*/
+.topic-space{
+	width: 100%;
+	height: 20px;
+}
+/*灏栬揣鎺ㄨ崘*/
+.section-title{
+	width: 100%;
+	height: 74px;
+}
+.section-title>.topic-title{
+	width: 1200px;
+	height: 74px;
+	font-size: 36px;
+	font-weight: 500;
+	margin: 0 auto;
+	line-height: 74px;
+}
+.section-goods{
+	width: 100%;
+	height: 2068px;
+}
+.section-goods>.img-list{
+	width: 1200px;
+	height: 295px;
+	margin: 0 auto;
+}
+.section-goods>.img-list>li{
+	width: 393px;
+	height: 285px;
+	margin-left: 10px;
+	display: inline-block;
+	cursor: pointer;
+}
+.section-goods>.img-list>li:hover{
+	/*闃村奖: x  y  妯＄硦搴� 棰滆壊 鍐呭闃村奖*/
+	box-shadow:5px 5px 10px #666;
+	border-radius: 2px;
+}
+.section-goods>.img-list>li:first-child{
+	margin-left: 0px;
+	float: left;
+}
+.section-goods>.img-list>li:last-child{
+	float: right;
+}
+.section-goods>.img-list>li>a>img{
+	width: 100%;
+	height: 100%;
+}
+/*鐗规儬鎺ㄨ崘*/
+.section-preferential{
+	width: 100%;
+	height: 323px;
+}
+.section-preferential>div{
+	width: 1200px;
+	margin: 0 auto;
+}
+.preferential{
+	width: 585px;
+	height: 293px;
+}
+.preferential:hover{
+	/*闃村奖: x  y  妯＄硦搴� 棰滆壊 鍐呭闃村奖*/
+	box-shadow:5px 5px 10px #666;
+	border-radius: 2%;	
+}
+.preferential>a>img{
+	width: 100%;
+	height: 100%;
+}
+/*鍙戠幇濂借揣*/
+.section-merchandise{
+	width:100%;
+	position: relative;
+}
+.section-merchandise:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.merchandise{
+	width: 1200px;
+	margin: 0 auto;
+}
+.merchandise:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.merchandise>ul>li{
+	width: 288px;
+	height: 493px;
+	padding: 20px;
+	margin-right: 15px;
+	float: left;
+	overflow: hidden;
+}
+.merchandise>ul>li:hover{
+	/*闃村奖: x  y  妯＄硦搴� 棰滆壊 鍐呭闃村奖*/
+	box-shadow:5px 5px 10px #666;
+	border-radius: 2%;
+}
+.merchandise>ul>li:nth-child(4n+4){
+	margin-right: 0px;
+}
+.merchandise>ul>li>a{
+	display: block;
+}
+.merchandise>ul>li>a>img{
+	width: 248px;
+	height: 288px;
+	margin-bottom: 20px;
+}
+.merchandise>ul>li>a>.buttom{
+	width: 248px;
+	height: 18px;
+	margin-bottom: 10px;
+	color: #111111;
+}
+.merchandise>ul>li>a>div.buttom>span.left{
+	font-size: 14px;
+	color: #111111;
+	font-weight: bold;
+	display: inline-block;
+	float: left;
+}
+.merchandise>ul>li>a>div.buttom>span.right{
+	font-size: 18px;
+	color: red;
+	display: inline-block;
+	float: right;
+}
+.merchandise>ul>li>a>p{
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+.merchandise>ul>li>a>h3{
+	font-size: 20px;
+	color: #111111;
+}
+//鍔犺浇涓�
+.loading{
+  display: none;
+  color: gray;
+  margin: 0 auto;
+  text-align: center;
+}
+//鍙戠幇鏇村
+.more{
+	height: 200px;
+}
+.more>a{
+	text-align: center;
+	width: 200px;
+	height: 60px;
+	background: white;
+	border: 2px solid #111111;
+	border-radius: 10px;
+	margin: 100px auto;
+	display:block;
+	font-size: 20px;
+	text-decoration: none;
+	line-height: 55px;
+}
+.more>a:hover{
+	color: red;
+}
+/*杩斿洖椤堕儴*/
+.toTop{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #111111;
+	position: fixed;
+	bottom: 40px;
+	right: 50px;
+	color: white;
+	font-size: 30px;
+	padding:8px 0px 0px 11px;
+	z-index: 10000;
+	display: none;
+	opacity: 0.8;
+}
+.toTop:hover{
+	cursor:pointer;
+}
+/*灏鹃儴*/
+/*footer{
+	width: 1349px;
+	height: 300px;
+	background: #111111;
+}*/

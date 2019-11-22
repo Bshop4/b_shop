@@ -1,0 +1,133 @@
+.pyl_logo{
+	margin-right:50px ;
+}
+
+
+i{
+	display: inline-block;
+	width: 15px;height: 16px;
+	position: absolute;
+	left: 0px;bottom: 0px;
+}
+
+	
+
+
+/*注册开头文字*/
+.pyl_sign_words{
+	width: 400px;
+	margin: 50px auto 0px;
+}
+
+
+/*注册*/
+.pyl_center{
+	padding-top: 100px;
+}
+.pyl_center ul{
+	width:400px;
+	margin: 0 auto;
+}
+.pyl_center ul li{
+	height: 50px;
+	position: relative;
+	border:none;
+	outline: none;
+	border-bottom: 1px solid gainsboro;
+}
+
+
+
+.pyl_center ul li span{
+	width: 107px;height: 50px;
+	display: inline-block;
+	text-align: center;
+	line-height: 50px;
+}
+.pyl_center ul li input{
+	width: 210px;
+	padding: 10px 0px 12px 10px;
+	border: none;
+	outline: none;
+}
+.div_tips{
+	height: 30px;
+}
+
+.pyl_center ul li input.pyl_sign_btn{
+	width: 400px;height: 50px;
+	display: block;
+	padding: 0px;
+	background: rgba(255,0,0,0.8);
+	color: white;
+	border-radius: 5px;
+}
+.pyl_center ul li input.pyl_sign_btn:hover{
+	background: rgba(255,0,0);
+}
+.div_tips{
+	font-size: 12px;
+	color: gray;
+	line-height: 24px;
+}
+.div_tips span{
+	padding-left: 5px;
+	position: relative;
+	display: none;
+}
+
+.pyl_true{
+	width: 18px;height: 18px;
+	background: url(../img/reg_icons.png);
+	position: absolute;
+	right: 10px;top: 18px;
+	background-position: -80px 0px;
+	display: none;
+}
+
+.userclear{
+	width: 18px;height: 18px;
+	background: url(../img/reg_icons.png);
+	position: absolute;
+	right: 14px;top: 18px;
+	background-position: -44px -25px;
+	display: none;
+	cursor: pointer;
+}
+
+
+/*注册成功提示*/
+.pyl_sign_tips{
+	display: none;
+	padding-top: 50px;
+	width: 100%;height: 400px;
+	position: fixed;
+	left: 0;top: 50%; margin-top: -200px;
+	background: url(../img/bg_sign.png);
+	background-position: -250px -250px;
+}
+.pyl_sign_tips h2{
+	width: 200px;
+	color: lawngreen;
+	font-size: 30px;
+	margin: 0 auto;
+}
+
+.pyl_sign_tips p{
+	width: 390px;
+	color: gray;
+	font-size: 26px;
+	margin: 0 auto;
+}
+
+.pyl_sign_tips .zhang{
+	position: absolute;
+	left: 50%;
+	width: 200px;height: 200px;
+	background: url(../img/bg_run.png);
+	background-size:cover ;
+	/*padding-top: 80px;*/
+	/*background-position:-200px -200px ;*/
+	z-index: 25;
+}
+

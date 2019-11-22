@@ -1,0 +1,35 @@
+/*全局样式*/
+* {
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+img {
+	border: none;
+	vertical-align: bottom;
+}
+/*跳转页面*/
+.pageSkining{
+	width: 100%;
+}
+.pageSkining>.container{
+	width: 1200px;
+	margin: 50px;
+}
+.pageSkining>.container>button.btnPrev{
+	margin-left: 470px;
+}
+.pageSkining>.container>button.btnJump{
+	margin:4px 15px 4px 4px;
+}
+.pageSkining>.container>input{
+	width: 50px;
+	height: 34px;
+	margin:4px 0px 4px 15px;
+	border-radius: 3px;
+}

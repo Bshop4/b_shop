@@ -1,4 +1,4 @@
-/*全局样式*/
+/*鍏ㄥ眬鏍峰紡*/
 * {
 	margin: 0px;
 	padding: 0px;
@@ -13,7 +13,7 @@ img {
 	border: none;
 	vertical-align: bottom;
 }
-/*头部*/
+/*澶撮儴*/
 .top{
 	width: 100%;
 	height: 78px;
@@ -23,7 +23,7 @@ img {
 	height: 78px;
 	margin: 0 auto;
 }
-/*未登录状态*/
+/*鏈櫥褰曠姸鎬�*/
 .btn{	
 	margin-top: 4px;
 	margin-left: 0px;
@@ -43,11 +43,12 @@ img {
 	height: 16px;
 	border-right: none;
 }
-/*登录状态*/
+/*鐧诲綍鐘舵��*/
 .logBtn{
 	display: none;
 }
 .logBtn>.last-span{
+	position:relative;
 	display: inline-block;
 }
 .logBtn a{
@@ -56,8 +57,6 @@ img {
 }
 .logBtn>.mingZi:hover,.logBtn>.exitM:hover{
 		cursor: pointer;
-		
-	
 }
 .personalInfo{
 	width: 80px;
@@ -66,8 +65,6 @@ img {
 	background: white;
 	border: 1px solid gray;
 	position: absolute;
-	top:24px;
-	left: 250px;
 	border-radius: 3px;
 	display: none;
 	cursor: pointer;
@@ -124,13 +121,13 @@ img {
 	float: left;
 	margin-top: -1px;
 }
-/*头部导航*/
+/*澶撮儴瀵艰埅*/
 .taber-bar{
 	width: 100%;
 	height: 85px;
 	font-size: 14px;
 }
-/*上部分导航*/
+/*涓婇儴鍒嗗鑸�*/
 .tabs-list-top{
 	width: 100%;
 	height: 40px;
@@ -163,7 +160,7 @@ img {
 .tabs-list-top>.tabs-list>li:hover>a{
 	color: #C39258;
 }
-/*下部分导航*/
+/*涓嬮儴鍒嗗鑸�*/
 .tabs-list-buttom{
 	width: 100%;
 	height: 45px;
@@ -201,7 +198,7 @@ img {
 .tabs-list-buttom>.tabs-list>li:hover>a{
 	text-decoration: none;
 }
-/*每个菜单里的内容*/
+/*姣忎釜鑿滃崟閲岀殑鍐呭*/
 .tabs-list-buttom>.tabs-list>li>.list-content{
 	width: 400px;
 	height: 300px;

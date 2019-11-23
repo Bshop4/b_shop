@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 程序启动加载文件 -->
   <listener>
   	<listener-class>bshow.web.listener.MyAppListener</listener-class>
   </listener>

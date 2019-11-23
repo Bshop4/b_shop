@@ -20,148 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<link rel="stylesheet" href="css/base.css" />
 	<link rel="stylesheet" href="css/bootstrap.css" />
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-        a {
-            text-decoration: none;
-        }
-        li {
-            list-style: none;
-        }
-        img {
-            border: none;
-            vertical-align: bottom;
-        }
-
-        .user{
-            width: 1200px;
-            height: 682px;
-            margin: 0px auto;
-            /*border: 1px solid red;*/
-            position: relative;
-        }
-
-        .user-left{
-            height: 442px;
-            width: 180px;
-            /*border: 1px solid red;*/
-
-        }
-        .user-left ul{
-            padding: 20px 0px 32px 28px;
-        }
-
-        .user-left ul li{
-            width: 152px;
-            height: 15px;
-            line-height: 15px;
-            margin: 0px 0px 24px;
-            cursor: pointer;
-        }
-
-        .user-right{
-            display: block;
-            width: 1020px;
-            height: 662px;
-            /*border: 1px solid red;*/
-            border-left: 2px solid rgba(255, 145, 75, 0.28);
-            position: absolute;
-            left: 180px;
-            top: 0px;
-            padding: 20px 0px 0px;
-        }
-
-        .title1, .title{
-            height: 18px;
-            width: 1020px;
-            padding: 0px 0px 24px 16px;
-
-        }
-        .title1,.title>p{
-            height: 18px;
-            /*width: 1020px;*/
-            font-size: 18px;
-            line-height: 18px;
-            font-weight: bolder;
-        }
-
-        .photo{
-            width: 956px;
-            height: 109px;
-        }
-
-        .pic{
-            width:120px;
-            height:32px;
-            display: inline-block;
-            padding: 0px 12px 0px 0px;
-            font-size: 13px;
-            line-height: 32px;
-            text-align: right;
-        }
-
-        .user-logo{
-            width: 96px;
-            height: 96px;
-            border: 1px solid #f79c34;
-            position: absolute;
-            top: 50px;
-            left: 137px;
-            cursor: pointer;
-        }
-        .user-takeOver ,.user-birth,.user-sex,.user-nickName ,.user-acc{
-            width: 120px;
-            height: 32px;
-            display: inline-block;
-            padding: 0px 12px 0px 0px;
-            font-size: 13px;
-            line-height: 32px;
-            text-align: right;
-        }
-
-        .myAddress, .user-in-nickName, .user-acc-input{
-            width: 230px;
-            height: 35px;
-        }
-
-        .user-in-nickName{
-             margin-top: 5px;
-         }
-
-        .save ,.cancel{
-            width: 176px;
-            height: 42px;
-            font-size: 16px;
-            border: 1px solid black;
-            position: absolute;
-            left: 300px;
-            top: 420px;
-            cursor: pointer;
-        }
-        .save{
-            left: 500px;
-            background: black;
-            color: white;
-        }
-
-        .user-right1{
-            display: none;
-            width: 1020px;
-            height: 662px;
-            border: 1px solid red;
-            position: absolute;
-            left: 180px;
-            top: 0px;
-            padding: 20px 0px 0px;
-        }
-
-        #myinfo{
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="css/personInfo.css"/>
 
 </head>
 <body>
@@ -230,12 +89,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 		</div>
-    <div class="user">
+ <div class="user">
 
         <div class="user-left">
             <ul>
                 <li id="myinfo">我的信息</li>
                 <li id="mymenu">我的订单</li>
+                <li id="myaddress">收货地址</li>
             </ul>
         </div>
 
@@ -295,6 +155,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
             </table>
         </div>
+
+        <div class="user-right2">
+            <div class="title2"><p>收货地址</p></div>
+            <button  id="user-myaddress"  class="btn btn-info navbar-btn navbar-left" data-toggle="modal" data-target="#addAddress" style="background: black">+新增地址</button>
+
+            <!--<ul class="addresslist">-->
+                <!--<li>-->
+                    <!--<div class="insertName">詹佳磊&nbsp;&nbsp;&nbsp;&nbsp;1593590290</div>-->
+                    <!--<div class="insertPostcode">邮编:123456</div>-->
+                    <!--<div class="insertMyaddress">收货地址:浙江省XXXXXXXXXXXXXX</div>-->
+                    <!--<span class="binggou">√</span>-->
+                    <!--<span class="redefult">设为默认</span>-->
+                    <!--<div class="edit">编辑</div>-->
+                    <!--<div class="del">删除</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </div>
+
+    <div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="text-success modal-title">新增地址
+                        <span class="close" data-dismiss="modal">&times;</span>
+                    </h2>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <label>收货人姓名:</label>
+                                <input type="text" class="form-control" id="myname"/><label class="namelable">收货人姓名不能为空</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>手机号:</label>
+                                <input type="text" class="form-control" id="myiphone"/><label class="iplabel">手机号格式错误</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>邮编:</label>
+                                <input type="text" class="form-control" id="mypostcode"/><label class="postlabel">邮编不能为空</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>收货地址:</label>
+                                <input type="text" class="form-control" id="myproaddress"/><label class="addresslabel">收货地址不能为空</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success"   id="save1" onclick="mysaveclick()">保存</button>
+                    <button class="btn btn-danger" data-dismiss="modal" id="cancel1" >取消</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
 
     </div>
 		<!--底部banner与二维码-->
@@ -378,28 +302,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/banner.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-<script>
-
-    $("#myinfo").click(function(){
-        $("#myinfo").css({
-            color:"red"
-        });
-        $("#mymenu").css({
-            color:"black"
-        })
-        $(".user-right").show();
-        $(".user-right1").hide();
-    })
-
-    $("#mymenu").click(function(){
-        $("#mymenu").css({
-            color:"red"
-        });
-        $("#myinfo").css({
-            color:"black"
-        })
-        $(".user-right1").show();
-        $(".user-right").hide();
-    })
-
-</script>
+<script type="text/javascript" src="js/personInfo.js"></script>

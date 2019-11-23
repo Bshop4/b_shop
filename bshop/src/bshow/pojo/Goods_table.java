@@ -3,7 +3,7 @@ package bshow.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class goods_table implements Serializable{
+public class Goods_table implements Serializable{
 	private int goods_id;//商品主键
 	private String  goods_name;//商品名字
 	private double 	goods_price;//商品单价

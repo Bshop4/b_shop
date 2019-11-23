@@ -1,0 +1,243 @@
+@CHARSET "UTF-8";
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        a {
+            text-decoration: none;
+        }
+        li {
+            list-style: none;
+        }
+        img {
+            border: none;
+            vertical-align: bottom;
+        }
+
+        .user{
+            width: 1200px;
+            height: 682px;
+            margin: 0px auto;
+            /*border: 1px solid red;*/
+            position: relative;
+        }
+
+        .user-left{
+            height: 442px;
+            width: 180px;
+            /*border: 1px solid red;*/
+
+        }
+        .user-left ul{
+            padding: 20px 0px 32px 28px;
+        }
+
+        .user-left ul li{
+            width: 152px;
+            height: 15px;
+            line-height: 15px;
+            margin: 0px 0px 24px;
+            cursor: pointer;
+        }
+
+        .user-right{
+            display: block;
+            /*display:none;*/
+            width: 1020px;
+            height: 662px;
+            /*border: 1px solid red;*/
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
+
+        .title2, .title1, .title{
+            height: 18px;
+            width: 1020px;
+            padding: 0px 0px 24px 16px;
+
+        }
+        .title2,.title1,.title>p{
+            height: 18px;
+            /*width: 1020px;*/
+            font-size: 18px;
+            line-height: 18px;
+            font-weight: bolder;
+        }
+
+        .photo{
+            width: 956px;
+            height: 109px;
+        }
+
+        .pic{
+            width:120px;
+            height:32px;
+            display: inline-block;
+            padding: 0px 12px 0px 0px;
+            font-size: 13px;
+            line-height: 32px;
+            text-align: right;
+        }
+
+        .user-logo{
+            width: 96px;
+            height: 96px;
+            border: 1px solid #f79c34;
+            position: absolute;
+            top: 50px;
+            left: 137px;
+            cursor: pointer;
+        }
+        .user-takeOver ,.user-birth,.user-sex,.user-nickName ,.user-acc{
+            width: 120px;
+            height: 32px;
+            display: inline-block;
+            padding: 0px 12px 0px 0px;
+            font-size: 13px;
+            line-height: 32px;
+            text-align: right;
+        }
+
+        .myAddress, .user-in-nickName, .user-acc-input{
+            width: 230px;
+            height: 35px;
+        }
+
+        .user-in-nickName{
+             margin-top: 5px;
+         }
+
+        .save ,.cancel{
+            width: 176px;
+            height: 42px;
+            font-size: 16px;
+            border: 1px solid black;
+            position: absolute;
+            left: 300px;
+            top: 420px;
+            cursor: pointer;
+        }
+        .save{
+            left: 500px;
+            background: black;
+            color: white;
+        }
+
+        .user-right1{
+            display: none;
+            width: 1020px;
+            height: 662px;
+            border: 1px solid red;
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
+
+        #myinfo{
+            color: red;
+        }
+
+        .user-right2{
+            display: none;
+            width: 1020px;
+            height: 662px;
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
+        #user-myaddress{
+            position: absolute;
+            right: 100px;
+            top:2px;
+            width: 115px;
+            height: 35px;
+        }
+
+        /*.addresslist{*/
+            /*width: 1000px;*/
+            /*height: 120px;*/
+            /*!*border: 1px solid red;*!*/
+            /*margin-left: 10px;*/
+            /*position: relative;*/
+        /*}*/
+
+        /*.addresslist>li{*/
+            /*width: 750px;*/
+            /*height: 100px;*/
+            /*!*border: 1px solid red;*!*/
+            /*margin-top: 10px;*/
+            /*margin-left: 10px;*/
+        /*}*/
+
+        /*.insertName,.insertMyaddress,.insertPostcode{*/
+            /*padding: 0px 0px 10px;*/
+        /*}*/
+
+        /*.edit, .del{*/
+            /*width: 30px;*/
+            /*height: 20px;*/
+            /*font-size: 15px;*/
+            /*position: absolute;*/
+            /*right: 50px;*/
+            /*top:50%;*/
+            /*cursor: pointer;*/
+            /*text-decoration: underline;*/
+        /*}*/
+        /*.edit{*/
+            /*right: 90px;*/
+        /*}*/
+
+        /*.binggou{*/
+            /*width: 15px;*/
+            /*height:15px;*/
+            /*background: black;*/
+            /*display: inline-block;*/
+            /*color: whitesmoke;*/
+            /*cursor: pointer;*/
+        /*}*/
+        /*.redefult{*/
+            /*font-weight: bolder;*/
+        /*}*/
+
+        #addressform{
+            position: relative;
+        }
+        .iplabel{
+            position: absolute;
+            top: 135px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+
+        .namelable{
+            position: absolute;
+            top: 60px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+
+        .postlabel{
+            position: absolute;
+            top: 208px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+        .addresslabel{
+            position: absolute;
+            top: 283px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }

@@ -31,7 +31,7 @@ public class MyAppListener implements ServletContextListener{
 		try {
 			doc=reader.read(config);
 			//将配置文件存在应用程序的作用域中
-			sce.getServletContext().setAttribute("doc", doc);
+			sce.getServletContext().setAttribute("config", doc);
 			sce.getServletContext().setAttribute("actionPool", actionPool);
 		} catch (DocumentException e) {
 			e.printStackTrace();

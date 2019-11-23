@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <properties>
-	<PagePattern name="">
-		<ActionForm name="mm">aaa</ActionForm>
-		<Redirect name=""></Redirect>
+	<PagePattern name="pageBranchAction">
+		<ActionForm>bshow.web.servlet.form.PageBranchActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.PageBranchAction</Action>
+		<Redirect>false</Redirect>
+		<path></path>
 	</PagePattern>
 </properties>

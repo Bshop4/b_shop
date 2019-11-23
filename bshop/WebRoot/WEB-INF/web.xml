@@ -9,6 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 网页中通过MVC进入控制层 -->
   <servlet>
   	<servlet-name>ActionServlet</servlet-name>
   	<servlet-class>bshow.web.servlet.core.ActionServlet</servlet-class>

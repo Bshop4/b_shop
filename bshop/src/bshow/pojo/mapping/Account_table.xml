@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Account_table" table="account_table">
+	<property name="account" column="account"/>
+	<property name="account_id" column="account_id"/>
+	<property name="password" column="password"/>
+	<property name="email" column="email"/>
+	<property name="ipaddress" column="ipaddress"/>
+	<property name="ban" column="ban"/>
+	
+	<insert id="insertone">
+		insert into account_table(account,password,email,ipaddress,ban) values(#{account},#{password},#{email},#{ipaddress},#{ban})
+	</insert>
+</class>

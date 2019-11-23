@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
 					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
 					<span class="badge store_number">0</span>
-					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的走秀<p class="glyphicon glyphicon-chevron-down"></p>
+					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
 								<a>个人中心</a>

@@ -1,3 +1,4 @@
+<%@page import="bshow.db.DBhelper"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -24,5 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <a href="ttt.do">haha</a>
+    <%=DBhelper.getConnection()%>
   </body>
 </html>

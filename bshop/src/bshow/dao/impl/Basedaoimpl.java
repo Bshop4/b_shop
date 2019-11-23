@@ -36,7 +36,7 @@ public class Basedaoimpl implements Basedao{
 			fileds.add(m.group(1));
 		}
 		//替换所有的sql为   ？
-		sql.replaceAll("#[{](\\w+)[}]", "?");
+		sql.replaceAll("#[{](\\w+)[}]", "?");  
 		System.out.println(sql);
 		//预处理
 			PreparedStatement ps=conn.prepareStatement(sql);

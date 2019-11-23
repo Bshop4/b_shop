@@ -3,6 +3,7 @@ package bshow.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import bshow.pojo.Cart_table;
 import bshow.pojo.Goods_table;
 
 /**
@@ -26,6 +27,7 @@ public interface GoodsDao {
 	
 	//根据店铺主键查询商品
 	public List<Goods_table> queryGoodsByShopId(int shopId,Connection con) throws Exception;
+	
 	
 	
 }

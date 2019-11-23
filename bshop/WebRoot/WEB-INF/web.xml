@@ -9,13 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <!-- 网页中通过MVC进入控制层 -->
+  <listener>
+  	<listener-class>bshow.web.listener.MyAppListener</listener-class>
+  </listener>
+  
+  <!-- 通过do模式进行控制 -->
   <servlet>
-  	<servlet-name>ActionServlet</servlet-name>
-  	<servlet-class>bshow.web.servlet.core.ActionServlet</servlet-class>
+    <servlet-name>ActionServlet</servlet-name>
+    <servlet-class>bshow.web.servlet.core.ActionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ActionServlet</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
 </web-app>

@@ -6,12 +6,11 @@ import java.util.List;
 import bshow.dao.AccountDao;
 import bshow.pojo.Account_table;
 
-public class AccountDaoImpl implements AccountDao{
+public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public boolean insertAccount(Account_table account, Connection con) throws Exception {
-		
-		
+
 		return false;
 	}
 
@@ -38,6 +37,5 @@ public class AccountDaoImpl implements AccountDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 }

@@ -64,6 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         .user-right{
             display: block;
+            /*display:none;*/
             width: 1020px;
             height: 662px;
             /*border: 1px solid red;*/
@@ -74,13 +75,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             padding: 20px 0px 0px;
         }
 
-        .title1, .title{
+        .title2, .title1, .title{
             height: 18px;
             width: 1020px;
             padding: 0px 0px 24px 16px;
 
         }
-        .title1,.title>p{
+        .title2,.title1,.title>p{
             height: 18px;
             /*width: 1020px;*/
             font-size: 18px;
@@ -161,6 +162,107 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         #myinfo{
             color: red;
         }
+
+        .user-right2{
+            display: none;
+            width: 1020px;
+            height: 662px;
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
+        #user-myaddress{
+            position: absolute;
+            right: 100px;
+            top:2px;
+            width: 115px;
+            height: 35px;
+        }
+
+        /*.addresslist{*/
+            /*width: 1000px;*/
+            /*height: 120px;*/
+            /*!*border: 1px solid red;*!*/
+            /*margin-left: 10px;*/
+            /*position: relative;*/
+        /*}*/
+
+        /*.addresslist>li{*/
+            /*width: 750px;*/
+            /*height: 100px;*/
+            /*!*border: 1px solid red;*!*/
+            /*margin-top: 10px;*/
+            /*margin-left: 10px;*/
+        /*}*/
+
+        /*.insertName,.insertMyaddress,.insertPostcode{*/
+            /*padding: 0px 0px 10px;*/
+        /*}*/
+
+        /*.edit, .del{*/
+            /*width: 30px;*/
+            /*height: 20px;*/
+            /*font-size: 15px;*/
+            /*position: absolute;*/
+            /*right: 50px;*/
+            /*top:50%;*/
+            /*cursor: pointer;*/
+            /*text-decoration: underline;*/
+        /*}*/
+        /*.edit{*/
+            /*right: 90px;*/
+        /*}*/
+
+        /*.binggou{*/
+            /*width: 15px;*/
+            /*height:15px;*/
+            /*background: black;*/
+            /*display: inline-block;*/
+            /*color: whitesmoke;*/
+            /*cursor: pointer;*/
+        /*}*/
+        /*.redefult{*/
+            /*font-weight: bolder;*/
+        /*}*/
+
+        #addressform{
+            position: relative;
+        }
+        .iplabel{
+            position: absolute;
+            top: 135px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+
+        .namelable{
+            position: absolute;
+            top: 60px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+
+        .postlabel{
+            position: absolute;
+            top: 208px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+        .addresslabel{
+            position: absolute;
+            top: 283px;
+            left: 16px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
     </style>
 
 </head>
@@ -230,12 +332,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 		</div>
-    <div class="user">
+ <div class="user">
 
         <div class="user-left">
             <ul>
                 <li id="myinfo">我的信息</li>
                 <li id="mymenu">我的订单</li>
+                <li id="myaddress">收货地址</li>
             </ul>
         </div>
 
@@ -295,6 +398,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
             </table>
         </div>
+
+        <div class="user-right2">
+            <div class="title2"><p>收货地址</p></div>
+            <button  id="user-myaddress"  class="btn btn-info navbar-btn navbar-left" data-toggle="modal" data-target="#addAddress" style="background: black">+新增地址</button>
+
+            <!--<ul class="addresslist">-->
+                <!--<li>-->
+                    <!--<div class="insertName">詹佳磊&nbsp;&nbsp;&nbsp;&nbsp;1593590290</div>-->
+                    <!--<div class="insertPostcode">邮编:123456</div>-->
+                    <!--<div class="insertMyaddress">收货地址:浙江省XXXXXXXXXXXXXX</div>-->
+                    <!--<span class="binggou">√</span>-->
+                    <!--<span class="redefult">设为默认</span>-->
+                    <!--<div class="edit">编辑</div>-->
+                    <!--<div class="del">删除</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        </div>
+
+    <div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h2 class="text-success modal-title">新增地址
+                        <span class="close" data-dismiss="modal">&times;</span>
+                    </h2>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <label>收货人姓名:</label>
+                                <input type="text" class="form-control" id="myname"/><label class="namelable">收货人姓名不能为空</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>手机号:</label>
+                                <input type="text" class="form-control" id="myiphone"/><label class="iplabel">手机号格式错误</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>邮编:</label>
+                                <input type="text" class="form-control" id="mypostcode"/><label class="postlabel">邮编不能为空</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>收货地址:</label>
+                                <input type="text" class="form-control" id="myproaddress"/><label class="addresslabel">收货地址不能为空</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success"   id="save1" onclick="mysaveclick()">保存</button>
+                    <button class="btn btn-danger" data-dismiss="modal" id="cancel1" >取消</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
 
     </div>
 		<!--底部banner与二维码-->
@@ -380,15 +547,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script>
 
-    $("#myinfo").click(function(){
+   $("#myinfo").click(function(){
         $("#myinfo").css({
             color:"red"
         });
+
         $("#mymenu").css({
+            color:"black"
+        })
+        $("#myaddress").css({
             color:"black"
         })
         $(".user-right").show();
         $(".user-right1").hide();
+        $(".user-right2").hide();
+
     })
 
     $("#mymenu").click(function(){
@@ -398,8 +571,164 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#myinfo").css({
             color:"black"
         })
+        $("#myaddress").css({
+            color:"black"
+        })
         $(".user-right1").show();
         $(".user-right").hide();
+        $(".user-right2").hide();
     })
+
+    $("#myaddress").click(function(){
+        $("#myaddress").css({
+            color:"red"
+        });
+        $("#myinfo").css({
+            color:"black"
+        })
+        $("#mymenu").css({
+            color:"black"
+        })
+        $(".user-right2").show();
+        $(".user-right").hide();
+        $(".user-right1").hide();
+    })
+
+
+
+    $("#user-myaddress").click(function(){
+        document.getElementById("save1").setAttribute("data-dismiss","");
+    })
+
+    function mysaveclick(){
+
+        var name = document.getElementById("myname").value;
+        var iphone = document.getElementById("myiphone").value;
+        var postcode = document.getElementById("mypostcode").value;
+        var address = document.getElementById("myproaddress").value;
+
+        if(name == ""){
+            $(".namelable").show();
+            return ;
+        }else{
+            $(".namelable").hide();
+        }
+
+        var reiphone = /^1[0-9]{10}/;
+        if(reiphone.test(iphone) != true){
+            $(".iplabel").show();
+            return;
+        }else{
+            $(".iplabel").hide();
+        }
+
+        if(postcode == ""){
+            $(".postlabel").show();
+            return ;
+        }else{
+            $(".postlabel").hide();
+        }
+        if(address == ""){
+            $(".addresslabel").show();
+            return;
+        }else{
+            $(".addresslabel").hide();
+        }
+
+        if(reiphone.test(iphone) == true && name != "" && postcode != "" && address != ""){
+            document.getElementById("save1").setAttribute("data-dismiss","modal");
+                $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+address+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                $(".addresslist").css({
+                    "width": "1000px",
+                    "height": "120px",
+                    "margin-left": "10px",
+                    "position": "relative"
+                })
+
+                $(".addresslist>li").css({
+                    "width": "750px",
+                    "height": "100px",
+                    "margin-top": "10px",
+                    "margin-left": "10px",
+                })
+
+                $(".insertName,.insertMyaddress,.insertPostcode").css({
+                    "padding": "0px 0px 10px",
+                })
+
+                $(".edit, .del").css({
+                    "width": "30px",
+                    "height": "20px",
+                    "font-size": "15px",
+                    "position": "absolute",
+                    "right": "50px",
+                    "top":"50%",
+                    "cursor": "pointer",
+                    "text-decoration": "underline"
+                })
+
+                $(".edit").css({
+                    "right":"90px"
+                })
+
+                $(".binggou").css({
+                    "width": "15px",
+                    "height":"15px",
+                    "background": "black",
+                    "display": "inline-block",
+                    "color": "whitesmoke",
+                    "cursor": "pointer",
+                })
+
+                $(".redefult").css({
+                    "font-weight": "bolder",
+                })
+
+        }
+        var len = $(".user-right2").children().length;
+        if(len > 3){
+            $(".nowaddress").remove();
+        }
+
+        document.getElementById("myname").value = "";
+        document.getElementById("myiphone").value = "";
+        document.getElementById("mypostcode").value = "";
+        document.getElementById("myproaddress").value = "";
+
+    }
+
+
+    function  delclick(obj){
+
+        $(obj).parent().parent().remove();
+        var len = $(".user-right2").children().length;
+        if(len == 2){
+            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+            $(".nowaddress").css({
+                "font-size" : "25px",
+                "width" : "1000px",
+                "height" : "300px",
+                "text-align" : "center",
+                "line-height" : "300px"
+            })
+        }
+
+    }
+    
+    (function () {
+        var len = $(".user-right2").children().length;
+        if(len == 2){
+            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+            $(".nowaddress").css({
+                "font-size" : "25px",
+                "width" : "1000px",
+                "height" : "300px",
+                "text-align" : "center",
+                "line-height" : "300px"
+            })
+        }
+    })()
+
+
 
 </script>

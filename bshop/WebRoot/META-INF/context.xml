@@ -3,7 +3,8 @@
 	<Resource name ="mysql" auth="Container" type="com.mchange.v2.c3p0.ComboPooledDataSource"
 	 factory="org.apache.naming.factory.BeanFactory"
 	 initialPoolSize="3" maxPoolSize="20" checkoutTimeout="5000"
-	 user="root" password="1234" driverClass="com.mysql.jdbc.Driver"
-	 jdbcUrl="jdbc:mysql://192.168.43.87:3306/bshop"
+	 user="root" password="" driverClass="com.mysql.jdbc.Driver"
+	 jdbcUrl="jdbc:mysql://127.0.0.1:3306/bshow"
 	/>
+	 <!-- jdbcUrl="jdbc:mysql://192.168.43.87:3306/bshop" -->
 </Context>

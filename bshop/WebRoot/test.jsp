@@ -1,3 +1,6 @@
+<%@page import="bshow.dao.Basedao"%>
+<%@page import="bshow.dao.impl.Basedaoimpl"%>
+<%@page import="bshow.pojo.Account_table"%>
 <%@page import="bshow.db.DBhelper"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
@@ -26,5 +29,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%=DBhelper.getConnection()%>
     <a href="pageBranchAction.do">haha</a>
+    <%
+    	Account_table a= new Account_table();
+    	a.setAccount("4894654");
+    	a.setBan(1);
+    	a.setEmail("8721@ds.com");
+    	a.setPassword("123456");
+    	a.setIpaddress("湖南");
+    	Basedao b=new Basedaoimpl();
+    	b.saveObject("insertone", a);
+     %>
   </body>
 </html>

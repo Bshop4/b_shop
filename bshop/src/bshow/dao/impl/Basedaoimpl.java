@@ -24,19 +24,19 @@ public class Basedaoimpl implements Basedao{
 		//拿到对应的文档xml
 		Class c=o.getClass();
 		Document doc=DBhelper.getDocumentByClass(c);
-		Element insertelement =(Element)doc.selectSingleNode("/class/insert[@id="+id+"]");
+		Element insertelement =(Element)doc.selectSingleNode("/class/insert[@id='"+id+"']");
 		String sql=insertelement.getTextTrim();
 		//获得多少个参数
 		int paramterCount =0;
 		List<String> fileds=new ArrayList<String>();
-		Pattern p=Pattern.compile("#[{](\\w)[}]");
+		Pattern p=Pattern.compile("#[{](\\w+)[}]");
 		Matcher m=p.matcher(sql);
 		while(m.find()){
 			paramterCount++;
 			fileds.add(m.group(1));
 		}
 		//替换所有的sql为   ？
-		sql.replaceAll("#[{](\\w+)[}]", "?");  
+		sql=sql.replaceAll("#[{](\\w+)[}]", "?");  
 		System.out.println(sql);
 		//预处理
 			PreparedStatement ps=conn.prepareStatement(sql);
@@ -47,6 +47,7 @@ public class Basedaoimpl implements Basedao{
 				Method method=c.getMethod(methodname, null);
 				ps.setObject(i+1, method.invoke(o, null));
 			}
+			
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

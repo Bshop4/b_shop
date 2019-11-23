@@ -27,7 +27,7 @@ public class DBhelper {
 	private static List<Document> mappingList = new ArrayList<Document>();
 	
 	static{
-		InputStream is=DBhelper.class.getResourceAsStream("/sqlmap.xml");
+		InputStream is=DBhelper.class.getResourceAsStream("/bshop/map/sqlmap.xml");
 		try {
 			//上下文的实例
 			context= new InitialContext();

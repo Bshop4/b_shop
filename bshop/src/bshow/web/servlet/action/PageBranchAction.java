@@ -8,13 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
+import bshow.web.servlet.core.ActionForward;
 
 public class PageBranchAction extends Action{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-		
+		return new ActionForward("success", false);
 	}
 
 }

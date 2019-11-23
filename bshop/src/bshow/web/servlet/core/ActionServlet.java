@@ -55,6 +55,9 @@ public class ActionServlet extends HttpServlet {
 		if(a!=-1&&b!=-1&&b>a){
 			uri=uri.substring(a+1,b);
 		}
+		//将url存入request中
+		request.setAttribute("uri", uri);
+		
 		//将数据封装到对应的form中
 		//通过uri找到要封装数据的ActionForm类
 		List<Element> list=config.selectNodes("/properties/PagePattern[@name='"+uri+"']/ActionForm");
@@ -101,7 +104,9 @@ public class ActionServlet extends HttpServlet {
 					//表示第N次访问该action
 					action=(Action)obj;
 				}
-				action.execute(request, response, form);
+				ActionForward af=action.execute(request, response, form);
+				//跳转
+				af.forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

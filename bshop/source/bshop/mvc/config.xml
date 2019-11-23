@@ -4,6 +4,7 @@
 		<ActionForm>bshow.web.servlet.form.PageBranchActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.PageBranchAction</Action>
 		<Redirect>false</Redirect>
-		<path></path>
+		<path name="success">success.jsp</path>
+		<path name="error">error.jsp</path>
 	</PagePattern>
 </properties>

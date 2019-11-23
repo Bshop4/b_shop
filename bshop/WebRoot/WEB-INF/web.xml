@@ -14,6 +14,11 @@
   	<listener-class>bshow.web.listener.MyAppListener</listener-class>
   </listener>
   
+  <!-- 单态登录监听 -->
+  <listener>
+  	<listener-class>bshow.web.listener.LoginSessionListener</listener-class>
+  </listener>
+  
   <!-- 配置数据源对象c3p0 -->
   <resource-ref>
   	<res-ref-name>mysql</res-ref-name>

@@ -2,7 +2,7 @@ package bshow.pojo;
 
 import java.io.Serializable;
 
-public class shop_table implements Serializable{
+public class Shop_table implements Serializable{
 	private int shop_id;//店铺的主键      
 	private int goods_id;//商品的主键
 	public int getShop_id() {

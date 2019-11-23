@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <properties>
 	<PagePattern name="">
-		<ActionForm name=""></ActionForm>
+		<ActionForm name="mm">aaa</ActionForm>
 		<Redirect name=""></Redirect>
 	</PagePattern>
 </properties>

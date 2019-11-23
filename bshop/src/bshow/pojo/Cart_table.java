@@ -2,7 +2,7 @@ package bshow.pojo;
 
 import java.io.Serializable;
 
-public class cart_table implements Serializable{
+public class Cart_table implements Serializable{
 	private int cart_id;//购物车主键
 	private int cart_number;//购物车商品的数量
 	private double 	goods_price;//商品的单价

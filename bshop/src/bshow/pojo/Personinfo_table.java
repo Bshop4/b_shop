@@ -2,7 +2,7 @@ package bshow.pojo;
 
 import java.io.Serializable;
 
-public class personinfo_table implements Serializable{
+public class Personinfo_table implements Serializable{
 	private int personInfo_id;//个人信息主键
 	private String nickname;// 昵称
 	private String account;//帐号

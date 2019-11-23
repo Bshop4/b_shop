@@ -2,7 +2,7 @@ package bshow.pojo;
 
 import java.io.Serializable;
 
-public class account_table implements Serializable{
+public class Account_table implements Serializable{
 	private int account_id;  //主键
 	private String account;	//帐号
 	private String password;//密码

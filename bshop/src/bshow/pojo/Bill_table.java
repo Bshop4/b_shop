@@ -3,7 +3,7 @@ package bshow.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class bill_table implements Serializable{
+public class Bill_table implements Serializable{
 	private int bill_id  ; //订单主键
 	private String address;//收货地址
 	private String bill_time;// 订单时间

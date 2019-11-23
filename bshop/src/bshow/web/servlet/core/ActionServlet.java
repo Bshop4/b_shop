@@ -1,11 +1,15 @@
 package bshow.web.servlet.core;
 
 import java.io.IOException;
+import java.util.Properties;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.dom4j.Document;
 
 /**
  * Servlet implementation class ActionServlet
@@ -33,6 +37,11 @@ public class ActionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//拿出应用程序中的action池
+		Properties actionPool=(Properties)this.getServletContext().getAttribute("actionPool");
+		//拿出配置文件
+		Document doc=(Document)this.getServletContext().getAttribute("doc");
+		//获得提交的路径
 		
 	}
 	@Override

@@ -9,7 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-
+  <!-- 程序启动加载文件 -->
+  <listener>
+  	<listener-class>bshow.web.listener.MyAppListener</listener-class>
+  </listener>
   
   <!-- 配置数据源对象c3p0 -->
   <resource-ref>
@@ -19,14 +22,15 @@
   </resource-ref>
   
 
-  <!-- 网页中通过MVC进入控制层 -->
+  <!-- 网页中通过MVC进入控制层 通过do模式进行控制 -->
   <servlet>
-  	<servlet-name>ActionServlet</servlet-name>
-  	<servlet-class>bshow.web.servlet.core.ActionServlet</servlet-class>
+    <servlet-name>ActionServlet</servlet-name>
+    <servlet-class>bshow.web.servlet.core.ActionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ActionServlet</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
 
 </web-app>

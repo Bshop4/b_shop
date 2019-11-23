@@ -12,8 +12,17 @@ public class Bill_table implements Serializable{
 	private String goods_name;//商品名称
 	private double goods_price;//商品单价
 	private int cart_number;//（购车里的商品数量）
+	private int bill_isclearing; //订单是否付钱  1表示结算了  2 表示未结算
 	private String  bill_code;//订单编码
 	
+	
+	
+	public int getBill_isclearing() {
+		return bill_isclearing;
+	}
+	public void setBill_isclearing(int bill_isclearing) {
+		this.bill_isclearing = bill_isclearing;
+	}
 	public int getBill_id() {
 		return bill_id;
 	}

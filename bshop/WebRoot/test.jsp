@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <a href="ttt.do">haha</a>
     <%=DBhelper.getConnection()%>
+    <a href="pageBranchAction.do">haha</a>
   </body>
 </html>

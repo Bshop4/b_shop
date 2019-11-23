@@ -226,3 +226,35 @@ function allMounts(){
 		
 	})
 }
+function mysaveclicks(){
+    var name = document.getElementById("myname").value;
+    var iphone = document.getElementById("myiphone").value;
+    var postcode = document.getElementById("mypostcode").value;
+    var address = document.getElementById("myproaddress").value;
+    
+    var reiphone = /^1[0-9]{10}/;
+    
+    if(reiphone.test(iphone) == true && name != "" && postcode != "" && address != ""){
+            $(".address-list").css({
+                "width": "400px",
+                "height": "80px",
+                "margin-left": "10px",
+                "position": "relative"
+            })
+            var obj= $("<li style='float: left;margin-left: 20px;'></li>");
+            $(".address-list").append(obj)
+            obj.append("收货人姓名："+name);
+            obj.append(document.createElement("br"));
+            obj.append("收货人电话："+iphone);
+            obj.append(document.createElement("br"));
+            obj.append("收货人邮编："+postcode);
+            obj.append(document.createElement("br"));
+            obj.append("收货人地址："+address);
+            
+            document.getElementById("myname").value = "";
+	        document.getElementById("myiphone").value = "";
+	        document.getElementById("mypostcode").value = "";
+	        document.getElementById("myproaddress").value = "";
+	            
+    }
+}

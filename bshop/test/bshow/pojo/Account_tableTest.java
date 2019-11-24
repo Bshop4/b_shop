@@ -9,7 +9,7 @@ public class Account_tableTest implements Serializable {
 	private String email;// 邮箱
 	private String ipaddress;// 收货地址
 	private int ban; // 帐号是否禁用
-
+ 
 	public int getAccount_id() {
 		return account_id;
 	}

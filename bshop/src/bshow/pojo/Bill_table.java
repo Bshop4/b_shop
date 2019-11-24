@@ -3,7 +3,9 @@ package bshow.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Bill_table implements Serializable{
+import junit.framework.TestCase;
+
+public class Bill_table  implements Serializable{
 	private int bill_id  ; //订单主键
 	private String address;//收货地址
 	private String bill_time;// 订单时间
@@ -16,7 +18,7 @@ public class Bill_table implements Serializable{
 	private String  bill_code;//订单编码
 	
 	
-	
+
 	public int getBill_isclearing() {
 		return bill_isclearing;
 	}

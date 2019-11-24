@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	Account_table a= new Account_table();
     	//a.setAccount("4894654");
     	//a.setBan(1);
-    	//a.setEmail("dgfskhljdhgfk");
+    	//a.setEmail("dgfskhljdhgfk"); 
     	//a.setPassword("123456");
     	//a.setIpaddress("长沙");
     	a.setAccount_id(6);

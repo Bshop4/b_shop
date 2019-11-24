@@ -31,13 +31,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="pageBranchAction.do">haha</a>
     <%
     	Account_table a= new Account_table();
-    	a.setAccount("4894654");
-    	a.setBan(1);
-    	a.setEmail("8721@ds.com");
-    	a.setPassword("123456");
-    	a.setIpaddress("湖南");
+    	//a.setAccount("4894654");
+    	//a.setBan(1);
+    	//a.setEmail("dgfskhljdhgfk");
+    	//a.setPassword("123456");
+    	//a.setIpaddress("长沙");
+    	a.setAccount_id(6);
+    	a.setPassword("123");
     	Basedao b=new Basedaoimpl();
-    	b.saveObject("insertone", a);
+    	//b.saveObject("insertone", a);
+    	List<Object> list =b.select("selecttow", a);
+    	
+    	for(int i=0 ;i<list.size();i++){
+    		Account_table ab=(Account_table)list.get(i);
+    		System.out.println(ab.getAccount());
+    		System.out.println(ab.getIpaddress());
+    	}
+    	
      %>
   </body>
 </html>

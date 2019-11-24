@@ -1,4 +1,7 @@
 package bshow.pojo;
+/**
+ * 单元测试
+ */
 
 import junit.framework.TestCase;
 

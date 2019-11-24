@@ -1,99 +1,93 @@
 package bshow.pojo;
 
-import org.junit.jupiter.api.Test;
-
 import junit.framework.TestCase;
 
-class Bill_tableAutoTest {
+public class Bill_tableAutoTest extends TestCase {
+	int num;
+	double db;
+	String str;
+	private Bill_tableTest b_t = null;
 
-	@Test
-	void testGetBill_id() {
-		TestCase.assertEquals(1, 1);
+	@Override
+	public void setUp() throws Exception {
+		b_t = new Bill_tableTest();
 	}
 
-	@Test
-	void testSetBill_id() {
-		TestCase.assertEquals(1, 1);
+	@Override
+	public void tearDown() throws Exception {
+		b_t = null;
 	}
 
-	@Test
-	void testGetAddress() {
-		TestCase.assertEquals("a", "a");
+	public void testGetBill_id() {
+		TestCase.assertEquals(num, b_t.getBill_id());
 	}
 
-	@Test
-	void testSetAddress() {
-		TestCase.assertEquals("a", "a");
+	public void testSetBill_id() {
+		TestCase.assertEquals(num, b_t.getBill_id());
 	}
 
-	@Test
-	void testGetBill_time() {
-		TestCase.assertEquals("a", "a");
+	public void testGetAddress() {
+		TestCase.assertEquals(str, b_t.getAddress());
 	}
 
-	@Test
-	void testSetBill_time() {
-		TestCase.assertEquals("a", "a");
+	public void testSetAddress() {
+		TestCase.assertEquals(str, b_t.getAddress());
 	}
 
-	@Test
-	void testGetAllprice() {
-		TestCase.assertEquals(1.2, 1.2);
+	public void testGetBill_time() {
+		TestCase.assertEquals(str, b_t.getBill_time());
 	}
 
-	@Test
-	void testSetAllprice() {
-		TestCase.assertEquals(1.2, 1.2);
+	public void testSetBill_time() {
+		TestCase.assertEquals(str, b_t.getBill_time());
 	}
 
-	@Test
-	void testGetAccount() {
-		TestCase.assertEquals("a", "a");
+	public void testGetAllprice() {
+		TestCase.assertEquals(db, b_t.getAllprice());
 	}
 
-	@Test
-	void testSetAccount() {
-		TestCase.assertEquals("a", "a");
+	public void testSetAllprice() {
+		TestCase.assertEquals(db, b_t.getAllprice());
 	}
 
-	@Test
-	void testGetGoods_name() {
-		TestCase.assertEquals("a", "a");
+	public void testGetAccount() {
+		TestCase.assertEquals(str, b_t.getAccount());
 	}
 
-	@Test
-	void testSetGoods_name() {
-		TestCase.assertEquals("a", "a");
+	public void testSetAccount() {
+		TestCase.assertEquals(str, b_t.getAccount());
 	}
 
-	@Test
-	void testGetGoods_price() {
-		TestCase.assertEquals(1.2, 1.2);
+	public void testGetGoods_name() {
+		TestCase.assertEquals(str, b_t.getGoods_name());
 	}
 
-	@Test
-	void testSetGoods_price() {
-		TestCase.assertEquals(1.2, 1.2);
+	public void testSetGoods_name() {
+		TestCase.assertEquals(str, b_t.getGoods_name());
 	}
 
-	@Test
-	void testGetCart_number() {
-		TestCase.assertEquals(1, 1);
+	public void testGetGoods_price() {
+		TestCase.assertEquals(db, b_t.getGoods_price());
 	}
 
-	@Test
-	void testSetCart_number() {
-		TestCase.assertEquals(1, 1);
+	public void testSetGoods_price() {
+		TestCase.assertEquals(db, b_t.getGoods_price());
 	}
 
-	@Test
-	void testGetBill_code() {
-		TestCase.assertEquals("a", "a");
+	public void testGetCart_number() {
+		TestCase.assertEquals(num, b_t.getCart_number());
 	}
 
-	@Test
-	void testSetBill_code() {
-		TestCase.assertEquals("a", "a");
+	public void testSetCart_number() {
+		TestCase.assertEquals(num, b_t.getCart_number());
+	}
+
+	public void testGetBill_code() {
+		TestCase.assertEquals(str, b_t.getBill_code());
+	}
+
+	public void testSetBill_code() {
+		TestCase.assertEquals(str, b_t.getBill_code());
 	}
 
 }

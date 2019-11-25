@@ -10,4 +10,5 @@
 	<insert id="insertone">
 		insert into account_table(account,password,email,ipaddress,ban) values(#{account},#{password},#{email},#{ipaddress},#{ban})
 	</insert>
+	
 </class>

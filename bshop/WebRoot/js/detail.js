@@ -13,11 +13,13 @@
         
         $('title').html('B-SHOP嘿店——'+obj.data[0].goods_name);
         var goods = obj.data[0];
+        
+        //商品名字
         var str = `
             <span>${goods.goods_name}</span>
         `;
 
-
+        //大图
         var str1 = `
             <ul>
              <li class="active"><img src=${goods.goods_thumb}></li>
@@ -25,23 +27,25 @@
             <div class="slide"></div>
         `;
 
+        //小图
         var str2 = `
-         <ul>
-                        <li class="cur"><img src=${goods.goods_thumb} alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                        <li><img src="" alt=""></li>
-                    </ul>
-                    <span class="glyphicon glyphicon-chevron-left left-span"></span>
-                    <span class="glyphicon glyphicon-chevron-right right-span"></span>
-
+        	<ul>
+              <li class="cur"><img src=${goods.goods_thumb} alt=""></li>
+              <li><img src="img/big-01.jpg" alt=""></li>
+              <li><img src="" alt=""></li>
+              <li><img src="" alt=""></li>
+            </ul>
+            <span class="glyphicon glyphicon-chevron-left left-span"></span>
+            <span class="glyphicon glyphicon-chevron-right right-span"></span>
         `;
 
         var str3 = `
             <div class="zjl-product-name">${goods.goods_name}</div>
         `;
 
+        //品牌
         var str4 = `
+        	<span><a href="">品牌：Aquapick</a></span>
            <span class="zjl-product-no">商品编号：${goods.brand_id}</span>
         `;
 
@@ -73,7 +77,28 @@
 //		飞入购物车的图
 		var str9=`<img src=${goods.goods_thumb}>`
 		
+		//发货地
+		var str10 = `
+			<span class="zjl-send">发货地:</span>
+            <span class="zjl-place">上海</span>
+            <span class="zjl-waitTime">预计3-7工作日送达</span>
+		`;
 		
+		//颜色
+		var str11 = `
+			<ul>
+              <li class="active">米白<a href=""></a></li>
+              <li>惨白<a></a></li>
+            </ul>
+		`;
+		
+		//尺码
+		var str12 = `
+			<ul>
+              <li>均码<a></a></li>
+            </ul>
+		`;
+			
         $('.zjl-link').append(str);
         $('.zjl-top').append(str1);
         $('.zjl-bottom').append(str2);
@@ -88,9 +113,16 @@
 		//		飞入购物车的图
 		$('.zjl-flyincart').append(str9);
 		
+		$('.zjl-product-region').append(str10);
+		
+		$('.zjl-product-color').append(str11);
+		
+		$('.zjl-product-size').append(str12);
 		
         var imgStr = `${goods.goods_thumb}`;
         //console.log(imgStr);
+        
+        //放大镜大图
         $('.big').css({
 
             width: 400,
@@ -117,18 +149,6 @@
 })();
 
 
-//$(window).scroll(function () {
-////        console.log($(window).scrollTop())
-//  if($(window).scrollTop() >=  800){
-//      $('.upToTop').show()
-//  }else {
-//      $('.upToTop').hide();
-//  }
-//})
-//
-//$('.upToTop').click(function(){
-//  $(window).scrollTop(0);
-//})
 
 
 //各种操作
@@ -273,21 +293,22 @@ function opration(){
     })
 
 
-//function checkIt(){
-//
-//}
 
-
-
-
-    $('.zjl-bottom ul li').each(function(i){
+    //图片切换0
+      $('.zjl-bottom ul li').each(function(i){
         $(this).mouseenter(function(){
-            $('.zjl-top ul li').eq(i).show().siblings().hide();
+            //$('.zjl-top ul li').eq(i).show().siblings().hide();
             $(this).css('border','1px solid black').siblings().css('border','');
 
+            var imgSrc = $(this).children().attr('src');
+            $('.zjl-top ul li img').attr('src',imgSrc);
+            $('.big').css({
+                'background':'url('+ imgSrc +')',
+            });
         }) ;
     });
-
+   
+    //颜色选择
     $('.zjl-product-color ul li').each(function(i){
         $(this).click(function(i){
             $(this).children().show().parent().siblings().children().hide();
@@ -295,14 +316,14 @@ function opration(){
         })
     })
 
-
+    //size选择
     $('.zjl-product-size ul li').each(function (i) {
         $(this).click(function(){
             $(this).children().show().parent().siblings().children().hide();
         })
     })
 
-
+    //数量
     var num = 1;
     $('.zjl-product-condition .add').click(function () {
         num++;
@@ -318,7 +339,7 @@ function opration(){
     })
 
 
-
+    //以下是商品详情点击事件
     $('#desc').click(function () {
         $('.zjl-footer-detail').hide();
         $('.zjl-footer-decs').show();

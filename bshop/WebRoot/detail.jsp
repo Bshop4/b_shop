@@ -202,9 +202,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
             </div>
         </div>
-        <div class="upToTop">
+        <!-- <div class="upToTop">
             <span class="glyphicon glyphicon-open upToTop"></span>
-        </div>
+        </div> -->
     </div>
 
     <div class="zjl-footer">

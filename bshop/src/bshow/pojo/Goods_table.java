@@ -17,7 +17,8 @@ public class Goods_table implements Serializable,Cloneable{
 	private String 	goods_explainphoto;//商品描述的图片
 	private double goods_discount;//商品的折扣
 	private int shop_id;//店铺的主键
-	private String goods_season;//商品的类型季节如：春
+//	private String goods_season;//商品的类型季节如：春
+	private String goods_place;//商品发货地
 	private String goods_uptime;//商品的上架时间
 	private int goods_ban;//商品是否被禁用
 	private String goods_location;//商品的上衣，下装
@@ -26,11 +27,31 @@ public class Goods_table implements Serializable,Cloneable{
 	private String goods_smallphoto;//（商品的小图）
 	
 	@Override
+	public String toString() {
+		return "Goods_table [goods_id=" + goods_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
+				+ ", goods_like=" + goods_like + ", goods_photo=" + goods_photo + ", goods_category=" + goods_category
+				+ ", goods_sex=" + goods_sex + ", goods_color=" + goods_color + ", goods_size=" + goods_size
+				+ ", goods_explainphoto=" + goods_explainphoto + ", goods_discount=" + goods_discount + ", shop_id="
+				+ shop_id + ", goods_place=" + goods_place + ", goods_uptime=" + goods_uptime + ", goods_ban="
+				+ goods_ban + ", goods_location=" + goods_location + ", goods_no=" + goods_no + ", goods_brand="
+				+ goods_brand + ", goods_smallphoto=" + goods_smallphoto + "]";
+	}
+
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
 		return super.clone();
 	}
 	
+	
+	public String getGoods_place() {
+		return goods_place;
+	}
+
+	public void setGoods_place(String goods_place) {
+		this.goods_place = goods_place;
+	}
+
 	public String getGoods_explainphoto() {
 		return goods_explainphoto;
 	}
@@ -126,12 +147,6 @@ public class Goods_table implements Serializable,Cloneable{
 	}
 	public void setShop_id(int shop_id) {
 		this.shop_id = shop_id;
-	}
-	public String getGoods_season() {
-		return goods_season;
-	}
-	public void setGoods_season(String goods_season) {
-		this.goods_season = goods_season;
 	}
 	public String getGoods_uptime() {
 		return goods_uptime;

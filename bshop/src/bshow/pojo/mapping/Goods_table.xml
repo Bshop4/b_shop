@@ -12,7 +12,7 @@
 	<property name="goods_explainphoto" column="goods_explainphoto"/>
 	<property name="goods_discount" column="goods_discount"/>
 	<property name="shop_id" column="shop_id"/>
-	<property name="goods_season" column="goods_season"/>
+	<property name="goods_place" column="goods_place"/>
 	<property name="goods_uptime" column="goods_uptime"/>
 	<property name="goods_ban" column="goods_ban"/>
 	<property name="goods_location" column="goods_location"/>
@@ -21,7 +21,7 @@
 	<property name="goods_smallphoto" column="goods_smallphoto"/>
 	
 	<insert id="insertone">
-		insert into account_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_id,goods_season,goods_uptime,goods_ban,goods_sex,goods_location,goods_no,goods_brand,goods_smallphoto) values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_id},#{goods_season},#{goods_uptime},#{goods_ban},#{goods_sex},#{goods_location},#{goods_no},#{goods_brand},#{goods_smallphoto})
+		insert into account_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_id,goods_place,goods_uptime,goods_ban,goods_sex,goods_location,goods_no,goods_brand,goods_smallphoto) values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_id},#{goods_place},#{goods_uptime},#{goods_ban},#{goods_sex},#{goods_location},#{goods_no},#{goods_brand},#{goods_smallphoto})
 	</insert>
 	<!--<select id="select" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id}

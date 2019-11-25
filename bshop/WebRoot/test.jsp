@@ -47,13 +47,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		//System.out.println(ab.getAccount());
     		//System.out.println(ab.getIpaddress());
     	//}
-    	Account_table at = new Account_table();
-    	at.setAccount_id(6);
-    	Basedao bd = new Basedaoimpl();
-    	List<Object> list = bd.select("select", at);
-    	Account_table z= (Account_table)list.get(0);
-    	int t=0;
-    	System.out.println(z.getIpaddress()+t);
+    	//Account_table at = new Account_table();
+    	//at.setAccount_id(6);
+    	//Basedao bd = new Basedaoimpl();
+    	//List<Object> list = bd.select("select", at);
+    	//Account_table z= (Account_table)list.get(0);
+    	//int t=0;
+    	//System.out.println(z.getIpaddress()+t);
     	
      %>
   </body>

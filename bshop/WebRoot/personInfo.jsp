@@ -103,8 +103,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title"><p>我的信息</p></div>
 
             <div class="photo">
+            	<img alt="" src="" id="imgPhoto">
                 <label class="pic">头像:</label>
-                <div class="user-logo" style="background-image: url("ph")"></div>
+                <label for="fileupload" id="labelPhoto">
+                	<span>请上传您的头像</span>
+                	<input type="file" id="fileupload" class="inputPhoto" onchange="show(this)"/>
+                </label>
             </div>
 
             <div class="account">

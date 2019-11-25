@@ -82,7 +82,7 @@
             text-align: right;
         }
 
-        .user-logo{
+        /*.user-logo{
             width: 96px;
             height: 96px;
             border: 1px solid #f79c34;
@@ -90,7 +90,26 @@
             top: 50px;
             left: 137px;
             cursor: pointer;
+        }*/
+        #imgPhoto{
+        	width:96px;
+        	height: 96px;
+        	position: absolute;
+        	left:124px;
+        	top:44px;
         }
+        #labelPhoto{
+        	width:96px;
+        	height: 96px;
+        	border: 1px solid #f79c34;
+        	display: inline-block;
+        }
+        .inputPhoto{
+        	width:96px;
+        	height: 96px;
+        	opacity: 0;
+        }
+        
         .user-takeOver ,.user-birth,.user-sex,.user-nickName ,.user-acc{
             width: 120px;
             height: 32px;

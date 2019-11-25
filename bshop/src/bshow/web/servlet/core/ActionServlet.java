@@ -43,6 +43,7 @@ public class ActionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("aaa");
 		//拿出应用程序中的action池
 		Properties actionPool=(Properties)this.getServletContext().getAttribute("actionPool");
 		//拿出配置文件
@@ -77,6 +78,7 @@ public class ActionServlet extends HttpServlet {
 				String param = entry.getKey();
 				//找到对应的set方法
 				Method m = c.getDeclaredMethod("set"+param.substring(0, 1).toUpperCase()+param.substring(1), String.class);
+				System.out.println(entry.getValue()[0]);
 				m.invoke(form, entry.getValue()[0]);
 			}
 		} catch (Exception e) {

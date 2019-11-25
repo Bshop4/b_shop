@@ -15,6 +15,7 @@ public class PageBranchAction extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
+		System.out.println(form.toString());
 		return new ActionForward("success", false);
 	}
 

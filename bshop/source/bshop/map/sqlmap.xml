@@ -2,5 +2,6 @@
 <properties>
 	<mappings>
 		<mapping path="bshow/pojo/mapping/Account_table.xml"/>
+		<mapping path="bshow/pojo/mapping/Goods_table.xml"/>
 	</mappings>	
 </properties>

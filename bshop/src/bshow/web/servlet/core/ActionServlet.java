@@ -108,7 +108,11 @@ public class ActionServlet extends HttpServlet {
 				}
 				ActionForward af=action.execute(request, response, form);
 				//跳转
-				af.forward(request, response);
+				if(af==null){
+					return;
+				}else{
+					af.forward(request, response);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

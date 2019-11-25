@@ -17,6 +17,7 @@ import org.dom4j.Element;
 
 import bshow.dao.Basedao;
 import bshow.db.DBhelper;
+import bshow.pojo.Goods_table;
 
 public class Basedaoimpl implements Basedao{
 	@Override
@@ -115,6 +116,48 @@ public class Basedaoimpl implements Basedao{
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally{
+			DBhelper.closeConnection(conn);
+		}
+		return list;
+	}
+	
+	public List<Object> selectByPagesize(String id,Object o,int page, int pagesize){
+		Connection conn=DBhelper.getConnection();
+		List<Object> list=new ArrayList<Object>();
+		Class c=o.getClass();
+		try {
+			//根据对象拿到对应的mapping.xml文档
+			Document doc=DBhelper.getDocumentByClass(c);
+			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
+			//获得元素内容的sql语句
+			String sql=selectelement.getTextTrim();
+			sql=sql+" limit ?,?";
+			System.out.println(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, (page-1)*pagesize);
+			ps.setInt(2, pagesize);
+			ResultSet rs=ps.executeQuery();
+			//拿到返回了的类型 以及它所有的属性
+			String className=((Attribute)selectelement.selectSingleNode("./@resulttype")).getValue(); 
+			Class returnclass=Class.forName(className);
+			Field[] ffs=returnclass.getDeclaredFields();
+			
+			while(rs.next()){
+				Object obj=returnclass.newInstance();
+				for (int i = 0; i <ffs.length ; i++) {
+					String ffsname=ffs[i].getName();
+					//拿到set方法
+					Method method =returnclass.getDeclaredMethod("set"+ffsname.substring(0,1).toUpperCase()+ffsname.substring(1), ffs[i].getType());
+					//类属性      对应的字段名
+					Attribute column=(Attribute)doc.selectSingleNode("/class/property[@name='"+ffsname+"']/@column");
+					String columnstr=column.getValue();
+					method.invoke(obj, rs.getObject(columnstr));
+				}
+				list.add(obj);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
 			DBhelper.closeConnection(conn);
 		}
 		return list;

@@ -398,9 +398,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/banner.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/wow.min.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
 	<script src="js/donghua.js"></script>
 	<script>
 		//初始化调用

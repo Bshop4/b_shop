@@ -5,6 +5,21 @@
 	var pagesize = 8;
 	//封装热门商品
 	function getGoodsList() {
+		
+		$.ajax({
+			type:"post",
+			url:"pageBranchAction.do",
+			data:{
+				page: page,
+				pagesize: pagesize,
+			},
+			dataType:"json",
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success:function(result){
+				
+			}
+		})
+		
 		$.get('http://www.wjian.top/shop/api_goods.php', {
 			page: page,
 			pagesize: pagesize,

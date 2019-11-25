@@ -180,4 +180,16 @@ $("#myinfo").click(function(){
         }
     })()
 
+    
+    function show(obj){
+        var fr =new  FileReader();
+        var f = obj.files[0];
+        fr.readAsDataURL(f);
+        fr.onload=function(e){
+            var content = e.target.result;
+            //console.log(content)
+            //预览
+            document.getElementById("imgPhoto").src=content;
+        }
+    }
 

@@ -40,7 +40,6 @@ public class Basedaoimpl implements Basedao{
 		}
 		//替换所有的sql为   ？
 		sql=sql.replaceAll("#[{](\\w+)[}]", "?");  
-		System.out.println(sql);
 		//预处理
 			PreparedStatement ps=conn.prepareStatement(sql);
 			//设值

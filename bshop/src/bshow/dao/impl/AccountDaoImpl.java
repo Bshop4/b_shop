@@ -81,21 +81,21 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account_table queryOneAccount(int account_id, Connection con) throws Exception {
-		Account_table act = null;
-		String sql = "select * from account_table where account_id = ?";
-		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setInt(1, account_id);
-		ResultSet rs = ps.executeQuery();
-		while (rs.next()) {
-			act = new Account_table();
-			act.setAccount_id(rs.getInt("account_id"));
-			act.setBan(rs.getInt("ban"));
-			act.setAccount(rs.getString("account"));
-			act.setPassword(rs.getString("password"));
-			act.setEmail(rs.getString("email"));
-			act.setIpaddress(rs.getString("ipaddress"));
-		}
-		return act;
+//		Account_table act = null;
+//		String sql = "select * from account_table where account_id = ?";
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ps.setInt(1, account_id);
+//		ResultSet rs = ps.executeQuery();
+//		while (rs.next()) {
+//			act = new Account_table();
+//			act.setAccount_id(rs.getInt("account_id"));
+//			act.setBan(rs.getInt("ban"));
+//			act.setAccount(rs.getString("account"));
+//			act.setPassword(rs.getString("password"));
+//			act.setEmail(rs.getString("email"));
+//			act.setIpaddress(rs.getString("ipaddress"));
+//		}
+		return null;
 	}
 
 }

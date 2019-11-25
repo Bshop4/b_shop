@@ -1,1 +1,0 @@
-2019-11-24 10:31:35,549 DEBUG [bshow.test.Test.main(Test.java:14)] - <java.lang.ArithmeticException: / by zero>

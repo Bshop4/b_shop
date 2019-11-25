@@ -69,3 +69,4 @@ public class Account_tableAutoTest extends TestCase {
 	}
 
 }
+

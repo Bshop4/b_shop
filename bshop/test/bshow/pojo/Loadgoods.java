@@ -227,7 +227,7 @@ public class Loadgoods extends TestCase{
 				
 				//发货地
 				if(data2.get("deliveryRegion")==null){
-					goods.setGoods_place("湖南");
+					goods.setGoods_place("湖南"); 
 				}else{
 					goods.setGoods_place(data2.getString("deliveryRegion"));
 				}

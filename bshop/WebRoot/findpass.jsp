@@ -1,56 +1,27 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'cart.jsp' starting page</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
- <title>B-SHOP嘿店——购物车</title>
-    <link rel="stylesheet" href="css/cart.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <!--<link rel="stylesheet" href="css/footer.css" />-->
-  </head>
-  <body>
-    <!--头部-->
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/findpass.css" />
+		<link rel="stylesheet" href="css/animate.css" />
+	    <link rel="stylesheet" href="css/bootstrap.css" />
+	    <link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/base.css" />
+		<style>
+		</style>
+	</head>
+	<body>
+		<!--头部-->
     <div class="top">
       <div class="top-bar">
         <div class="btn">
-          <a href="sign.jsp">注册</a>
-          <a href="Login.jsp">登录</a>
-          <a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
+          <a>注册</a>
+          <a>登录</a>
+          <a class="glyphicon glyphicon-shopping-cart"></a>
         </div>
-        <div class="logBtn">
-					<a class="mingZi"></a>
-					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
-					<span class="badge store_number">0</span>
-					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的走秀<p class="glyphicon glyphicon-chevron-down"></p>
-						<li>
-							<div class="personalInfo">
-								<a href="personInfo.jsp">个人中心</a>
-								<a>我的订单</a>
-								<a>我的收藏</a>
-							</div>
-						</li>
-					</ul>
-				</div>
         <div class="logo">
         </div>
         <div class="search-wrap">
@@ -65,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="tabs-list-top">
         <ul class="tabs-list text-center">
           <li class="tab">
-            <a href="index.jsp">首页</a>
+            <a>首页</a>
           </li>
           <li class="tab">
             <a>新品</a>
@@ -96,29 +67,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul></ul>
       </div>
     </section>
-    <!--返回顶部-->
-    <!--<div class="toTop">
-      <span class="glyphicon glyphicon-open"></span>
-    </div>-->
-    <h3>购物车(<span class="carts-number">0</span>)</h3>
-    <table border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <th class="left"><input type="checkbox" class="checkAll" />全选</th>
-        <th>商品</th>
-        <th>数量</th>
-        <th>单价</th>
-        <th>小计</th>
-        <th>操作</th>
-      </tr>
-    </table>
-    <div class="footer">
-      <input type="checkbox" class="checkAll" />全选
-      <span class="dele"><a href="javascript:;" class="delAll">删除选中的商品</a></span>
-      <span class="sum-all">合计：¥0.00</span>
-    </div>
-    <div class="account">
-      <button type="button" class="btn-account">去结算</button>
-    </div>
+		<div class="top-safety">安全校验</div>
+		<div class="top-forget">你忘记密码了吗？</div>
+		<div class="if-foget">如果您忘记了密码，请输入您用于创建账户的手 机号码，我们将会给你发送一条验证码信息，以 便恢复密码。</div>
+		<div class="phone-num">手机号码</div>
+		<input autocomplete="off" type="text" class="input-control" />
+		<div class="img-varify">图形验证码</div>
+		<input autocomplete="off" type="text" class="input-control" />
+		<div class="msg-varify">短信验证码</div>
+		<div class="msg-msg">
+			<input autocomplete="off" type="text" class="input-controls" /><button class="el-button">发送验证码</button>
+		</div>
+		<button class="find-button">找回密码</button>
+
     <!--底部-->
     <div id="row-1">
     	<!--底部三个图标-->
@@ -177,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </p>
           </div>
           <div class="btn-service">
-            	在线客服
+            在线客服
           </div>
         </div>
       </div>
@@ -195,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="row-4">
         <div class="row-4-m">
           <div class="row-4-service">
-            <a><img src="img/licence2.png" ></a></div>
+            <a><img src="img/licence2.png"/></a></div>
           <div class="row-4-service">
             <a><img src="img/licence1.png"></a>
           </div>
@@ -205,9 +166,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
       </div>
     </div>
-  </body>
+	</body>
 </html>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/base.js"></script>
+    

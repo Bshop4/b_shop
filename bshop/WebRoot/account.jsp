@@ -167,7 +167,7 @@
 	<div id="row-2">
 		<div class="row-2">
 			<div class="logo-wrap">
-				<img src="img/zouxiu.png" class="logo-wrap-img1" /> <a><img
+				<img src="img/Bshop_logo1.png" class="logo-wrap-img1" /> <a><img
 					src="img/weixin.png" class="logo-wrap-img2" /></a> <a><img
 					src="img/weibo.png" class="logo-wrap-img3" /></a>
 			</div>
@@ -180,7 +180,7 @@
 			</ul>
 			<div class="qrcode-wrap">
 				<div class="qrcode-wrap-title">
-					<span>移动走秀</span>
+					<span>移动嘿店</span>
 				</div>
 				<ul>
 					<li class="qrcpde"><img src="img/erweima.png"></li>

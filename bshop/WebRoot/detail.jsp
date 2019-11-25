@@ -127,8 +127,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!--<div class="zjl-product-name">声波震动牙刷 Aq-110 感应式充电 自带紫外线（Uv杀毒 31000次震动/分钟)</div>-->
 
                 <div class="zjl-product-brandName">
-                    <span><a href="">品牌：Aquapick</a></span>
-                    <!--<span class="zjl-product-no">商品编号：496536517554291</span>-->
+                    <!--<span><a href="">品牌：Aquapick</a></span>
+                    <span class="zjl-product-no">商品编号：496536517554291</span>-->
                 </div>
 
                 <hr style="color: #ccddf2;">
@@ -140,9 +140,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
 
                 <div class="zjl-product-region">
-                    <span class="zjl-send">发货地:</span>
+                    <!--  <span class="zjl-send">发货地:</span>
                     <span class="zjl-place">上海</span>
-                    <span class="zjl-waitTime">预计3-7工作日送达</span>
+                    <span class="zjl-waitTime">预计3-7工作日送达</span>-->
 
                 </div>
 
@@ -153,17 +153,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="zjl-product-color">
                     <span>颜色：</span>
-                    <ul>
+                    <!-- 
+                     <ul>
                         <li class="active">米白<a href=""></a></li>
                         <li>惨白<a></a></li>
-                    </ul>
+                    </ul>-->
                 </div>
 
                 <div class="zjl-product-size">
                     <span>尺码：</span>
-                    <ul>
+                    <!-- <ul>
                         <li>均码<a></a></li>
                     </ul>
+                     -->
                 </div>
 
                 <div class="zjl-product-condition">

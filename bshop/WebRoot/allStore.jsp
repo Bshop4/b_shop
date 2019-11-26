@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="stylesheet" href="css/allStore.css" />
+		<link rel="stylesheet" href="css/search.css" />
 		<link rel="stylesheet" href="css/base.css" />
   </head>
   
@@ -86,6 +87,107 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!--下部分导航-->
 			<div class="tabs-list-buttom">
 				<ul class="tabs-list text-center">
+				</ul>
+			</div>
+		</div>
+		<!-- 筛选部分 -->
+		<div class="part-screen">
+			<div class="product-filter container">
+				<span class="product-title">筛选</span>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>品牌</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>Ann Demeulemeester</a></li>
+					<li><a>Acne Studios</a></li>
+					<li><a>Emporio Armani</a></li>
+					<li><a>Alberta Ferretti</a></li>
+					<li><a>Aquazzura</a></li>
+					<li><a>Anna Baiguera</a></li>
+					<li><a>Amina Muaddi</a></li>
+				</ul>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>分类</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>女鞋</a></li>
+					<li><a>时尚鞋款</a></li>
+					<li><a>运动鞋</a></li>
+					<li><a>靴子</a></li>
+					<li><a>单鞋</a></li>
+					<li><a>凉鞋</a></li>
+					<li><a>高跟鞋</a></li>
+				</ul>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>发货地</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>意大利</a></li>
+					<li><a>香港</a></li>
+					<li><a>上海</a></li>
+					<li><a>锦州</a></li>
+					<li><a>天津</a></li>
+					<li><a>法国.巴黎</a></li>
+					<li><a>泉州</a></li>
+					<li><a>深圳</a></li>
+				</ul>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>颜色</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>黑色</a></li>
+					<li><a>白色</a></li>
+					<li><a>绿色</a></li>
+					<li><a>黄色</a></li>
+					<li><a>红色</a></li>
+					<li><a>粉色</a></li>
+					<li><a>蓝色</a></li>
+				</ul>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>尺码</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>39</a></li>
+					<li><a>36</a></li>
+					<li><a>37</a></li>
+					<li><a>38</a></li>
+					<li><a>40</a></li>
+					<li><a>35</a></li>
+					<li><a>42</a></li>
+				</ul>
+			</div>
+			<div class="product-next container">
+				<div class="product-next-header">
+					<div class="ping">
+						<p>价格</p>
+					</div>
+				</div>
+				<ul>
+					<li><a>0-999</a></li>
+					<li><a>1000-2999</a></li>
+					<li><a>3000-4999</a></li>
+					<li><a>5000-9999</a></li>
+					<li><a>10000-100000</a></li>
 				</ul>
 			</div>
 		</div>

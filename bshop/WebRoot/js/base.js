@@ -106,11 +106,12 @@ $('.logBtn>.last-span').mouseleave(function(){
 $('.part-screen>.product-next>ul').each(function(u){
 	var ttt=$('.part-screen>.product-next>ul').eq(u).siblings().children().children().html();
 	$('.part-screen>.product-next>ul').eq(u).children().each(function(i){
-		var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i);
+		var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i).children();
 		myli.click(function(){
-			myli.children().css("color",'black');
-			myli.children().css("font-weight",'bold');
-			var condition=myli.children().html();
+			myli.css("color",'black');
+			myli.css("font-weight",'bold');
+			alert(myli.children().eq(1));
+			var condition=myli.children().eq(1).html();
 			$('.part-screen>.product-filter').append("<div onclick='duanjuntang(this,"+u+","+i+")'><span>"+ttt+":</span><span>"+myli+"/span><span class='glyphicon glyphicon-remove'></span></div>");
 		})
 	})

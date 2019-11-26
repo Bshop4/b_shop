@@ -131,12 +131,11 @@
 
         //新加判断  原地址判断删除
         if(pro == "" || city == "" || area == "" || detailaddress == "" || pro == "请选择省份" || city == "请选择城市" || area == "请选择区县"){
-            //$("#addlabel").show();
+            $("#addlabel").show();
             return;
+        }else{
+            $("#addlabel").hide();
         }
-        //else{
-          //  $("#addlebel").hide();
-        //}
 
 
         if(reiphone.test(iphone) == true && name != "" && postcode != ""){

@@ -221,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="form-group">
                                 <label>详细地址:</label>
                                 <input type="text" class="form-control" id="mydetailaddress"/>
-                                <!--  <label id="addlabel">收货地址不能为空</label>-->
+                                  <label id="addlabel">收货地址不能为空</label>
                             </div>
 
                         </div>
@@ -237,6 +237,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
     </div>
+    
+    
 		<!--底部banner与二维码-->
 		<div id="row-2">
 			<div class="row-2">

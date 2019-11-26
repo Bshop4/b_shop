@@ -261,8 +261,8 @@
 
         /*下拉列表*/
         select{
-            width: 178px;
-            height: 50px;
+            width: 142px;
+            height: 30px;
             font-size: 18px;
             font-weight: 400;
             color: #808080;
@@ -271,12 +271,12 @@
         }
         
         
-        /*修改过后的
-        #addlebel{
+        /*修改过后的*/
+        #addlabel{
             position: absolute;
-            top: 348px;
+            top: 360px;
             left: 16px;
             font-size: 12px;
             color: red;
             display: none;
-        }*/
+        }

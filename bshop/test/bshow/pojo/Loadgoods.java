@@ -121,23 +121,23 @@ public class Loadgoods extends TestCase{
 							sbsize.append(objsize.getString("subClassAttrName"));
 							sbsize.append(",");
 						}
-						//第一个尺码
-//						if(sizelength==1){
-//							goods.setGoods_size(objsize.getString("subClassAttrName"));
-//						}
+//						第一个尺码
+						if(sizelength==1){
+							goods.setGoods_size(objsize.getString("subClassAttrName"));
+						}
 						
 						//如果尺码有多种就克隆一个商品
-//						if(sizelength>1){
-//							try {
-//								Goods_table goodsclone =(Goods_table)goods.clone();
-//								goodsclone.setGoods_size(objsize.getString("subClassAttrName"));
-//								//把克隆放进集合
-//								//listgoods.add(goodsclone);
-//							} catch (CloneNotSupportedException e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
-//						}
+						if(sizelength>1){
+							try {
+								Goods_table goodsclone =(Goods_table)goods.clone();
+								goodsclone.setGoods_size(objsize.getString("subClassAttrName"));
+								//把克隆放进集合
+								//listgoods.add(goodsclone);
+							} catch (CloneNotSupportedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 						
 					}
 					
@@ -188,7 +188,7 @@ public class Loadgoods extends TestCase{
 				
 				System.out.println(sb.toString());
 				//循环sb，加颜色
-				//goods.setGoods_color(sb.toString());
+				goods.setGoods_color(sb.toString());
 				
 				//什么装，女装，下装
 				int typelength=0;

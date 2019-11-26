@@ -32,9 +32,9 @@
 	 and account_id=#{account_id} -->
 
 	<select id="selectByPagesize" resulttype="bshow.pojo.Goods_table">
-		select * from Goods_table where 1=1;
+		select * from goods_table where 1=1;
 	</select>
 	<select id="selectMaxPagesize">
-		select count(*) from Goods_table;
+		select count(*) from goods_table;
 	</select>
 </class>

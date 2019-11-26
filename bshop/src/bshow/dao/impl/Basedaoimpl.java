@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,7 +20,9 @@ import org.dom4j.Element;
 
 import bshow.dao.Basedao;
 import bshow.db.DBhelper;
+import bshow.dto.Goods_classify;
 import bshow.pojo.Goods_table;
+import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
 public class Basedaoimpl implements Basedao{
 	@Override
@@ -121,6 +126,7 @@ public class Basedaoimpl implements Basedao{
 		return list;
 	}
 	
+	//分页
 	public List<Object> selectByPagesize(String id,Object o,int page, int pagesize){
 		Connection conn=DBhelper.getConnection();
 		List<Object> list=new ArrayList<Object>();
@@ -166,7 +172,6 @@ public class Basedaoimpl implements Basedao{
 	//获得最大页数
 	public int selectMaxPagesize(String id, Object o, int pagesize) {
 		Connection conn=DBhelper.getConnection();
-		List<Object> list=new ArrayList<Object>();
 		Class c=o.getClass();
 		int count=0;//记录总个数
 		try {
@@ -187,6 +192,48 @@ public class Basedaoimpl implements Basedao{
 			DBhelper.closeConnection(conn);
 		}
 		return count%pagesize==0?count/pagesize:count/pagesize+1;
+	}
+
+	//多条件查询
+	public Map<String, String[]> selectGoodsByConditions(GoodsByConditionsActionForm form) {
+		Connection conn=DBhelper.getConnection();	
+		//select c.goods_price from (select goods_name,goods_price,goods_brand,middle_color,middle_size,middle_repertory,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
+		Map<String,String[]> goods=new HashMap<String, String[]>();
+		//多条件查询
+		String sql="select @ from (select goods_no,goods_name,goods_price,goods_brand,middle_color,middle_size,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		StringBuffer sb=new StringBuffer(sql);
+		if("goods_name".equals(form.getGoods_name())){
+			sb.append(" and (c.goods_name like ? or c.goods_brand like ?)");
+		}
+		if("goods_price".equals(form.getGoods_price())){
+			sb.append(" and goods_price>=? and goods_price<=?");
+		}
+		if("goods_brand".equals(form.getGoods_brand())){
+			sb.append(" and goods_brand=?");
+		}
+		if("middle_color".equals(form.getMiddle_color())){
+			sb.append(" and middle_color=?");
+		}
+		if("middle_size".equals(form.getMiddle_size())){
+			sb.append(" and middle_size=?");
+		}
+		if("middle_type".equals(form.getMiddle_type())){
+			sb.append(" and middle_type=?");
+		}
+		//根据条件构成sql语句
+		sql=sb.toString();
+		System.out.println(sql);
+		try {
+			//查询还有的品牌
+			String mysql=sql+" group by goods_brand";
+			mysql=mysql.replace("@", "goods_brand");
+			
+			//计数
+			int index=0;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 }

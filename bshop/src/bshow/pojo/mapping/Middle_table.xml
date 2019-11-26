@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Middle_table" table="middle_table">
+	<property name="middle_id" column="middle_id"/>
+	<property name="middle_color" column="middle_color"/>
+	<property name="goods_no" column="goods_no"/>
+	<property name="goods_smallphoto" column="goods_smallphoto"/>
+	<property name="middle_size" column="middle_size"/>
+	<property name="middle_repertory" column="middle_repertory"/>
+	<property name="middle_type" column="middle_type"/>
+	
+	<insert id="insertmiddle">
+		insert into middle_table(middle_id,middle_color,goods_no,goods_smallphoto,middle_size,middle_repertory,middle_type) values(#{middle_id},#{middle_color},#{goods_no},#{goods_smallphoto},#{middle_size},#{middle_repertory},#{middle_type})
+	</insert>
+	<!--<select id="select" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id}
+	</select>
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

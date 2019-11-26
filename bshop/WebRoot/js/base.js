@@ -102,3 +102,25 @@ $('.logBtn>.last-span').mouseleave(function(){
 	$('.personalInfo').fadeOut(300);
 })
 
+//鼠标点击进行筛选
+$('.part-screen>.product-next>ul').each(function(u){
+	var ttt=$('.part-screen>.product-next>ul').eq(u).siblings().children().children().html();
+	$('.part-screen>.product-next>ul').eq(u).children().each(function(i){
+		var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i);
+		myli.click(function(){
+			myli.children().css("color",'black');
+			myli.children().css("font-weight",'bold');
+			var condition=myli.children().html();
+			$('.part-screen>.product-filter').append("<div onclick='duanjuntang(this,"+u+","+i+")'><span>"+ttt+":</span><span>"+myli+"/span><span class='glyphicon glyphicon-remove'></span></div>");
+		})
+	})
+})
+
+//获得筛选中的值
+function duanjuntang(obj,u,i){
+	$(obj).remove();
+	var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i);
+	myli.children().css("color",'#337ab7');
+	myli.children().css("font-weight",'normal');
+}
+

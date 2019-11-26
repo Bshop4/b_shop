@@ -89,8 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 		</div>
- <div class="user">
-
+ 	<div class="user">
         <div class="user-left">
             <ul>
                 <li id="myinfo">我的信息</li>
@@ -138,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         </div>
 
-        <div class="user-right1">
+         <div class="user-right1">
             <div class="title1"><p>我的订单</p></div>
             <table border="1" width="1000" cellspacing="0" height="80" style="margin-left: 10px">
                 <tr>
@@ -179,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="width:700px;height:540px;">
 
                 <div class="modal-header">
                     <h2 class="text-success modal-title">新增地址
@@ -206,9 +205,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
 
                             <div class="form-group">
-                                <label>收货地址:</label>
-                                <input type="text" class="form-control" id="myproaddress"/><label class="addresslabel">收货地址不能为空</label>
+                                <label>收货地址:</label><br>
+                                <!--修改-->
+                                <select id="province"  onchange="getCity(this)">
+                                    <option>请选择省份</option>
+                                </select>
+                                <select name="" id="city" onchange="getArea(this)">
+                                    <option value="">请选择城市</option>
+                                </select>
+                                <select name="" id="area" >
+                                    <option value="">请选择区县</option>
+                                </select>
                             </div>
+                            <!--新增-->
+                            <div class="form-group">
+                                <label>详细地址:</label>
+                                <input type="text" class="form-control" id="mydetailaddress"/>
+                                <!--  <label id="addlabel">收货地址不能为空</label>-->
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -221,9 +236,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
-    </div>
-
-
     </div>
 		<!--底部banner与二维码-->
 		<div id="row-2">
@@ -307,3 +319,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/banner.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/personInfo.js"></script>
+<script type="text/javascript" src="js/infos.js"></script>

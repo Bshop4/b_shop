@@ -255,11 +255,28 @@
             color: red;
             display: none;
         }
-        .addresslabel{
+        
+        
+
+
+        /*下拉列表*/
+        select{
+            width: 178px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #808080;
+            background-repeat: round;
+
+        }
+        
+        
+        /*修改过后的
+        #addlebel{
             position: absolute;
-            top: 283px;
+            top: 348px;
             left: 16px;
             font-size: 12px;
             color: red;
             display: none;
-        }
+        }*/

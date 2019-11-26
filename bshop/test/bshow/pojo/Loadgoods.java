@@ -31,7 +31,8 @@ public class Loadgoods extends TestCase{
 		//Connection conn=DBhelper.getConnection();
 		//Basedao dao=new Basedaoimpl();
 		Document doc=null;
-		ArrayList<Goods_table> listgoods=new ArrayList<Goods_table>();
+		Middle_table middle=new Middle_table();
+		ArrayList<Middle_table> listmiddle=new ArrayList<Middle_table>();
 		try {
 			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1").ignoreContentType(true).timeout(10000).get();
 			String body = doc.body().html();
@@ -63,6 +64,7 @@ public class Loadgoods extends TestCase{
 				goods.setGoods_uptime(String.valueOf(l));
 				//System.out.println("商品编号"+obj.getString("productSid"));
 				String code=obj.getString("productSid");
+				middle.setGoods_no(code);//中间表
 				goods.setGoods_no(code);
 				
 				//详情网页请求 http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid=250711473283551&deviceNumber=1574582545228&channel=1
@@ -87,24 +89,62 @@ public class Loadgoods extends TestCase{
 						sb.append(arr_0.getString("firstClassAttrName"));
 						sb.append(",");
 					}
+					
 					//第一个颜色
 					if(colorlength==1){
-						goods.setGoods_color(arr_0.getString("firstClassAttrName"));
+						//goods.setGoods_color(arr_0.getString("firstClassAttrName"));
+						middle.setMiddle_color(arr_0.getString("firstClassAttrName"));
 					}
 					
 					//如果颜色有多种就克隆一个商品
 					if(colorlength>1){
 						i++;
 						try {
-							Goods_table goodsclone =(Goods_table)goods.clone();
-							goodsclone.setGoods_color(arr_0.getString("firstClassAttrName"));
+							Middle_table middleclone =(Middle_table)middle.clone();
+							middleclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
 							//把克隆放进集合
-							listgoods.add(goodsclone);
+							listmiddle.add(middleclone);
 						} catch (CloneNotSupportedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
+					
+					//商品小图
+					int smallength=0;
+					StringBuffer sbsmal=new StringBuffer("");
+					JSONArray photolist=(JSONArray)arr_0.get("imgUrlList");
+					for (int j = 0; j < photolist.size(); j++) {
+						//System.out.println("小图==="+photolist.get(j));
+						smallength++;
+						if(photolist.size()==smallength){
+							sbsmal.append(photolist.get(j).toString());
+						}else{
+							sbsmal.append(photolist.get(j).toString());
+							sbsmal.append(",");
+						}
+					}
+					//第一个商品颜色小图
+					if(colorlength==1){
+						middle.setGoods_smallphoto(sbsmal.toString());
+					}
+					
+					//如果颜色有多种就给克隆一个商品的小图
+					if(colorlength>1){
+						listgoods.get(colorlength-2).setGoods_smallphoto(sbsmal.toString());
+//						try {
+//							Goods_table goodsclone =(Goods_table)goods.clone();
+//							goodsclone.setGoods_smallphoto(sbsmal.toString());
+						//把克隆放进集合
+						//listgoods.add(goodsclone);
+//						} catch (CloneNotSupportedException e) {
+						// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+					}
+					System.out.println(sbsmal.toString());
+					//goods.setGoods_smallphoto(sbsmal.toString());
+					
 					
 					
 					//尺码
@@ -123,16 +163,25 @@ public class Loadgoods extends TestCase{
 						}
 //						第一个尺码
 						if(sizelength==1){
-							goods.setGoods_size(objsize.getString("subClassAttrName"));
+							middle.setMiddle_size(objsize.getString("subClassAttrName"));
+							for (Middle_table size : listmiddle) {
+								size.setMiddle_size(objsize.getString("subClassAttrName"));
+							}
 						}
 						
 						//如果尺码有多种就克隆一个商品
 						if(sizelength>1){
 							try {
-								Goods_table goodsclone =(Goods_table)goods.clone();
-								goodsclone.setGoods_size(objsize.getString("subClassAttrName"));
+								Middle_table middleclone =(Middle_table)middle.clone();
+								for (Middle_table size : listmiddle) {
+									Middle_table sizeclone =(Middle_table)size.clone();
+									sizeclone.setMiddle_size(objsize.getString("subClassAttrName"));
+									//把克隆放进集合
+									listmiddle.add(sizeclone);
+								}
+								middleclone.setMiddle_size(objsize.getString("subClassAttrName"));
 								//把克隆放进集合
-								//listgoods.add(goodsclone);
+								listmiddle.add(middleclone);
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -144,45 +193,12 @@ public class Loadgoods extends TestCase{
 					//设置克隆的尺码
 					System.out.println(sbsize.toString());
 					goods.setGoods_size(sbsize.toString());
-					for (int j = 0; j < listgoods.size(); j++) {
-						listgoods.get(j).setGoods_size(sbsize.toString());
-					}
+//					for (int j = 0; j < listgoods.size(); j++) {
+//						listgoods.get(j).setGoods_size(sbsize.toString());
+//					}
 					
 					
-					//商品小图
-					int smallength=0;
-					StringBuffer sbsmal=new StringBuffer("");
-					JSONArray photolist=(JSONArray)arr_0.get("imgUrlList");
-					for (int j = 0; j < photolist.size(); j++) {
-						//System.out.println("小图==="+photolist.get(j));
-						smallength++;
-						if(photolist.size()==smallength){
-							sbsmal.append(photolist.get(j).toString());
-						}else{
-							sbsmal.append(photolist.get(j).toString());
-							sbsmal.append(",");
-						}
-					}
-					//第一个商品颜色小图
-					if(colorlength==1){
-						goods.setGoods_smallphoto(sbsmal.toString());
-					}
-					
-					//如果颜色有多种就给克隆一个商品的小图
-					if(colorlength>1){
-						listgoods.get(colorlength-2).setGoods_smallphoto(sbsmal.toString());
-//						try {
-//							Goods_table goodsclone =(Goods_table)goods.clone();
-//							goodsclone.setGoods_smallphoto(sbsmal.toString());
-							//把克隆放进集合
-							//listgoods.add(goodsclone);
-//						} catch (CloneNotSupportedException e) {
-							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-					}
-					System.out.println(sbsmal.toString());
-					//goods.setGoods_smallphoto(sbsmal.toString());
+				
 					
 				}
 				
@@ -204,13 +220,46 @@ public class Loadgoods extends TestCase{
 						sbtype.append(arr_1.getString("categName"));
 						sbtype.append(",");
 					}
+					
+					//第一个类型
+					if(typelength==1){
+						middle.setMiddle_type(arr_1.getString("categName"));
+						for (Middle_table tpye : listmiddle) {
+							Middle_table tpyeclone =(Middle_table)tpye.clone();
+							tpyeclone.setMiddle_type(arr_1.getString("categName"));
+							//把克隆放进集合
+							listmiddle.add(tpyeclone);
+						}
+					}
+					
+					//如果类型有多种就克隆一个商品
+					if(colorlength>1){
+						i++;
+						try {
+							Middle_table middleclone =(Middle_table)middle.clone();
+							middleclone.setMiddle_type(arr_1.getString("categName"));
+							for (Middle_table tpye : listmiddle) {
+								Middle_table tpyeclone =(Middle_table)tpye.clone();
+								tpyeclone.setMiddle_type(arr_1.getString("categName"));
+								//把克隆放进集合
+								listmiddle.add(tpyeclone);
+							}
+							//把克隆放进集合
+							listmiddle.add(middleclone);
+						} catch (CloneNotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
 				}
+				
+				
 				System.out.println(sbtype.toString());
 				goods.setGoods_location(sbtype.toString());
 				//克隆的每一个都加类型
-				for (int k = 0; k < listgoods.size(); k++) {
-					listgoods.get(k).setGoods_location(sbtype.toString());
-				}
+//				for (int k = 0; k < listgoods.size(); k++) {
+//					listgoods.get(k).setGoods_location(sbtype.toString());
+//				}
 				
 				
 				//给空属性，随便给值
@@ -223,7 +272,7 @@ public class Loadgoods extends TestCase{
 				//具体详情描述
 				goods.setGoods_explainphoto(data2.getString("productDetail"));
 				//商家
-				goods.setShop_id(r.nextInt(5)+1);
+				goods.setShop_no(String.valueOf(r.nextInt(5)+1));
 				
 				//发货地
 				if(data2.get("deliveryRegion")==null){

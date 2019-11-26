@@ -16,7 +16,7 @@ public class Goods_table implements Serializable,Cloneable{
 	private String goods_size;//商品的大小
 	private String 	goods_explainphoto;//商品描述的图片
 	private double goods_discount;//商品的折扣
-	private int shop_id;//店铺的主键
+	private String shop_no;//店铺的主键
 //	private String goods_season;//商品的类型季节如：春
 	private String goods_place;//商品发货地
 	private String goods_uptime;//商品的上架时间
@@ -31,8 +31,8 @@ public class Goods_table implements Serializable,Cloneable{
 		return "Goods_table [goods_id=" + goods_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
 				+ ", goods_like=" + goods_like + ", goods_photo=" + goods_photo + ", goods_category=" + goods_category
 				+ ", goods_sex=" + goods_sex + ", goods_color=" + goods_color + ", goods_size=" + goods_size
-				+ ", goods_explainphoto=" + goods_explainphoto + ", goods_discount=" + goods_discount + ", shop_id="
-				+ shop_id + ", goods_place=" + goods_place + ", goods_uptime=" + goods_uptime + ", goods_ban="
+				+ ", goods_explainphoto=" + goods_explainphoto + ", goods_discount=" + goods_discount + ", shop_no="
+				+ shop_no + ", goods_place=" + goods_place + ", goods_uptime=" + goods_uptime + ", goods_ban="
 				+ goods_ban + ", goods_location=" + goods_location + ", goods_no=" + goods_no + ", goods_brand="
 				+ goods_brand + ", goods_smallphoto=" + goods_smallphoto + "]";
 	}
@@ -142,12 +142,15 @@ public class Goods_table implements Serializable,Cloneable{
 	public void setGoods_discount(double goods_discount) {
 		this.goods_discount = goods_discount;
 	}
-	public int getShop_id() {
-		return shop_id;
+	
+	public String getShop_no() {
+		return shop_no;
 	}
-	public void setShop_id(int shop_id) {
-		this.shop_id = shop_id;
+
+	public void setShop_no(String shop_no) {
+		this.shop_no = shop_no;
 	}
+
 	public String getGoods_uptime() {
 		return goods_uptime;
 	}

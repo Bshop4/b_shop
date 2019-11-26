@@ -110,8 +110,7 @@ $('.part-screen>.product-next>ul').each(function(u){
 		myli.click(function(){
 			myli.css("color",'black');
 			myli.css("font-weight",'bold');
-			var condition=myli.html();
-			console.log(condition);
+			var condition=myli.text();
 			$('.part-screen>.product-filter').append("<div onclick='duanjuntang(this,"+u+","+i+")'><span>"+ttt+":</span><span>"+myli+"/span><span class='glyphicon glyphicon-remove'></span></div>");
 		})
 	})

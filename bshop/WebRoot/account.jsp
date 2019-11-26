@@ -60,7 +60,7 @@
       <span class="glyphicon glyphicon-open"></span>
     </div>-->
 	<div class="btn-cart-lik">
-		<a href="">＜返回购物车</a>
+		<a href="cart.jsp">＜返回购物车</a>
 	</div>
 	<div class="address-layout">
 		<div class="title-title">选择收获地址</div>

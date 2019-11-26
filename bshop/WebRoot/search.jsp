@@ -303,7 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/base.js"></script>
 	<script type="text/javascript" src="js/allStore.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
 	<script type="text/javascript" src="js/search.js"></script>
 </html>

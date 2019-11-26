@@ -45,17 +45,18 @@
 
     });
 
-    $('.zjl-bottom ul li').each(function(i){
-        $(this).mouseenter(function(){
+   // $('.zjl-bottom ul li').each(function(i){
+    //    $(this).mouseenter(function(){
 
-            var imgSrc = $(this).children().attr('src');
+     //       var imgSrc = $(this).children().attr('src');
             //console.log(imgSrc)
-            $('.big').css({
-                'background-image' : 'url(' + imgSrc + ')',
-            });
+     //       $('.zjl-top>li>img').attr('src',imgSrc);
+    //        $('.big').css({
+    //            'background-image' : 'url(' + imgSrc + ')',
+    //        });
 
-        }) ;
-    });
+   //     }) ;
+  //  });
 
     //鼠标移入移出
     $('.zjl-top').hover(function(){

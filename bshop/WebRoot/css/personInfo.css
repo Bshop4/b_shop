@@ -107,6 +107,9 @@
         .inputPhoto{
         	width:96px;
         	height: 96px;
+        	position:absolute;
+        	top:44px;
+        	left:124px;
         	opacity: 0;
         }
         

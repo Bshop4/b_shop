@@ -7,4 +7,11 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
+	<PagePattern name="maxPageAction">
+		<ActionForm>bshow.web.servlet.form.MaxPageActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.MaxPageAction</Action>
+		<Redirect>false</Redirect>
+		<path name="success">success.jsp</path>
+		<path name="error">error.jsp</path>
+	</PagePattern>
 </properties>

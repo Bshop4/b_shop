@@ -163,4 +163,30 @@ public class Basedaoimpl implements Basedao{
 		return list;
 	}
 
+	//获得最大页数
+	public int selectMaxPagesize(String id, Object o, int pagesize) {
+		Connection conn=DBhelper.getConnection();
+		List<Object> list=new ArrayList<Object>();
+		Class c=o.getClass();
+		int count=0;//记录总个数
+		try {
+			//根据对象拿到对应的mapping.xml文档
+			Document doc=DBhelper.getDocumentByClass(c);
+			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
+			//获得元素内容的sql语句
+			String sql=selectelement.getTextTrim();
+			System.out.println(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			DBhelper.closeConnection(conn);
+		}
+		return count%pagesize==0?count/pagesize:count/pagesize+1;
+	}
+
 }

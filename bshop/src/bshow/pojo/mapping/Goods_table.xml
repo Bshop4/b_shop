@@ -19,7 +19,7 @@
 	<property name="goods_place" column="goods_place"/>
 	
 	<insert id="insertone">
-		insert into account_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_no,goods_place,goods_uptime,goods_ban,goods_location,goods_no,goods_brand) values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_no},#{goods_place},#{goods_uptime},#{goods_ban},#{goods_location},#{goods_no},#{goods_brand})
+		insert into goods_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_no,goods_place,goods_uptime,goods_ban,goods_location,goods_no,goods_brand) values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_no},#{goods_place},#{goods_uptime},#{goods_ban},#{goods_location},#{goods_no},#{goods_brand})
 	</insert>
 	<!--<select id="select" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id}

@@ -7,22 +7,20 @@ public class Goods_table implements Serializable,Cloneable{
 	private int goods_id;//商品主键
 	private String  goods_name;//商品名字
 	private double 	goods_price;//商品单价
-	//private String 	goods_explain;//商品描述
 	private int goods_like;//商品点赞数
 	private String goods_photo;//商品图片
 	private String goods_category;//商品的类别
 	private String goods_color;//商品的颜色
 	private String goods_size;//商品的大小
-	private String 	goods_explainphoto;//商品描述的图片
+	private byte[] 	goods_explainphoto;//商品描述的图片
 	private double goods_discount;//商品的折扣
 	private String shop_no;//店铺的主键
-//	private String goods_season;//商品的类型季节如：春
-	private String goods_place;//商品发货地
 	private String goods_uptime;//商品的上架时间
 	private int goods_ban;//商品是否被禁用
 	private String goods_location;//商品的上衣，下装
 	private String goods_no;//（商品的编号）
 	private String goods_brand;//（商品的品牌）
+	private String goods_place;//商品发货地
 	
 	@Override
 	public String toString() {
@@ -49,13 +47,16 @@ public class Goods_table implements Serializable,Cloneable{
 	public void setGoods_place(String goods_place) {
 		this.goods_place = goods_place;
 	}
-
-	public String getGoods_explainphoto() {
+	
+	
+	public byte[] getGoods_explainphoto() {
 		return goods_explainphoto;
 	}
-	public void setGoods_explainphoto(String goods_explainphoto) {
+
+	public void setGoods_explainphoto(byte[] goods_explainphoto) {
 		this.goods_explainphoto = goods_explainphoto;
 	}
+
 	public String getGoods_brand() {
 		return goods_brand;
 	}

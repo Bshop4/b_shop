@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Shop_table" table="shop_table">
+	<property name="shop_id" column="shop_id"/>
+	<property name="goods_no" column="goods_no"/>
+	<property name="shop_no" column="shop_no"/>
+	
+	<insert id="insertone">
+		insert into shop_table(goods_no,shop_no) values(#{goods_no},#{shop_no})
+	</insert>
+	<!--<select id="select" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id}
+	</select>
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

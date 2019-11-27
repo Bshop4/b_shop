@@ -1,4 +1,4 @@
-package bshow.pojo;
+package bshow.util;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,14 +15,20 @@ import org.jsoup.nodes.Document;
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.db.DBhelper;
+import bshow.pojo.Goods_table;
+import bshow.pojo.Middle_table;
+import bshow.pojo.Shop_table;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class Loadgoods extends TestCase{
+public class Loadgoods{
+	private Basedao dao=new Basedaoimpl();
+	private Basedao dao1=new Basedaoimpl();
+	private Basedao dao2=new Basedaoimpl();
+	private Shop_table shop=new Shop_table();
 	public void action(){
-		
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 20; i++) {
 			fun(i);
 		}
 		
@@ -29,7 +37,7 @@ public class Loadgoods extends TestCase{
 		Random r=new Random();
 		//获取连接
 		//Connection conn=DBhelper.getConnection();
-		//Basedao dao=new Basedaoimpl();
+		
 		Document doc=null;
 		try {
 			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1").ignoreContentType(true).timeout(10000).get();
@@ -66,6 +74,7 @@ public class Loadgoods extends TestCase{
 				String code=obj.getString("productSid");
 				middle.setGoods_no(code);//中间表
 				goods.setGoods_no(code);
+				shop.setGoods_no(code);
 				
 				//详情网页请求 http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid=250711473283551&deviceNumber=1574582545228&channel=1
 				doc =Jsoup.connect("http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid="+code+"&deviceNumber=1574582545228&channel=1").ignoreContentType(true).timeout(10000).get();
@@ -73,7 +82,24 @@ public class Loadgoods extends TestCase{
 				JSONObject json2=JSONObject.fromObject(doc.text());
 				JSONObject data2=(JSONObject)json2.get("data");
 				jsondata2=data2;
-				
+				try {
+					Pattern p = Pattern.compile("productDetail\":\"([\\s\\S]+)\",\"saleState");
+					Matcher m = p.matcher(doc.select("body").html().toString());
+					while(m.find())
+					{	
+						// 具体详情描述
+						//System.out.println(m.group(1));
+						String st=m.group(1);
+						st=st.replaceAll("\\\\t", "");
+						st=st.replaceAll("\\\\&quot;", "");
+						st=st.replaceAll(".jpg/", ".jpg");
+						st=st.replaceAll(".JPG/", ".JPG");
+						goods.setGoods_explainphoto(st.getBytes());
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				
 				//颜色
 				JSONArray arr=(JSONArray)data2.get("skuList");
@@ -82,7 +108,6 @@ public class Loadgoods extends TestCase{
 				StringBuffer sbtype=null;
 				for (Object object2 : arr) {
 					colorlength++;
-					//JSONObject  arr_0=(JSONObject)arr.get(0);
 					JSONObject  arr_0=(JSONObject)object2;
 					//System.out.println("颜色"+arr_0.getString("firstClassAttrName"));
 					if(arr.size()==colorlength){
@@ -184,7 +209,6 @@ public class Loadgoods extends TestCase{
 					for (Object object3 : sizelist) {
 						sizelength++;
 						JSONObject objsize=(JSONObject)object3;
-						//System.out.println("尺码==="+objsize.getString("subClassAttrName"));
 						if(sizelist.size()==sizelength){
 							sbsize.append(objsize.getString("subClassAttrName"));
 						}else{
@@ -193,7 +217,6 @@ public class Loadgoods extends TestCase{
 						}
 //						第一个尺码
 						if(sizelength==1){
-							//System.out.println(sbsize.toString());
 							middle.setMiddle_size(objsize.getString("subClassAttrName"));
 							for (Middle_table size : listmiddle) {
 								size.setMiddle_size(objsize.getString("subClassAttrName"));
@@ -216,17 +239,6 @@ public class Loadgoods extends TestCase{
 									//把克隆放进集合
 									listmiddle.add(sizeclone);
 								}
-//								for (Middle_table size : listmiddle) {
-//									System.out.println(2);
-//									System.out.println(sbsize.toString());
-//									Middle_table sizeclone =(Middle_table)size.clone();
-//									System.out.println(3);
-//									sizeclone.setMiddle_size(objsize.getString("subClassAttrName"));
-//									System.out.println(4);
-//									//把克隆放进集合
-//									listmiddle.add(sizeclone);
-//									System.out.println(5);
-//								}
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -298,11 +310,16 @@ public class Loadgoods extends TestCase{
 					goods.setGoods_size(sbsize.toString());
 					
 					if(colorlength==1){
-						System.out.println(colorlength+"====="+middle.toString());
+						//System.out.println(colorlength+"====="+middle.toString());
+						middle.setMiddle_repertory(r.nextInt(99));
+						dao2.saveObject("insertone", middle);
 					}
+					
 					//打印中间表
 					for (int j = 0; j < listmiddle.size(); j++) {
-						System.out.println("颜色循坏"+colorlength+"====="+listmiddle.get(j));
+						//System.out.println("颜色循坏"+colorlength+"====="+listmiddle.get(j));
+						listmiddle.get(j).setMiddle_repertory(r.nextInt(99));
+						dao2.saveObject("insertone", listmiddle.get(j));
 					}
 					
 					//把listmiddle
@@ -318,18 +335,15 @@ public class Loadgoods extends TestCase{
 				//System.out.println(sbtype.toString());
 				goods.setGoods_location(sbtype.toString());
 				
-				
 				//给空属性，随便给值
 				//点赞数
 				goods.setGoods_like(r.nextInt(555));
 				//类别
 				goods.setGoods_category(sbtype.toString());
-				//具体详情描述
-				goods.setGoods_explainphoto(data2.getString("productDetail"));
-				System.out.println(data2.getString("productDetail"));
 				//商家
-				goods.setShop_no(String.valueOf(r.nextInt(5)+1));
-				
+				String shopno=String.valueOf(r.nextInt(5)+1);
+				goods.setShop_no(shopno);
+				shop.setShop_no(shopno);
 				//发货地
 				if(data2.get("deliveryRegion")==null){
 					goods.setGoods_place("湖南"); 
@@ -338,10 +352,9 @@ public class Loadgoods extends TestCase{
 				}
 				
 				//dao.saveObject("insertone", goods);
-				System.out.println("goods"+goods);
-				new Goods_table();
-				System.out.println();
-				System.out.println();
+				//System.out.println("goods"+goods);
+				dao.saveObject("insertone", goods);
+				dao1.saveObject("insertone", shop);
 			}
 			
 			System.out.println(i);

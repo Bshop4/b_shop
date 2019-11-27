@@ -1,6 +1,7 @@
 package bshow.pojo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Middle_table implements Serializable,Cloneable{
 	private int middle_id;
@@ -34,13 +35,14 @@ public class Middle_table implements Serializable,Cloneable{
 	public void setGoods_no(String goods_no) {
 		this.goods_no = goods_no;
 	}
+	
+	
 	public String getGoods_smallphoto() {
 		return goods_smallphoto;
 	}
 	public void setGoods_smallphoto(String goods_smallphoto) {
 		this.goods_smallphoto = goods_smallphoto;
 	}
-	
 	public String getMiddle_size() {
 		return middle_size;
 	}
@@ -62,8 +64,8 @@ public class Middle_table implements Serializable,Cloneable{
 	@Override
 	public String toString() {
 		return "Middle_table [middle_id=" + middle_id + ", middle_color=" + middle_color + ", goods_no=" + goods_no
-				+ ", goods_smallphoto=" + goods_smallphoto + ", middle_size=" + middle_size + ", middle_repertory="
-				+ middle_repertory + ", middle_type=" + middle_type + "]";
+				+ ", goods_smallphoto=" + goods_smallphoto + ", middle_size=" + middle_size
+				+ ", middle_repertory=" + middle_repertory + ", middle_type=" + middle_type + "]";
 	}
 
 	

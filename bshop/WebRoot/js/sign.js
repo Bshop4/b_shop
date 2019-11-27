@@ -21,9 +21,15 @@
 		if(renumber.test($('.user').val())){$('.use-tips').html("&otimes; 不能为纯数字！").css('color','orange');return;};
 		
 		if(re.test($('.user').val())){
+			$.ajax({
+				
+				
+			})
+			
 			
 			pyl_flag_user=true;//成功就对，返回不变false
-			$('.user').siblings('.pyl_true').show();$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
+			$('.user').siblings('.pyl_true').show();
+			$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
 			$('.userclear').hide();
 			return;
 			
@@ -32,6 +38,9 @@
 			$('.userclear').show();
 		};
 		pyl_flag_user=false;
+		
+		
+		
 	});
 	
 	//用户获焦
@@ -220,7 +229,7 @@
 						console.log(2);
 						
 						var goodsID=getUrlVal('goods_id');
-						$.post('http://www.wjian.top/shop/api_user.php?',
+						$.post('xxx.do',
 						{status:'login',
 							 username:uName,
 							 password:upass,

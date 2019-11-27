@@ -28,8 +28,9 @@ public class Loadgoods{
 	private Basedao dao2=new Basedaoimpl();
 	private Shop_table shop=new Shop_table();
 	public void action(){
-		for (int i = 2; i <= 20; i++) {
+		for (int i = 6; i <= 20; i++) {
 			fun(i);
+			System.out.println("第"+i+"页");
 		}
 		
 	}
@@ -40,7 +41,9 @@ public class Loadgoods{
 		
 		Document doc=null;
 		try {
-			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1").ignoreContentType(true).timeout(10000).get();
+			//男装http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum=1&dispId=004&deviceNumber=1574825469317&channel=1
+			//女装---http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1
+			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=004&deviceNumber=1574825469317&channel=1").ignoreContentType(true).timeout(10000).get();
 			String body = doc.body().html();
 			JSONObject json = JSONObject.fromObject(body);
 			Object data=json.get("data");
@@ -49,12 +52,10 @@ public class Loadgoods{
 			JSONObject jsondata2=null;//相当于JSONObject data2=(JSONObject)json2.get("data");
 			java.text.DecimalFormat   df =new java.text.DecimalFormat("#.00");  
 			//df.format(你要格式化的数字);
-			int i=0;
 			for (Object object : jlist) {
 				Middle_table middle=new Middle_table();
 				ArrayList<Middle_table> listmiddle=new ArrayList<Middle_table>();
 				Goods_table goods=new Goods_table();
-				i++;
 				JSONObject obj=JSONObject.fromObject(object);
 				//System.out.println("￥"+obj.getString("cuPrice"));
 				goods.setGoods_price(Double.parseDouble(obj.getString("cuPrice")));
@@ -141,7 +142,6 @@ public class Loadgoods{
 					
 					//如果颜色有多种就克隆一个商品
 					if(colorlength>1){
-						i++;
 						try {
 							Middle_table middleclone =(Middle_table)middle.clone();
 							middleclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
@@ -276,7 +276,6 @@ public class Loadgoods{
 						
 						//如果类型有多种就克隆一个商品
 						if(typelength>1){
-							i++;
 							try {
 								if(colorlength==1){
 									Middle_table middleclone =(Middle_table)middle.clone();
@@ -357,7 +356,6 @@ public class Loadgoods{
 				dao1.saveObject("insertone", shop);
 			}
 			
-			System.out.println(i);
 			
 			
 		} catch (IOException e) {

@@ -7,6 +7,12 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
+	
+	<PagePattern name="selectGoodsNo">
+		<ActionForm>bshow.web.servlet.form.SelectGoodsNoForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectGoodsNoAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>	
 	<PagePattern name="maxPageAction">
 		<ActionForm>bshow.web.servlet.form.MaxPageActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.MaxPageAction</Action>
@@ -14,4 +20,12 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
+	
+	<!-- <PagePattern name="xxx">
+		<ActionForm>bshow.web.servlet.form.XxxForm</ActionForm>
+		<Action>bshow.web.servlet.action.XxxAction</Action>
+		<Redirect>false</Redirect>
+		<path name="success">xxx.jsp</path>
+		<path name="error">error.jsp</path>
+	</PagePattern> -->
 </properties>

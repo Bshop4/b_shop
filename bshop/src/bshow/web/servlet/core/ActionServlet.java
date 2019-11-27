@@ -43,7 +43,7 @@ public class ActionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("aaa");
+		System.out.println("进入ActionServlet————doPost");
 		//拿出应用程序中的action池
 		Properties actionPool=(Properties)this.getServletContext().getAttribute("actionPool");
 		//拿出配置文件
@@ -89,7 +89,7 @@ public class ActionServlet extends HttpServlet {
 		String className=null;
 		for (Element element : list1) {
 			className=element.getStringValue();
-			System.out.println(className);
+			//System.out.println(className);
 		}
 		Action action=null;
 		try {

@@ -7,9 +7,10 @@
 	<insert id="insertone">
 		insert into shop_table(goods_no,shop_no) values(#{goods_no},#{shop_no})
 	</insert>
-	<!--<select id="select" resulttype="bshow.pojo.Account_table">
-		select * from account_table	where 1=1 and account_id=#{account_id}
+	<select id="selectone" resulttype="bshow.pojo.Shop_table">
+		select * from shop_table where 1=1 and shop_id=#{shop_id}
 	</select>
+	<!--
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
 	</select>

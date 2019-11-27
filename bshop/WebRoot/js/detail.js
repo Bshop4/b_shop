@@ -3,146 +3,329 @@
  */
 
 (function(){
-      var goodsId = getUrlVal('goods_id');
-//  var goodsId = 34233;
-    //发起请求
-    $.get('http://www.wjian.top/shop/api_goods.php', {
-        goods_id : goodsId,
-    }, function(result){
-        var obj = JSON.parse(result);
-        
-        $('title').html('B-SHOP嘿店——'+obj.data[0].goods_name);
-        var goods = obj.data[0];
-        
-        //商品名字
-        var str = `
-            <span>${goods.goods_name}</span>
-        `;
-
-        //大图
-        var str1 = `
-            <ul>
-             <li class="active"><img src=${goods.goods_thumb}></li>
-             </ul>
-            <div class="slide"></div>
-        `;
-
-        //小图
-        var str2 = `
-        	<ul>
-              <li class="cur"><img src=${goods.goods_thumb} alt=""></li>
-              <li><img src="img/big-01.jpg" alt=""></li>
-              <li><img src="" alt=""></li>
-              <li><img src="" alt=""></li>
-            </ul>
-            <span class="glyphicon glyphicon-chevron-left left-span"></span>
-            <span class="glyphicon glyphicon-chevron-right right-span"></span>
-        `;
-
-        var str3 = `
-            <div class="zjl-product-name">${goods.goods_name}</div>
-        `;
-
-        //品牌
-        var str4 = `
-        	<span><a href="">品牌：Aquapick</a></span>
-           <span class="zjl-product-no">商品编号：${goods.brand_id}</span>
-        `;
-
-        var price = parseFloat(`${goods.price}`) - 150.00;
-        var strPrice = price + '.00';
-        var str5 = `
-              <span>￥${goods.price}</span>
-        `;
-
-        var str6 = `
-            <span class="buyName">购买数量:</span>
-            <span class="de">-</span>
-            <input type="text" value="1" class="number" readonly>
-            <span class="add">+</span>
-        `;
-
-
-        var str7 = `
-            <ul>
-               <li  id="buyNowBtn"><a href="javascript:;" data-goods-id="${goods.goods_id}">立即购买</a></li>
-               <li id="addCartBtn"><a href="javascript:;"  data-goods-id="${goods.goods_id}">加入购物车</a></li>
-             </ul>
-        `;
-
-        var str8 = `
-            <div class="big"></div>
-        `;
-		
-//		飞入购物车的图
-		var str9=`<img src=${goods.goods_thumb}>`
-		
-		//发货地
-		var str10 = `
-			<span class="zjl-send">发货地:</span>
-            <span class="zjl-place">上海</span>
-            <span class="zjl-waitTime">预计3-7工作日送达</span>
-		`;
-		
-		//颜色
-		var str11 = `
-			<ul>
-              <li class="active">米白<a href=""></a></li>
-              <li>惨白<a></a></li>
-            </ul>
-		`;
-		
-		//尺码
-		var str12 = `
-			<ul>
-              <li>均码<a></a></li>
-            </ul>
-		`;
+      //var goodsId = getUrlVal('goods_id');
+	var goodsno = "9042194192054";
+    //发起
+	$.ajax({
+		type:"POST",
+		url:"selectGoodsNo.do",
+		data:{"goodsno":goodsno},
+		success:function(result){
+			console.log(result);
+			var len = result.length;
+			var obj = result[len-1];
+			console.log(obj)
 			
-        $('.zjl-link').append(str);
-        $('.zjl-top').append(str1);
-        $('.zjl-bottom').append(str2);
-        $('.zjl-product').prepend(str3);
-        $('.zjl-product-brandName').append(str4);
-        $('.price').append(str5);
-        $('.price').prepend('￥<span>'+ strPrice+'</span>');
-        $('.zjl-product-condition').append(str6);
-        $('.zjl-product-button').append(str7);
-        $('.zjl-banner').append(str8);
-		
-		//		飞入购物车的图
-		$('.zjl-flyincart').append(str9);
-		
-		$('.zjl-product-region').append(str10);
-		
-		$('.zjl-product-color').append(str11);
-		
-		$('.zjl-product-size').append(str12);
-		
-        var imgStr = `${goods.goods_thumb}`;
-        //console.log(imgStr);
-        
-        //放大镜大图
-        $('.big').css({
+	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
+	        
+	        //商品名字
+	        var str = `
+	            <span>${obj.goods_name}</span>
+	        `;
+	        
+	        //大图
+	        var str1 = `
+	            <ul>
+	             <li class="active"><img src=${result[0]}></li>
+	             </ul>
+	            <div class="slide"></div>
+	        `;
 
-            width: 400,
-            height: 400,
-            border: '2px solid orange',
-            position: 'absolute',
-            left: 600,
-            top: 10,
-            background: 'url("'+imgStr+'")',
-            /*background-image: url("img/big-01.jpg");*/
-            'background-size': '800px 800px' ,
-            'background-position': '0px 0px',
-            'z-index': 999,
-            display: 'none',
-        })
+//	        //小图
+	        var strsm="";
+	        for(var i = 0; i < 4; i++){
+	        	strsm+="<li><img src='"+result[i]+"'/></li>";
+	        }
+//	        console.log(strsm)
+	        var str2 = `
+	        	<ul>
+	              ${strsm}
+	            </ul>
+	            <span class="glyphicon glyphicon-chevron-left left-span"></span>
+	            <span class="glyphicon glyphicon-chevron-right right-span"></span>
+	        `;
+//	        console.log(str2)
+	        
+//
+	        var str3 = `
+	            <div class="zjl-product-name">${obj.goods_name}</div>
+	        `;
+//
+//	        //品牌
+	        var str4 = `
+	        	<span><a href="">品牌：${obj.goods_brand}</a></span>
+	           <span class="zjl-product-no">商品编号：${obj.goods_no}</span>
+	        `;
+//
+	        var price = parseFloat(`${obj.goods_price}`);
+	        var discount = parseFloat(`${obj.goods_discount}`)
+	        price = parseInt(price / discount);
+//	        console.log(price)
+//	        var strPrice = price + '.00';
+	        var str5 = `
+	              <span>￥${price}</span>
+	        `;
+
+	        var str6 = `
+	            <span class="buyName">购买数量:</span>
+	            <span class="de">-</span>
+	            <input type="text" value="1" class="number" readonly>
+	            <span class="add">+</span>
+	        `;
+
+	        
+	        var str7 = `
+	            <ul>
+	               <li id="buyNowBtn"><a href="javascript:;" data-goods-id="${obj.goods_no}">立即购买</a></li>
+	               <li id="addCartBtn"><a href="javascript:;" data-goods-id="${obj.goods_no}">加入购物车</a></li>
+	             </ul>
+	        `;
+
+	        var str8 = `
+	            <div class="big"></div>
+	        `;
+			
+//			飞入购物车的图
+			var str9=`<img src=${result[0]}>`
+			
+			//发货地
+			var str10 = `
+				<span class="zjl-send">发货地:</span>
+	            <span class="zjl-place">${obj.goods_place}</span>
+	            <span class="zjl-waitTime">预计3-7工作日送达</span>
+			`;
+			
+			
+			//颜色
+			var strcolor = obj.goods_color;
+//			console.log(strcolor)
+			var arrcolor = new Array();
+//			var ss = "123,345,456"
+			arrcolor = strcolor.split(',');
+			
+			var strcolor1 = "";
+			for(var i = 0; i < arrcolor.length; i++){
+				strcolor1 += "<li>"+arrcolor[i]+"<a></a></li>"
+			}
+			strcolor1  = strcolor1.slice(0,3) + " class=active" + strcolor1.slice(3);
+//			console.log(strcolor1)			
+			
+			var str11 = `
+				<ul style="width:300px">
+					${strcolor1}
+	            </ul>
+			`;
+			
+//			//尺码
+			var strsize1 = obj.goods_size;
+			var arrSize = strsize1.split(",");
+//			console.log(arrSize.length)
+			var strsize2 = "";
+			for(var i = 0; i < arrSize.length ;i++){
+				strsize2 += "<li>"+arrSize[i]+"<a></a></li>"
+			}
+			console.log(strsize2)
+			var str12 = `
+				<ul style="width:450px">
+	              ${strsize2}
+	            </ul>
+			`;
+//				
+			
+			var bigphtoo = obj.goods_explainphoto;
+			console.log(bigphtoo)
+//			console.log(Uint8ToStr(bigphtoo));
+			$(".zjl-footer-img").append(Uint8ToStr(bigphtoo));
+			
+			
+	        $('.zjl-link').append(str);
+	        $('.zjl-top').append(str1);
+	        $('.zjl-bottom').append(str2);
+	        $('.zjl-product').prepend(str3);
+	        $('.zjl-product-brandName').append(str4);
+	        $('.price').append(str5);
+	        $('.price').prepend('￥<span>'+ obj.goods_price+'</span>');
+	        $('.zjl-product-condition').append(str6);
+	        $('.zjl-product-button').append(str7);
+	        $('.zjl-banner').append(str8);
+			
+			//		飞入购物车的图
+			$('.zjl-flyincart').append(str9);
+			
+			$('.zjl-product-region').append(str10);
+			
+			$('.zjl-product-color').append(str11);
+			
+			$('.zjl-product-size').append(str12);
+			
+	        var imgStr = `${result[0]}`;
+	        
+	        //放大镜大图
+	        $('.big').css({
+
+	            width: 400,
+	            height: 400,
+	            border: '2px solid orange',
+	            position: 'absolute',
+	            left: 600,
+	            top: 10,
+	            background: 'url("'+imgStr+'")',
+	            /*background-image: url("img/big-01.jpg");*/
+	            'background-size': '800px 800px' ,
+	            'background-position': '0px 0px',
+	            'z-index': 999,
+	            display: 'none',
+	        })
 
 
-        opration();
+	        opration();
 
-    });
+			
+			
+		}
+	})
+	
+	
+	
+	
+	
+//    $.get('http://www.wjian.top/shop/api_goods.php', {
+//        goods_id : goodsId,
+//    }, function(result){
+//        var obj = JSON.parse(result);
+//        
+//        $('title').html('B-SHOP嘿店——'+obj.data[0].goods_name);
+//        var goods = obj.data[0];
+//        
+//        //商品名字
+//        var str = `
+//            <span>${goods.goods_name}</span>
+//        `;
+//
+//        //大图
+//        var str1 = `
+//            <ul>
+//             <li class="active"><img src=${goods.goods_thumb}></li>
+//             </ul>
+//            <div class="slide"></div>
+//        `;
+//
+//        //小图
+//        var str2 = `
+//        	<ul>
+//              <li class="cur"><img src=${goods.goods_thumb} alt=""></li>
+//              <li><img src="img/big-01.jpg" alt=""></li>
+//              <li><img src="" alt=""></li>
+//              <li><img src="" alt=""></li>
+//            </ul>
+//            <span class="glyphicon glyphicon-chevron-left left-span"></span>
+//            <span class="glyphicon glyphicon-chevron-right right-span"></span>
+//        `;
+//
+//        var str3 = `
+//            <div class="zjl-product-name">${goods.goods_name}</div>
+//        `;
+//
+//        //品牌
+//        var str4 = `
+//        	<span><a href="">品牌：Aquapick</a></span>
+//           <span class="zjl-product-no">商品编号：${goods.brand_id}</span>
+//        `;
+//
+//        var price = parseFloat(`${goods.price}`) - 150.00;
+//        var strPrice = price + '.00';
+//        var str5 = `
+//              <span>￥${goods_price}</span>
+//        `;
+//
+//        var str6 = `
+//            <span class="buyName">购买数量:</span>
+//            <span class="de">-</span>
+//            <input type="text" value="1" class="number" readonly>
+//            <span class="add">+</span>
+//        `;
+//
+//
+//        var str7 = `
+//            <ul>
+//               <li  id="buyNowBtn"><a href="javascript:;" data-goods-id="${goods.goods_id}">立即购买</a></li>
+//               <li id="addCartBtn"><a href="javascript:;"  data-goods-id="${goods.goods_id}">加入购物车</a></li>
+//             </ul>
+//        `;
+//
+//        var str8 = `
+//            <div class="big"></div>
+//        `;
+//		
+////		飞入购物车的图
+//		var str9=`<img src=${goods.goods_thumb}>`
+//		
+//		//发货地
+//		var str10 = `
+//			<span class="zjl-send">发货地:</span>
+//            <span class="zjl-place">上海</span>
+//            <span class="zjl-waitTime">预计3-7工作日送达</span>
+//		`;
+//		
+//		//颜色
+//		var str11 = `
+//			<ul>
+//              <li class="active">米白<a href=""></a></li>
+//              <li>惨白<a></a></li>
+//            </ul>
+//		`;
+//		
+//		//尺码
+//		var str12 = `
+//			<ul>
+//              <li>均码<a></a></li>
+//            </ul>
+//		`;
+//			
+//        $('.zjl-link').append(str);
+//        $('.zjl-top').append(str1);
+//        $('.zjl-bottom').append(str2);
+//        $('.zjl-product').prepend(str3);
+//        $('.zjl-product-brandName').append(str4);
+//        $('.price').append(str5);
+//        $('.price').prepend('￥<span>'+ strPrice+'</span>');
+//        $('.zjl-product-condition').append(str6);
+//        $('.zjl-product-button').append(str7);
+//        $('.zjl-banner').append(str8);
+//		
+//		//		飞入购物车的图
+//		$('.zjl-flyincart').append(str9);
+//		
+//		$('.zjl-product-region').append(str10);
+//		
+//		$('.zjl-product-color').append(str11);
+//		
+//		$('.zjl-product-size').append(str12);
+//		
+//        var imgStr = `${goods.goods_thumb}`;
+//        //console.log(imgStr);
+//        
+//        //放大镜大图
+//        $('.big').css({
+//
+//            width: 400,
+//            height: 400,
+//            border: '2px solid orange',
+//            position: 'absolute',
+//            left: 600,
+//            top: 10,
+//            background: 'url("'+imgStr+'")',
+//            /*background-image: url("img/big-01.jpg");*/
+//            'background-size': '800px 800px' ,
+//            'background-position': '0px 0px',
+//            'z-index': 999,
+//            display: 'none',
+//        })
+//
+//
+//        opration();
+//
+//    });
 
 
 
@@ -374,6 +557,10 @@ function opration(){
 
 
 }
-
+function Uint8ToStr(arr){
+	  for (var i = 0,str=''; i < arr.length; i++) 
+	    str+= String.fromCharCode(arr[i]);
+	  return str;
+	}
 
 

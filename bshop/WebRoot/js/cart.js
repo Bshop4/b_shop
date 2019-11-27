@@ -5,7 +5,7 @@
     $.get('http://www.wjian.top/shop/api_goods.php',{
     	//http://www.xiu.com/#/search?dispId=003
     	//http://www.wjian.top/shop/api_goods.php
-      'pagesize':5,
+      'pagesize':2,
       'page':page,
     }, function(result){
       var result = JSON.parse(result);

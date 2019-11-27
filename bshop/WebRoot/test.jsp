@@ -29,13 +29,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
+   
   <body>
     <%=DBhelper.getConnection()%>
+    <%
+    	Goods_table gt = new Goods_table();
+		gt.setGoods_no("9042194192054");
+		Basedao ba = new Basedaoimpl();
+		List<Object> list =  ba.select("selectAllByGoodsNo", gt);
+		Goods_table gt1 = (Goods_table) list.get(0);
+		System.out.println("gt1" + gt1.getGoods_id());
+     %>
     <!-- <a href="pageBranchAction.do">haha</a> -->
     <%
-    		Loadgoods l=new Loadgoods();
-        	l.action();
+    		//Loadgoods l=new Loadgoods();
+        	//l.action();
         /* 	Goods_table g=new Goods_table();
         	g.setGoods_id(61);
         	Basedao b= new Basedaoimpl();

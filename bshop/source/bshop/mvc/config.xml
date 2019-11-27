@@ -12,7 +12,8 @@
 		<ActionForm>bshow.web.servlet.form.SelectGoodsNoForm</ActionForm>
 		<Action>bshow.web.servlet.action.SelectGoodsNoAction</Action>
 		<Redirect>false</Redirect>
-	</PagePattern>	
+	</PagePattern>
+	
 	<PagePattern name="maxPageAction">
 		<ActionForm>bshow.web.servlet.form.MaxPageActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.MaxPageAction</Action>

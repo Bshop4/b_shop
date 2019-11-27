@@ -16,41 +16,28 @@
 			dataType:"json",
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success:function(result){
-				
+				console.log(result);
+				//渲染
+				for(var i = 0; i < result.length; i++) {
+					var str = `
+					<li>
+						<a target="_blank" href="detail.jsp?goods_id=${result[i].goods_no}">
+							<img src="${result[i].goods_photo}" />
+							<div class="buttom">
+								<span class="left" href="javascript:;">${result[i].goods_brand}</span>
+							</div>
+							<p>${result[i].goods_name}</p>
+							<h3>￥${result[i].goods_price}</h3>
+						</a>
+					</li>
+				`;
+					$('.merchandise>ul').append(str);
+				}
+				//隐藏加载元素
+				$('#loading').css('display', 'none');
+				//放锁
+				lock = false;
 			}
-		})
-		
-		$.get('http://www.wjian.top/shop/api_goods.php', {
-			page: page,
-			pagesize: pagesize,
-		}, function(result) {
-			var obj = JSON.parse(result);
-			if(obj.code != 0) {
-				console.log(obj.message);
-				return;
-			}
-			var goodsList = obj.data;
-			//渲染
-			for(var i = 0; i < obj.data.length; i++) {
-				var str = `
-				<li>
-					<a target="_blank" href="detail.jsp?goods_id=${goodsList[i].goods_id}">
-						<img src="${goodsList[i].goods_thumb}" />
-						<div class="buttom">
-							<span class="left" href="javascript:;">${goodsList[i].goods_name}</span>
-							<span class="right" href="javascript:;">${goodsList[i].star_number}❤</span>
-						</div>
-						<p>${goodsList[i].goods_desc}</p>
-						<h3>￥${goodsList[i].price}</h3>
-					</a>
-				</li>
-			`;
-				$('.merchandise>ul').append(str);
-			}
-			//隐藏加载元素
-			$('#loading').css('display', 'none');
-			//放锁
-			lock = false;
 		})
 	}
 	//商品刷新

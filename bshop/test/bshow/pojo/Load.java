@@ -94,8 +94,12 @@ public class Load extends TestCase {
 					
 					while(m.find())
 					{	
-						System.out.println(m.group(1));
-						goods.setGoods_explainphoto(m.group(1));
+						String st=m.group(1);
+						st=st.replaceAll("\\\\t", "");
+						st=st.replaceAll("\\\\&quot;", "");
+						st=st.replaceAll(".jpg/", ".jpg");
+						st=st.replaceAll(".JPG/", ".JPG");
+						goods.setGoods_explainphoto(st.getBytes());
 					}
 					// 具体详情描述
 //					System.out.println(jo);

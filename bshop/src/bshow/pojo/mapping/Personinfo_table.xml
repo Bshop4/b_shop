@@ -11,7 +11,7 @@
 	<insert id="insertone">
 		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})
 	</insert>
-	<select id="select" resulttype="bshow.pojo.Account_table">
+	<select id="selectone" resulttype="bshow.pojo.Personinfo_table">
 		select * from personinfo_table	where 1=1 and personInfo_id=#{personInfo_id}
 	</select>
 	<!--

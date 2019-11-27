@@ -4,7 +4,7 @@
 
 (function(){
       //var goodsId = getUrlVal('goods_id');
-	var goodsno = "523517465827016";
+	var goodsno = "90391904170058";
     //发起
 	$.ajax({
 		type:"POST",
@@ -14,7 +14,6 @@
 			result=JSON.parse(result);
 			var len = result.length;
 			var obj = result[len-1];
-			console.log(obj)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        
@@ -33,9 +32,17 @@
 
 //	        //小图
 	        var strsm="";
-	        for(var i = 0; i < 2; i++){
-	        	strsm+="<li><img src='"+result[i]+"'/></li>";
+	        if(len>=6){
+	        	for(var i = 0; i < 4; i++){
+	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+	        	}
 	        }
+	        if(len>=3 && len <=5){
+	        	for(var i = 0; i < len-2; i++){
+	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+	        	}
+	        }
+	        
 	        console.log(strsm)
 	        var str2 = `
 	        	<ul>
@@ -44,13 +51,12 @@
 	            <span class="glyphicon glyphicon-chevron-left left-span"></span>
 	            <span class="glyphicon glyphicon-chevron-right right-span"></span>
 	        `;
-//	        console.log(str2)
 	        
 //
 	        var str3 = `
 	            <div class="zjl-product-name">${obj.goods_name}</div>
 	        `;
-//
+
 //	        //品牌
 	        var str4 = `
 	        	<span><a href="">品牌：${obj.goods_brand}</a></span>
@@ -60,8 +66,6 @@
 	        var price = parseFloat(`${obj.goods_price}`);
 	        var discount = parseFloat(`${obj.goods_discount}`)
 	        price = parseInt(price / discount);
-//	        console.log(price)
-//	        var strPrice = price + '.00';
 	        var str5 = `
 	              <span>￥${price}</span>
 	        `;
@@ -98,9 +102,7 @@
 			
 			//颜色
 			var strcolor = obj.goods_color;
-//			console.log(strcolor)
 			var arrcolor = new Array();
-//			var ss = "123,345,456"
 			arrcolor = strcolor.split(',');
 			
 			var strcolor1 = "";
@@ -108,7 +110,6 @@
 				strcolor1 += "<li>"+arrcolor[i]+"<a></a></li>"
 			}
 			strcolor1  = strcolor1.slice(0,3) + " class=active" + strcolor1.slice(3);
-//			console.log(strcolor1)			
 			
 			var str11 = `
 				<ul style="width:300px">
@@ -119,7 +120,6 @@
 //			//尺码
 			var strsize1 = obj.goods_size;
 			var arrSize = strsize1.split(",");
-//			console.log(arrSize.length)
 			var strsize2 = "";
 			for(var i = 0; i < arrSize.length ;i++){
 				strsize2 += "<li>"+arrSize[i]+"<a></a></li>"
@@ -130,11 +130,11 @@
 	              ${strsize2}
 	            </ul>
 			`;
-//				
+				
 
 			var pp = result[len-2];
-//			console.log(pp);
 			$(".zjl-footer-img").append(pp);
+			
 			
 			
 	        $('.zjl-link').append(str);

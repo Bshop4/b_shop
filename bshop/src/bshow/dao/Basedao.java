@@ -3,6 +3,7 @@ package bshow.dao;
 import java.util.List;
 import java.util.Map;
 
+import bshow.dto.Goods_classify;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
 public interface Basedao {
@@ -11,6 +12,6 @@ public interface Basedao {
 	public List<Object> select(String id,Object o);
 	public List<Object> selectByPagesize(String id,Object o,int page, int pagesize);
 	public int selectMaxPagesize(String id,Object o, int pagesize);
-	public Map<String, String[]> selectGoodsByConditions(GoodsByConditionsActionForm form);
+	public Map<String, List<Goods_classify>> selectGoodsByConditions(GoodsByConditionsActionForm form);
 }
 

@@ -27,9 +27,10 @@ import bshow.util.ober.Looker;
 import bshow.util.ober.Subject;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
-public class Basedaoimpl implements Basedao,Subject{
-	//用来存储观察者
-	List<Looker> myLooker=new ArrayList<Looker>();
+public class Basedaoimpl implements Basedao,Looker{
+	
+	//用来存储所有的信息
+	Map<String,List<Goods_classify>> allNeeds=new HashMap<String, List<Goods_classify>>();
 	
 	@Override
 	public void saveObject(String id, Object o) {
@@ -201,66 +202,99 @@ public class Basedaoimpl implements Basedao,Subject{
 	}
 
 	//多条件查询
-	public Map<String, String[]> selectGoodsByConditions(GoodsByConditionsActionForm form) {
+	public Map<String, List<Goods_classify>> selectGoodsByConditions(GoodsByConditionsActionForm form) {
 		Connection conn=DBhelper.getConnection();	
-		//select c.goods_price from (select goods_name,goods_price,goods_brand,middle_color,middle_size,middle_repertory,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
-		Map<String,String[]> goodsByConditions=new HashMap<String, String[]>();
-		Map<String,String[]> myGoods_brand=new HashMap<String, String[]>();
+		//select c.goods_price from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
 		//多条件查询
-		String sql="select @ from (select goods_no,goods_name,goods_price,goods_brand,middle_color,middle_size,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		String sql="select @ from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb=new StringBuffer(sql);
-		if("goods_name".equals(form.getGoods_name())){
-			sb.append(" and (c.goods_name like ? or c.goods_brand like ?)");
+		if(form.getGoods_name()!=null){
+			char[] myname=form.getGoods_name().toCharArray();
+			for (int i = 0; i < myname.length; i++) {
+				sb.append(" and (c.goods_name like ? or c.goods_brand like ?");
+				if(i==myname.length-1){
+					sb.append(" and c.goods_name like ? or c.goods_brand like ?)");
+				}
+			}
 		}
-		if("goods_price".equals(form.getGoods_price())){
-			sb.append(" and goods_price>=? and goods_price<=?");
+		if(form.getGoods_price()!=null){
+			sb.append(" and c.goods_price>=? and c.goods_price<=?");
 		}
-		if("goods_brand".equals(form.getGoods_brand())){
-			sb.append(" and goods_brand=?");
+		if(form.getGoods_brand()!=null){
+			sb.append(" and c.goods_brand=?");
 		}
-		if("middle_color".equals(form.getMiddle_color())){
-			sb.append(" and middle_color=?");
+		if(form.getMiddle_color()!=null){
+			sb.append(" and c.middle_color=?");
 		}
-		if("middle_size".equals(form.getMiddle_size())){
-			sb.append(" and middle_size=?");
+		if(form.getMiddle_size()!=null){
+			sb.append(" and c.middle_size=?");
 		}
-		if("middle_type".equals(form.getMiddle_type())){
-			sb.append(" and middle_type=?");
+		if(form.getMiddle_type()!=null){
+			sb.append(" and c.middle_type=?");
 		}
 		//根据条件构成sql语句
 		sql=sb.toString();
 		System.out.println(sql);
-		try {
-			//查询还有的品牌
-			String mysql=sql+" group by goods_brand";
-			mysql=mysql.replace("@", "goods_brand");
-			MyReplace mr=new MyReplace(mysql,conn, myGoods_brand);
-			
-			//计数
-			int index=0;
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
+		
+		//查询还有的品牌
+		String mysql=sql+" group by c.goods_brand";
+		mysql=mysql.replace("@", "c.goods_brand");
+		MyReplace mr=new MyReplace("goods_brand",mysql,conn,this,form);
+		//用线程处理查询
+		Thread t=new Thread(mr);
+		t.start();
+		
+		//查询还有的价格
+		Connection conn2=DBhelper.getConnection();
+		String mysql2=sql+" group by c.goods_price";
+		mysql2=mysql2.replace("@", "c.goods_price");
+		MyReplace mr2=new MyReplace("goods_price",mysql2,conn2,this,form);
+		//用线程处理查询
+		Thread t2=new Thread(mr2);
+		t2.start();
+		
+		//查询还有的颜色
+		Connection conn3=DBhelper.getConnection();
+		String mysql3=sql+" group by c.middle_color";
+		mysql3=mysql3.replace("@", "c.middle_color");
+		MyReplace mr3=new MyReplace("middle_color",mysql3,conn3,this,form);
+		//用线程处理查询
+		Thread t3=new Thread(mr3);
+		t3.start();
+		
+		//查询还有的尺码
+		Connection conn4=DBhelper.getConnection();
+		String mysql4=sql+" group by c.middle_size";
+		mysql4=mysql4.replace("@", "c.middle_size");
+		MyReplace mr4=new MyReplace("middle_size",mysql4,conn4,this,form);
+		//用线程处理查询
+		Thread t4=new Thread(mr4);
+		t4.start();
+		
+		//查询还有的类别
+		Connection conn5=DBhelper.getConnection();
+		String mysql5=sql+" group by c.middle_type";
+		mysql5=mysql5.replace("@", "c.middle_type");
+		MyReplace mr5=new MyReplace("middle_type",mysql5,conn5,this,form);
+		//用线程处理查询
+		Thread t5=new Thread(mr5);
+		t5.start();
+		
+		//查询商品
+		Connection conn6=DBhelper.getConnection();
+		String mysql6=sql+" limit ?,?";
+		mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
+		MyReplace mr6=new MyReplace("goodsConditions",mysql5,conn5,this,form);
+		//用线程处理查询
+		Thread t6=new Thread(mr6);
+		return allNeeds;
 	}
 
 	
-	//实现被观察者
+	//实现观察者
 	@Override
-	public void addLooker(Looker looker) {
-		myLooker.add(looker);
-	}
-
-	@Override
-	public void removeLooker(Looker looker) {
-		myLooker.remove(looker);
-	}
-
-	@Override
-	public void notifyAllLooker(MyReplace mr) {
-		for (Looker looker : myLooker) {
-			looker.update(mr);
-		}
+	public void update(Map<String,List<Goods_classify>> mymap) {
+		mymap.putAll(allNeeds);
 	}
 
 }

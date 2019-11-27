@@ -29,13 +29,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  
+   
   <body>
     <%=DBhelper.getConnection()%>
     <!-- <a href="pageBranchAction.do">haha</a> -->
     <%
-    		Loadgoods l=new Loadgoods();
-        	l.action();
+    		//Loadgoods l=new Loadgoods();
+        	//l.action();
         /* 	Goods_table g=new Goods_table();
         	g.setGoods_id(61);
         	Basedao b= new Basedaoimpl();

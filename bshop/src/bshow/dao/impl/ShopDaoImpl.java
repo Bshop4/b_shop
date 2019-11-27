@@ -6,7 +6,7 @@ import java.util.List;
 import bshow.dao.ShopDao;
 import bshow.pojo.Shop_table;
 
-public class ShopDaoImpl implements ShopDao{
+public class ShopDaoImpl implements ShopDao {
 
 	@Override
 	public boolean insertShopInfo(Shop_table shop, Connection con) throws Exception {

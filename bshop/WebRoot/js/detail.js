@@ -9,9 +9,9 @@
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
-		data:"goodsno="+goodsno,
+		data:{"goodsno":goodsno},
 		success:function(result){
-			
+			console.log(result);
 			var len = result.length;
 			var obj = result[len-1];
 			console.log(obj)

@@ -7,27 +7,25 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
-<<<<<<< HEAD
 	
 	<PagePattern name="selectGoodsNo">
 		<ActionForm>bshow.web.servlet.form.SelectGoodsNoForm</ActionForm>
 		<Action>bshow.web.servlet.action.SelectGoodsNoAction</Action>
 		<Redirect>false</Redirect>
-		
-=======
+	</PagePattern>	
 	<PagePattern name="maxPageAction">
 		<ActionForm>bshow.web.servlet.form.MaxPageActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.MaxPageAction</Action>
 		<Redirect>false</Redirect>
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
->>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 	</PagePattern>
-	<PagePattern name="xxx">
+	
+	<!-- <PagePattern name="xxx">
 		<ActionForm>bshow.web.servlet.form.XxxForm</ActionForm>
 		<Action>bshow.web.servlet.action.XxxAction</Action>
 		<Redirect>false</Redirect>
 		<path name="success">xxx.jsp</path>
 		<path name="error">error.jsp</path>
-	</PagePattern>
+	</PagePattern> -->
 </properties>

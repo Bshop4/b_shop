@@ -89,7 +89,7 @@ public class ActionServlet extends HttpServlet {
 		String className=null;
 		for (Element element : list1) {
 			className=element.getStringValue();
-			System.out.println(className);
+			//System.out.println(className);
 		}
 		Action action=null;
 		try {

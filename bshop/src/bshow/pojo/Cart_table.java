@@ -7,7 +7,7 @@ public class Cart_table implements Serializable{
 	private int cart_number;//购物车商品的数量
 	private double 	goods_price;//商品的单价
 	private String   goods_name;//商品的名字
-	private int cart_state;//购物车的状态(是否交易成功)
+	private int cart_state;//购物车的状态(是否选中成功)
 	
 	public int getCart_id() {
 		return cart_id;

@@ -9,6 +9,8 @@ public class GoodsByConditionsActionForm extends ActionForm{
 	private String middle_size;
 	private String goods_name;
 	private String middle_type;
+	private String page;
+	private String pagesize;
 	public String getGoods_price() {
 		return goods_price;
 	}
@@ -45,11 +47,23 @@ public class GoodsByConditionsActionForm extends ActionForm{
 	public void setMiddle_type(String middle_type) {
 		this.middle_type = middle_type;
 	}
+	public String getPage() {
+		return page;
+	}
+	public void setPage(String page) {
+		this.page = page;
+	}
+	public String getPagesize() {
+		return pagesize;
+	}
+	public void setPagesize(String pagesize) {
+		this.pagesize = pagesize;
+	}
 	@Override
 	public String toString() {
 		return "GoodsByConditionsActionForm [goods_price=" + goods_price + ", goods_brand=" + goods_brand
 				+ ", middle_color=" + middle_color + ", middle_size=" + middle_size + ", goods_name=" + goods_name
-				+ ", middle_type=" + middle_type + "]";
+				+ ", middle_type=" + middle_type + ", page=" + page + ", pagesize=" + pagesize + "]";
 	}
 	
 }

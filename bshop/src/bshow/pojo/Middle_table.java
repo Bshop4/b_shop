@@ -36,7 +36,6 @@ public class Middle_table implements Serializable,Cloneable{
 		this.goods_no = goods_no;
 	}
 	
-	
 	public byte[] getGoods_smallphoto() {
 		return goods_smallphoto;
 	}
@@ -64,7 +63,7 @@ public class Middle_table implements Serializable,Cloneable{
 	@Override
 	public String toString() {
 		return "Middle_table [middle_id=" + middle_id + ", middle_color=" + middle_color + ", goods_no=" + goods_no
-				+ ", goods_smallphoto=" + Arrays.toString(goods_smallphoto) + ", middle_size=" + middle_size
+				+ ", goods_smallphoto=" + goods_smallphoto + ", middle_size=" + middle_size
 				+ ", middle_repertory=" + middle_repertory + ", middle_type=" + middle_type + "]";
 	}
 

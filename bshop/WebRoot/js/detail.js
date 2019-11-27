@@ -4,14 +4,14 @@
 
 (function(){
       //var goodsId = getUrlVal('goods_id');
-	var goodsno = "9042194192054";
+	var goodsno = "523517465827016";
     //发起
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
-		data:"goodsno="+goodsno,
+		data:{"goodsno":goodsno},
 		success:function(result){
-			
+			result=JSON.parse(result);
 			var len = result.length;
 			var obj = result[len-1];
 			console.log(obj)
@@ -33,10 +33,10 @@
 
 //	        //小图
 	        var strsm="";
-	        for(var i = 0; i < 4; i++){
+	        for(var i = 0; i < 2; i++){
 	        	strsm+="<li><img src='"+result[i]+"'/></li>";
 	        }
-//	        console.log(strsm)
+	        console.log(strsm)
 	        var str2 = `
 	        	<ul>
 	              ${strsm}
@@ -131,11 +131,10 @@
 	            </ul>
 			`;
 //				
-			
-			var bigphtoo = obj.goods_explainphoto;
-			console.log(bigphtoo)
-//			console.log(Uint8ToStr(bigphtoo));
-			$(".zjl-footer-img").append(Uint8ToStr(bigphtoo));
+
+			var pp = result[len-2];
+//			console.log(pp);
+			$(".zjl-footer-img").append(pp);
 			
 			
 	        $('.zjl-link').append(str);

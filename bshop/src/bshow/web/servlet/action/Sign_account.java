@@ -20,7 +20,7 @@ public class Sign_account extends Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Sign_accountActionForm saa=(Sign_accountActionForm)form;
+		Sign_accountActionForm saa=(Sign_accountActionForm)form; 
 		Basedao dao=new Basedaoimpl();
 		Account_table at=new Account_table();
 		at.setAccount(saa.getAccount());

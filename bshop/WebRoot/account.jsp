@@ -152,16 +152,13 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-success"   id="save1" onclick="mysaveclick()">保存</button>
+                    <button class="btn btn-success" id="save1" onclick="mysaveclicks()">保存</button>
                     <button class="btn btn-danger" data-dismiss="modal" id="cancel1" >取消</button>
                 </div>
 
             </div>
         </div>
     </div>
-    </div>
-
-	
 
 	<!--底部-->
 	<div id="row-1">
@@ -248,4 +245,8 @@
 <script type="text/javascript" src="js/infos.js"></script>
 
 <script src="js/cart_account.js"></script>
+<script>
 
+
+
+</script>

@@ -4,7 +4,7 @@
 
 (function(){
       //var goodsId = getUrlVal('goods_id');
-	var goodsno = "9042194192054";
+	var goodsno = "523517465827016";
     //发起
 	$.ajax({
 		type:"POST",
@@ -33,10 +33,10 @@
 
 //	        //小图
 	        var strsm="";
-	        for(var i = 0; i < 4; i++){
+	        for(var i = 0; i < 2; i++){
 	        	strsm+="<li><img src='"+result[i]+"'/></li>";
 	        }
-//	        console.log(strsm)
+	        console.log(strsm)
 	        var str2 = `
 	        	<ul>
 	              ${strsm}

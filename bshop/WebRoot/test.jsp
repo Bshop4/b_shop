@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
+	
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
@@ -33,12 +34,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%=DBhelper.getConnection()%>
     <%
-    	Goods_table gt = new Goods_table();
+    	/* Goods_table gt = new Goods_table();
 		gt.setGoods_no("9042194192054");
 		Basedao ba = new Basedaoimpl();
 		List<Object> list =  ba.select("selectAllByGoodsNo", gt);
 		Goods_table gt1 = (Goods_table) list.get(0);
-		System.out.println("gt1" + gt1.getGoods_id());
+		System.out.println("gt1" + gt1.getGoods_id()); */
      %>
     <!-- <a href="pageBranchAction.do">haha</a> -->
     <%

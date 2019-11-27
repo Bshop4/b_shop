@@ -140,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <div class="user-right1">
             <div class="title1"><p>我的订单</p></div>
             <table border="1" width="1000" cellspacing="0" height="80" style="margin-left: 10px">
-                <tr>
+                <tr style="text-align: center">
                     <th>订单编号</th>
                     <th>商品</th>
                     <th>单价</th>
@@ -163,17 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title2"><p>收货地址</p></div>
             <button  id="user-myaddress"  class="btn btn-info navbar-btn navbar-left" data-toggle="modal" data-target="#addAddress" style="background: black">+新增地址</button>
 
-            <!--<ul class="addresslist">-->
-                <!--<li>-->
-                    <!--<div class="insertName">詹佳磊&nbsp;&nbsp;&nbsp;&nbsp;1593590290</div>-->
-                    <!--<div class="insertPostcode">邮编:123456</div>-->
-                    <!--<div class="insertMyaddress">收货地址:浙江省XXXXXXXXXXXXXX</div>-->
-                    <!--<span class="binggou">√</span>-->
-                    <!--<span class="redefult">设为默认</span>-->
-                    <!--<div class="edit">编辑</div>-->
-                    <!--<div class="del">删除</div>-->
-                <!--</li>-->
-            <!--</ul>-->
+            
         </div>
 
     <div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">

@@ -152,7 +152,7 @@
             display: none;
             width: 1020px;
             height: 662px;
-            border: 1px solid red;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
             position: absolute;
             left: 180px;
             top: 0px;
@@ -168,6 +168,7 @@
             width: 1020px;
             height: 662px;
             position: absolute;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
             left: 180px;
             top: 0px;
             padding: 20px 0px 0px;

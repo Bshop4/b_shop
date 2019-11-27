@@ -1,4 +1,4 @@
-package bshow;
+package bshow.util;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -28,7 +28,7 @@ public class Loadgoods{
 	private Basedao dao2=new Basedaoimpl();
 	private Shop_table shop=new Shop_table();
 	public void action(){
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 20; i++) {
 			fun(i);
 		}
 		
@@ -89,7 +89,12 @@ public class Loadgoods{
 					{	
 						// 具体详情描述
 						//System.out.println(m.group(1));
-						goods.setGoods_explainphoto(m.group(1));
+						String st=m.group(1);
+						st=st.replaceAll("\\\\t", "");
+						st=st.replaceAll("\\\\&quot;", "");
+						st=st.replaceAll(".jpg/", ".jpg");
+						st=st.replaceAll(".JPG/", ".JPG");
+						goods.setGoods_explainphoto(st.getBytes());
 					}
 
 				} catch (Exception e) {
@@ -204,7 +209,6 @@ public class Loadgoods{
 					for (Object object3 : sizelist) {
 						sizelength++;
 						JSONObject objsize=(JSONObject)object3;
-						//System.out.println("尺码==="+objsize.getString("subClassAttrName"));
 						if(sizelist.size()==sizelength){
 							sbsize.append(objsize.getString("subClassAttrName"));
 						}else{
@@ -213,7 +217,6 @@ public class Loadgoods{
 						}
 //						第一个尺码
 						if(sizelength==1){
-							//System.out.println(sbsize.toString());
 							middle.setMiddle_size(objsize.getString("subClassAttrName"));
 							for (Middle_table size : listmiddle) {
 								size.setMiddle_size(objsize.getString("subClassAttrName"));
@@ -236,17 +239,6 @@ public class Loadgoods{
 									//把克隆放进集合
 									listmiddle.add(sizeclone);
 								}
-//								for (Middle_table size : listmiddle) {
-//									System.out.println(2);
-//									System.out.println(sbsize.toString());
-//									Middle_table sizeclone =(Middle_table)size.clone();
-//									System.out.println(3);
-//									sizeclone.setMiddle_size(objsize.getString("subClassAttrName"));
-//									System.out.println(4);
-//									//把克隆放进集合
-//									listmiddle.add(sizeclone);
-//									System.out.println(5);
-//								}
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -348,9 +340,6 @@ public class Loadgoods{
 				goods.setGoods_like(r.nextInt(555));
 				//类别
 				goods.setGoods_category(sbtype.toString());
-				//具体详情描述
-//				goods.setGoods_explainphoto(data2.getString("productDetail"));
-//				System.out.println(data2.getString("productDetail"));
 				//商家
 				String shopno=String.valueOf(r.nextInt(5)+1);
 				goods.setShop_no(shopno);
@@ -366,8 +355,6 @@ public class Loadgoods{
 				//System.out.println("goods"+goods);
 				dao.saveObject("insertone", goods);
 				dao1.saveObject("insertone", shop);
-				System.out.println();
-				System.out.println();
 			}
 			
 			System.out.println(i);

@@ -1,6 +1,8 @@
 
 
-<%@page import="bshow.Loadgoods"%>
+<%@page import="java.util.regex.Pattern"%>
+<%@page import="bshow.pojo.Goods_table"%>
+<%@page import="bshow.util.Loadgoods"%>
 <%@page import="bshow.dao.Basedao"%>
 <%@page import="bshow.dao.impl.Basedaoimpl"%>
 <%@page import="bshow.pojo.Account_table"%>
@@ -17,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>My JSP 'test.jsp' starting page</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -31,10 +32,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <%=DBhelper.getConnection()%>
-    <a href="pageBranchAction.do">haha</a>
+    <!-- <a href="pageBranchAction.do">haha</a> -->
     <%
-    	Loadgoods l=new Loadgoods();
+    		Loadgoods l=new Loadgoods();
         	l.action();
+        /* 	Goods_table g=new Goods_table();
+        	g.setGoods_id(61);
+        	Basedao b= new Basedaoimpl();
+        	List<Object> list=b.select("selectone", g);
+        	g=(Goods_table)list.get(0);
+        	out.print(new String(g.getGoods_explainphoto())); */
+        //	g=(Goods_table)list.get(0);
         	//Account_table a= new Account_table();
         	//a.setAccount("4894654");
         	//a.setBan(1);

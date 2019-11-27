@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,9 +20,17 @@ import org.dom4j.Element;
 
 import bshow.dao.Basedao;
 import bshow.db.DBhelper;
+import bshow.dto.Goods_classify;
 import bshow.pojo.Goods_table;
+import bshow.util.MyReplace;
+import bshow.util.ober.Looker;
+import bshow.util.ober.Subject;
+import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
-public class Basedaoimpl implements Basedao{
+public class Basedaoimpl implements Basedao,Subject{
+	//用来存储观察者
+	List<Looker> myLooker=new ArrayList<Looker>();
+	
 	@Override
 	public void saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
@@ -121,6 +132,7 @@ public class Basedaoimpl implements Basedao{
 		return list;
 	}
 	
+	//分页
 	public List<Object> selectByPagesize(String id,Object o,int page, int pagesize){
 		Connection conn=DBhelper.getConnection();
 		List<Object> list=new ArrayList<Object>();
@@ -161,6 +173,94 @@ public class Basedaoimpl implements Basedao{
 			DBhelper.closeConnection(conn);
 		}
 		return list;
+	}
+
+	//获得最大页数
+	public int selectMaxPagesize(String id, Object o, int pagesize) {
+		Connection conn=DBhelper.getConnection();
+		Class c=o.getClass();
+		int count=0;//记录总个数
+		try {
+			//根据对象拿到对应的mapping.xml文档
+			Document doc=DBhelper.getDocumentByClass(c);
+			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
+			//获得元素内容的sql语句
+			String sql=selectelement.getTextTrim();
+			System.out.println(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				count=rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			DBhelper.closeConnection(conn);
+		}
+		return count%pagesize==0?count/pagesize:count/pagesize+1;
+	}
+
+	//多条件查询
+	public Map<String, String[]> selectGoodsByConditions(GoodsByConditionsActionForm form) {
+		Connection conn=DBhelper.getConnection();	
+		//select c.goods_price from (select goods_name,goods_price,goods_brand,middle_color,middle_size,middle_repertory,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
+		Map<String,String[]> goodsByConditions=new HashMap<String, String[]>();
+		Map<String,String[]> myGoods_brand=new HashMap<String, String[]>();
+		//多条件查询
+		String sql="select @ from (select goods_no,goods_name,goods_price,goods_brand,middle_color,middle_size,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		StringBuffer sb=new StringBuffer(sql);
+		if("goods_name".equals(form.getGoods_name())){
+			sb.append(" and (c.goods_name like ? or c.goods_brand like ?)");
+		}
+		if("goods_price".equals(form.getGoods_price())){
+			sb.append(" and goods_price>=? and goods_price<=?");
+		}
+		if("goods_brand".equals(form.getGoods_brand())){
+			sb.append(" and goods_brand=?");
+		}
+		if("middle_color".equals(form.getMiddle_color())){
+			sb.append(" and middle_color=?");
+		}
+		if("middle_size".equals(form.getMiddle_size())){
+			sb.append(" and middle_size=?");
+		}
+		if("middle_type".equals(form.getMiddle_type())){
+			sb.append(" and middle_type=?");
+		}
+		//根据条件构成sql语句
+		sql=sb.toString();
+		System.out.println(sql);
+		try {
+			//查询还有的品牌
+			String mysql=sql+" group by goods_brand";
+			mysql=mysql.replace("@", "goods_brand");
+			MyReplace mr=new MyReplace(mysql,conn, myGoods_brand);
+			
+			//计数
+			int index=0;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	
+	//实现被观察者
+	@Override
+	public void addLooker(Looker looker) {
+		myLooker.add(looker);
+	}
+
+	@Override
+	public void removeLooker(Looker looker) {
+		myLooker.remove(looker);
+	}
+
+	@Override
+	public void notifyAllLooker(MyReplace mr) {
+		for (Looker looker : myLooker) {
+			looker.update(mr);
+		}
 	}
 
 }

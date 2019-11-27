@@ -11,15 +11,15 @@
 	<insert id="insertone">
 		insert into middle_table(middle_color,goods_no,goods_smallphoto,middle_size,middle_repertory,middle_type) values(#{middle_color},#{goods_no},#{goods_smallphoto},#{middle_size},#{middle_repertory},#{middle_type})
 	</insert>
-	<!--<select id="select" resulttype="bshow.pojo.Account_table">
-		select * from account_table	where 1=1 and account_id=#{account_id}
+	<select id="selectone" resulttype="bshow.pojo.Middle_table">
+		select * from middle_table	where 1=1 and goods_no=#{goods_no}
 	</select>
+	<!--
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
 	</select>
 	 and account_id=#{account_id} -->
-	 
-	 
+
 	<select id="selectAllSm" resulttype="bshow.pojo.Middle_table">
 		select * from middle_table where 1=1 and goods_no=#{goods_no}
 	</select>

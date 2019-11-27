@@ -6,7 +6,7 @@ public class Cart_table implements Serializable{
 	private int cart_id;//购物车主键
 	private int cart_number;//购物车商品的数量
 	private double 	goods_price;//商品的单价
-	private String   goods_explain;//商品的解释
+	private String   goods_name;//商品的名字
 	private int cart_state;//购物车的状态(是否交易成功)
 	
 	public int getCart_id() {
@@ -27,11 +27,12 @@ public class Cart_table implements Serializable{
 	public void setGoods_price(double goods_price) {
 		this.goods_price = goods_price;
 	}
-	public String getGoods_explain() {
-		return goods_explain;
+	
+	public String getGoods_name() {
+		return goods_name;
 	}
-	public void setGoods_explain(String goods_explain) {
-		this.goods_explain = goods_explain;
+	public void setGoods_name(String goods_name) {
+		this.goods_name = goods_name;
 	}
 	public int getCart_state() {
 		return cart_state;

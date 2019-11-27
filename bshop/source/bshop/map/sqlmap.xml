@@ -5,5 +5,8 @@
 		<mapping path="bshow/pojo/mapping/Goods_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Middle_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Shop_table.xml"/>
+		<mapping path="bshow/pojo/mapping/Cart_table.xml"/>
+		<mapping path="bshow/pojo/mapping/Personinfo_table.xml"/>
+		<mapping path="bshow/pojo/mapping/Bill_table.xml"/>
 	</mappings>	
 </properties>

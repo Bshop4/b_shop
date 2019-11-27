@@ -137,7 +137,7 @@ public class Loadgoods{
 					if(colorlength==1){
 						//goods.setGoods_color(arr_0.getString("firstClassAttrName"));
 						middle.setMiddle_color(arr_0.getString("firstClassAttrName"));
-						middle.setGoods_smallphoto(sbsmal.toString());
+						middle.setGoods_smallphoto(sbsmal.toString().getBytes());
 					}
 					
 					//如果颜色有多种就克隆一个商品

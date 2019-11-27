@@ -12,6 +12,7 @@
 		data:{"goodsno":goodsno},
 		success:function(result){
 			console.log(result);
+			result=JSON.parse(result);
 			var len = result.length;
 			var obj = result[len-1];
 			console.log(obj)

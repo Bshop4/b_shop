@@ -42,7 +42,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		System.out.println("gt1" + gt1.getGoods_id()); */
      %>
     <!-- <a href="pageBranchAction.do">haha</a> -->
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
     <%
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
     		//Loadgoods l=new Loadgoods();
         	//l.action();
         /* 	Goods_table g=new Goods_table();

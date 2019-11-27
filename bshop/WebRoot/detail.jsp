@@ -218,13 +218,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
 
         <div class="zjl-footer-detail">
-            <div class="zjl-footer-title">
+            <!--  <div class="zjl-footer-title">
                 <p>商品参数</p>
             </div>
 
             <div class="zjl-footer-goodsList">
                 <p>商品类别：牙刷</p>
-            </div>
+            </div> -->
 
             <div class="zjl-footer-tips">
                 <div class="title">
@@ -245,7 +245,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
 
             <div class="zjl-footer-img">
-                <img src="img/details.jpg" alt="">
+            	<!-- 改变 
+                <img src="img/details.jpg" alt="">-->
 
             </div>
 

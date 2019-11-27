@@ -255,7 +255,11 @@ img{
     top: 20px;
     z-index: 998;
     transform: rotate(-45deg);
-    /*display: none;*/
+    display: none;
+}
+
+.zjl-product-size ul li:FIRST-CHILD>a{
+	display: block;
 }
 
 .zjl-product-size ul li:hover{

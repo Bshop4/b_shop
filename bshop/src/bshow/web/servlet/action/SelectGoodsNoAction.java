@@ -49,24 +49,21 @@ public class SelectGoodsNoAction extends Action{
 		}
 //		
 		Goods_table gt1 = (Goods_table) list.get(0);
-		System.out.println(new String(gt1.getGoods_explainphoto()));
-//		System.out.println(new String(gt1.getGoods_explainphoto()));
-//		
+		String exp = new String(gt1.getGoods_explainphoto());
+		listbb.add(exp);
 		listbb.add(gt1);
 //		
 		response.setCharacterEncoding("UTF-8");
 //		response.setHeader("Content-Type", "application/json;charset=utf-8");
-////		for (Object object : listbb) {
-////			System.out.println(object);
-////		}
+		for (Object object : listbb) {
+			System.out.println(object);
+		}
 //		
 		JSONArray ja = JSONArray.fromObject(listbb);
 		PrintWriter out= response.getWriter();
 //		out.print(URLDecoder.decode(ja.toString(),"UTF-8"));
-		out.print(new String(gt1.getGoods_explainphoto()));
-//		out.print(ja.toString());
-//		response.getWriter().flush();
-//		out.print("你好");
+//		out.print(new String(gt1.getGoods_explainphoto()));
+		out.print(ja.toString());
 		return null;
 	}
 

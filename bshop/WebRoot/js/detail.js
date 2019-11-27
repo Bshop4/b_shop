@@ -11,7 +11,6 @@
 		url:"selectGoodsNo.do",
 		data:{"goodsno":goodsno},
 		success:function(result){
-			console.log(result);
 			result=JSON.parse(result);
 			var len = result.length;
 			var obj = result[len-1];
@@ -132,11 +131,10 @@
 	            </ul>
 			`;
 //				
-			
-			var bigphtoo = obj.goods_explainphoto;
-			console.log(bigphtoo)
-//			console.log(Uint8ToStr(bigphtoo));
-			$(".zjl-footer-img").append(Uint8ToStr(bigphtoo));
+
+			var pp = result[len-2];
+//			console.log(pp);
+			$(".zjl-footer-img").append(pp);
 			
 			
 	        $('.zjl-link').append(str);

@@ -28,7 +28,7 @@ public class Loadgoods{
 	private Basedao dao2=new Basedaoimpl();
 	private Shop_table shop=new Shop_table();
 	public void action(){
-		for (int i = 1; i <= 1; i++) {
+		for (int i = 2; i <= 20; i++) {
 			fun(i);
 		}
 		

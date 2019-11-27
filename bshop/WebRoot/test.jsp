@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>My JSP 'test.jsp' starting page</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -33,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <%=DBhelper.getConnection()%>
-    <a href="pageBranchAction.do">haha</a>
+    <!-- <a href="pageBranchAction.do">haha</a> -->
     <%
     		Loadgoods l=new Loadgoods();
         	l.action();

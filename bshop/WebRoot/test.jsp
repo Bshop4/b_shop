@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%=DBhelper.getConnection()%>
     <!-- <a href="pageBranchAction.do">haha</a> -->
-    <%
+    <% 
     		//Loadgoods l=new Loadgoods();
         	//l.action();
         /* 	Goods_table g=new Goods_table();

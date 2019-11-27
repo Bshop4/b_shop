@@ -32,8 +32,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
   <body>
     <%=DBhelper.getConnection()%>
+    <%
+    	Goods_table gt = new Goods_table();
+		gt.setGoods_no("9042194192054");
+		Basedao ba = new Basedaoimpl();
+		List<Object> list =  ba.select("selectAllByGoodsNo", gt);
+		Goods_table gt1 = (Goods_table) list.get(0);
+		System.out.println("gt1" + gt1.getGoods_id());
+     %>
     <!-- <a href="pageBranchAction.do">haha</a> -->
+<<<<<<< HEAD
+    <%
+=======
     <% 
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
     		//Loadgoods l=new Loadgoods();
         	//l.action();
         /* 	Goods_table g=new Goods_table();

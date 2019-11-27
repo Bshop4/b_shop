@@ -29,6 +29,14 @@
 		select * from account_table	where 1=1 and goods_id=#{goods_id}
 	</select>
 	 and account_id=#{goods_id} -->
+	 
+	<select id="selectAllByGoodsNo" resulttype="bshow.pojo.Goods_table">
+		select * from goods_table where 1=1 and goods_no=#{goods_no}
+	</select>
+	
+	
+	
+	
 
 	<select id="selectByPagesize" resulttype="bshow.pojo.Goods_table">
 		select * from goods_table where 1=1;

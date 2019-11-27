@@ -7,7 +7,7 @@ public class Middle_table implements Serializable,Cloneable{
 	private int middle_id;
 	private String middle_color;
 	private String goods_no;
-	private String goods_smallphoto;
+	private byte[] goods_smallphoto;
 	private String middle_size;
 	private int middle_repertory;
 	private String middle_type;
@@ -36,11 +36,10 @@ public class Middle_table implements Serializable,Cloneable{
 		this.goods_no = goods_no;
 	}
 	
-	
-	public String getGoods_smallphoto() {
+	public byte[] getGoods_smallphoto() {
 		return goods_smallphoto;
 	}
-	public void setGoods_smallphoto(String goods_smallphoto) {
+	public void setGoods_smallphoto(byte[] goods_smallphoto) {
 		this.goods_smallphoto = goods_smallphoto;
 	}
 	public String getMiddle_size() {

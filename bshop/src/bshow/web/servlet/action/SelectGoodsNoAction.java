@@ -41,6 +41,7 @@ public class SelectGoodsNoAction extends Action{
 		
 		String allimgurl = new String(((Middle_table)listb.get(0)).getGoods_smallphoto());
 		String[] strArr = allimgurl.split(",");
+		System.out.println(allimgurl);
 		//System.out.println(strArr.length);
 		
 		List<Object> listbb = new ArrayList<Object>();
@@ -49,26 +50,21 @@ public class SelectGoodsNoAction extends Action{
 		}
 //		
 		Goods_table gt1 = (Goods_table) list.get(0);
-////		System.out.println(new String(gt1.getGoods_explainphoto(),"utf-8"));
-//		System.out.println(new String(gt1.getGoods_explainphoto()));
-//		
+		String exp = new String(gt1.getGoods_explainphoto());
+		listbb.add(exp);
 		listbb.add(gt1);
 //		
 		response.setCharacterEncoding("UTF-8");
 //		response.setHeader("Content-Type", "application/json;charset=utf-8");
-////		for (Object object : listbb) {
-////			System.out.println(object);
-////		}
+		for (Object object : listbb) {
+			System.out.println(object);
+		}
 //		
 		JSONArray ja = JSONArray.fromObject(listbb);
-//		response.setCharacterEncoding("UTF-8");
-		PrintWriter out= new PrintWriter(response.getWriter(),true);
+		PrintWriter out= response.getWriter();
 //		out.print(URLDecoder.decode(ja.toString(),"UTF-8"));
-		//out.print(ja.toString());
+//		out.print(new String(gt1.getGoods_explainphoto()));
 		out.print(ja.toString());
-//		response.getWriter().flush();
-//		out.print("你好");
-		
 		return null;
 	}
 

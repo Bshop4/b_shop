@@ -152,7 +152,7 @@
             display: none;
             width: 1020px;
             height: 662px;
-            border: 1px solid red;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
             position: absolute;
             left: 180px;
             top: 0px;
@@ -168,6 +168,7 @@
             width: 1020px;
             height: 662px;
             position: absolute;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
             left: 180px;
             top: 0px;
             padding: 20px 0px 0px;
@@ -255,9 +256,26 @@
             color: red;
             display: none;
         }
-        .addresslabel{
+        
+        
+
+
+        /*下拉列表*/
+        select{
+            width: 142px;
+            height: 30px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #808080;
+            background-repeat: round;
+
+        }
+        
+        
+        /*修改过后的*/
+        #addlabel{
             position: absolute;
-            top: 283px;
+            top: 360px;
             left: 16px;
             font-size: 12px;
             color: red;

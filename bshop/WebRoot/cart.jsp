@@ -114,10 +114,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="footer">
       <input type="checkbox" class="checkAll" />全选
       <span class="dele"><a href="javascript:;" class="delAll">删除选中的商品</a></span>
-      <span class="sum-all">合计：¥0.00</span>
+      <span class="sum-all" id="all-sum">应付金额：¥0.00</span>
     </div>
     <div class="account">
-      <button type="button" class="btn-account">去结算</button>
+      <button type="button" class="btn-account" id="open">去结算</button>
     </div>
     <!--底部-->
     <div id="row-1">

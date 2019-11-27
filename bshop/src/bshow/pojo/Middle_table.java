@@ -59,6 +59,12 @@ public class Middle_table implements Serializable,Cloneable{
 	public void setMiddle_type(String middle_type) {
 		this.middle_type = middle_type;
 	}
+	@Override
+	public String toString() {
+		return "Middle_table [middle_id=" + middle_id + ", middle_color=" + middle_color + ", goods_no=" + goods_no
+				+ ", goods_smallphoto=" + goods_smallphoto + ", middle_size=" + middle_size + ", middle_repertory="
+				+ middle_repertory + ", middle_type=" + middle_type + "]";
+	}
 
 	
 	

@@ -11,7 +11,6 @@ public class Goods_table implements Serializable,Cloneable{
 	private int goods_like;//商品点赞数
 	private String goods_photo;//商品图片
 	private String goods_category;//商品的类别
-	private String goods_sex;//商品男女
 	private String goods_color;//商品的颜色
 	private String goods_size;//商品的大小
 	private String 	goods_explainphoto;//商品描述的图片
@@ -24,17 +23,16 @@ public class Goods_table implements Serializable,Cloneable{
 	private String goods_location;//商品的上衣，下装
 	private String goods_no;//（商品的编号）
 	private String goods_brand;//（商品的品牌）
-	private String goods_smallphoto;//（商品的小图）
 	
 	@Override
 	public String toString() {
 		return "Goods_table [goods_id=" + goods_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
 				+ ", goods_like=" + goods_like + ", goods_photo=" + goods_photo + ", goods_category=" + goods_category
-				+ ", goods_sex=" + goods_sex + ", goods_color=" + goods_color + ", goods_size=" + goods_size
+				+  ", goods_color=" + goods_color + ", goods_size=" + goods_size
 				+ ", goods_explainphoto=" + goods_explainphoto + ", goods_discount=" + goods_discount + ", shop_no="
 				+ shop_no + ", goods_place=" + goods_place + ", goods_uptime=" + goods_uptime + ", goods_ban="
 				+ goods_ban + ", goods_location=" + goods_location + ", goods_no=" + goods_no + ", goods_brand="
-				+ goods_brand + ", goods_smallphoto=" + goods_smallphoto + "]";
+				+ goods_brand + "]";
 	}
 
 	@Override
@@ -63,12 +61,6 @@ public class Goods_table implements Serializable,Cloneable{
 	}
 	public void setGoods_brand(String goods_brand) {
 		this.goods_brand = goods_brand;
-	}
-	public String getGoods_smallphoto() {
-		return goods_smallphoto;
-	}
-	public void setGoods_smallphoto(String goods_smallphoto) {
-		this.goods_smallphoto = goods_smallphoto;
 	}
 	public String getGoods_location() {
 		return goods_location;
@@ -117,12 +109,6 @@ public class Goods_table implements Serializable,Cloneable{
 	}
 	public void setGoods_category(String goods_category) {
 		this.goods_category = goods_category;
-	}
-	public String getGoods_sex() {
-		return goods_sex;
-	}
-	public void setGoods_sex(String goods_sex) {
-		this.goods_sex = goods_sex;
 	}
 	public String getGoods_color() {
 		return goods_color;

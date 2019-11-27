@@ -227,3 +227,6 @@ function allMounts(){
 		
 	})
 }
+$('#open').click(function(){
+	window.open('account.jsp')
+})

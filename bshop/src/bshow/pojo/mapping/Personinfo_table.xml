@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Personinfo_table" table="personinfo_table">
+	<property name="personInfo_id" column="personInfo_id"/>
+	<property name="nickname" column="nickname"/>
+	<property name="account" column="account"/>
+	<property name="photo" column="photo"/>
+	<property name="address" column="address"/>
+	<property name="sex" column="sex"/>
+	<property name="birthday" column="birthday"/>
+	
+	<insert id="insertone">
+		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})
+	</insert>
+	<select id="select" resulttype="bshow.pojo.Account_table">
+		select * from personinfo_table	where 1=1 and personInfo_id=#{personInfo_id}
+	</select>
+	<!--
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

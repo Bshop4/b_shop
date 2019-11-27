@@ -6,7 +6,7 @@ public class Personinfo_table implements Serializable{
 	private int personInfo_id;//个人信息主键
 	private String nickname;// 昵称
 	private String account;//帐号
-	private String  photo;//头像
+	private byte[]  photo;//头像
 	private String address;//收货地址
 	private String sex;//性别
 	private String birthday;//生日
@@ -29,10 +29,11 @@ public class Personinfo_table implements Serializable{
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getPhoto() {
+	
+	public byte[] getPhoto() {
 		return photo;
 	}
-	public void setPhoto(String photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 	public String getAddress() {

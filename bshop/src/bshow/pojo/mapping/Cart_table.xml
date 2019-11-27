@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Cart_table" table="cart_table">
+	<property name="cart_id" column="cart_id"/>
+	<property name="cart_number" column="cart_number"/>
+	<property name="goods_price" column="goods_price"/>
+	<property name="goods_name" column="goods_name"/>
+	<property name="cart_state" column="cart_state"/>
+	
+	<insert id="insertone">
+		insert into cart_table(cart_number,goods_price,goods_name,cart_state) values(#{cart_number},#{goods_price},#{goods_name},#{cart_state})
+	</insert>
+	<select id="selectone" resulttype="bshow.pojo.Cart_table">
+		select * from cart_table where 1=1 and cart_id=#{cart_id}
+	</select>
+	<!--
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

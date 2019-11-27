@@ -41,6 +41,7 @@ public class SelectGoodsNoAction extends Action{
 		
 		String allimgurl = new String(((Middle_table)listb.get(0)).getGoods_smallphoto());
 		String[] strArr = allimgurl.split(",");
+		System.out.println(allimgurl);
 		//System.out.println(strArr.length);
 		
 		List<Object> listbb = new ArrayList<Object>();

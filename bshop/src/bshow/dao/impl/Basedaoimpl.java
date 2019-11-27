@@ -22,9 +22,15 @@ import bshow.dao.Basedao;
 import bshow.db.DBhelper;
 import bshow.dto.Goods_classify;
 import bshow.pojo.Goods_table;
+import bshow.util.MyReplace;
+import bshow.util.ober.Looker;
+import bshow.util.ober.Subject;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
-public class Basedaoimpl implements Basedao{
+public class Basedaoimpl implements Basedao,Subject{
+	//用来存储观察者
+	List<Looker> myLooker=new ArrayList<Looker>();
+	
 	@Override
 	public void saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
@@ -198,7 +204,8 @@ public class Basedaoimpl implements Basedao{
 	public Map<String, String[]> selectGoodsByConditions(GoodsByConditionsActionForm form) {
 		Connection conn=DBhelper.getConnection();	
 		//select c.goods_price from (select goods_name,goods_price,goods_brand,middle_color,middle_size,middle_repertory,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
-		Map<String,String[]> goods=new HashMap<String, String[]>();
+		Map<String,String[]> goodsByConditions=new HashMap<String, String[]>();
+		Map<String,String[]> myGoods_brand=new HashMap<String, String[]>();
 		//多条件查询
 		String sql="select @ from (select goods_no,goods_name,goods_price,goods_brand,middle_color,middle_size,middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb=new StringBuffer(sql);
@@ -227,6 +234,7 @@ public class Basedaoimpl implements Basedao{
 			//查询还有的品牌
 			String mysql=sql+" group by goods_brand";
 			mysql=mysql.replace("@", "goods_brand");
+			MyReplace mr=new MyReplace(mysql,conn, myGoods_brand);
 			
 			//计数
 			int index=0;
@@ -234,6 +242,25 @@ public class Basedaoimpl implements Basedao{
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	
+	//实现被观察者
+	@Override
+	public void addLooker(Looker looker) {
+		myLooker.add(looker);
+	}
+
+	@Override
+	public void removeLooker(Looker looker) {
+		myLooker.remove(looker);
+	}
+
+	@Override
+	public void notifyAllLooker(MyReplace mr) {
+		for (Looker looker : myLooker) {
+			looker.update(mr);
+		}
 	}
 
 }

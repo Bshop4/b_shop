@@ -3,6 +3,7 @@ package bshow.web.servlet.action;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,29 +12,44 @@ import javax.servlet.http.HttpServletResponse;
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Account_table;
+import bshow.pojo.Personinfo_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
 import bshow.web.servlet.form.Sign_accountActionForm;
 import xyw.util.SendmailUtil;
 
-public class Sign_account extends Action{
+public class Sign_accountAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		Sign_accountActionForm saa=(Sign_accountActionForm)form; 
 		Basedao dao=new Basedaoimpl();
+		Basedao dao1=new Basedaoimpl();
+		//给帐号表添加所有的信息
 		Account_table at=new Account_table();
 		at.setAccount(saa.getAccount());
 		at.setEmail(saa.getEmail());
 		at.setPassword(saa.getPassword());
 		at.setIpaddress(getIpAddress(request));
-		System.out.println(getIpAddress(request));
+		dao.saveObject("insertone", at);
+		//给信息表添加帐号
+		Personinfo_table pt=new Personinfo_table();
+		pt.setAccount(saa.getAccount());
+		pt.setPhoto("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1574939266&di=75f2a98533ef7c3b864db90f3dd90856&src=http://bpic.588ku.com/element_origin_min_pic/01/31/87/96573b585a7c9c4.jpg".getBytes());
+		pt.setAddress("");
+		pt.setNickname("");
+		pt.setBirthday("");
+		pt.setSex("");
+		dao1.saveObject("insertone", pt);
+		//编写返回给js页面的值
 		PrintWriter out=response.getWriter();
-		String json="";
-		//dao.saveObject(id, o);
+		UUID uid=UUID.randomUUID();
+		String json="{\"code\":\"0\",\"msg\":\"successSgin\",\"token\":\""+uid.toString()+"\"}";
+		out.print(json);
 		return null;
 	}
 

@@ -59,10 +59,16 @@
 		<path name="error">error.jsp</path>
 	</PagePattern>
 
-	<!-- 注册插入 -->
-	<PagePattern name="Sign_account">
-		<Action>bshow.web.servlet.action.Sign_account</Action>
+	<!-- 注册登录插入 -->
+	<PagePattern name="Sign_accountAction">
+		<Action>bshow.web.servlet.action.Sign_accountAction</Action>
 		<ActionForm>bshow.web.servlet.form.Sign_accountActionForm</ActionForm>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	<!-- 登录插入 -->
+	<PagePattern name=Login_Action>
+		<Action>bshow.web.servlet.action.Login_Action</Action>
+		<ActionForm>bshow.web.servlet.form.Login_ActionForm</ActionForm>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	

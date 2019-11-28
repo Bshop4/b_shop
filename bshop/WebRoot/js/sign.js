@@ -309,7 +309,7 @@
 		
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
 			console.log(55);
-			$.post('Sign_account.do',
+			$.post('Sign_accountAction.do',
 				{
 				email:email1,
 				account:account1,
@@ -322,10 +322,10 @@
 					if(obj.code==0){
 						console.log(2);
 						var goodsID=getUrlVal('goods_id');
-						$.post('xxx.do',
-						{status:'login',
-							 username:uName,
-							 password:upass,
+						$.post('Login_Action.do',
+						{
+							account:account1,
+							password:password1,
 							},function(result1){
 								objlogin=JSON.parse(result1);
 								console.log(objlogin);

@@ -35,7 +35,7 @@ public class Basedaoimpl implements Basedao,Looker{
 	
 
 	@Override
-	public void saveObject(String id, Object o) {
+	public boolean saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
 		Connection conn = DBhelper.getConnection();
 		try {
@@ -65,14 +65,17 @@ public class Basedaoimpl implements Basedao,Looker{
 				ps.setObject(i + 1, method.invoke(o, null));
 			}
 
-			ps.executeUpdate();
+			int psint =ps.executeUpdate();
+			if(psint!=0){
+				return true;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBhelper.closeConnection(conn);
 		}
-
+		return false;
 	}
 
 	@Override

@@ -45,7 +45,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <%
 
-		//github.com/Bshop4/b_shop.git
     		//Loadgoods l=new Loadgoods();
         	//l.action();
         /* 	Goods_table g=new Goods_table();

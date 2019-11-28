@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class name="bshow.pojo.Goods_table" table="goods_table">
-	<property name="goods_id" column="goods_id"/>
-	<property name="goods_name" column="goods_name"/>
-	<property name="goods_price" column="goods_price"/>
-	<property name="goods_like" column="goods_like"/>
-	<property name="goods_photo" column="goods_photo"/>
-	<property name="goods_category" column="goods_category"/>
-	<property name="goods_color" column="goods_color"/>
-	<property name="goods_size" column="goods_size"/>
-	<property name="goods_explainphoto" column="goods_explainphoto"/>
-	<property name="goods_discount" column="goods_discount"/>
-	<property name="shop_no" column="shop_no"/>
-	<property name="goods_uptime" column="goods_uptime"/>
-	<property name="goods_ban" column="goods_ban"/>
-	<property name="goods_location" column="goods_location"/>
-	<property name="goods_no" column="goods_no"/>
-	<property name="goods_brand" column="goods_brand"/>
-	<property name="goods_place" column="goods_place"/>
-	
+	<property name="goods_id" column="goods_id" />
+	<property name="goods_name" column="goods_name" />
+	<property name="goods_price" column="goods_price" />
+	<property name="goods_like" column="goods_like" />
+	<property name="goods_photo" column="goods_photo" />
+	<property name="goods_category" column="goods_category" />
+	<property name="goods_color" column="goods_color" />
+	<property name="goods_size" column="goods_size" />
+	<property name="goods_explainphoto"
+		column="goods_explainphoto" />
+	<property name="goods_discount" column="goods_discount" />
+	<property name="shop_no" column="shop_no" />
+	<property name="goods_uptime" column="goods_uptime" />
+	<property name="goods_ban" column="goods_ban" />
+	<property name="goods_location" column="goods_location" />
+	<property name="goods_no" column="goods_no" />
+	<property name="goods_brand" column="goods_brand" />
+	<property name="goods_place" column="goods_place" />
+
 	<insert id="insertone">
-		insert into goods_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_no,goods_place,goods_uptime,goods_ban,goods_location,goods_no,goods_brand) values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_no},#{goods_place},#{goods_uptime},#{goods_ban},#{goods_location},#{goods_no},#{goods_brand})
+		insert into
+		goods_table(goods_name,goods_price,goods_like,goods_photo,goods_category,goods_color,goods_size,goods_explainphoto,goods_discount,shop_no,goods_place,goods_uptime,goods_ban,goods_location,goods_no,goods_brand)
+		values(#{goods_name},#{goods_price},#{goods_like},#{goods_photo},#{goods_category},#{goods_color},#{goods_size},#{goods_explainphoto},#{goods_discount},#{shop_no},#{goods_place},#{goods_uptime},#{goods_ban},#{goods_location},#{goods_no},#{goods_brand})
 	</insert>
 	<select id="selectone" resulttype="bshow.pojo.Goods_table">
-		select * from goods_table where 1=1 and goods_id=#{goods_id}
+		select * from goods_table
+		where 1=1 and goods_id=#{goods_id}
 	</select>
-	<!--
-	<select id="selecttow" resulttype="bshow.pojo.Account_table">
-		select * from account_table	where 1=1 and goods_id=#{goods_id}
-	</select>
-	 and account_id=#{goods_id} -->
-	 
-	<select id="selectAllByGoodsNo" resulttype="bshow.pojo.Goods_table">
-		select * from goods_table where 1=1 and goods_no=#{goods_no}
-	</select>
-	
-	
-	
-	
+	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
+		* from account_table where 1=1 and goods_id=#{goods_id} </select> and account_id=#{goods_id} -->
 
-	<select id="selectByPagesize" resulttype="bshow.pojo.Goods_table">
-		select * from goods_table where 1=1;
+	<select id="selectAllByGoodsNo"
+		resulttype="bshow.pojo.Goods_table">
+		select * from goods_table where 1=1 and
+		goods_no=#{goods_no}
+	</select>
+
+
+
+
+
+	<select id="selectByPagesize"
+		resulttype="bshow.pojo.Goods_table">
+		select * from goods_table where 1=1
 	</select>
 	<select id="selectMaxPagesize">
-		select count(*) from goods_table;
+		select count(*) from goods_table
 	</select>
 </class>

@@ -208,6 +208,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </body>
 </html>
 <script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/cart.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/base.js"></script>
+<script src="js/cart.js"></script>

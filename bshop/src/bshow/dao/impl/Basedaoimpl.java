@@ -144,8 +144,7 @@ public class Basedaoimpl implements Basedao,Looker{
 			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
 			//获得元素内容的sql语句
 			String sql=selectelement.getTextTrim();
-			sql=sql+" limit ?,?";
-			System.out.println(sql);
+			sql=sql+" limit ?,? ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, (page-1)*pagesize);
 			ps.setInt(2, pagesize);

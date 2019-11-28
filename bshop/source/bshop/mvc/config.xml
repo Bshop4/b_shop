@@ -67,4 +67,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 购物车 -->
+	<PagePattern name="getInfo">
+		<ActionForm>bshow.web.servlet.form.GetInfoForm</ActionForm>
+		<Action>bshow.web.servlet.action.GetInfoAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

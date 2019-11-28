@@ -1,9 +1,45 @@
 (function(){
-	
-	
+	var account = "zjl";
+//	console.log(account)
+	$.ajax({
+		type:"post",
+		url:"getInfo.do",
+		data:{"account":account},
+		success:function(re){
+			var obj = JSON.parse(re);
+			console.log(obj)
+			
+			//头像
+			$('#imgPhoto').attr("src",`${obj[3]}`);
+			//账号
+			$('.user-acc-input').attr("value",`${obj[2]}`)
+			//昵称
+			$('.user-in-nickName').attr("value",`${obj[1]}`);
+			
+			//性别
+			var sex = `${obj[5]}`;
+			console.log(sex)
+			if(sex == "男"){
+				$('.man').prop("checked","checked");
+				$('.woman').prop("checked","");
+			}
+			if(sex == "女"){
+				$('.man').prop("checked","");
+				$('.woman').prop("checked","checked");
+			}
+			
+//			console.log(`${obj[6]}`)
+			var userdate = `${obj[6]}`;
+			$(".userdate").attr("value",userdate);
+			
+			
+		}
+		
+	})
 	
 	
 })()
+
 
 
 //下拉列表

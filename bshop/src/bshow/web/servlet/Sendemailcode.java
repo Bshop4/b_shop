@@ -64,7 +64,7 @@ public class Sendemailcode extends HttpServlet {
 		}
 		//1041551225@qq.com
 		
-		out.print("{code:'0',msg:'sendSuccess',passage:"+ be.encode(code.toString().getBytes())+"}");
+		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
 	}
 
 }

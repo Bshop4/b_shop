@@ -4,6 +4,9 @@
 	var pyl_flag_pass=false;
 	var pyl_flag_email=false;
 	var pyl_flag_emailcode=false;
+	var pyl_flag_emailcodeMath=false;
+	var pyl_flag_emailcodeDie=false;
+	var pyl_flag_sendEmailcode=false;
 	
 	var flagclear=false;
 	//用户名失焦
@@ -202,8 +205,8 @@
 //		$('.emailcode').parent().css('border-bottom','1px solid black');
 		$('.emailcode').parent().css('box-shadow','3px 3px 7px #666');
 		$('.emailcode').parent().css('border-radius','5px');
+		$('.emailcode-tips').hide().html("").css('color','red');
 	});
-	
 	
 	
 	//邮箱验证失焦
@@ -211,16 +214,16 @@
 //		$('.emailcode').parent().css('border-bottom','1px solid gainsboro');
 		$('.emailcode').parent().css('box-shadow','');
 		$('.emailcode').parent().css('border-radius','');
-		if($('.emailcode').val()==''){$('.emailcode-tips').hide();$('.emailcode').siblings('.pyl_true').hide();return;};
-		var re3=/^\d{6}$/g;
+		if($('.emailcode').val()==''){$('.emailcode-tips').hide();return;};
+		var re3=/^\d+$/g;
 		if(re3.test($('.emailcode').val())){
-			$('.emailcode').siblings('.pyl_true').show();
-			pyl_flag_emailcode=true;
-			return;
+//			$('.emailcode').siblings('.pyl_true').show();
+			pyl_flag_emailcodeMath=true;//邮箱验证码是否为数字
+//			return;
 		}else{
-			$('.emailcode-tips').show().html("&otimes; 验证码不正确").css('color','orange');
+//			$('.emailcode-tips').show().html("&otimes; 验证码不正确").css('color','orange');
+			pyl_flag_emailcodeMath=false;//邮箱验证码是否为数字
 		}
-		pyl_flag_emailcode=false;
 	});
 	
 	var account1=$('.user').val();
@@ -228,6 +231,9 @@
 	
 	//点击发送验证码
 	$(".sendemailcode").click(function(){
+		if(pyl_flag_sendEmailcode){return;}
+		pyl_flag_sendEmailcode=true;
+		console.log("发送验证码");
 		var email1=$('.email').val();
 		$.ajax({
 			url:"Sendemailcode",
@@ -235,12 +241,32 @@
 			data:{"email":email1},
 			success:function(result){
 				var resu=JSON.parse(result);
-				$('.emailcode').attr("emailcode",resu.passage);
+				$('.emailcode').attr("serverEmailCode",resu.passage);
+				emailCodeDie(resu.passage);
 			}
 		});
 	})
 	
+	//倒计时60秒。验证码失效
+	function emailCodeDie(code){
+		var timeemail=60; 
+		var c=code;
+		pyl_flag_emailcodeDie=true;
+		var Timer=setInterval(function() {
+			timeemail--;
+			$(".sendemailcode").html(timeemail+"S秒后重新获取");
+			if(timeemail==0){
+				$(".sendemailcode").html("免费获取验证码");
+				clearTimeout(Timer);
+			}
+		}, 1000);
 		
+		setTimeout(function() {
+			c="无";
+			pyl_flag_emailcodeDie=false;//验证码失效
+			pyl_flag_sendEmailcode=false;//可以点击发送验证码
+		}, 59000);
+	}
 	
 	
 	//注册点击事件去匹配数据库
@@ -252,7 +278,23 @@
 			pyl_flag_user=false;//成功就对，返回不变false
 		}
 		
-		var$('.emailcode').val();
+		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').show().html("&otimes; 验证码不正确");return;}//邮箱验证码不为数字
+		
+		//获得用户的验证码
+		var EmailCode=$('.emailcode').val();
+		var clientEmailCode=Base64.encode(EmailCode);
+		//获得服务器返回的验证码
+		var serverEmailCode=$('.emailcode').attr("serverEmailCode");
+		console.log(clientEmailCode);
+		if(clientEmailCode==serverEmailCode&&clientEmailCode){
+			pyl_flag_emailcode=true;
+		}else{
+			$('.emailcode-tips').show().html("&otimes; 验证码不正确");
+			pyl_flag_emailcode=false;
+			return;
+		}
+		
+		if(!pyl_flag_emailcodeDie){$('.emailcode-tips').show().html("&otimes; 验证码已失效，请重新发送");return;};
 		
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
 			$.post('Sign_account.do',
@@ -316,5 +358,8 @@
 					}
 				}
 			);
+		}else{
+			
+			
 		}
 	});

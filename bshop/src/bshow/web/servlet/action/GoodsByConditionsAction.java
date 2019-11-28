@@ -34,6 +34,11 @@ public class GoodsByConditionsAction extends Action{
 //		//拿到请求所有的参数
 //		Map<String, String[]> mymap=request.getParameterMap();
 		Map<String, List<Goods_classify>> mymap=bd.selectGoodsByConditions(myform);
+//		System.out.println(mymap.size());
+//		Set<Map.Entry<String, List<Goods_classify>>> set= mymap.entrySet();
+//		for (Map.Entry<String, List<Goods_classify>> entry : set) {
+//			System.out.println(entry.getKey());
+//		}
 		
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Content-Type", "application/json;charset=utf-8");

@@ -88,9 +88,18 @@ i{
 /* 邮箱验证码发送 */
 .sendemailcode{
 	display:block;
-	width: 100px;height: 18px;
+	width: 130px;height: 40px;
 	position: absolute;
-	right: 10px;top: 18px;
+	font-size:16px;
+	line-height:40px;
+	right: 10px;
+	border-bottom: 1px gray solid;
+	text-align:center;
+	cursor: pointer;
+}
+.sendemailcode:hover{
+	box-shadow:3px 3px 7px #666;
+	border-radius: 5px;
 }
 
 .userclear{

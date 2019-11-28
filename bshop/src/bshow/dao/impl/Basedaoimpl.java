@@ -186,7 +186,7 @@ public class Basedaoimpl implements Basedao,Looker{
 			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
 			//获得元素内容的sql语句
 			String sql=selectelement.getTextTrim();
-			System.out.println(sql);
+//			System.out.println(sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
@@ -233,7 +233,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		}
 		//根据条件构成sql语句
 		sql=sb.toString();
-		System.out.println(sql);
+//		System.out.println(sql);
 		
 		//查询还有的品牌
 		String mysql=sql+" group by c.goods_brand";

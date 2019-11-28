@@ -103,4 +103,13 @@ public class Cart_table implements Serializable {
 		this.account = account;
 	}
 
+	@Override
+	public String toString() {
+		return "Cart_table [cart_id=" + cart_id + ", cgoods_photo=" + cgoods_photo + ", cgoods_desc=" + cgoods_desc
+				+ ", cgoods_number=" + cgoods_number + ", cgoods_price=" + cgoods_price + ", cgoods_sub=" + cgoods_sub
+				+ ", cgoods_no=" + cgoods_no + ", cgoods_state=" + cgoods_state + ", account=" + account
+				+ ", cgoods_color=" + cgoods_color + ", cgoods_size=" + cgoods_size + "]";
+	}
+	
+
 }

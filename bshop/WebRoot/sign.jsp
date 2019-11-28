@@ -110,6 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li>
 						<span>邮箱验证码</span>
 						<input type="text" class="emailcode" placeholder="请输入邮箱验证码"/>
+						<div class="pyl_true"></div>
 					</li>
 					<div class="div_tips">
 						<span class="emailcode-tips"></span>

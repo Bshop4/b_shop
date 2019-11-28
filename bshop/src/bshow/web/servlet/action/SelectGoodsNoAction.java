@@ -54,9 +54,9 @@ public class SelectGoodsNoAction extends Action{
 		
 		response.setCharacterEncoding("UTF-8");
 //		response.setHeader("Content-Type", "application/json;charset=utf-8");
-		for (Object object : listbb) {
-			System.out.println(object);
-		}
+//		for (Object object : listbb) {
+//			System.out.println(object);
+//		}
 		
 		JSONArray ja = JSONArray.fromObject(listbb);
 		PrintWriter out= response.getWriter();

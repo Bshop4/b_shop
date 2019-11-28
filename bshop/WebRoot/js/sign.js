@@ -3,6 +3,7 @@
 	var pyl_flag_user=false;
 	var pyl_flag_pass=false;
 	var pyl_flag_email=false;
+	var pyl_flag_emailcode=false;
 	
 	var flagclear=false;
 	//用户名失焦
@@ -19,26 +20,32 @@
 		var re =/^[\u4e00-\u9fa5A-z\d-_]{4,20}$/g;
 		var renumber=/^\d+$/g;
 		if(renumber.test($('.user').val())){$('.use-tips').html("&otimes; 不能为纯数字！").css('color','orange');return;};
-		
+		var users=$('.user').val();
 		if(re.test($('.user').val())){
+			
 			$.ajax({
-				
-				
-			})
-			
-			
-			pyl_flag_user=true;//成功就对，返回不变false
-			$('.user').siblings('.pyl_true').show();
-			$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
-			$('.userclear').hide();
+				url:"Check_isaccount",
+				type:"post",
+				data:{"account":users},
+				success:function(result){
+					if(result=="true"){
+						$('.user').siblings('.pyl_true').show();
+						$('.user').attr("pyl_flag_user",1);
+						$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
+						$('.userclear').hide();
+					}else{
+						$('.user').attr("pyl_flag_user",0);
+						$('.user').siblings('.pyl_true').hide();$('.use-tips').html("&otimes;该帐号已存在").css('color','orange').show();
+						$('.userclear').show();
+					}
+				}
+			});
 			return;
-			
 		}else{
 			$('.user').siblings('.pyl_true').hide();$('.use-tips').html("&otimes; 仅支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','orange').show();
 			$('.userclear').show();
 		};
 		pyl_flag_user=false;
-		
 		
 		
 	});
@@ -204,6 +211,16 @@
 //		$('.emailcode').parent().css('border-bottom','1px solid gainsboro');
 		$('.emailcode').parent().css('box-shadow','');
 		$('.emailcode').parent().css('border-radius','');
+		if($('.emailcode').val()==''){$('.emailcode-tips').hide();$('.emailcode').siblings('.pyl_true').hide();return;};
+		var re3=/^\d{6}$/g;
+		if(re3.test($('.emailcode').val())){
+			$('.emailcode').siblings('.pyl_true').show();
+			pyl_flag_emailcode=true;
+			return;
+		}else{
+			$('.emailcode-tips').show().html("&otimes; 验证码不正确").css('color','orange');
+		}
+		pyl_flag_emailcode=false;
 	});
 	
 	
@@ -211,15 +228,23 @@
 	
 	//注册点击事件去匹配数据库
 	$('.pyl_sign_btn').click(function(){
+		//帐号为对就为真
+		if($('.user').attr("pyl_flag_user")==1){
+			pyl_flag_user=true;//成功就对，返回不变false
+		}else{
+			pyl_flag_user=false;//成功就对，返回不变false
+		}
 		
-		var uName=$('.user').val();
-		var upass=$('.pyl_sign_password').val();
+		var account1=$('.user').val();
+		var password1=$('.pyl_sign_password').val();
+		var email1=$('.email').val();
 		
-		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass){
+		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
 			$.post('http://www.wjian.top/shop/api_user.php?',
-				{status:'register',
-				 username:uName,
-				 password:upass,
+				{
+				email:email1,
+				account:account1,
+				password:password1,
 				},function(result){
 					var obj=JSON.parse(result);
 					var objlogin=null;

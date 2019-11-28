@@ -251,7 +251,7 @@
 	})
 	
 	
-	var Timeout=null;//用来放倒计时验证码失效的
+	var Timeout=null;//用来放倒计时验证码失效的 
 	//倒计时60秒。验证码失效
 	function emailCodeDie(code){
 		var timeemail=10; 

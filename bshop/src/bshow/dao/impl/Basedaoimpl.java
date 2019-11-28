@@ -80,7 +80,6 @@ public class Basedaoimpl implements Basedao,Looker{
 		Class c=o.getClass();
 		Connection conn=DBhelper.getConnection();
 		try {
-			
 			//根据对象拿到对应的mapping.xml文档
 			Document doc=DBhelper.getDocumentByClass(c);
 			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
@@ -371,6 +370,45 @@ public class Basedaoimpl implements Basedao,Looker{
 		}
 		
 		return false; 
+	}
+
+	@Override
+	public boolean insertMachTable(String id, Object o) {
+		// TODO Auto-generated method stub
+		Connection conn=DBhelper.getConnection();
+		
+		
+		return false;
+	}
+
+	@Override
+	public boolean deleteObject(String id, Object o) {
+		// TODO Auto-generated method stub
+		Connection conn=DBhelper.getConnection();
+		Class c=o.getClass();
+		Document doc=DBhelper.getDocumentByClass(c);
+		Element deleteElement=(Element)doc.selectSingleNode("/class/delete[@id='"+id+"']");
+		String sql=deleteElement.getTextTrim();
+		//处理sql语句
+		Pattern p =Pattern.compile("^#[{](\\w+)[}]$");
+		Matcher m=p.matcher(sql);
+		List<String> fileds= new ArrayList<String>();
+		int paramterCount=0;
+		while(m.find()){
+			fileds.add(m.group(1));
+			
+		}
+		try {
+			
+			
+			PreparedStatement ps=conn.prepareStatement(sql);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 
 }

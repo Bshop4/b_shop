@@ -33,14 +33,6 @@ public class Sign_account extends Action{
 		System.out.println(getIpAddress(request));
 		PrintWriter out=response.getWriter();
 		String json="";
-		try {
-			SendmailUtil.send(at.getEmail(), "嘿店注册", "验证码:"+123456);
-		} catch (Exception e) {
-			// TODO: handle exception
-			String jsonfalse="{code:'404',msg:'邮箱格式错误'}";
-			out.print(jsonfalse);
-		}
-		out.print("123456");
 		//dao.saveObject(id, o);
 		return null;
 	}

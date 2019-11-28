@@ -62,7 +62,7 @@ public class Sendemailcode extends HttpServlet {
 			String jsonfalse="{code:'404',msg:'邮箱格式错误'}";
 			out.print(jsonfalse);
 		}
-		//1041551225@qq.com
+		//1041551225@qq.com    814402195@qq.com
 		
 		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
 	}

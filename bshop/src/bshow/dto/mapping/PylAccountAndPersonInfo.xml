@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.dto.PylAccountAndPersonInfo">
+	<property name="account" column="account"/>
+	<property name="account_id" column="account_id"/>
+	<property name="password" column="password"/>
+	<property name="email" column="email"/>
+	<property name="ipaddress" column="ipaddress"/>
+	<property name="ban" column="ban"/>
+	
+	<insert id="insertone">
+		insert into account_table(account,password,email,ipaddress,ban) values(#{account},#{password},#{email},#{ipaddress},#{ban})
+	</insert>
+	<select id="select" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id}
+	</select>
+	<select id="selectByAccount" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account=#{account}
+	</select>
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	<!-- and account_id=#{account_id} -->
+
+</class>

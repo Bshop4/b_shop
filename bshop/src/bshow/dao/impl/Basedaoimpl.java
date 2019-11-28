@@ -399,4 +399,53 @@ public class Basedaoimpl implements Basedao,Looker{
 		return false;
 	}
 
+	@Override
+	public boolean deleteObject(String id, Object o) {
+		// TODO Auto-generated method stub
+		Connection conn = DBhelper.getConnection();
+		try {
+			// 拿到对应的文档xml
+			Class c = o.getClass();
+			Document doc = DBhelper.getDocumentByClass(c);
+			Element deleteelement = (Element) doc.selectSingleNode("/class/delete[@id='" + id + "']");
+			String sql = deleteelement.getTextTrim();
+			// 获得多少个参数
+			int paramterCount = 0;
+			List<String> fileds = new ArrayList<String>();// 带设置的字段List
+			Pattern p = Pattern.compile("#[{](\\w+)[}]");
+			Matcher m = p.matcher(sql);
+			while (m.find()) {
+				paramterCount++;
+				fileds.add(m.group(1));
+			}
+			// 替换所有的sql为 ？
+			sql = sql.replaceAll("#[{](\\w+)[}]", "?");
+			// 预处理
+			PreparedStatement ps = conn.prepareStatement(sql);
+			// 设值
+			for (int i = 0; i < paramterCount; i++) {
+				String filedname = fileds.get(i);
+				String methodname = "get" + filedname.substring(0, 1).toUpperCase() + filedname.substring(1);
+				Method method = c.getMethod(methodname, null);
+				ps.setObject(i + 1, method.invoke(o, null));
+			}
+			int psint=ps.executeUpdate();
+			if(psint!=0){
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBhelper.closeConnection(conn);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean insertMachTable(String id, Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

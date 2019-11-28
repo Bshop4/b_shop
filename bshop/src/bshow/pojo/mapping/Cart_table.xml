@@ -47,6 +47,9 @@
 	<update id="updateCart1">
 		update cart_table set cgoods_number=@{cgoods_number}  where cart_id=#{cart_id}
 	</update>
+	<delete id="deleteone">
+		delete from cart_table where cart_id=#{cart_id}
+	</delete>
 	
 	
 </class>

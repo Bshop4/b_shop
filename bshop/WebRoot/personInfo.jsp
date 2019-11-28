@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="takeOver">
                 <label class="user-takeOver">收货地址:</label>
-                <input type="text" value="地址" class="myAddress"/>
+                <input type="text"  class="myAddress" readonly="readonly"/>
             </div>
 
             <button class="cancel" id="cancel">取消</button>

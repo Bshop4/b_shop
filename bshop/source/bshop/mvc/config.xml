@@ -81,4 +81,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	
+	<PagePattern name="updatePersonInfo">
+		<ActionForm>bshow.web.servlet.form.UpdatePersonInfoForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdatePersonInfoAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

@@ -249,7 +249,7 @@
 	
 	//倒计时60秒。验证码失效
 	function emailCodeDie(code){
-		var timeemail=60;
+		var timeemail=60; 
 		var c=code;
 		pyl_flag_emailcodeDie=true;
 		var Timer=setInterval(function() {

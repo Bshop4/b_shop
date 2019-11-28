@@ -37,11 +37,11 @@ $(document).ready(function() {
 // console.log(result[0].cgoods_photo);
 // var goodsList = result.data;
 			for (var i = 0; i < result.length; i++) {
-//				console.log(result[i].cart_id)
+				console.log(result[i].cart_id)
 				var str = `
 					<tr>
 						<td class="left">
-							<input type="checkbox" class="check"/>
+							<input type="checkbox" class="check" data-no=${result[i].cart_id}></input>
 							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
 						</td>
 						<td class="desc">${result[i].cgoods_desc}</td>
@@ -246,12 +246,24 @@ function sumAll() {
 // 删除选中商品
 function delAll() {
 	$('[data-price="active"]').each(function() {
+		console.log($(this));
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
-		console.log(tab);
-		console.log(tr.length);
+//		console.log(tab);
+//		console.log(tr.length);
+		var cart_id = $('.check').attr("data-no");
+		console.log(cart_id)
+		$.ajax({
+			type:"POST",
+			url:"deleteCartGoods.do",
+			data:{"cart_id":cart_id},
+			success:function(result){
+//				var result = JSON.parse(result);
+				console.log(result);//true(删除成功)
+			}
+		});
 		tab.get(0).removeChild(tr.get(0));
-		console.log(tr.get(0).length);
+//		console.log(tr.get(0).length);
 	});
 };
 

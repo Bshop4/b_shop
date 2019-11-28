@@ -3,8 +3,8 @@
  */
 
 (function(){
-      //var goodsId = getUrlVal('goods_id');
-	var goodsno = "124093465551130";
+      var goodsno = getUrlVal('goods_no');
+//	var goodsno = "124093465551130";
     //发起
 	$.ajax({
 		type:"POST",

@@ -8,8 +8,7 @@
 	<property name="goods_category" column="goods_category" />
 	<property name="goods_color" column="goods_color" />
 	<property name="goods_size" column="goods_size" />
-	<property name="goods_explainphoto"
-		column="goods_explainphoto" />
+	<property name="goods_explainphoto" column="goods_explainphoto" />
 	<property name="goods_discount" column="goods_discount" />
 	<property name="shop_no" column="shop_no" />
 	<property name="goods_uptime" column="goods_uptime" />
@@ -17,7 +16,7 @@
 	<property name="goods_location" column="goods_location" />
 	<property name="goods_no" column="goods_no" />
 	<property name="goods_brand" column="goods_brand" />
-	<property name="goods_place" column="goods_place" />
+	<property name="goods_place" column="goods_place" /> 
 
 	<insert id="insertone">
 		insert into
@@ -36,9 +35,6 @@
 		select * from goods_table where 1=1 and
 		goods_no=#{goods_no}
 	</select>
-
-
-
 
 
 	<select id="selectByPagesize"

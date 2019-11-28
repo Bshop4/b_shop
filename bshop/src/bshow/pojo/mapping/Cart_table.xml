@@ -22,6 +22,8 @@
 		select * from cart_table where
 		1=1 and account=#{account}
 	</select>
+	
+	<!-- 删除商品 -->
 	<delete id="deleteone" resulttype="bshow.pojo.Cart_table">
 		delete from cart_table where
 		cart_id=#{cart_id}
@@ -47,6 +49,9 @@
 	<update id="updateCart1">
 		update cart_table set cgoods_number=@{cgoods_number}  where cart_id=#{cart_id}
 	</update>
+	<delete id="deleteone">
+		delete from cart_table where cart_id=#{cart_id}
+	</delete>
 	
 	
 </class>

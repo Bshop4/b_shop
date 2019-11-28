@@ -254,7 +254,7 @@
 	var Timeout=null;//用来放倒计时验证码失效的 
 	//倒计时60秒。验证码失效
 	function emailCodeDie(code){
-		var timeemail=10; 
+		var timeemail=60; 
 		var c=code;
 		pyl_flag_emailcodeDie=true;
 		var Timer=setInterval(function() {
@@ -307,8 +307,8 @@
 			return;
 		}
 		
-		
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
+			console.log(55);
 			$.post('Sign_account.do',
 				{
 				email:email1,

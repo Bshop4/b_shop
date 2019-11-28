@@ -190,12 +190,14 @@ public class Basedaoimpl implements Basedao, Looker {
 			// 获得元素内容的sql语句
 			String sql = selectelement.getTextTrim();
 			System.out.println(sql);
-			// 根据对象拿到对应的mapping.xml文档
-			Document doc = DBhelper.getDocumentByClass(c);
-			Element selectelement = (Element) doc.selectSingleNode("/class/select[@id='" + id + "']");
-			// 获得元素内容的sql语句
-			String sql = selectelement.getTextTrim();
+=======
+			//根据对象拿到对应的mapping.xml文档
+			Document doc=DBhelper.getDocumentByClass(c);
+			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
+			//获得元素内容的sql语句
+			String sql=selectelement.getTextTrim();
 //			System.out.println(sql);
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -211,6 +213,7 @@ public class Basedaoimpl implements Basedao, Looker {
 
 	// 多条件查询
 	public Map<String, List<Goods_classify>> selectGoodsByConditions(GoodsByConditionsActionForm form) {
+<<<<<<< HEAD
 		Connection conn = DBhelper.getConnection();
 		// select c.goods_price from (select
 		// a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type
@@ -221,6 +224,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		StringBuffer sb = new StringBuffer(sql);
 		if (form.getGoods_name() != null) {
 			char[] myname = form.getGoods_name().toCharArray();
+=======
 		Connection conn=DBhelper.getConnection();	
 		//select c.goods_price from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
 		//多条件查询
@@ -228,6 +232,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		StringBuffer sb=new StringBuffer(sql);
 		if(form.getGoods_name()!=null){
 			char[] myname=form.getGoods_name().toCharArray();
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 			for (int i = 0; i < myname.length; i++) {
 				sb.append(" and (c.goods_name like ? or c.goods_brand like ?");
 				if (i == myname.length - 1) {
@@ -250,6 +255,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		if (form.getMiddle_type() != null) {
 			sb.append(" and c.middle_type=?");
 		}
+<<<<<<< HEAD
 		// 根据条件构成sql语句
 		sql = sb.toString();
 		System.out.println(sql);
@@ -260,6 +266,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		MyReplace mr = new MyReplace("goods_brand", mysql, conn, this, form);
 		// 用线程处理查询
 		Thread t = new Thread(mr);
+=======
 		//根据条件构成sql语句
 		sql=sb.toString();
 //		System.out.println(sql);
@@ -270,6 +277,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		MyReplace mr=new MyReplace("goods_brand",mysql,conn,this,form);
 		//用线程处理查询
 		Thread t=new Thread(mr);
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 		t.start();
 
 		// 查询还有的价格
@@ -307,6 +315,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		// 用线程处理查询
 		Thread t5 = new Thread(mr5);
 		t5.start();
+<<<<<<< HEAD
 
 		// 查询商品
 		Connection conn6 = DBhelper.getConnection();
@@ -315,6 +324,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		MyReplace mr6 = new MyReplace("goodsConditions", mysql5, conn5, this, form);
 		// 用线程处理查询
 		Thread t6 = new Thread(mr6);
+=======
 		
 		//查询商品
 		Connection conn6=DBhelper.getConnection();
@@ -332,83 +342,87 @@ public class Basedaoimpl implements Basedao, Looker {
 				break;
 			}
 		}
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 		return allNeeds;
 	}
 
 	// 实现观察者
 	@Override
+<<<<<<< HEAD
 	public void update(Map<String, List<Goods_classify>> mymap) {
 		mymap.putAll(allNeeds);
-
-	public void update(Map<String, List<Goods_classify>> mymap) {
+=======
+	public void update(Map<String,List<Goods_classify>> mymap) {
 		allNeeds.putAll(mymap);
 	}
 
 	@Override
 	public boolean updataObject(String id, Object o) {
 		// TODO Auto-generated method stub
-		Connection conn = DBhelper.getConnection();
+		Connection conn=DBhelper.getConnection();
 		try {
-			// 拿到对应的文档xml
-			Class c = o.getClass();
-			Document doc = DBhelper.getDocumentByClass(c);
-			Element insertelement = (Element) doc.selectSingleNode("/class/update[@id='" + id + "']");
-			String sql = insertelement.getTextTrim();
-			// 获得多少个参数
-			int paramterCount = 0;
-			List<String> fileds = new ArrayList<String>();// 带设置的字段List
-			Pattern p = Pattern.compile("#[{](\\w+)[}]");
-			Matcher m = p.matcher(sql);
-			while (m.find()) {
-				paramterCount++;
-				fileds.add(m.group(1));
-			}
-			// 替换所有的sql为 ？
-			sql = sql.replaceAll("#[{](\\w+)[}]", "?");
-
-			// 获得多少个需要修改的值
-			int paramterval = 0;
-			List<String> setval = new ArrayList<String>();// 带设置的字段修改的值List
-			Pattern pset = Pattern.compile("@[{](\\w+)[}]");
-			Matcher mset = pset.matcher(sql);
-			while (mset.find()) {
-				paramterval++;
-				setval.add(mset.group(1));
-			}
-			// sql替换所有的 @{\\w+} 为 ？
-			sql = sql.replaceAll("@[{](\\w+)[}]", "?");
-
-			// 预处理
-			PreparedStatement ps = conn.prepareStatement(sql);
-			int index = 0;
-			// 设修改值
+		//拿到对应的文档xml
+		Class c=o.getClass();
+		Document doc=DBhelper.getDocumentByClass(c);
+		Element insertelement =(Element)doc.selectSingleNode("/class/update[@id='"+id+"']");
+		String sql=insertelement.getTextTrim();
+		//获得多少个参数
+		int paramterCount =0;
+		List<String> fileds=new ArrayList<String>();//带设置的字段List
+		Pattern p=Pattern.compile("#[{](\\w+)[}]");
+		Matcher m=p.matcher(sql); 
+		while(m.find()){
+			paramterCount++;
+			fileds.add(m.group(1));
+		}
+		//替换所有的sql为   ？
+		sql=sql.replaceAll("#[{](\\w+)[}]", "?");  
+		
+		//获得多少个需要修改的值
+		int paramterval =0;
+		List<String> setval=new ArrayList<String>();//带设置的字段修改的值List
+		Pattern pset=Pattern.compile("@[{](\\w+)[}]");
+		Matcher mset=pset.matcher(sql);
+		while(mset.find()){
+			paramterval++;
+			setval.add(mset.group(1));
+		}
+		//sql替换所有的  @{\\w+} 为   ？
+		sql=sql.replaceAll("@[{](\\w+)[}]", "?");  
+		
+		
+		//预处理
+			PreparedStatement ps=conn.prepareStatement(sql);
+			int index=0;
+			//设修改值
 			for (int i = 0; i < paramterval; i++) {
-				String filedname = setval.get(i);
-				String methodname = "get" + filedname.substring(0, 1).toUpperCase() + filedname.substring(1);
-				Method method = c.getMethod(methodname, null);
+				String filedname=setval.get(i);
+				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
+				Method method=c.getMethod(methodname, null);
 				ps.setObject(++index, method.invoke(o, null));
 			}
-
-			// 设条件值
+			
+			//设条件值
 			for (int i = 0; i < paramterCount; i++) {
-				String filedname = fileds.get(i);
-				String methodname = "get" + filedname.substring(0, 1).toUpperCase() + filedname.substring(1);
-				Method method = c.getMethod(methodname, null);
+				String filedname=fileds.get(i);
+				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
+				Method method=c.getMethod(methodname, null);
 				ps.setObject(++index, method.invoke(o, null));
 			}
-
-			int psint = ps.executeUpdate();
-			if (psint != 0) {
+			
+			int psint=ps.executeUpdate();
+			if(psint!=0){
 				return true;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}finally{
 			DBhelper.closeConnection(conn);
 		}
-
-		return false;
+		
+		return false; 
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 	}
 
 }

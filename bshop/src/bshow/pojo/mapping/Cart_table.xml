@@ -7,12 +7,16 @@
 	<property name="cgoods_price" column="cgoods_price" />
 	<property name="cgoods_sub" column="cgoods_sub" />
 	<property name="cgoods_no" column="cgoods_no" />
-	<property name="cgoods_state" column="cgoods_state" />
+
+	<property name="cgoods_state" column="cgoods_state" />  
+	<property name="cgoods_color" column="cgoods_color" />
+	<property name="cgoods_size" column="cgoods_size" />
+	<property name="account" column="account" />
 
 	<insert id="insertone">
 		insert into
-		cart_table(cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state)
-		values(#{cgoods_photo},#{cgoods_desc},#{cgoods_number},#{cgoods_price},#{cgoods_sub},#{cgoods_no},#{cgoods_state})
+		cart_table(cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account)
+		values(#{cgoods_photo},#{cgoods_desc},#{cgoods_number},#{cgoods_price},#{cgoods_sub},#{cgoods_no},#{cgoods_state},#{cgoods_color},#{cgoods_size},#{account})
 	</insert>
 	<select id="selectone" resulttype="bshow.pojo.Cart_table">
 		select * from cart_table where

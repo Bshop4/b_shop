@@ -23,6 +23,16 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
+
+	
+
+	<!-- 查询购物车商品 -->
+	<PagePattern name="selectCartGoods">
+		<ActionForm>bshow.web.servlet.form.SelectCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
@@ -49,5 +59,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 
+	<!-- 购物车 -->
+	<PagePattern name="insertCart">
+		<ActionForm>bshow.web.servlet.form.InsertCartForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertCartAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 </properties>

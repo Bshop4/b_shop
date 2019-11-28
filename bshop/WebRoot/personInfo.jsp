@@ -102,17 +102,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title"><p>我的信息</p></div>
 
             <div class="photo">
-            	<img alt="" src="img/Bshop_logo1.png" id="imgPhoto">
+            	<img alt=""  id="imgPhoto">
                 <label class="pic">头像:</label>
                 <label for="fileupload" id="labelPhoto">
-                	<!--  <span>请上传您的头像</span>-->
                 	<input type="file" id="fileupload" class="inputPhoto" onchange="show(this)"/>
                 </label>
             </div>
 
             <div class="account">
                 <label class="user-acc">账号:</label>
-                <input value="账号" readonly class="user-acc-input">
+                <input  readonly class="user-acc-input">
             </div>
             <div class="nickName">
                 <label class="user-nickName">昵称:</label>
@@ -120,12 +119,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div class="sex">
                 <label class="user-sex">性别:</label>
-                <input type="radio" value="male" name="sex" checked>男
-                <input type="radio" value="female" name="sex">女
+                <input class="man" type="radio" value="male" name="sex" checked="checked">男
+                <input class="woman" type="radio" value="female" name="sex" >女
             </div>
             <div class="birth">
                 <label class="user-birth">生日:</label>
-                <input type="date"/>
+                <input class="userdate" type="date"/>
             </div>
             <div class="takeOver">
                 <label class="user-takeOver">收货地址:</label>

@@ -11,13 +11,18 @@
 	<insert id="insertone">
 		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})
 	</insert>
-	<select id="selectone" resulttype="bshow.pojo.Personinfo_table">
+	<!--<select id="selectone" resulttype="bshow.pojo.Personinfo_table">
 		select * from personinfo_table	where 1=1 and personInfo_id=#{personInfo_id}
 	</select>
-	<!--
+	
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
 	</select>
 	 and account_id=#{account_id} -->
+	 
+	 <select id="selectByAccount" resulttype="bshow.pojo.Personinfo_table">
+		select * from personinfo_table	where 1=1 and account=#{account}
+	</select>
+	 
 
 </class>

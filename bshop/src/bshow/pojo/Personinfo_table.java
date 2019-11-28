@@ -1,6 +1,7 @@
 package bshow.pojo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Personinfo_table implements Serializable{
 	private int personInfo_id;//个人信息主键
@@ -53,6 +54,12 @@ public class Personinfo_table implements Serializable{
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	@Override
+	public String toString() {
+		return "Personinfo_table [personInfo_id=" + personInfo_id + ", nickname=" + nickname + ", account=" + account
+				+ ", photo=" + Arrays.toString(photo) + ", address=" + address + ", sex=" + sex + ", birthday="
+				+ birthday + "]";
 	}
 
 	

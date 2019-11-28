@@ -26,6 +26,11 @@
 		delete from cart_table where
 		cart_id=#{cart_id}
 	</delete>
+	
+	<update id="updateone">
+		update cart_table set cgoods_size=@{cgoods_size}  where cart_id=#{cart_id}
+	</update>
+	
 	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
 		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
 		</select> and account_id=#{account_id} -->
@@ -36,6 +41,12 @@
 	</insert>
 
 	<select id="selectCartByGoodsno" resulttype="bshow.pojo.Cart_table">
-		select * from cart_table where 1=1 and cgoods_no;
+		select * from cart_table where 1=1 and cgoods_no=#{cgoods_no} and cgoods_color=#{cgoods_color} and cgoods_size=#{cgoods_size}
 	</select>
+	
+	<update id="updateCart1">
+		update cart_table set cgoods_number=@{cgoods_number}  where cart_id=#{cart_id}
+	</update>
+	
+	
 </class>

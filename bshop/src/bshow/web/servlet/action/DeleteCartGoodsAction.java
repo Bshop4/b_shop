@@ -1,6 +1,7 @@
 package bshow.web.servlet.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import bshow.pojo.Cart_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
+import net.sf.json.JSONArray;
 
 public class DeleteCartGoodsAction extends Action {
 
@@ -25,6 +27,11 @@ public class DeleteCartGoodsAction extends Action {
 		Cart_table ct = new Cart_table();
 		ct.setCart_id(cart_id);
 		Basedao bd = new Basedaoimpl();
+		boolean flag = bd.deleteObject("deleteone", ct);
+		JSONArray ja = JSONArray.fromObject(flag);
+//		将数据交给前端
+		PrintWriter out = response.getWriter();
+		out.print(ja.toString());
 		return null;
 	}
 

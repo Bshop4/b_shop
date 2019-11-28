@@ -8,42 +8,27 @@ import java.io.Serializable;
  */
 public class Classify_table implements Serializable{
 	
-	private int classify_id;//主键
-	private String goods_size;//尺寸
-	private String goods_style;//风格、春夏秋冬
-	private String goods_location;//上衣、下装
-	private String goods_color;//颜色
-	public int getClassify_id() {
+	private String classify_id;
+	private String classify_one;
+	private String classify_two;
+	public String getClassify_id() {
 		return classify_id;
 	}
-	public void setClassify_id(int classify_id) {
+	public void setClassify_id(String classify_id) {
 		this.classify_id = classify_id;
 	}
-	public String getGoods_size() {
-		return goods_size;
+	public String getClassify_one() {
+		return classify_one;
 	}
-	public void setGoods_size(String goods_size) {
-		this.goods_size = goods_size;
+	public void setClassify_one(String classify_one) {
+		this.classify_one = classify_one;
 	}
-	public String getGoods_style() {
-		return goods_style;
+	public String getClassify_two() {
+		return classify_two;
 	}
-	public void setGoods_style(String goods_style) {
-		this.goods_style = goods_style;
+	public void setClassify_two(String classify_two) {
+		this.classify_two = classify_two;
 	}
-	public String getGoods_location() {
-		return goods_location;
-	}
-	public void setGoods_location(String goods_location) {
-		this.goods_location = goods_location;
-	}
-	public String getGoods_color() {
-		return goods_color;
-	}
-	public void setGoods_color(String goods_color) {
-		this.goods_color = goods_color;
-	}
-	
 	
 
 }

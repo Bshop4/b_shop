@@ -1,13 +1,12 @@
 (function(){
 	var account = "zjl";
-//	console.log(account)
 	$.ajax({
 		type:"post",
 		url:"getInfo.do",
 		data:{"account":account},
 		success:function(re){
 			var obj = JSON.parse(re);
-			console.log(obj)
+//			console.log(obj)
 			
 			//头像
 			$('#imgPhoto').attr("src",`${obj[3]}`);
@@ -18,7 +17,6 @@
 			
 			//性别
 			var sex = `${obj[5]}`;
-			console.log(sex)
 			if(sex == "男"){
 				$('.man').prop("checked","checked");
 				$('.woman').prop("checked","");
@@ -28,9 +26,54 @@
 				$('.woman').prop("checked","checked");
 			}
 			
-//			console.log(`${obj[6]}`)
+			//生日
 			var userdate = `${obj[6]}`;
 			$(".userdate").attr("value",userdate);
+			
+			//地址
+			var useraddress = `${obj[4]}`;
+			$('.myAddress').attr("value",useraddress);
+			
+			//保存按钮保存personInfo_id
+			$(".save").attr("data-id",`${obj[0]}`);
+		}
+		
+	})
+	
+	
+})()
+
+$('.save').click(function(){
+	//id
+	var pid = $('.save').attr("data-id");
+	//头像
+	var imgPhoto1 = $('#imgPhoto').attr("src");
+	//账号
+	var account1 = $(".user-acc-input").val();
+	//昵称
+	var nickName1 = $(".user-in-nickName").attr("value");
+	//性别
+	var sex1 = $('input:radio:checked').val() == "male" ? "男" : "女";
+	//日期
+	var date1 = $(".userdate").val();
+	//收货地址
+	var myAddress1 = $(".myAddress").val();
+	
+	var personInfo = {
+		"pid" : pid,	
+		"imgPhoto1" : imgPhoto1,
+		"account1" : account1,
+		"nickName1" : nickName1,
+		"sex1" : sex1,
+		"date1" : date1,
+		"myAddress1" : myAddress1
+	};
+//	console.log(personInfo)
+	$.ajax({
+		type : "post",
+		url : "updatePersonInfo.do",
+		date : {"msg" : JSON.stringify(personInfo)},
+		success : function(re){
 			
 			
 		}
@@ -38,7 +81,8 @@
 	})
 	
 	
-})()
+	
+})
 
 
 

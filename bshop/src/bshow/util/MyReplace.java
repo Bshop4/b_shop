@@ -33,7 +33,7 @@ public class MyReplace implements Runnable,Subject{
 	List<Looker> myLookers=new ArrayList<Looker>();
 	
 	public MyReplace(String mykey,String mysql,Connection conn,Basedaoimpl bdi,GoodsByConditionsActionForm form) {
-		this.mysql=mykey;
+		this.mysql=mysql;
 		this.bdi=bdi;
 		this.conn=conn;
 		this.mykey=mykey;
@@ -86,18 +86,20 @@ public class MyReplace implements Runnable,Subject{
 				if(form.getPagesize()!=null){
 					pagesize=Integer.parseInt(form.getPagesize());
 				}
-				ps.setInt(1, (page-1)*pagesize);
-				ps.setInt(2, pagesize);
+				ps.setInt(++index, (page-1)*pagesize);
+				ps.setInt(++index, pagesize);
 			}
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
+				System.out.println("goods_price");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
 					gc.setGoods_price(rs.getDouble(mykey));
 					mylist.add(gc);
 				}
-			}else if("goods_price".equals(mykey)){
+			}else if("goodsConditions".equals(mykey)){
+				System.out.println("goodsConditions");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -108,14 +110,15 @@ public class MyReplace implements Runnable,Subject{
 					mylist.add(gc);
 				}
 			}else{
+				Goods_classify gc=new Goods_classify();
 				while(rs.next()){
-					Goods_classify gc=new Goods_classify();
 					//采用远程调用与反射
 					String str="set"+mykey.substring(0,1).toUpperCase()+mykey.substring(1);
 					Class c=gc.getClass();
 					Method m=c.getDeclaredMethod(str, String.class);
-					m.invoke(c, rs.getString(mykey));
-					mylist.add(gc);
+					Goods_classify mygc=(Goods_classify)c.newInstance();
+					m.invoke(mygc, rs.getString(mykey));
+					mylist.add(mygc);
 				}
 			}
 			mymap.put(mykey, mylist);

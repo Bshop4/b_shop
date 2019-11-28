@@ -58,6 +58,7 @@
 		<ActionForm>bshow.web.servlet.form.Sign_accountActionForm</ActionForm>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	
 
 	<!-- 购物车 -->
 	<PagePattern name="insertCart">

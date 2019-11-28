@@ -223,7 +223,24 @@
 		pyl_flag_emailcode=false;
 	});
 	
+	var account1=$('.user').val();
+	var password1=$('.pyl_sign_password').val();
 	
+	//点击发送验证码
+	$(".sendemailcode").click(function(){
+		var email1=$('.email').val();
+		$.ajax({
+			url:"Sendemailcode",
+			type:"post",
+			data:{"email":email1},
+			success:function(result){
+				var resu=JSON.parse(result);
+				$('.emailcode').attr("emailcode",resu.passage);
+			}
+		});
+	})
+	
+		
 	
 	
 	//注册点击事件去匹配数据库
@@ -235,24 +252,21 @@
 			pyl_flag_user=false;//成功就对，返回不变false
 		}
 		
-		var account1=$('.user').val();
-		var password1=$('.pyl_sign_password').val();
-		var email1=$('.email').val();
+		var$('.emailcode').val();
 		
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
-			$.post('http://www.wjian.top/shop/api_user.php?',
+			$.post('Sign_account.do',
 				{
 				email:email1,
 				account:account1,
 				password:password1,
 				},function(result){
+					console.log(result);
 					var obj=JSON.parse(result);
 					var objlogin=null;
-					console.log(1);
 					
 					if(obj.code==0){
 						console.log(2);
-						
 						var goodsID=getUrlVal('goods_id');
 						$.post('xxx.do',
 						{status:'login',

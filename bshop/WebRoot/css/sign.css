@@ -13,14 +13,14 @@ i{
 	
 
 
-/*注册开头文字*/
+/*娉ㄥ唽寮�澶存枃瀛�*/
 .pyl_sign_words{
 	width: 400px;
 	margin: 50px auto 0px;
 }
 
 
-/*注册*/
+/*娉ㄥ唽*/
 .pyl_center{
 	padding-top: 100px;
 }
@@ -85,6 +85,14 @@ i{
 	display: none;
 }
 
+/* 邮箱验证码发送 */
+.sendemailcode{
+	display:block;
+	width: 100px;height: 18px;
+	position: absolute;
+	right: 10px;top: 18px;
+}
+
 .userclear{
 	width: 18px;height: 18px;
 	background: url(../img/reg_icons.png);
@@ -96,7 +104,7 @@ i{
 }
 
 
-/*注册成功提示*/
+/*娉ㄥ唽鎴愬姛鎻愮ず*/
 .pyl_sign_tips{
 	display: none;
 	padding-top: 50px;

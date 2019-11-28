@@ -28,6 +28,7 @@
 		<ActionForm>bshow.web.servlet.form.Sign_accountActionForm</ActionForm>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	
 
 	
 </properties>

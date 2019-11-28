@@ -22,6 +22,11 @@
 		delete from cart_table where
 		cart_id=#{cart_id}
 	</delete>
+	
+	<update id="updateone">
+		update cart_table set cgoods_size=@{cgoods_size}  where cart_id=#{cart_id}
+	</update>
+	
 	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
 		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
 		</select> and account_id=#{account_id} -->

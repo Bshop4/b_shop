@@ -13,6 +13,7 @@ public class Cart_table implements Serializable {
 	private int cgoods_state;// 购物车的状态(是否交易成功)
 	private String cgoods_color;// 购物车商品颜色
 	private String cgoods_size;// 购物车商品尺寸
+
 	private String account;// 用户账号
 
 	public int getCart_id() {

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,10 +27,12 @@ import bshow.util.MyReplace;
 import bshow.util.ober.Looker;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
-public class Basedaoimpl implements Basedao, Looker {
 
-	// 用来存储所有的信息
-	Map<String, List<Goods_classify>> allNeeds = new HashMap<String, List<Goods_classify>>();
+public class Basedaoimpl implements Basedao,Looker{
+	
+	//用来存储所有的信息
+	Map<String,List<Goods_classify>> allNeeds=new ConcurrentHashMap<String, List<Goods_classify>>();
+	
 
 	@Override
 	public void saveObject(String id, Object o) {
@@ -189,12 +195,6 @@ public class Basedaoimpl implements Basedao, Looker {
 			Element selectelement = (Element) doc.selectSingleNode("/class/select[@id='" + id + "']");
 			// 获得元素内容的sql语句
 			String sql = selectelement.getTextTrim();
-			System.out.println(sql);
-			// 根据对象拿到对应的mapping.xml文档
-			Document doc = DBhelper.getDocumentByClass(c);
-			Element selectelement = (Element) doc.selectSingleNode("/class/select[@id='" + id + "']");
-			// 获得元素内容的sql语句
-			String sql = selectelement.getTextTrim();
 //			System.out.println(sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -216,15 +216,8 @@ public class Basedaoimpl implements Basedao, Looker {
 		// a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type
 		// from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no)
 		// as c where
-		// 多条件查询
-		String sql = "select @ from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
-		StringBuffer sb = new StringBuffer(sql);
-		if (form.getGoods_name() != null) {
-			char[] myname = form.getGoods_name().toCharArray();
-		Connection conn=DBhelper.getConnection();	
-		//select c.goods_price from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
 		//多条件查询
-		String sql="select @ from (select a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		String sql="select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb=new StringBuffer(sql);
 		if(form.getGoods_name()!=null){
 			char[] myname=form.getGoods_name().toCharArray();
@@ -250,19 +243,13 @@ public class Basedaoimpl implements Basedao, Looker {
 		if (form.getMiddle_type() != null) {
 			sb.append(" and c.middle_type=?");
 		}
+		if(form.getGoods_place()!=null){
+			sb.append(" and c.goods_place=?");
+		}
 		// 根据条件构成sql语句
 		sql = sb.toString();
 		System.out.println(sql);
 
-		// 查询还有的品牌
-		String mysql = sql + " group by c.goods_brand";
-		mysql = mysql.replace("@", "c.goods_brand");
-		MyReplace mr = new MyReplace("goods_brand", mysql, conn, this, form);
-		// 用线程处理查询
-		Thread t = new Thread(mr);
-		//根据条件构成sql语句
-		sql=sb.toString();
-//		System.out.println(sql);
 		
 		//查询还有的品牌
 		String mysql=sql+" group by c.goods_brand";
@@ -308,13 +295,6 @@ public class Basedaoimpl implements Basedao, Looker {
 		Thread t5 = new Thread(mr5);
 		t5.start();
 
-		// 查询商品
-		Connection conn6 = DBhelper.getConnection();
-		String mysql6 = sql + " limit ?,?";
-		mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
-		MyReplace mr6 = new MyReplace("goodsConditions", mysql5, conn5, this, form);
-		// 用线程处理查询
-		Thread t6 = new Thread(mr6);
 		
 		//查询商品
 		Connection conn6=DBhelper.getConnection();
@@ -326,6 +306,16 @@ public class Basedaoimpl implements Basedao, Looker {
 		Thread t6=new Thread(mr6);
 		t6.start();
 		
+		//查询发货地
+		Connection conn7=DBhelper.getConnection();
+		String mysql7=sql+" group by c.goods_place";
+		mysql7=mysql7.replace("@", "c.goods_place");
+		System.out.println(mysql7);
+		MyReplace mr7=new MyReplace("goods_place",mysql7,conn7,this,form);
+		//用线程处理查询
+		Thread t7=new Thread(mr7);
+		t7.start();
+		
 		//满足条件跳出循环
 		while(true){
 			if(allNeeds.size()==6){
@@ -336,14 +326,12 @@ public class Basedaoimpl implements Basedao, Looker {
 	}
 
 	// 实现观察者
-	@Override
-	public void update(Map<String, List<Goods_classify>> mymap) {
-		mymap.putAll(allNeeds);
-
 	public void update(Map<String, List<Goods_classify>> mymap) {
 		allNeeds.putAll(mymap);
 	}
 
+	
+	
 	@Override
 	public boolean updataObject(String id, Object o) {
 		// TODO Auto-generated method stub

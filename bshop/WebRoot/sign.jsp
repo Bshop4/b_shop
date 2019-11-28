@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="emailcode-tips"></span>
 					</div>
 					<li>
-						<div class="sendemailcode">发送验证码</div>
+						<div class="sendemailcode">免费获取验证码</div>
 					</li>
 					<li>
 						<input type="button"  value="立即注册" class="pyl_sign_btn"/>

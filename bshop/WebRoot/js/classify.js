@@ -1,4 +1,4 @@
-console.log("aaaa");
+
 //获得地址参数栏的值
 function getUrlVal(property) {
 	//地址栏
@@ -46,6 +46,8 @@ function getUrlVal(property) {
 				
 				console.log(result);
 				//渲染数据
+				
+				//渲染商品
 				for(var i=0;i<result[0].goodsConditions.length;i++){
 					var str = `
 						<li>
@@ -60,6 +62,58 @@ function getUrlVal(property) {
 					`;
 						$('.merchandise>ul').append(str);
 				}
+				
+				
+				//渲染品牌
+				for(var i=0;i<result[0].goods_brand.length;i++){
+					if(i<=6){
+						var str=`<li><a data-jump="${result[0].goods_brand[i].goods_brand}">${result[0].goods_brand[i].goods_brand}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(0).append(str);
+					}else{
+						break;
+					}
+				}
+				
+				//渲染分类
+				for(var i=0;i<result[0].middle_type.length;i++){
+					if(i<=8){
+						var str=`<li><a data-jump="${result[0].middle_type[i].middle_type}">${result[0].middle_type[i].middle_type}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(1).append(str);
+					}else{
+						break;
+					}
+				}
+				
+				//渲染发货地
+				for(var i=0;i<result[0].goods_place.length;i++){
+					if(i<=10){
+						var str=`<li><a data-jump="${result[0].goods_place[i].goods_place}">${result[0].goods_place[i].goods_place}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(3).append(str);
+					}else{
+						break;
+					}
+				}
+				
+				//渲染颜色
+				for(var i=0;i<result[0].middle_color.length;i++){
+					if(i<=10){
+						var str=`<li><a data-jump="${result[0].middle_color[i].middle_color}">${result[0].middle_color[i].middle_color}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(3).append(str);
+					}else{
+						break;
+					}
+				}
+				
+				//渲染尺码
+				for(var i=0;i<result[0].middle_size.length;i++){
+					if(i<=10){
+						var str=`<li><a data-jump="${result[0].middle_size[i].middle_size}">${result[0].middle_size[i].middle_size}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(4).append(str);
+					}else{
+						break;
+					}
+				}
+				
 			}
 		})
 	}

@@ -3,7 +3,7 @@ package bshow.pojo;
 import java.io.Serializable;
 
 public class Cart_table implements Serializable {
-	private int cart_id;// 购物车主键
+	private int cart_id; // 购物车主键
 	private String cgoods_photo;// 购物车商品的图片
 	private String cgoods_desc;// 商品的描述说明
 	private int cgoods_number;// 商品的数量

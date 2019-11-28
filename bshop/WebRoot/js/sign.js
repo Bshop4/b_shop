@@ -229,9 +229,12 @@
 	var account1=$('.user').val();
 	var password1=$('.pyl_sign_password').val();
 	
+	
+	var clickSendcode=0;
 	//点击发送验证码
 	$(".sendemailcode").click(function(){
 		if(pyl_flag_sendEmailcode){return;}
+		clickSendcode++;
 		pyl_flag_sendEmailcode=true;
 		console.log("发送验证码");
 		var email1=$('.email').val();
@@ -247,9 +250,11 @@
 		});
 	})
 	
+	
+	var Timeout=null;//用来放倒计时验证码失效的 
 	//倒计时60秒。验证码失效
 	function emailCodeDie(code){
-		var timeemail=60; 
+		var timeemail=10; 
 		var c=code;
 		pyl_flag_emailcodeDie=true;
 		var Timer=setInterval(function() {
@@ -257,15 +262,20 @@
 			$(".sendemailcode").html(timeemail+"S秒后重新获取");
 			if(timeemail==0){
 				$(".sendemailcode").html("免费获取验证码");
+				pyl_flag_sendEmailcode=false;//是否发送了验证码；
 				clearTimeout(Timer);
 			}
 		}, 1000);
 		
-		setTimeout(function() {
-			c="无";
-			pyl_flag_emailcodeDie=false;//验证码失效
-			pyl_flag_sendEmailcode=false;//可以点击发送验证码
-		}, 59000);
+		if(clickSendcode==1){
+			clickSendcode=0;
+			clearTimeout(Timeout);
+			Timeout=setTimeout(function() {
+				c="无";//服务器反馈来的
+				pyl_flag_emailcodeDie=false;//验证码失效
+			}, 180000);
+		}
+		
 	}
 	
 	
@@ -278,11 +288,14 @@
 			pyl_flag_user=false;//成功就对，返回不变false
 		}
 		
-		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').show().html("&otimes; 验证码不正确");return;}//邮箱验证码不为数字
-		
 		//获得用户的验证码
 		var EmailCode=$('.emailcode').val();
 		var clientEmailCode=Base64.encode(EmailCode);
+		
+		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').show().html("&otimes; 验证码不正确");return;}//邮箱验证码不为数字
+		if(clientEmailCode){
+			if(!pyl_flag_emailcodeDie){$('.emailcode-tips').show().html("&otimes; 验证码已失效，请重新发送");return;};
+		}
 		//获得服务器返回的验证码
 		var serverEmailCode=$('.emailcode').attr("serverEmailCode");
 		console.log(clientEmailCode);
@@ -294,7 +307,6 @@
 			return;
 		}
 		
-		if(!pyl_flag_emailcodeDie){$('.emailcode-tips').show().html("&otimes; 验证码已失效，请重新发送");return;};
 		
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
 			$.post('Sign_account.do',

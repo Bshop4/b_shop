@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
 					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
 					<span class="badge store_number">0</span>
-					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的走秀<p class="glyphicon glyphicon-chevron-down"></p>
+					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿点<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
 								<a href="personInfo.jsp">个人中心</a>
@@ -102,10 +102,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="title"><p>我的信息</p></div>
 
             <div class="photo">
-            	<img alt="" src="" id="imgPhoto">
+            	<img alt="" src="img/Bshop_logo1.png" id="imgPhoto">
                 <label class="pic">头像:</label>
                 <label for="fileupload" id="labelPhoto">
-                	<span>请上传您的头像</span>
+                	<!--  <span>请上传您的头像</span>-->
                 	<input type="file" id="fileupload" class="inputPhoto" onchange="show(this)"/>
                 </label>
             </div>
@@ -312,3 +312,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/personInfo.js"></script>
 <script type="text/javascript" src="js/infos.js"></script>
+<script type="text/javascript">
+	function show(obj){
+        var fr =new  FileReader();
+        var f = obj.files[0];
+        fr.readAsDataURL(f);
+        fr.onload=function(e){
+            var content = e.target.result;
+            //预览
+            document.getElementById("imgPhoto").src=content;
+            console.log(content)
+        }
+}
+</script>

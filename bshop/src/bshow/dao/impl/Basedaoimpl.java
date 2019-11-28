@@ -312,7 +312,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		//拿到对应的文档xml
 		Class c=o.getClass();
 		Document doc=DBhelper.getDocumentByClass(c);
-		Element insertelement =(Element)doc.selectSingleNode("/class/insert[@id='"+id+"']");
+		Element insertelement =(Element)doc.selectSingleNode("/class/update[@id='"+id+"']");
 		String sql=insertelement.getTextTrim();
 		//获得多少个参数
 		int paramterCount =0;

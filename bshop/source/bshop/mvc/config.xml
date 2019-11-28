@@ -29,5 +29,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 
+	<!-- 购物车 -->
+	<PagePattern name="insertCart">
+		<ActionForm>bshow.web.servlet.form.InsertCartForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertCartAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 </properties>

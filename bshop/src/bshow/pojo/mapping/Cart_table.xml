@@ -8,6 +8,9 @@
 	<property name="cgoods_sub" column="cgoods_sub" />
 	<property name="cgoods_no" column="cgoods_no" />
 	<property name="cgoods_state" column="cgoods_state" />
+	<property name="cgoods_color" column="cgoods_color" />
+	<property name="cgoods_size" column="cgoods_size" />
+	<property name="account" column="account" />
 
 	<insert id="insertone">
 		insert into

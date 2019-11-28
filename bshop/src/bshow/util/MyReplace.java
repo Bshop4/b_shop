@@ -86,8 +86,8 @@ public class MyReplace implements Runnable,Subject{
 				if(form.getPagesize()!=null){
 					pagesize=Integer.parseInt(form.getPagesize());
 				}
-				ps.setInt(1, (page-1)*pagesize);
-				ps.setInt(2, pagesize);
+				ps.setInt(++index, (page-1)*pagesize);
+				ps.setInt(++index, pagesize);
 			}
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
@@ -110,15 +110,15 @@ public class MyReplace implements Runnable,Subject{
 					mylist.add(gc);
 				}
 			}else{
-				System.out.println(rs.next());
+				Goods_classify gc=new Goods_classify();
 				while(rs.next()){
-					Goods_classify gc=new Goods_classify();
 					//采用远程调用与反射
 					String str="set"+mykey.substring(0,1).toUpperCase()+mykey.substring(1);
 					Class c=gc.getClass();
 					Method m=c.getDeclaredMethod(str, String.class);
-					m.invoke(c, rs.getString(mykey));
-					mylist.add(gc);
+					Goods_classify mygc=(Goods_classify)c.newInstance();
+					m.invoke(mygc, rs.getString(mykey));
+					mylist.add(mygc);
 				}
 			}
 			mymap.put(mykey, mylist);

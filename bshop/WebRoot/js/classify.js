@@ -35,41 +35,36 @@ function getUrlVal(property) {
 			dataType:"json",
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success:function(result){
+				console.log(result);
+				//验证
+				if(result) {
+					alert('商品正在上架...');
+					return;
+				}
+				//清除内容
+				$('.merchandise>ul').empty();
+				//渲染数据
+				for (var key in result) {
+					console.log(key+":"+result[key]);
+				}
 				
-			}
-		})
-		
-		$.get('http://www.wjian.top/shop/api_goods.php', {
-			cat_id: catId,
-			page: page,
-			pagesize: pagesize,
-		}, function(result) {
-			var obj = JSON.parse(result);
-			//验证
-			if(obj.code != 0) {
-				console.log(obj.message);
-				alert('商品正在上架...');
-				return;
-			}
-			//清除内容
-			$('.merchandise>ul').empty();
-			var goodsList = obj.data;
-			//渲染数据
-			for(var i = 0; i < obj.data.length; i++) {
-				var str = `
-				<li>
-					<a target="_blank" href="detail.jsp?goods_id=${goodsList[i].goods_id}">
-						<img src="${goodsList[i].goods_thumb}" />
-						<div class="buttom">
-							<span class="left" href="javascript:;">${goodsList[i].goods_name}</span>
-							<span class="right" href="javascript:;">${goodsList[i].star_number}❤</span>
-						</div>
-						<p>${goodsList[i].goods_desc}</p>
-						<h3>￥${goodsList[i].price}</h3>
-					</a>
-				</li>
-			`;
-				$('.merchandise>ul').append(str);
+				
+				for(var i = 0; i < obj.data.length; i++) {
+					var str = `
+					<li>
+						<a target="_blank" href="detail.jsp?goods_id=${goodsList[i].goods_id}">
+							<img src="${goodsList[i].goods_thumb}" />
+							<div class="buttom">
+								<span class="left" href="javascript:;">${goodsList[i].goods_name}</span>
+								<span class="right" href="javascript:;">${goodsList[i].star_number}❤</span>
+							</div>
+							<p>${goodsList[i].goods_desc}</p>
+							<h3>￥${goodsList[i].price}</h3>
+						</a>
+					</li>
+				`;
+					$('.merchandise>ul').append(str);
+				}
 			}
 		})
 	}

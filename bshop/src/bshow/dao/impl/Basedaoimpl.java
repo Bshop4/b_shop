@@ -341,20 +341,21 @@ public class Basedaoimpl implements Basedao,Looker{
 		
 		//预处理
 			PreparedStatement ps=conn.prepareStatement(sql);
-			//设条件值
-			for (int i = 0; i < paramterCount; i++) {
-				String filedname=fileds.get(i);
-				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
-				Method method=c.getMethod(methodname, null);
-				ps.setObject(i+1, method.invoke(o, null));
-			}
-			
+			int index=0;
 			//设修改值
 			for (int i = 0; i < paramterval; i++) {
 				String filedname=setval.get(i);
 				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
 				Method method=c.getMethod(methodname, null);
-				ps.setObject(i+1, method.invoke(o, null));
+				ps.setObject(++index, method.invoke(o, null));
+			}
+			
+			//设条件值
+			for (int i = 0; i < paramterCount; i++) {
+				String filedname=fileds.get(i);
+				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
+				Method method=c.getMethod(methodname, null);
+				ps.setObject(++index, method.invoke(o, null));
 			}
 			
 			int psint=ps.executeUpdate();

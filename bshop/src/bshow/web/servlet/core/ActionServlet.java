@@ -44,7 +44,7 @@ public class ActionServlet extends HttpServlet {
 	 *      response)
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("进入ActionServlet————doPost");
+//		System.out.println("进入ActionServlet————doPost");
 		// 拿出应用程序中的action池
 		Properties actionPool = (Properties) this.getServletContext().getAttribute("actionPool");
 		// 拿出配置文件

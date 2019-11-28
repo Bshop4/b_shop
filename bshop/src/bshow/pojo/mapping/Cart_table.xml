@@ -44,5 +44,9 @@
 		select * from cart_table where 1=1 and cgoods_no=#{cgoods_no} and cgoods_color=#{cgoods_color} and cgoods_size=#{cgoods_size}
 	</select>
 	
+	<update id="updateCart1">
+		update cart_table set cgoods_number=@{cgoods_number}  where cart_id=#{cart_id}
+	</update>
+	
 	
 </class>

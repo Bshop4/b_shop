@@ -54,12 +54,12 @@ public class InsertCartAction extends Action{
 		if(list.size() == 0){
 			bd.saveObject("insertToCart", ct);
 		}else if(list.size() == 1){
-			System.out.println("有了 请更新");
 			Cart_table ct1 = (Cart_table)list.get(0);
 			int id = ct1.getCart_id();
 			int num = ct1.getCgoods_number();
 			num += Integer.parseInt(getnumber);
-			
+			ct1.setCgoods_number(num);
+			boolean f = bd.updataObject("updateCart1", ct1);
 		}
 		
 		

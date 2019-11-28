@@ -33,7 +33,7 @@ public class MyReplace implements Runnable,Subject{
 	List<Looker> myLookers=new ArrayList<Looker>();
 	
 	public MyReplace(String mykey,String mysql,Connection conn,Basedaoimpl bdi,GoodsByConditionsActionForm form) {
-		this.mysql=mykey;
+		this.mysql=mysql;
 		this.bdi=bdi;
 		this.conn=conn;
 		this.mykey=mykey;
@@ -91,13 +91,15 @@ public class MyReplace implements Runnable,Subject{
 			}
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
+				System.out.println("goods_price");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
 					gc.setGoods_price(rs.getDouble(mykey));
 					mylist.add(gc);
 				}
-			}else if("goods_price".equals(mykey)){
+			}else if("goodsConditions".equals(mykey)){
+				System.out.println("goodsConditions");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -108,6 +110,7 @@ public class MyReplace implements Runnable,Subject{
 					mylist.add(gc);
 				}
 			}else{
+				System.out.println(rs.next());
 				while(rs.next()){
 					Goods_classify gc=new Goods_classify();
 					//采用远程调用与反射

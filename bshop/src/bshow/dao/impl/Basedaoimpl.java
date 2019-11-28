@@ -247,6 +247,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		Connection conn2=DBhelper.getConnection();
 		String mysql2=sql+" group by c.goods_price";
 		mysql2=mysql2.replace("@", "c.goods_price");
+		System.out.println(mysql2);
 		MyReplace mr2=new MyReplace("goods_price",mysql2,conn2,this,form);
 		//用线程处理查询
 		Thread t2=new Thread(mr2);
@@ -286,6 +287,13 @@ public class Basedaoimpl implements Basedao,Looker{
 		MyReplace mr6=new MyReplace("goodsConditions",mysql5,conn5,this,form);
 		//用线程处理查询
 		Thread t6=new Thread(mr6);
+		
+		//满足条件跳出循环
+		while(true){
+			if(allNeeds.size()==6){
+				break;
+			}
+		}
 		return allNeeds;
 	}
 

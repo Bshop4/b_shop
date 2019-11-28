@@ -52,15 +52,14 @@ public class InsertCartAction extends Action{
 			ct.setCgoods_size(getsize);
 			ct.setCgoods_no(goodsNo);
 			ct.setCgoods_state(0);
-			System.out.println("123");
+			System.out.println("第一次");
 			bd.saveObject("insertToCart", ct);
 			
 		}else if("1".equals(state)){
 			Cart_table ct = new Cart_table();
 			List<Object> list = bd.select("selectCartByGoodsno", ct);
-			Cart_table ct1 = (Cart_table)list;
-			System.out.println("123");
-			System.out.println("1 " + ct1);
+			Cart_table ct1 = (Cart_table)list.get(0);
+			System.out.println("第二次" + ct1);
 			
 			
 		}

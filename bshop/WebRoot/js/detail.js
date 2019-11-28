@@ -242,6 +242,9 @@ function opration(){
 
 
     var cnt = 0;
+    var allold = "";
+    var allnew = "";
+    var state = "0";//记录是否同一商品、同一颜色、尺码
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
         var token = localStorage.getItem('token');
@@ -269,7 +272,7 @@ function opration(){
         	}
         })
 
-        var state = "0";//记录是否同一商品、同一颜色、尺码
+//        var state = "0";//记录是否同一商品、同一颜色、尺码
         
         var allnew = {
         	"goodsNo":goodsNo,
@@ -284,7 +287,7 @@ function opration(){
         	"account":"pyla1"
         }
            
-        var allold = "";
+        
         
         //验证
         if(token){
@@ -311,17 +314,44 @@ function opration(){
 				$('.zjl-flyincart img').css('display','none');
 				$('.store_number').html(goodsNumber);
 			});
-//			var cnt = 0;
+			
+			
 			cnt++;
-			console.log(cnt)
 			if(cnt==1){
 				allnew = allnew;
-				console.log("allnew + " + allnew)
-				console.log(allnew.state)
-			}else if(cnt > 1){
-				if(allold.getcolor == allnew.getcolor && allold.getcolor == allnew.getcolor && allold.getgoodsname == allnew.getgoodsname){
-					allnew.state = "1";
-					console.log("cnt" + cnt)
+			}
+			if(cnt > 1){
+				console.log(">1")
+				console.log(allnew)
+				console.log(allold)
+				if(allnew.getcolor == allold.getcolor && allnew.getsize == allold.getsize && allnew.getgoodsname == allold.getgoodsname){
+					state = "1";
+					allnew = {
+				        "goodsNo":goodsNo,
+				        "getnumber":getnumber,
+				        "imgurl":imgurl,
+				        "getgoodsname":getgoodsname,
+				        "getprice":getprice,
+				        "getAllprice":getAllprice,
+				        "getcolor":getcolor,
+				        "getsize":getsize,
+				        "state":state,
+				        "account":"pyla1"
+				      }
+				}else{
+					state = "0";
+					allnew = {
+					     "goodsNo":goodsNo,
+					     "getnumber":getnumber,
+					     "imgurl":imgurl,
+					     "getgoodsname":getgoodsname,
+					     "getprice":getprice,
+					     "getAllprice":getAllprice,
+					     "getcolor":getcolor,
+					     "getsize":getsize,
+					     "state":state,
+					     "account":"pyla1"
+					  }
 				}
 			}
 			
@@ -333,7 +363,6 @@ function opration(){
                 	
                 	allold = allnew;
                 	allnew = "";
-                    
                 },
             });
         }else{

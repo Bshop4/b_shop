@@ -1,3 +1,4 @@
+
 package bshow.web.servlet.form;
 
 import bshow.web.servlet.core.ActionForm;
@@ -9,6 +10,10 @@ public class InsertCartForm extends ActionForm{
 		return msg;
 	}
 	public void setMsg(String msg) {
-		this.msg = msg;
+		this.msg = msg; 
+		
 	}
 }
+
+
+

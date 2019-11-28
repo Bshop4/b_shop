@@ -2,9 +2,8 @@ package bshow.pojo;
 
 import java.io.Serializable;
 
-	
 public class Cart_table implements Serializable {
-	private int cart_id;// 购物车主键
+	private int cart_id; // 购物车主键
 	private String cgoods_photo;// 购物车商品的图片
 	private String cgoods_desc;// 商品的描述说明
 	private int cgoods_number;// 商品的数量
@@ -15,30 +14,6 @@ public class Cart_table implements Serializable {
 	private String account;
 	private String cgoods_color;
 	private String cgoods_size;
-
-	public String getAccount() {
-		return account;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public String getCgoods_color() {
-		return cgoods_color;
-	}
-
-	public void setCgoods_color(String cgoods_color) {
-		this.cgoods_color = cgoods_color;
-	}
-
-	public String getCgoods_size() {
-		return cgoods_size;
-	}
-
-	public void setCgoods_size(String cgoods_size) {
-		this.cgoods_size = cgoods_size;
-	}
 
 	public int getCart_id() {
 		return cart_id;
@@ -102,6 +77,30 @@ public class Cart_table implements Serializable {
 
 	public void setCgoods_state(int cgoods_state) {
 		this.cgoods_state = cgoods_state;
+	}
+
+	public String getCgoods_color() {
+		return cgoods_color;
+	}
+
+	public void setCgoods_color(String cgoods_color) {
+		this.cgoods_color = cgoods_color;
+	}
+
+	public String getCgoods_size() {
+		return cgoods_size;
+	}
+
+	public void setCgoods_size(String cgoods_size) {
+		this.cgoods_size = cgoods_size;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 }

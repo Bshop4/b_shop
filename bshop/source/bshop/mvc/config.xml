@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <properties>
+	<!-- 首页商品展示 -->
 	<PagePattern name="pageBranchAction">
 		<ActionForm>bshow.web.servlet.form.PageBranchActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.PageBranchAction</Action>
@@ -14,6 +15,7 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 查询最大页数 -->
 	<PagePattern name="maxPageAction">
 		<ActionForm>bshow.web.servlet.form.MaxPageActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.MaxPageAction</Action>
@@ -21,7 +23,18 @@
 		<path name="success">success.jsp</path>
 		<path name="error">error.jsp</path>
 	</PagePattern>
+
 	
+
+	<!-- 查询购物车商品 -->
+	<PagePattern name="selectCartGoods">
+		<ActionForm>bshow.web.servlet.form.SelectCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	
+	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
 		<ActionForm>bshow.web.servlet.form.NavigationActionForm</ActionForm>
 		<Action>bshow.web.servlet.action.NavigationAction</Action>
@@ -30,7 +43,14 @@
 		<path name="error">error.jsp</path>
 	</PagePattern>
 	
-
+	<!-- 多条件查询 -->
+	<PagePattern name="goodsByConditionsAction">
+		<ActionForm>bshow.web.servlet.form.GoodsByConditionsActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.GoodsByConditionsAction</Action>
+		<Redirect>false</Redirect>
+		<path name="success">success.jsp</path>
+		<path name="error">error.jsp</path>
+	</PagePattern>
 
 	<!-- 注册插入 -->
 	<PagePattern name="Sign_account">

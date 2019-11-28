@@ -42,7 +42,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		System.out.println("gt1" + gt1.getGoods_id()); */
      %>
     <!-- <a href="pageBranchAction.do">haha</a> -->
+
     <%
+
     		//Loadgoods l=new Loadgoods();
         	//l.action();
         /* 	Goods_table g=new Goods_table();

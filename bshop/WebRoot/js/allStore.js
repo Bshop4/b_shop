@@ -2,8 +2,14 @@
 (function() {
 	var page = 1;
 	var pagesize = 16;
+	getUrlVal("middle_type");
 	//封装热门商品
 	function getGoodsList() {
+		$.ajax({
+			type:"post",
+			url:"goodsByConditionsAction.do",
+		})
+		
 		$.get('http://www.wjian.top/shop/api_goods.php', {
 			page: page,
 			pagesize: pagesize,
@@ -74,4 +80,14 @@
 		//返回顶部
 		$('html').animate({'scrollTop':0},100);
 	})
+	
+	//获得地址栏参数值?  cat_id=55&name=xiaoming
+	function getUrlVal(property){
+	  //地址栏
+	  var urlStr = window.location.search.substring(1);
+	  var re = new RegExp('(^|&)'+ property +'=([^&]*)(&|$)');
+	  var result = urlStr.match(re);
+	  if(result == null){return null};
+	  return result[2];
+	};
 })()

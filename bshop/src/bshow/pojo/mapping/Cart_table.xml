@@ -20,7 +20,7 @@
 	</insert>
 	<select id="selectone" resulttype="bshow.pojo.Cart_table">
 		select * from cart_table where
-		1=1 and cart_id=#{cart_id}
+		1=1 and account=#{account}
 	</select>
 	<delete id="deleteone" resulttype="bshow.pojo.Cart_table">
 		delete from cart_table where

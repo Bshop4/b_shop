@@ -1,3 +1,11 @@
+(function(){
+	
+	
+	
+	
+})()
+
+
 //下拉列表
     var pro = document.getElementById("province");
     function getPro(){

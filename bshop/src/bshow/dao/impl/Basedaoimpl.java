@@ -205,7 +205,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		Connection conn=DBhelper.getConnection();	
 		//select c.goods_price from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
 		//多条件查询
-		String sql="select @ from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		String sql="select @ from (select a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb=new StringBuffer(sql);
 		if(form.getGoods_name()!=null){
 			char[] myname=form.getGoods_name().toCharArray();
@@ -247,7 +247,6 @@ public class Basedaoimpl implements Basedao,Looker{
 		Connection conn2=DBhelper.getConnection();
 		String mysql2=sql+" group by c.goods_price";
 		mysql2=mysql2.replace("@", "c.goods_price");
-		System.out.println(mysql2);
 		MyReplace mr2=new MyReplace("goods_price",mysql2,conn2,this,form);
 		//用线程处理查询
 		Thread t2=new Thread(mr2);
@@ -282,11 +281,13 @@ public class Basedaoimpl implements Basedao,Looker{
 		
 		//查询商品
 		Connection conn6=DBhelper.getConnection();
-		String mysql6=sql+" limit ?,?";
-		mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
-		MyReplace mr6=new MyReplace("goodsConditions",mysql5,conn5,this,form);
+		String mysql6=sql+" group by c.goods_no limit ?,?";
+		mysql6=mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
+		System.out.println(mysql6);
+		MyReplace mr6=new MyReplace("goodsConditions",mysql6,conn6,this,form);
 		//用线程处理查询
 		Thread t6=new Thread(mr6);
+		t6.start();
 		
 		//满足条件跳出循环
 		while(true){
@@ -301,7 +302,7 @@ public class Basedaoimpl implements Basedao,Looker{
 	//实现观察者
 	@Override
 	public void update(Map<String,List<Goods_classify>> mymap) {
-		mymap.putAll(allNeeds);
+		allNeeds.putAll(mymap);
 	}
 
 	@Override
@@ -341,20 +342,21 @@ public class Basedaoimpl implements Basedao,Looker{
 		
 		//预处理
 			PreparedStatement ps=conn.prepareStatement(sql);
-			//设条件值
-			for (int i = 0; i < paramterCount; i++) {
-				String filedname=fileds.get(i);
-				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
-				Method method=c.getMethod(methodname, null);
-				ps.setObject(i+1, method.invoke(o, null));
-			}
-			
+			int index=0;
 			//设修改值
 			for (int i = 0; i < paramterval; i++) {
 				String filedname=setval.get(i);
 				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
 				Method method=c.getMethod(methodname, null);
-				ps.setObject(i+1, method.invoke(o, null));
+				ps.setObject(++index, method.invoke(o, null));
+			}
+			
+			//设条件值
+			for (int i = 0; i < paramterCount; i++) {
+				String filedname=fileds.get(i);
+				String methodname="get"+filedname.substring(0,1).toUpperCase()+filedname.substring(1);
+				Method method=c.getMethod(methodname, null);
+				ps.setObject(++index, method.invoke(o, null));
 			}
 			
 			int psint=ps.executeUpdate();

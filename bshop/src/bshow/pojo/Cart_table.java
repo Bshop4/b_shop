@@ -11,9 +11,17 @@ public class Cart_table implements Serializable {
 	private double cgoods_sub;// 商品的小计
 	private String cgoods_no;// 商品的编号
 	private int cgoods_state;// 购物车的状态(是否交易成功)
-	private String account;
-	private String cgoods_color;
-	private String cgoods_size;
+	private String account;// 账户名
+	private String cgoods_color;// 商品颜色
+	private String cgoods_size;// 商品尺寸
+
+	@Override
+	public String toString() {
+		return "Cart_table [cart_id=" + cart_id + ", cgoods_photo=" + cgoods_photo + ", cgoods_desc=" + cgoods_desc
+				+ ", cgoods_number=" + cgoods_number + ", cgoods_price=" + cgoods_price + ", cgoods_sub=" + cgoods_sub
+				+ ", cgoods_no=" + cgoods_no + ", cgoods_state=" + cgoods_state + ", account=" + account
+				+ ", cgoods_color=" + cgoods_color + ", cgoods_size=" + cgoods_size + "]";
+	}
 
 	public int getCart_id() {
 		return cart_id;

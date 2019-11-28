@@ -68,8 +68,6 @@ public class ActionServlet extends HttpServlet {
 			classFormName = element.getStringValue();
 			System.out.println(classFormName);
 		}
-		System.out.println(classFormName);
-		System.out.println(111222);
 		// 反射出form的实例
 		ActionForm form = null;
 		try {

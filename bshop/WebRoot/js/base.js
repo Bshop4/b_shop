@@ -1,44 +1,46 @@
 
 //导航栏上菜单
 (function() {
-	$.get('http://www.wjian.top/shop/api_cat.php', {}, function(result) {
-		var obj = JSON.parse(result);
-		if(obj.code != 0) {
-			console.log(obj.message);
-			return;
+	$.ajax({
+		type:"post",
+		url:"navigationAction.do",
+		data:{"min":0,"max":9},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+			var str = ``;
+			for(var i = 0; i < result.length; i++) {
+				if(i < result.length - 1) {
+					str = `
+					<li class="category">
+						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i].middle_type}">${result[i].middle_type}</a>
+						<div class="list-content left">
+							<div class="inner-content">
+								<h1>${result[i].middle_type}</h1>
+								<p></p>
+							</div>
+						</div>
+					</li>
+				`;
+					$('.tabs-list-buttom>.tabs-list').append(str);
+				} else {
+					str = `
+					<li class="category">
+						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i].middle_type}">${result[i].middle_type}</a>
+						<div class="list-content right">
+							<div class="inner-content">
+								<h1>${result[i].middle_type}</h1>
+								<p></p>
+							</div>
+						</div>
+					</li>
+				`;
+					$('.tabs-list-buttom>.tabs-list').append(str);
+				}
+			};
 		}
-		var goodsC = obj.data;
-		var str = ``;
-		for(var i = 0; i < goodsC.length; i++) {
-			if(i < goodsC.length - 1) {
-				str = `
-				<li class="category">
-					<a target="_blank" href="classify.jsp?cat_id=${goodsC[i].cat_id}&cat_name=${goodsC[i].cat_name}">${goodsC[i].cat_name}</a>
-					<div class="list-content left">
-						<div class="inner-content">
-							<h1>上装</h1>
-							<p></p>
-						</div>
-					</div>
-				</li>
-			`;
-				$('.tabs-list-buttom>.tabs-list').append(str);
-			} else {
-				str = `
-				<li class="category">
-					<a target="_blank" href="classify.jsp?cat_id=${goodsC[i].cat_id}&cat_name=${goodsC[i].cat_name}">${goodsC[i].cat_name}</a>
-					<div class="list-content right">
-						<div class="inner-content">
-							<h1>上装</h1>
-							<p></p>
-						</div>
-					</div>
-				</li>
-			`;
-				$('.tabs-list-buttom>.tabs-list').append(str);
-			}
-		};
-	});
+	})
+
 })();
 //返回顶部
 (function(){

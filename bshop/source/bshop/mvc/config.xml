@@ -22,6 +22,15 @@
 		<path name="error">error.jsp</path>
 	</PagePattern>
 	
+	<PagePattern name="navigationAction">
+		<ActionForm>bshow.web.servlet.form.NavigationActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.NavigationAction</Action>
+		<Redirect>false</Redirect>
+		<path name="success">success.jsp</path>
+		<path name="error">error.jsp</path>
+	</PagePattern>
+	
+	
 	<!-- <PagePattern name="xxx">
 		<ActionForm>bshow.web.servlet.form.XxxForm</ActionForm>
 		<Action>bshow.web.servlet.action.XxxAction</Action>

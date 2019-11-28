@@ -3,8 +3,8 @@
  */
 
 (function(){
-      //var goodsId = getUrlVal('goods_id');
-	var goodsno = "124093465551130";
+      var goodsno = getUrlVal('goods_no');
+//	var goodsno = "124093465551130";
     //发起
 	$.ajax({
 		type:"POST",
@@ -117,6 +117,9 @@
 	            </ul>
 			`;
 			
+			
+			
+			
 //			//尺码
 			var strsize1 = obj.goods_size;
 			var arrSize = strsize1.split(",");
@@ -175,7 +178,8 @@
 	            'z-index': 999,
 	            display: 'none',
 	        })
-
+	        $(".zjl-product-color ul li").eq(0).attr("data-color","checked").siblings().attr("data-color","");
+	        $(".zjl-product-size ul li").eq(0).attr("data-size","checked").siblings().attr("data-size","");
 
 	        opration();
 		}
@@ -237,7 +241,10 @@ function opration(){
     })
 
 
-
+    var cnt = 0;
+    var allold = "";
+    var allnew = "";
+    var state = "0";//记录是否同一商品、同一颜色、尺码
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
         var token = localStorage.getItem('token');
@@ -245,21 +252,42 @@ function opration(){
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
         
         var getnumber = $('.number').attr('value');//数量
-//        getnumber = parseInt(getnumber);
         var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
         var getgoodsname = $('.zjl-product-name').html();//商品名字
         var getprice = $('.realPrice').html();//单价-string
         var getAllprice = parseInt(getprice) * parseInt(getnumber);//总价-int
+        getAllprice+="";
         
-        var getcolor = "";
+        var getcolor = "";//颜色
         $('.zjl-product-color ul li').each(function(i){
-        	
-            $(this).children().show().parent().siblings().children().hide();
-            
+        	if($(this).attr("data-color") == "checked"){
+        		getcolor = $(this).text();
+        	}
         })
         
-        
+        var getsize = "";//尺寸
+        $('.zjl-product-size ul li').each(function(i){
+        	if($(this).attr("data-size") == "checked"){
+        		getsize = $(this).text();
+        	}
+        })
 
+//        var state = "0";//记录是否同一商品、同一颜色、尺码
+        
+        var allnew = {
+        	"goodsNo":goodsNo,
+        	"getnumber":getnumber,
+        	"imgurl":imgurl,
+        	"getgoodsname":getgoodsname,
+        	"getprice":getprice,
+        	"getAllprice":getAllprice,
+        	"getcolor":getcolor,
+        	"getsize":getsize,
+        	"state":state,
+        	"account":"pyla1"
+        }
+           
+        
         
         //验证
         if(token){
@@ -288,24 +316,55 @@ function opration(){
 			});
 			
 			
-//			
-//            $.ajax({
-//                type : 'post',
-//                url : 'http://www.wjian.top/shop/api_cart.php',
-//                data: {'goods_id':goodsId, 'number': parseInt($('.number').attr('value'))},
-//                dataType:'json',
-//                success : function(e){
-//                    
-//                    
-//                    
-//                    
-//                    
-////                  待写进入数据库加数据
-//                    
-//                    
-//                    
-//                },
-//            });
+			cnt++;
+			if(cnt==1){
+				allnew = allnew;
+			}
+			if(cnt > 1){
+				console.log(">1")
+				console.log(allnew)
+				console.log(allold)
+				if(allnew.getcolor == allold.getcolor && allnew.getsize == allold.getsize && allnew.getgoodsname == allold.getgoodsname){
+					state = "1";
+					allnew = {
+				        "goodsNo":goodsNo,
+				        "getnumber":getnumber,
+				        "imgurl":imgurl,
+				        "getgoodsname":getgoodsname,
+				        "getprice":getprice,
+				        "getAllprice":getAllprice,
+				        "getcolor":getcolor,
+				        "getsize":getsize,
+				        "state":state,
+				        "account":"pyla1"
+				      }
+				}else{
+					state = "0";
+					allnew = {
+					     "goodsNo":goodsNo,
+					     "getnumber":getnumber,
+					     "imgurl":imgurl,
+					     "getgoodsname":getgoodsname,
+					     "getprice":getprice,
+					     "getAllprice":getAllprice,
+					     "getcolor":getcolor,
+					     "getsize":getsize,
+					     "state":state,
+					     "account":"pyla1"
+					  }
+				}
+			}
+			
+            $.ajax({
+                type : 'post',
+                url : 'insertCart.do',
+                data: {"msg":JSON.stringify(allnew)},
+                success : function(result){
+                	
+                	allold = allnew;
+                	allnew = "";
+                },
+            });
         }else{
             if(confirm('未登录，点击确定跳到登录界面')){
                 location.href = 'Login.jsp?goods_no=' + goodsNo;
@@ -360,7 +419,7 @@ function opration(){
     $('.zjl-product-color ul li').each(function(i){
         $(this).click(function(i){
             $(this).children().show().parent().siblings().children().hide();
-
+            $(this).attr("data-color","checked").siblings().attr("data-color","");
         })
     })
 
@@ -368,6 +427,7 @@ function opration(){
     $('.zjl-product-size ul li').each(function (i) {
         $(this).click(function(){
             $(this).children().show().parent().siblings().children().hide();
+            $(this).attr("data-size","checked").siblings().attr("data-size","");
         })
     })
 

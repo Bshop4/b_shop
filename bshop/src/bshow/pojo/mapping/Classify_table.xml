@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Classify_table" table="classify_table">
+	<property name="classify_id" column="classify_id"/>
+	<property name="classify_one" column="classify_one"/>
+	<property name="classify_two" column="classify_two"/>
+	
+	<insert id="insertone">
+		insert into classify_table(classify_id,classify_one,classify_two) values(#{classify_id},#{classify_one},#{classify_two})
+	</insert>
+	<select id="selectone" resulttype="bshow.pojo.Bill_table">
+		select * from  classify_table where 1=1 and classify_id=#{classify_id}
+	</select>
+	<!--
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

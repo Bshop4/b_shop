@@ -13,10 +13,32 @@ function getUrlVal(property) {
 	//分类id
 	var page = 1;
 	var pagesize = 16;
-	var catName= decodeURI(getUrlVal('cat_name'));
-	$('title').html('B-SHOP嘿店——'+catName);
+	var urlVal;
+	if(getUrlVal("middle_type")){
+		urlVal=decodeURI(getUrlVal("middle_type"));
+	};
+	if(getUrlVal("goods_name")){
+		urlVal=decodeURI(getUrlVal("goods_name"));
+	}
+	console.log(urlVal);
+	$('title').html('B-SHOP嘿店——'+urlVal);
 	function getGoodsList() {
-		catId = getUrlVal('cat_id');
+		
+		$.ajax({
+			type:"post",
+			url:"goodsByConditionsAction.do",
+			data:{
+				page:page,
+				pagesize:pagesize,
+				middle_type:urlVal,
+			},
+			dataType:"json",
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success:function(result){
+				
+			}
+		})
+		
 		$.get('http://www.wjian.top/shop/api_goods.php', {
 			cat_id: catId,
 			page: page,

@@ -186,7 +186,7 @@ public class Basedaoimpl implements Basedao,Looker{
 			Element selectelement=(Element)doc.selectSingleNode("/class/select[@id='"+id+"']");
 			//获得元素内容的sql语句
 			String sql=selectelement.getTextTrim();
-			System.out.println(sql);
+//			System.out.println(sql);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
@@ -233,7 +233,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		}
 		//根据条件构成sql语句
 		sql=sb.toString();
-		System.out.println(sql);
+//		System.out.println(sql);
 		
 		//查询还有的品牌
 		String mysql=sql+" group by c.goods_brand";
@@ -247,6 +247,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		Connection conn2=DBhelper.getConnection();
 		String mysql2=sql+" group by c.goods_price";
 		mysql2=mysql2.replace("@", "c.goods_price");
+		System.out.println(mysql2);
 		MyReplace mr2=new MyReplace("goods_price",mysql2,conn2,this,form);
 		//用线程处理查询
 		Thread t2=new Thread(mr2);
@@ -286,6 +287,13 @@ public class Basedaoimpl implements Basedao,Looker{
 		MyReplace mr6=new MyReplace("goodsConditions",mysql5,conn5,this,form);
 		//用线程处理查询
 		Thread t6=new Thread(mr6);
+		
+		//满足条件跳出循环
+		while(true){
+			if(allNeeds.size()==6){
+				break;
+			}
+		}
 		return allNeeds;
 	}
 

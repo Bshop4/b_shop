@@ -15,14 +15,20 @@ public class MiddleTableDaoImpl implements MiddleTableDao{
 	public List<String> selectNav(int min, int max) {
 		Connection conn= DBhelper.getConnection();
 		List<String> list=new ArrayList<String>();
-		String sql="(select middle_type from middle_table group by middle_type limit ?,?)";
+		String sql="(select middle_type from middle_table group by middle_type)";
 		try {
 			PreparedStatement ps=conn.prepareStatement(sql);
-			ps.setInt(1, min);
-			ps.setInt(2, max);
+//			ps.setInt(1, min);
+//			ps.setInt(2, max);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
-				list.add(rs.getString("middle_type"));
+				if(list.size()>9){
+					break;
+				}
+				//长度为2的存进去
+				if(rs.getString("middle_type").length()==2&&!rs.getString("middle_type").equals("女装")&&!rs.getString("middle_type").equals("男装")){
+					list.add(rs.getString("middle_type"));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

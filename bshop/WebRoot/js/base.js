@@ -8,15 +8,16 @@
 		dataType:"json",
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success:function(result){
+			console.log(result)
 			var str = ``;
 			for(var i = 0; i < result.length; i++) {
 				if(i < result.length - 1) {
 					str = `
 					<li class="category">
-						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i].middle_type}">${result[i].middle_type}</a>
+						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
 						<div class="list-content left">
 							<div class="inner-content">
-								<h1>${result[i].middle_type}</h1>
+								<h1>${result[i]}</h1>
 								<p></p>
 							</div>
 						</div>
@@ -26,10 +27,10 @@
 				} else {
 					str = `
 					<li class="category">
-						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i].middle_type}">${result[i].middle_type}</a>
+						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
 						<div class="list-content right">
 							<div class="inner-content">
-								<h1>${result[i].middle_type}</h1>
+								<h1>${result[i]}</h1>
 								<p></p>
 							</div>
 						</div>

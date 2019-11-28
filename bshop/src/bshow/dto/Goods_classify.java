@@ -3,7 +3,7 @@ package bshow.dto;
 import java.io.Serializable;
 
 public class Goods_classify implements Serializable{
-	private double goods_price;
+	private String goods_price;
 	private String goods_brand;
 	private String middle_color;
 	private String middle_size;
@@ -13,10 +13,10 @@ public class Goods_classify implements Serializable{
 	private String goods_name;
 	private String goods_photo;
 	private String goods_no;
-	public double getGoods_price() {
+	public String getGoods_price() {
 		return goods_price;
 	}
-	public void setGoods_price(double goods_price) {
+	public void setGoods_price(String goods_price) {
 		this.goods_price = goods_price;
 	}
 	public String getGoods_brand() {
@@ -80,6 +80,7 @@ public class Goods_classify implements Serializable{
 				+ middle_repertory + ", middle_type=" + middle_type + ", goods_name=" + goods_name + ", goods_photo="
 				+ goods_photo + ", goods_no=" + goods_no + "]";
 	}
+	
 
 	
 }

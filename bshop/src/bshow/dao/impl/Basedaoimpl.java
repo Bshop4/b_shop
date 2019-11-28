@@ -299,7 +299,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		//查询商品
 		Connection conn6=DBhelper.getConnection();
 		String mysql6=sql+" group by c.goods_no limit ?,?";
-		mysql6=mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
+		mysql6=mysql6.replace("@", "c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
 		System.out.println(mysql6);
 		MyReplace mr6=new MyReplace("goodsConditions",mysql6,conn6,this,form);
 		//用线程处理查询

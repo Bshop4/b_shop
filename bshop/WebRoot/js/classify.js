@@ -118,6 +118,16 @@ function getUrlVal(property) {
 					}
 				}
 				
+				//渲染价格区间
+				for(var i=0;i<result[0].goods_price.length;i++){
+					if(i<=10){
+						var str=`<li><a data-jump="${result[0].goods_price[i].goods_price}">${result[0].goods_price[i].goods_price}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(5).append(str);
+					}else{
+						break;
+					}
+				}
+				
 			}
 		})
 	}

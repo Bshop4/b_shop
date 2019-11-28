@@ -76,6 +76,9 @@ public class MyReplace implements Runnable,Subject{
 			if(form.getMiddle_type()!=null){
 				ps.setString(++index, form.getMiddle_type());
 			}
+			if(form.getGoods_place()!=null){
+				ps.setString(++index, form.getGoods_place());
+			}
 			//分页查询
 			if("goodsConditions".equals(mykey)){
 				int page=0;

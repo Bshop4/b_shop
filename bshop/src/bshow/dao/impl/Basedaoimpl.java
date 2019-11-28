@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +31,7 @@ import bshow.web.servlet.form.GoodsByConditionsActionForm;
 public class Basedaoimpl implements Basedao,Looker{
 	
 	//用来存储所有的信息
-	Map<String,List<Goods_classify>> allNeeds=new HashMap<String, List<Goods_classify>>();
+	Map<String,List<Goods_classify>> allNeeds=new ConcurrentHashMap<String, List<Goods_classify>>();
 	
 	@Override
 	public void saveObject(String id, Object o) {
@@ -205,7 +206,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		Connection conn=DBhelper.getConnection();	
 		//select c.goods_price from (select a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where  
 		//多条件查询
-		String sql="select @ from (select a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		String sql="select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb=new StringBuffer(sql);
 		if(form.getGoods_name()!=null){
 			char[] myname=form.getGoods_name().toCharArray();
@@ -230,6 +231,9 @@ public class Basedaoimpl implements Basedao,Looker{
 		}
 		if(form.getMiddle_type()!=null){
 			sb.append(" and c.middle_type=?");
+		}
+		if(form.getGoods_place()!=null){
+			sb.append(" and c.goods_place=?");
 		}
 		//根据条件构成sql语句
 		sql=sb.toString();
@@ -289,6 +293,16 @@ public class Basedaoimpl implements Basedao,Looker{
 		Thread t6=new Thread(mr6);
 		t6.start();
 		
+		//查询发货地
+		Connection conn7=DBhelper.getConnection();
+		String mysql7=sql+" group by c.goods_place";
+		mysql7=mysql7.replace("@", "c.goods_place");
+		System.out.println(mysql7);
+		MyReplace mr7=new MyReplace("goods_place",mysql7,conn7,this,form);
+		//用线程处理查询
+		Thread t7=new Thread(mr7);
+		t7.start();
+		
 		//满足条件跳出循环
 		while(true){
 			if(allNeeds.size()==6){
@@ -305,6 +319,8 @@ public class Basedaoimpl implements Basedao,Looker{
 		allNeeds.putAll(mymap);
 	}
 
+	
+	
 	@Override
 	public boolean updataObject(String id, Object o) {
 		// TODO Auto-generated method stub

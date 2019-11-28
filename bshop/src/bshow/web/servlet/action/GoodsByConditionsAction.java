@@ -37,7 +37,12 @@ public class GoodsByConditionsAction extends Action{
 //		System.out.println(mymap.size());
 //		Set<Map.Entry<String, List<Goods_classify>>> set= mymap.entrySet();
 //		for (Map.Entry<String, List<Goods_classify>> entry : set) {
-//			System.out.println(entry.getKey());
+//			if("goodsConditions".equals(entry.getKey())){
+//				List<Goods_classify> doods=entry.getValue();
+//				for (Goods_classify goods_classify : doods) {
+//					System.out.println(goods_classify.toString());
+//				}
+//			}
 //		}
 		
 		response.setCharacterEncoding("utf-8");

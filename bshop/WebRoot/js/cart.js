@@ -14,39 +14,56 @@ function createXMLHttp() {
 		}
 	}
 }
-
+//定义一个需要进行操作的变量
+var returnResult;
 $(document).ready(function() {
-	var cgoods_no = "9042194192054";
+	var account = "pyla1";
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
 		url : "selectCartGoods.do",
-		data : {
-			"cgoods_no" : cgoods_no
-		},
+		data : {"account" : account},
 		success : function(result) {
 			var result=JSON.parse(result);
-			var goodsList = result.data;
-			for (var i = 0; i < goodsList; i++) {
+			returnResult = result;
+// console.log(returnResult.length);
+// console.log(result);
+// console.log(result.length);
+			// 验证
+			if (result.account==0) {
+				console.log("请求数据失败");
+				return;
+			};
+// console.log(result[0].cgoods_photo);
+// var goodsList = result.data;
+			for (var i = 0; i < result.length; i++) {
+//				console.log(result[i].cart_id)
 				var str = `
 					<tr>
-						<td class="left>
-							<img src="${goodsList[i].cgoods_photo}"/>
+						<td class="left">
+							<input type="checkbox" class="check"/>
+							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
 						</td>
-						<td class="desc">${goodsList[i].cgoods_desc}</td>
+						<td class="desc">${result[i].cgoods_desc}</td>
 			            <td class="calculate">
 				            <button class="add">+</button>
-				            <span class="count">${goodsList[i].cgoods_number}</span>
+				            <span class="count">${result[i].cgoods_number}</span>
 				            <button class="reduce">-</button>
 			            </td>
-			            <td>${goodsList[i].price}</td>
-			            <td class="subtotal">${goodsList[i].cgoods_price}</td>
-			            <td><a href="javascript:;" class="del">删除</a></td>
+						<td>${result[i].cgoods_color}</td>
+						<td>${result[i].cgoods_size}</td>
+			            <td>${result[i].cgoods_price}</td>
+			            <td class="subtotal">${result[i].cgoods_sub}</td>
+			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id}>删除</a></td>
 			        </tr>
 					`;
-				 //把每次组装好的添加进table
+				 // 把每次组装好的添加进table
 			     $('table').append(str);
-			}
+			};
+			$('.carts-number').text(result.length);
+			allMount = result.length;
+		    // 所有的业务逻辑都在这之后
+		    clickAll();
 		}
 	})
 })
@@ -90,8 +107,7 @@ function clickAll() {
 			spanDomVal++;
 			if (spanDomVal > 99) {
 				spanDomVal = 99
-			}
-			;
+			};
 			// 数据库修改成功后才能去设置界面
 			spanDom.innerHTML = spanDomVal;
 			// 求小计
@@ -146,15 +162,25 @@ function clickAll() {
 		// 点击删除
 		if (event.target.className == 'del') {
 			// 要做商品减的业务
-			console.log('点击了全选');
+			console.log('点击了删除');
 			// 找到tr删除自己
 			var tab = event.target.parentNode.parentNode.parentNode;
-			// console.log(tab)
 			var tr = event.target.parentNode.parentNode;
-			// console.log(tr)
+//			console.log(returnResult);
+//			console.log(returnResult.length+"哈哈");
+			$('.carts-number').text(--allMount);// 左上角购物车数量减一
+			//得到删除的商品的id
+			var cart_id = $('.del').attr("data-id");
+//			console.log(cart_id)
+			$.ajax({
+				type:"POST",
+				url:"deleteCartGoods.do",
+				data:{"cart_id":cart_id},
+				success:function(result){
+					var result = JSON.parse(result);
+				}
+			});
 			tab.removeChild(tr);
-			$('.carts-number').text(--allMount);
-			// $(event.target).html('哈另一个')
 			// 调用总价
 			sumAll();
 		}
@@ -181,8 +207,7 @@ function clickAll() {
 			;
 			// 求总价
 			sumAll();
-		}
-		;
+		};
 		// 点击删除
 		if (event.target.className == 'delAll') {
 			// 全部删除

@@ -33,6 +33,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 删除购物车商品 -->
+	<PagePattern name="deleteCartGoods">
+		<ActionForm>bshow.web.servlet.form.DeleteCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">

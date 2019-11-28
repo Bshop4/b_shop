@@ -2,14 +2,8 @@
 (function() {
 	var page = 1;
 	var pagesize = 16;
-	getUrlVal("middle_type");
 	//封装热门商品
 	function getGoodsList() {
-		$.ajax({
-			type:"post",
-			url:"goodsByConditionsAction.do",
-		})
-		
 		$.get('http://www.wjian.top/shop/api_goods.php', {
 			page: page,
 			pagesize: pagesize,

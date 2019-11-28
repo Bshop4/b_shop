@@ -66,10 +66,10 @@ public class ActionServlet extends HttpServlet {
 		String classFormName = null;
 		for (Element element : list) {
 			classFormName = element.getStringValue();
-			System.out.println(classFormName);
+//			System.out.println(classFormName);
 		}
-		System.out.println(classFormName);
-		System.out.println(111222);
+//		System.out.println(classFormName);
+//		System.out.println(111222);
 		// 反射出form的实例
 		ActionForm form = null;
 		try {
@@ -82,7 +82,7 @@ public class ActionServlet extends HttpServlet {
 				// 找到对应的set方法
 				Method m = c.getDeclaredMethod("set" + param.substring(0, 1).toUpperCase() + param.substring(1),
 						String.class);
-				System.out.println(entry.getValue()[0]);
+//				System.out.println(entry.getValue()[0]);
 				m.invoke(form, entry.getValue()[0]);
 			}
 		} catch (Exception e) {

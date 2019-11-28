@@ -318,7 +318,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		int paramterCount =0;
 		List<String> fileds=new ArrayList<String>();//带设置的字段List
 		Pattern p=Pattern.compile("#[{](\\w+)[}]");
-		Matcher m=p.matcher(sql);
+		Matcher m=p.matcher(sql); 
 		while(m.find()){
 			paramterCount++;
 			fileds.add(m.group(1));

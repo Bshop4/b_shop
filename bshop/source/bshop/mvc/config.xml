@@ -66,10 +66,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	<!-- 登录插入 -->
-	<PagePattern name=Login_Action>
+	<PagePattern name="Login_Action">
 		<Action>bshow.web.servlet.action.Login_Action</Action>
 		<ActionForm>bshow.web.servlet.form.Login_ActionForm</ActionForm>
 		<Redirect>false</Redirect>
+		
 	</PagePattern>
 	
 

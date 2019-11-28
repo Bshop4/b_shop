@@ -178,6 +178,7 @@ function clickAll() {
 				data:{"cart_id":cart_id},
 				success:function(result){
 					var result = JSON.parse(result);
+					console.log(result);//true(删除成功)
 				}
 			});
 			tab.removeChild(tr);

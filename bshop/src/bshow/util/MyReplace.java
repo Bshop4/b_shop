@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import bshow.dao.impl.Basedaoimpl;
 import bshow.db.DBhelper;
@@ -47,6 +48,9 @@ public class MyReplace implements Runnable,Subject{
 	public void run() {
 		//用来存储取出来的数据
 		List<Goods_classify> mylist=new ArrayList<Goods_classify>();
+		
+		//用来存储价格的表
+		Set<String> myset=new TreeSet<String>();
 		//用来计数
 		int index=0;
 		try {
@@ -98,18 +102,38 @@ public class MyReplace implements Runnable,Subject{
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
-					gc.setGoods_price(rs.getDouble(mykey));
-					mylist.add(gc);
+					//将价格存到区间中
+					Double d=rs.getDouble("goods_price");
+					if(d>=0&&d<=999){
+						myset.add("0-999");
+					}
+					if(d>=1000&&d<=2999){
+						myset.add("1000-2999");
+					}
+					if(d>=3000&&d<=4999){
+						myset.add("3000-4999");
+					}
+					if(d>=5000&&d<=9999){
+						myset.add("5000-9999");
+					}
+					if(d>=10000&&d<=100000){
+						myset.add("10000-100000");
+					}
+					if(myset.size()==5){
+						break;
+					}
+					
 				}
 			}else if("goodsConditions".equals(mykey)){
 				System.out.println("goodsConditions");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
-					gc.setGoods_price(rs.getDouble("goods_price"));
+					gc.setGoods_price(String.valueOf(rs.getDouble("goods_price")));
 					gc.setGoods_name(rs.getString("goods_name"));
 					gc.setGoods_no(rs.getString("goods_no"));
 					gc.setGoods_photo(rs.getString("goods_photo"));
+					gc.setGoods_brand(rs.getString("goods_brand"));
 					mylist.add(gc);
 				}
 			}else{
@@ -124,6 +148,16 @@ public class MyReplace implements Runnable,Subject{
 					mylist.add(mygc);
 				}
 			}
+			
+			//将set集合的数据(价格区间)存入mylist中
+			if("goods_price".equals(mykey)){
+				for (String string : myset) {
+					Goods_classify gc=new Goods_classify();
+					gc.setGoods_price(string);
+					mylist.add(gc);
+				}
+			}
+			
 			mymap.put(mykey, mylist);
 			//通知所有观察者
 			this.notifyAllLooker(mymap);

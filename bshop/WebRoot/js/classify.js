@@ -47,6 +47,9 @@ function getUrlVal(property) {
 				console.log(result);
 				//渲染数据
 				
+				$('.merchandise>ul').empty();
+				$('.part-screen>.product-next>ul').empty();
+				
 				//渲染商品
 				for(var i=0;i<result[0].goodsConditions.length;i++){
 					var str = `
@@ -54,8 +57,9 @@ function getUrlVal(property) {
 							<a target="_blank" href="detail.jsp?goods_no=${result[0].goodsConditions[i].goods_no}">
 								<img src="${result[0].goodsConditions[i].goods_photo}" />
 								<div class="buttom">
-									<span class="left" href="javascript:;">${result[0].goodsConditions[i].goods_name}</span>
+									<span class="left">${result[0].goodsConditions[i].goods_brand}</span>
 								</div>
+								<p>${result[0].goodsConditions[i].goods_name}</p>
 								<h3>￥${result[0].goodsConditions[i].goods_price}</h3>
 							</a>
 						</li>
@@ -109,6 +113,16 @@ function getUrlVal(property) {
 					if(i<=10){
 						var str=`<li><a data-jump="${result[0].middle_size[i].middle_size}">${result[0].middle_size[i].middle_size}</a></li>`;
 						$('.part-screen>.product-next>ul').eq(4).append(str);
+					}else{
+						break;
+					}
+				}
+				
+				//渲染价格区间
+				for(var i=0;i<result[0].goods_price.length;i++){
+					if(i<=10){
+						var str=`<li><a data-jump="${result[0].goods_price[i].goods_price}">${result[0].goods_price[i].goods_price}</a></li>`;
+						$('.part-screen>.product-next>ul').eq(5).append(str);
 					}else{
 						break;
 					}

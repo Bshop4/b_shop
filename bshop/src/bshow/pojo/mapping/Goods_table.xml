@@ -16,7 +16,7 @@
 	<property name="goods_location" column="goods_location" />
 	<property name="goods_no" column="goods_no" />
 	<property name="goods_brand" column="goods_brand" />
-	<property name="goods_place" column="goods_place" />
+	<property name="goods_place" column="goods_place" /> 
 
 	<insert id="insertone">
 		insert into

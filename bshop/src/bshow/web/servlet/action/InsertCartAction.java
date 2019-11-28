@@ -37,32 +37,55 @@ public class InsertCartAction extends Action{
 		String getsize = obj.getString("getsize");
 		String account = obj.getString("account");
 		
-		String state = obj.getString("state");
-		Basedao bd = new Basedaoimpl();
+		Cart_table ct = new Cart_table();
+		ct.setAccount(account);
+		ct.setCgoods_color(getcolor);
+		ct.setCgoods_desc(getgoodsname);
+		ct.setCgoods_sub(Double.parseDouble(getAllprice));
+		ct.setCgoods_price(Double.parseDouble(getprice));
+		ct.setCgoods_number(Integer.parseInt(getnumber));
+		ct.setCgoods_photo(imgurl);
+		ct.setCgoods_size(getsize);
+		ct.setCgoods_no(goodsNo);
+		ct.setCgoods_state(0);
 		
-		if("0".equals(state)){
-			Cart_table ct = new Cart_table();
-			ct.setAccount(account);
-			ct.setCgoods_color(getcolor);
-			ct.setCgoods_desc(getgoodsname);
-			ct.setCgoods_sub(Double.parseDouble(getAllprice));
-			ct.setCgoods_price(Double.parseDouble(getprice));
-			ct.setCgoods_number(Integer.parseInt(getnumber));
-			ct.setCgoods_photo(imgurl);
-			ct.setCgoods_size(getsize);
-			ct.setCgoods_no(goodsNo);
-			ct.setCgoods_state(0);
-			System.out.println("第一次");
+		Basedao bd = new Basedaoimpl();
+		List<Object> list = bd.select("selectCartByGoodsno", ct);
+		if(list.size() == 0){
 			bd.saveObject("insertToCart", ct);
-			
-		}else if("1".equals(state)){
-			Cart_table ct = new Cart_table();
-			List<Object> list = bd.select("selectCartByGoodsno", ct);
+		}else if(list.size() == 1){
+			System.out.println("有了 请更新");
 			Cart_table ct1 = (Cart_table)list.get(0);
-			System.out.println("第二次" + ct1);
-			
+			int id = ct1.getCart_id();
+			int num = ct1.getCgoods_number();
+			num += Integer.parseInt(getnumber);
 			
 		}
+		
+		
+//		if("0".equals(state)){
+//			Cart_table ct = new Cart_table();
+//			ct.setAccount(account);
+//			ct.setCgoods_color(getcolor);
+//			ct.setCgoods_desc(getgoodsname);
+//			ct.setCgoods_sub(Double.parseDouble(getAllprice));
+//			ct.setCgoods_price(Double.parseDouble(getprice));
+//			ct.setCgoods_number(Integer.parseInt(getnumber));
+//			ct.setCgoods_photo(imgurl);
+//			ct.setCgoods_size(getsize);
+//			ct.setCgoods_no(goodsNo);
+//			ct.setCgoods_state(0);
+//			System.out.println("第一次");
+//			bd.saveObject("insertToCart", ct);
+//			
+//		}else if("1".equals(state)){
+//			Cart_table ct = new Cart_table();
+//			List<Object> list = bd.select("selectCartByGoodsno", ct);
+//			Cart_table ct1 = (Cart_table)list.get(0);
+//			System.out.println("第二次" + ct1);
+//			
+//			
+//		}
 		
 		
 		return null;

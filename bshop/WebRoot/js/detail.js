@@ -241,7 +241,7 @@ function opration(){
     })
 
 
-
+    var cnt = 0;
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
         var token = localStorage.getItem('token');
@@ -311,10 +311,18 @@ function opration(){
 				$('.zjl-flyincart img').css('display','none');
 				$('.store_number').html(goodsNumber);
 			});
-			var cnt = 0;
+//			var cnt = 0;
 			cnt++;
+			console.log(cnt)
 			if(cnt==1){
 				allnew = allnew;
+				console.log("allnew + " + allnew)
+				console.log(allnew.state)
+			}else if(cnt > 1){
+				if(allold.getcolor == allnew.getcolor && allold.getcolor == allnew.getcolor && allold.getgoodsname == allnew.getgoodsname){
+					allnew.state = "1";
+					console.log("cnt" + cnt)
+				}
 			}
 			
             $.ajax({
@@ -322,14 +330,9 @@ function opration(){
                 url : 'insertCart.do',
                 data: {"msg":JSON.stringify(allnew)},
                 success : function(result){
-                    
-                    
-                    
-                    
-                    
-//                  待写进入数据库加数据
-                    
-                    
+                	
+                	allold = allnew;
+                	allnew = "";
                     
                 },
             });

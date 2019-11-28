@@ -2,6 +2,7 @@
 package bshow.web.servlet.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,7 @@ public class InsertCartAction extends Action{
 		String account = obj.getString("account");
 		
 		String state = obj.getString("state");
-		
+		Basedao bd = new Basedaoimpl();
 		
 		if("0".equals(state)){
 			Cart_table ct = new Cart_table();
@@ -51,8 +52,16 @@ public class InsertCartAction extends Action{
 			ct.setCgoods_size(getsize);
 			ct.setCgoods_no(goodsNo);
 			ct.setCgoods_state(0);
-			Basedao bd = new Basedaoimpl();
+			System.out.println("123");
 			bd.saveObject("insertToCart", ct);
+			
+		}else if("1".equals(state)){
+			Cart_table ct = new Cart_table();
+			List<Object> list = bd.select("selectCartByGoodsno", ct);
+			Cart_table ct1 = (Cart_table)list;
+			System.out.println("123");
+			System.out.println("1 " + ct1);
+			
 			
 		}
 		

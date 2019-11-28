@@ -35,4 +35,7 @@
 		values(#{cgoods_photo},#{cgoods_desc},#{cgoods_number},#{cgoods_price},#{cgoods_sub},#{cgoods_no},#{cgoods_state},#{cgoods_color},#{cgoods_size},#{account})
 	</insert>
 
+	<select id="selectCartByGoodsno" resulttype="bshow.pojo.Cart_table">
+		select * from cart_table where 1=1 and cgoods_no;
+	</select>
 </class>

@@ -8,8 +8,7 @@
 	<property name="goods_category" column="goods_category" />
 	<property name="goods_color" column="goods_color" />
 	<property name="goods_size" column="goods_size" />
-	<property name="goods_explainphoto"
-		column="goods_explainphoto" />
+	<property name="goods_explainphoto" column="goods_explainphoto" />
 	<property name="goods_discount" column="goods_discount" />
 	<property name="shop_no" column="shop_no" />
 	<property name="goods_uptime" column="goods_uptime" />

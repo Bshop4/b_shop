@@ -318,7 +318,7 @@ public class Basedaoimpl implements Basedao,Looker{
 		
 		//满足条件跳出循环
 		while(true){
-			if(allNeeds.size()==6){
+			if(allNeeds.size()==7){
 				break;
 			}
 		}

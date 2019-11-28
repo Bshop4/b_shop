@@ -86,9 +86,9 @@ function getUrlVal(property) {
 				
 				//渲染发货地
 				for(var i=0;i<result[0].goods_place.length;i++){
-					if(i<=10){
+					if(i<=8){
 						var str=`<li><a data-jump="${result[0].goods_place[i].goods_place}">${result[0].goods_place[i].goods_place}</a></li>`;
-						$('.part-screen>.product-next>ul').eq(3).append(str);
+						$('.part-screen>.product-next>ul').eq(2).append(str);
 					}else{
 						break;
 					}

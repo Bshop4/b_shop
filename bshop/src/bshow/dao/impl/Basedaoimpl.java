@@ -6,13 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,12 +23,10 @@ import bshow.util.MyReplace;
 import bshow.util.ober.Looker;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
+public class Basedaoimpl implements Basedao, Looker {
 
-public class Basedaoimpl implements Basedao,Looker{
-	
-	//用来存储所有的信息
-	Map<String,List<Goods_classify>> allNeeds=new ConcurrentHashMap<String, List<Goods_classify>>();
-	
+	// 用来存储所有的信息
+	Map<String, List<Goods_classify>> allNeeds = new ConcurrentHashMap<String, List<Goods_classify>>();
 
 	@Override
 	public void saveObject(String id, Object o) {
@@ -216,11 +210,11 @@ public class Basedaoimpl implements Basedao,Looker{
 		// a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type
 		// from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no)
 		// as c where
-		//多条件查询
-		String sql="select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
-		StringBuffer sb=new StringBuffer(sql);
-		if(form.getGoods_name()!=null){
-			char[] myname=form.getGoods_name().toCharArray();
+		// 多条件查询
+		String sql = "select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		StringBuffer sb = new StringBuffer(sql);
+		if (form.getGoods_name() != null) {
+			char[] myname = form.getGoods_name().toCharArray();
 			for (int i = 0; i < myname.length; i++) {
 				sb.append(" and (c.goods_name like ? or c.goods_brand like ?");
 				if (i == myname.length - 1) {
@@ -243,20 +237,19 @@ public class Basedaoimpl implements Basedao,Looker{
 		if (form.getMiddle_type() != null) {
 			sb.append(" and c.middle_type=?");
 		}
-		if(form.getGoods_place()!=null){
+		if (form.getGoods_place() != null) {
 			sb.append(" and c.goods_place=?");
 		}
 		// 根据条件构成sql语句
 		sql = sb.toString();
 		System.out.println(sql);
 
-		
-		//查询还有的品牌
-		String mysql=sql+" group by c.goods_brand";
-		mysql=mysql.replace("@", "c.goods_brand");
-		MyReplace mr=new MyReplace("goods_brand",mysql,conn,this,form);
-		//用线程处理查询
-		Thread t=new Thread(mr);
+		// 查询还有的品牌
+		String mysql = sql + " group by c.goods_brand";
+		mysql = mysql.replace("@", "c.goods_brand");
+		MyReplace mr = new MyReplace("goods_brand", mysql, conn, this, form);
+		// 用线程处理查询
+		Thread t = new Thread(mr);
 		t.start();
 
 		// 查询还有的价格
@@ -295,30 +288,29 @@ public class Basedaoimpl implements Basedao,Looker{
 		Thread t5 = new Thread(mr5);
 		t5.start();
 
-		
-		//查询商品
-		Connection conn6=DBhelper.getConnection();
-		String mysql6=sql+" group by c.goods_no limit ?,?";
-		mysql6=mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
+		// 查询商品
+		Connection conn6 = DBhelper.getConnection();
+		String mysql6 = sql + " group by c.goods_no limit ?,?";
+		mysql6 = mysql6.replace("@", "c.goods_no,c.goods_name,c.goods_photo,c.goods_price");
 		System.out.println(mysql6);
-		MyReplace mr6=new MyReplace("goodsConditions",mysql6,conn6,this,form);
-		//用线程处理查询
-		Thread t6=new Thread(mr6);
+		MyReplace mr6 = new MyReplace("goodsConditions", mysql6, conn6, this, form);
+		// 用线程处理查询
+		Thread t6 = new Thread(mr6);
 		t6.start();
-		
-		//查询发货地
-		Connection conn7=DBhelper.getConnection();
-		String mysql7=sql+" group by c.goods_place";
-		mysql7=mysql7.replace("@", "c.goods_place");
+
+		// 查询发货地
+		Connection conn7 = DBhelper.getConnection();
+		String mysql7 = sql + " group by c.goods_place";
+		mysql7 = mysql7.replace("@", "c.goods_place");
 		System.out.println(mysql7);
-		MyReplace mr7=new MyReplace("goods_place",mysql7,conn7,this,form);
-		//用线程处理查询
-		Thread t7=new Thread(mr7);
+		MyReplace mr7 = new MyReplace("goods_place", mysql7, conn7, this, form);
+		// 用线程处理查询
+		Thread t7 = new Thread(mr7);
 		t7.start();
-		
-		//满足条件跳出循环
-		while(true){
-			if(allNeeds.size()==7){
+
+		// 满足条件跳出循环
+		while (true) {
+			if (allNeeds.size() == 7) {
 				break;
 			}
 		}
@@ -330,8 +322,6 @@ public class Basedaoimpl implements Basedao,Looker{
 		allNeeds.putAll(mymap);
 	}
 
-	
-	
 	@Override
 	public boolean updataObject(String id, Object o) {
 		// TODO Auto-generated method stub
@@ -408,6 +398,7 @@ public class Basedaoimpl implements Basedao,Looker{
 			Class c = o.getClass();
 			Document doc = DBhelper.getDocumentByClass(c);
 			Element deleteelement = (Element) doc.selectSingleNode("/class/delete[@id='" + id + "']");
+//			System.out.println(deleteelement + "aa");
 			String sql = deleteelement.getTextTrim();
 			// 获得多少个参数
 			int paramterCount = 0;
@@ -429,8 +420,8 @@ public class Basedaoimpl implements Basedao,Looker{
 				Method method = c.getMethod(methodname, null);
 				ps.setObject(i + 1, method.invoke(o, null));
 			}
-			int psint=ps.executeUpdate();
-			if(psint!=0){
+			int psint = ps.executeUpdate();
+			if (psint != 0) {
 				return true;
 			}
 		} catch (Exception e) {

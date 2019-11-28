@@ -11,6 +11,9 @@
 	<property name="bill_isclearing" column="bill_isclearing"/>
 	<property name="bill_code" column="bill_code"/>
 	
+	
+	
+	
 	<insert id="insertone">
 		insert into bill_table(address,bill_time,allprice,account,goods_name,goods_price,cart_number,bill_isclearing,bill_code) values(#{address},#{bill_time},#{allprice},#{account},#{goods_name},#{goods_price},#{cart_number},#{bill_isclearing},#{bill_code})
 	</insert>

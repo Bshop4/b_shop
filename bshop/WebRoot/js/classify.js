@@ -1,3 +1,4 @@
+console.log("aaaa");
 //获得地址参数栏的值
 function getUrlVal(property) {
 	//地址栏
@@ -35,35 +36,29 @@ function getUrlVal(property) {
 			dataType:"json",
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 			success:function(result){
-				console.log(result);
 				//验证
-				if(result) {
+				if(result==null) {
 					alert('商品正在上架...');
 					return;
 				}
 				//清除内容
 				$('.merchandise>ul').empty();
+				
+				console.log(result);
 				//渲染数据
-				for (var key in result) {
-					console.log(key+":"+result[key]);
-				}
-				
-				
-				for(var i = 0; i < obj.data.length; i++) {
+				for(var i=0;i<result[0].goodsConditions.length;i++){
 					var str = `
-					<li>
-						<a target="_blank" href="detail.jsp?goods_id=${goodsList[i].goods_id}">
-							<img src="${goodsList[i].goods_thumb}" />
-							<div class="buttom">
-								<span class="left" href="javascript:;">${goodsList[i].goods_name}</span>
-								<span class="right" href="javascript:;">${goodsList[i].star_number}❤</span>
-							</div>
-							<p>${goodsList[i].goods_desc}</p>
-							<h3>￥${goodsList[i].price}</h3>
-						</a>
-					</li>
-				`;
-					$('.merchandise>ul').append(str);
+						<li>
+							<a target="_blank" href="detail.jsp?goods_no=${result[0].goodsConditions[i].goods_no}">
+								<img src="${result[0].goodsConditions[i].goods_photo}" />
+								<div class="buttom">
+									<span class="left" href="javascript:;">${result[0].goodsConditions[i].goods_name}</span>
+								</div>
+								<h3>￥${result[0].goodsConditions[i].goods_price}</h3>
+							</a>
+						</li>
+					`;
+						$('.merchandise>ul').append(str);
 				}
 			}
 		})

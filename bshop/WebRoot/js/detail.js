@@ -240,11 +240,8 @@ function opration(){
         };
     })
 
-
-    var cnt = 0;
-    var allold = "";
-    var allnew = "";
-    var state = "0";//记录是否同一商品、同一颜色、尺码
+    
+    
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
         var token = localStorage.getItem('token');
@@ -272,7 +269,6 @@ function opration(){
         	}
         })
 
-//        var state = "0";//记录是否同一商品、同一颜色、尺码
         
         var allnew = {
         	"goodsNo":goodsNo,
@@ -283,11 +279,10 @@ function opration(){
         	"getAllprice":getAllprice,
         	"getcolor":getcolor,
         	"getsize":getsize,
-        	"state":state,
         	"account":"pyla1"
         }
            
-        
+//        console.log(allnew)
         
         //验证
         if(token){
@@ -316,44 +311,7 @@ function opration(){
 			});
 			
 			
-			cnt++;
-			if(cnt==1){
-				allnew = allnew;
-			}
-			if(cnt > 1){
-				console.log(">1")
-				console.log(allnew)
-				console.log(allold)
-				if(allnew.getcolor == allold.getcolor && allnew.getsize == allold.getsize && allnew.getgoodsname == allold.getgoodsname){
-					state = "1";
-					allnew = {
-				        "goodsNo":goodsNo,
-				        "getnumber":getnumber,
-				        "imgurl":imgurl,
-				        "getgoodsname":getgoodsname,
-				        "getprice":getprice,
-				        "getAllprice":getAllprice,
-				        "getcolor":getcolor,
-				        "getsize":getsize,
-				        "state":state,
-				        "account":"pyla1"
-				      }
-				}else{
-					state = "0";
-					allnew = {
-					     "goodsNo":goodsNo,
-					     "getnumber":getnumber,
-					     "imgurl":imgurl,
-					     "getgoodsname":getgoodsname,
-					     "getprice":getprice,
-					     "getAllprice":getAllprice,
-					     "getcolor":getcolor,
-					     "getsize":getsize,
-					     "state":state,
-					     "account":"pyla1"
-					  }
-				}
-			}
+			
 			
             $.ajax({
                 type : 'post',
@@ -361,8 +319,7 @@ function opration(){
                 data: {"msg":JSON.stringify(allnew)},
                 success : function(result){
                 	
-                	allold = allnew;
-                	allnew = "";
+                	
                 },
             });
         }else{
@@ -371,6 +328,139 @@ function opration(){
             };
         };
     });
+
+    
+
+//    var cnt = 0;
+//    var allold = "";
+//    var allnew = "";
+//    var state = "0";//记录是否同一商品、同一颜色、尺码
+////	添加到购物车      	点一次数量也要加一次?????????????
+//    $('#addCartBtn').click(function(e){
+//        var token = localStorage.getItem('token');
+//        var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
+//        var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
+//        
+//        var getnumber = $('.number').attr('value');//数量
+//        var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
+//        var getgoodsname = $('.zjl-product-name').html();//商品名字
+//        var getprice = $('.realPrice').html();//单价-string
+//        var getAllprice = parseInt(getprice) * parseInt(getnumber);//总价-int
+//        getAllprice+="";
+//        
+//        var getcolor = "";//颜色
+//        $('.zjl-product-color ul li').each(function(i){
+//        	if($(this).attr("data-color") == "checked"){
+//        		getcolor = $(this).text();
+//        	}
+//        })
+//        
+//        var getsize = "";//尺寸
+//        $('.zjl-product-size ul li').each(function(i){
+//        	if($(this).attr("data-size") == "checked"){
+//        		getsize = $(this).text();
+//        	}
+//        })
+//
+////        var state = "0";//记录是否同一商品、同一颜色、尺码
+//        
+//        var allnew = {
+//        	"goodsNo":goodsNo,
+//        	"getnumber":getnumber,
+//        	"imgurl":imgurl,
+//        	"getgoodsname":getgoodsname,
+//        	"getprice":getprice,
+//        	"getAllprice":getAllprice,
+//        	"getcolor":getcolor,
+//        	"getsize":getsize,
+//        	"state":state,
+//        	"account":"pyla1"
+//        }
+//           
+//        
+//        
+//        //验证
+//        if(token){
+//        	
+//        	if($('.zjl-flyincart img').is(':animated')){return;};
+////			动画飞入购物车动画,购物车的净位置,和加入购物车的净位置
+//			var targetX=$('#zjl-login-cart').offset().left;
+//			var targetY=$('#zjl-login-cart').offset().top;
+//			var intiX=$('#addCartBtn').offset().left;
+//			var intiY=$('#addCartBtn').offset().top;
+//			
+//			
+////			需要判断库存数量????????????????????????????????????????????????????????????????????
+////			物品数量
+//			var num=parseInt($('.zjl-product-condition .number').val());
+//			goodsNumber+=num;
+//			localStorage.setItem('cartnumber',goodsNumber);
+//			
+////			设置起始位置
+//			$('.zjl-flyincart img').css({'left':intiX,'top':intiY,display:'block'});
+//			
+////			动画
+//			$('.zjl-flyincart img').animate({left:targetX,top:targetY},1200,function(){
+//				$('.zjl-flyincart img').css('display','none');
+//				$('.store_number').html(goodsNumber);
+//			});
+//			
+//			
+//			cnt++;
+//			if(cnt==1){
+//				allnew = allnew;
+//			}
+//			if(cnt > 1){
+//				console.log(">1")
+//				console.log(allnew)
+//				console.log(allold)
+//				if(allnew.getcolor == allold.getcolor && allnew.getsize == allold.getsize && allnew.getgoodsname == allold.getgoodsname){
+//					state = "1";
+//					allnew = {
+//				        "goodsNo":goodsNo,
+//				        "getnumber":getnumber,
+//				        "imgurl":imgurl,
+//				        "getgoodsname":getgoodsname,
+//				        "getprice":getprice,
+//				        "getAllprice":getAllprice,
+//				        "getcolor":getcolor,
+//				        "getsize":getsize,
+//				        "state":state,
+//				        "account":"pyla1"
+//				      }
+//				}else{
+//					state = "0";
+//					allnew = {
+//					     "goodsNo":goodsNo,
+//					     "getnumber":getnumber,
+//					     "imgurl":imgurl,
+//					     "getgoodsname":getgoodsname,
+//					     "getprice":getprice,
+//					     "getAllprice":getAllprice,
+//					     "getcolor":getcolor,
+//					     "getsize":getsize,
+//					     "state":state,
+//					     "account":"pyla1"
+//					  }
+//				}
+//			}
+//			
+//            $.ajax({
+//                type : 'post',
+//                url : 'insertCart.do',
+//                data: {"msg":JSON.stringify(allnew)},
+//                success : function(result){
+//                	
+//                	allold = allnew;
+//                	allnew = "";
+//                },
+//            });
+//        }else{
+//            if(confirm('未登录，点击确定跳到登录界面')){
+//                location.href = 'Login.jsp?goods_no=' + goodsNo;
+//            };
+//        };
+//    });
 
     $('#buyNowBtn').click(function(){
         var token = localStorage.getItem('token');
@@ -436,7 +526,6 @@ function opration(){
     $('.zjl-product-condition .add').click(function () {
         num++;
         $('.number').attr('value',num);
-//        console.log($('.number').attr('value'))
     })
 
     $('.zjl-product-condition .de').click(function () {

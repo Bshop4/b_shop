@@ -7,6 +7,7 @@ public class Goods_classify implements Serializable{
 	private String goods_brand;
 	private String middle_color;
 	private String middle_size;
+	private String goods_place;
 	private int middle_repertory;
 	private String middle_type;
 	private String goods_name;
@@ -35,6 +36,12 @@ public class Goods_classify implements Serializable{
 	}
 	public void setMiddle_size(String middle_size) {
 		this.middle_size = middle_size;
+	}
+	public String getGoods_place() {
+		return goods_place;
+	}
+	public void setGoods_place(String goods_place) {
+		this.goods_place = goods_place;
 	}
 	public int getMiddle_repertory() {
 		return middle_repertory;
@@ -69,9 +76,9 @@ public class Goods_classify implements Serializable{
 	@Override
 	public String toString() {
 		return "Goods_classify [goods_price=" + goods_price + ", goods_brand=" + goods_brand + ", middle_color="
-				+ middle_color + ", middle_size=" + middle_size + ", middle_repertory=" + middle_repertory
-				+ ", middle_type=" + middle_type + ", goods_name=" + goods_name + ", goods_photo=" + goods_photo
-				+ ", goods_no=" + goods_no + "]";
+				+ middle_color + ", middle_size=" + middle_size + ", goods_place=" + goods_place + ", middle_repertory="
+				+ middle_repertory + ", middle_type=" + middle_type + ", goods_name=" + goods_name + ", goods_photo="
+				+ goods_photo + ", goods_no=" + goods_no + "]";
 	}
 
 	

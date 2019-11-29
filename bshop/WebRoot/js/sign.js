@@ -56,6 +56,8 @@
 	//用户获焦
 	$('.user').focus(function(){
 		$('.use-tips').show();
+		$('.user').siblings('.pyl_true').hide();
+		$('.userclear').show();
 //		box-shadow: 3px 3px 7px #666;
 //		border-radius: 5px;
 //		$('.user').parent().css('border-bottom','1px solid black');
@@ -200,7 +202,7 @@
 	});
 	
 	
-	//邮箱验证获焦
+	//邮箱验证码获焦
 	$('.emailcode').focus(function(){
 //		$('.emailcode').parent().css('border-bottom','1px solid black');
 		$('.emailcode').parent().css('box-shadow','3px 3px 7px #666');
@@ -209,7 +211,7 @@
 	});
 	
 	
-	//邮箱验证失焦
+	//邮箱验证码失焦
 	$('.emailcode').blur(function(){
 //		$('.emailcode').parent().css('border-bottom','1px solid gainsboro');
 		$('.emailcode').parent().css('box-shadow','');
@@ -226,18 +228,18 @@
 		}
 	});
 	
-	var account1=$('.user').val();
-	var password1=$('.pyl_sign_password').val();
 	
+	var email1="";
 	
 	var clickSendcode=0;
 	//点击发送验证码
 	$(".sendemailcode").click(function(){
-		if(pyl_flag_sendEmailcode){return;}
+		if(!pyl_flag_email){return};//当邮箱正确时才能发送验证码
+		if(pyl_flag_sendEmailcode){return;}//还在倒计时60S时不能发送验证码
 		clickSendcode++;
 		pyl_flag_sendEmailcode=true;
 		console.log("发送验证码");
-		var email1=$('.email').val();
+		email1=$('.email').val();
 		$.ajax({
 			url:"Sendemailcode",
 			type:"post",
@@ -298,7 +300,6 @@
 		}
 		//获得服务器返回的验证码
 		var serverEmailCode=$('.emailcode').attr("serverEmailCode");
-		console.log(clientEmailCode);
 		if(clientEmailCode==serverEmailCode&&clientEmailCode){
 			pyl_flag_emailcode=true;
 		}else{
@@ -306,9 +307,10 @@
 			pyl_flag_emailcode=false;
 			return;
 		}
-		
+		var account1=$('.user').val();
+		var password1=$('.pyl_sign_password').val();
+		email1=$('.email').val();
 		if(pyl_flag_email&&pyl_flag_user&&pyl_flag_pass&&pyl_flag_emailcode){
-			console.log(55);
 			$.post('Sign_accountAction.do',
 				{
 				email:email1,
@@ -320,15 +322,14 @@
 					var objlogin=null;
 					
 					if(obj.code==0){
-						console.log(2);
-						var goodsID=getUrlVal('goods_id');
+						var goodsID=getUrlVal('goods_id');//从地址栏上拿属性
 						$.post('Login_Action.do',
 						{
 							account:account1,
 							password:password1,
 							},function(result1){
+								console.log(result1+"立即去登录");
 								objlogin=JSON.parse(result1);
-								console.log(objlogin);
 								//登录分两种加入购物车过来和直接登录
 								if(goodsID){
 									$('.pyl_sign_tips').show();

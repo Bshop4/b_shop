@@ -59,7 +59,7 @@ public class Sendemailcode extends HttpServlet {
 			SendmailUtil.send(email, "嘿店注册", "验证码:"+code);
 		} catch (Exception e) {
 			// TODO: handle exception
-			String jsonfalse="{code:'404',msg:'邮箱格式错误'}";
+			String jsonfalse="{code:'0405',msg:'邮箱格式错误'}";
 			out.print(jsonfalse);
 		}
 		//1041551225@qq.com    814402195@qq.com

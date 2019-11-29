@@ -1,5 +1,8 @@
 package bshow.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Account_table单元测试
  */
@@ -9,7 +12,6 @@ public class Account_tableAutoTest extends TestCase {
 	int num;
 	String str;
 	private Account_tableTest a_t = null;
-
 	@Override
 	public void setUp() throws Exception {
 		a_t = new Account_tableTest();

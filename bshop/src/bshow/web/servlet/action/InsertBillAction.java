@@ -25,6 +25,7 @@ public class InsertBillAction extends Action {
 			throws ServletException, IOException {
 		InsertBillForm ib = (InsertBillForm) form;
 		String msg = ib.getMsg();
+
 		JSONArray obj = JSONArray.fromObject(msg);
 		System.out.println(obj);
 //		String account = obj.getString("account");

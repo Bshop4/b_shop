@@ -40,6 +40,12 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 增加购物车商品 -->
+	<PagePattern name="addCartGoods">
+		<ActionForm>bshow.web.servlet.form.AddCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.AddCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">

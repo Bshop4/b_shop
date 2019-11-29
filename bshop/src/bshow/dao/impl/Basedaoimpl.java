@@ -482,9 +482,4 @@ public class Basedaoimpl implements Basedao, Looker {
 		return false;
 	}
 
-	@Override
-	public boolean insertMachTable(String id, Object o) {
-		return false;
-	}
-
 }

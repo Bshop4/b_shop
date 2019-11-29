@@ -40,6 +40,12 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 增加购物车商品 -->
+	<PagePattern name="addCartGoods">
+		<ActionForm>bshow.web.servlet.form.AddCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.AddCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
@@ -88,11 +94,19 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
-	
+	<!-- 更新个人信息 -->
 	<PagePattern name="updatePersonInfo">
 		<ActionForm>bshow.web.servlet.form.UpdatePersonInfoForm</ActionForm>
 		<Action>bshow.web.servlet.action.UpdatePersonInfoAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	
+	<PagePattern name="insertIntoReceiver">
+		<ActionForm>bshow.web.servlet.form.InsertIntoReceiverForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertIntoReceiverAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	
 	
 </properties>

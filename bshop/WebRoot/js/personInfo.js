@@ -6,7 +6,6 @@
 		data:{"account":account},
 		success:function(re){
 			var obj = JSON.parse(re);
-//			console.log(obj)
 			
 			//头像
 			$('#imgPhoto').attr("src",`${obj[3]}`);
@@ -30,12 +29,12 @@
 			var userdate = `${obj[6]}`;
 			$(".userdate").attr("value",userdate);
 			
+			//保存按钮保存personInfo_id
+			$(".save").attr("data-id",`${obj[0]}`);
+			
 			//地址
 			var useraddress = `${obj[4]}`;
 			$('.myAddress').attr("value",useraddress);
-			
-			//保存按钮保存personInfo_id
-			$(".save").attr("data-id",`${obj[0]}`);
 		}
 		
 	})
@@ -43,6 +42,7 @@
 	
 })()
 
+//更新个人信息
 $('.save').click(function(){
 	//id
 	var pid = $('.save').attr("data-id");
@@ -51,7 +51,7 @@ $('.save').click(function(){
 	//账号
 	var account1 = $(".user-acc-input").val();
 	//昵称
-	var nickName1 = $(".user-in-nickName").attr("value");
+	var nickName1 = $(".user-in-nickName").val();
 	//性别
 	var sex1 = $('input:radio:checked').val() == "male" ? "男" : "女";
 	//日期
@@ -60,25 +60,25 @@ $('.save').click(function(){
 	var myAddress1 = $(".myAddress").val();
 	
 	var personInfo = {
-		"pid" : pid,	
-		"imgPhoto1" : imgPhoto1,
-		"account1" : account1,
-		"nickName1" : nickName1,
-		"sex1" : sex1,
-		"date1" : date1,
-		"myAddress1" : myAddress1
-	};
+			"pid" : pid,	
+			"imgPhoto1" : imgPhoto1,
+			"account1" : account1,
+			"nickName1" : nickName1,
+			"sex1" : sex1,
+			"date1" : date1,
+			"myAddress1" : myAddress1
+		};
+	
 //	console.log(personInfo)
 	$.ajax({
-		type : "post",
-		url : "updatePersonInfo.do",
-		date : {"msg" : JSON.stringify(personInfo)},
-		success : function(re){
-			
-			
-		}
-		
-	})
+        type : 'post',
+        url : 'updatePersonInfo.do',
+        data: {"msg":JSON.stringify(personInfo)},
+        success : function(result){
+        	
+        	
+        },
+    });
 	
 	
 	
@@ -131,7 +131,7 @@ $('.save').click(function(){
 
 
 
-
+//切换
     $("#myinfo").click(function(){
         $("#myinfo").css({
             color:"red"
@@ -185,6 +185,7 @@ $('.save').click(function(){
         document.getElementById("save1").setAttribute("data-dismiss","");
     })
 
+    //保存地址
     function mysaveclick(){
         var name = document.getElementById("myname").value;
         var iphone = document.getElementById("myiphone").value;
@@ -248,66 +249,85 @@ $('.save').click(function(){
             }
         }
         AllAddress = getPro + getCity + getArea +  detailaddress;
-
-
             document.getElementById("save1").setAttribute("data-dismiss","modal");
-                $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
-                $(".addresslist").css({
-                    "width": "1000px",
-                    "height": "120px",
-                    "margin-left": "10px",
-                    "position": "relative"
-                })
+                
+                //插入数据库
+                var account = "zjl"
+                
+                var reveiver = {
+                	"name" : name,
+                	"iphone" : iphone,
+                	"postcode" : postcode,
+                	"AllAddress" : AllAddress,
+                	"account" : account
+                }
+                $.ajax({
+                    type : 'post',
+                    url : 'insertIntoReceiver.do',
+                    data: {"msg":JSON.stringify(reveiver)},
+                    success : function(result){
+                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                         $(".addresslist").css({
+                             "width": "1000px",
+                             "height": "120px",
+                             "margin-left": "10px",
+                             "position": "relative"
+                         })
 
-                $(".addresslist>li").css({
-                    "width": "750px",
-                    "height": "100px",
-                    "margin-top": "10px",
-                    "margin-left": "10px",
-                })
+                         $(".addresslist>li").css({
+                             "width": "750px",
+                             "height": "100px",
+                             "margin-top": "10px",
+                             "margin-left": "10px",
+                         })
 
-                $(".insertName,.insertMyaddress,.insertPostcode").css({
-                    "padding": "0px 0px 10px",
-                })
+                         $(".insertName,.insertMyaddress,.insertPostcode").css({
+                             "padding": "0px 0px 10px",
+                         })
 
-                $(".edit, .del").css({
-                    "width": "30px",
-                    "height": "20px",
-                    "font-size": "15px",
-                    "position": "absolute",
-                    "right": "50px",
-                    "top":"50%",
-                    "cursor": "pointer",
-                    "text-decoration": "underline"
-                })
+                         $(".edit, .del").css({
+                             "width": "30px",
+                             "height": "20px",
+                             "font-size": "15px",
+                             "position": "absolute",
+                             "right": "50px",
+                             "top":"50%",
+                             "cursor": "pointer",
+                             "text-decoration": "underline"
+                         })
 
-                $(".edit").css({
-                    "right":"90px"
-                })
+                         $(".edit").css({
+                             "right":"90px"
+                         })
 
-                $(".binggou").css({
-                    "width": "15px",
-                    "height":"15px",
-                    "background": "black",
-                    "display": "inline-block",
-                    "color": "whitesmoke",
-                    "cursor": "pointer",
-                })
+                         $(".binggou").css({
+                             "width": "15px",
+                             "height":"15px",
+                             "background": "black",
+                             "display": "inline-block",
+                             "color": "whitesmoke",
+                             "cursor": "pointer",
+                         })
 
-                $(".redefult").css({
-                    "font-weight": "bolder",
-                })
+                         $(".redefult").css({
+                             "font-weight": "bolder",
+                         })
+                         var len = $(".user-right2").children().length;
+                         if(len > 3){
+                             $(".nowaddress").remove();
+                         }
+
+                         document.getElementById("myname").value = "";
+                         document.getElementById("myiphone").value = "";
+                         document.getElementById("mypostcode").value = "";
+                         document.getElementById("mydetailaddress").value = "";
+                         
+                    },
+                });
+                
 
         }
-        var len = $(".user-right2").children().length;
-        if(len > 3){
-            $(".nowaddress").remove();
-        }
-
-        document.getElementById("myname").value = "";
-        document.getElementById("myiphone").value = "";
-        document.getElementById("mypostcode").value = "";
-        document.getElementById("mydetailaddress").value = "";
+       
 
     }
 
@@ -329,18 +349,23 @@ $('.save').click(function(){
 
     }
     
+    //判断是否有地址
     (function () {
-        var len = $(".user-right2").children().length;
-        if(len == 2){
-            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
-            $(".nowaddress").css({
-                "font-size" : "25px",
-                "width" : "1000px",
-                "height" : "300px",
-                "text-align" : "center",
-                "line-height" : "300px"
-            })
-        }
+//        var len = $(".user-right2").children().length;
+//        if(len == 2){
+//            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+//            $(".nowaddress").css({
+//                "font-size" : "25px",
+//                "width" : "1000px",
+//                "height" : "300px",
+//                "text-align" : "center",
+//                "line-height" : "300px"
+//            })
+//        }
+    	var account = "zjl";
+    	
+    	
+    	
     })()
     
 

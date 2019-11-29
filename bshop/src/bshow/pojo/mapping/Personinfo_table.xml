@@ -7,6 +7,8 @@
 	<property name="address" column="address"/>
 	<property name="sex" column="sex"/>
 	<property name="birthday" column="birthday"/>
+
+
 	
 	<insert id="insertone">
 		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})
@@ -20,9 +22,14 @@
 	</select>
 	 and account_id=#{account_id} -->
 	 
+	 <!-- 查找个人信息 -->
 	 <select id="selectByAccount" resulttype="bshow.pojo.Personinfo_table">
 		select * from personinfo_table	where 1=1 and account=#{account}
 	</select>
-	 
+	
+	<!-- 更新个人信息 -->	
+	 <update id="updatePersonInfo">
+		update personinfo_table set nickname=@{nickname} , photo=@{photo} , address=@{address} , sex=@{sex} , birthday=@{birthday} where personInfo_id=#{personInfo_id}
+	</update>
 
 </class>

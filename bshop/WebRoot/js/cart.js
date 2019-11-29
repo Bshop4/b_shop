@@ -41,14 +41,14 @@ $(document).ready(function() {
 				var str = `
 					<tr>
 						<td class="left">
-							<input type="checkbox" class="check"/>
+							<input type="checkbox" class="check" data-no=${result[i].cart_id}></input>
 							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
 						</td>
 						<td class="desc">${result[i].cgoods_desc}</td>
 			            <td class="calculate">
-				            <button class="add">+</button>
+				            <button class="add" data-add=${result[i].cart_id}>+</button>
 				            <span class="count">${result[i].cgoods_number}</span>
-				            <button class="reduce">-</button>
+				            <button class="reduce" data-red=${result[i].cart_id}>-</button>
 			            </td>
 						<td>${result[i].cgoods_color}</td>
 						<td>${result[i].cgoods_size}</td>
@@ -87,8 +87,19 @@ function clickAll() {
 			spanDomVal--;
 			if (spanDomVal < 1) {
 				spanDomVal = 1
-			}
-			;
+				return;
+			};
+			var cart_id = $(event.target).attr("data-red");
+			console.log(cart_id);
+			$.ajax({
+				type:"POST",
+				url:"redCartGoods.do",
+				data:{"cart_id":cart_id},
+				success:function(result){
+					var result = JSON.parse(result);
+					console.log(result);//true(增加成功)
+				}
+			});
 			// 数据库修改成功后才能去设置界面
 			spanDom.innerHTML = spanDomVal;
 			// 求小计
@@ -108,6 +119,17 @@ function clickAll() {
 			if (spanDomVal > 99) {
 				spanDomVal = 99
 			};
+			var cart_id = $(event.target).attr("data-add");
+			console.log(cart_id);
+			$.ajax({
+				type:"POST",
+				url:"addCartGoods.do",
+				data:{"cart_id":cart_id},
+				success:function(result){
+					var result = JSON.parse(result);
+					console.log(result);//true(增加成功)
+				}
+			});
 			// 数据库修改成功后才能去设置界面
 			spanDom.innerHTML = spanDomVal;
 			// 求小计
@@ -170,7 +192,7 @@ function clickAll() {
 //			console.log(returnResult.length+"哈哈");
 			$('.carts-number').text(--allMount);// 左上角购物车数量减一
 			//得到删除的商品的id
-			var cart_id = $('.del').attr("data-id");
+			var cart_id = $(event.target).attr("data-id");
 //			console.log(cart_id)
 			$.ajax({
 				type:"POST",
@@ -246,12 +268,24 @@ function sumAll() {
 // 删除选中商品
 function delAll() {
 	$('[data-price="active"]').each(function() {
+		console.log($(this));
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
-		console.log(tab);
-		console.log(tr.length);
+//		console.log(tab);
+//		console.log(tr.length);
+		var cart_id = $('.check').attr("data-no");
+		console.log(cart_id)
+		$.ajax({
+			type:"POST",
+			url:"deleteCartGoods.do",
+			data:{"cart_id":cart_id},
+			success:function(result){
+//				var result = JSON.parse(result);
+				console.log(result);//true(删除成功)
+			}
+		});
 		tab.get(0).removeChild(tr.get(0));
-		console.log(tr.get(0).length);
+//		console.log(tr.get(0).length);
 	});
 };
 

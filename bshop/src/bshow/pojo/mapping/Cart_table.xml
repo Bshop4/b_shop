@@ -8,7 +8,7 @@
 	<property name="cgoods_sub" column="cgoods_sub" />
 	<property name="cgoods_no" column="cgoods_no" />
 
-	<property name="cgoods_state" column="cgoods_state" />  
+	<property name="cgoods_state" column="cgoods_state" />
 	<property name="cgoods_color" column="cgoods_color" />
 	<property name="cgoods_size" column="cgoods_size" />
 	<property name="account" column="account" />
@@ -18,40 +18,62 @@
 		cart_table(cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account)
 		values(#{cgoods_photo},#{cgoods_desc},#{cgoods_number},#{cgoods_price},#{cgoods_sub},#{cgoods_no},#{cgoods_state},#{cgoods_color},#{cgoods_size},#{account})
 	</insert>
+
+	<!-- 根据用户名查询购物车商品 -->
 	<select id="selectone" resulttype="bshow.pojo.Cart_table">
 		select * from cart_table where
 		1=1 and account=#{account}
 	</select>
-	
+
 	<!-- 删除商品 -->
 	<delete id="deleteone" resulttype="bshow.pojo.Cart_table">
 		delete from cart_table where
 		cart_id=#{cart_id}
 	</delete>
-	
-	<update id="updateone">
-		update cart_table set cgoods_size=@{cgoods_size}  where cart_id=#{cart_id}
+
+	<!-- 增加购物车商品 -->
+	<update id="addone" resulttype="bshow.pojo.Cart_table">
+		update cart_table set
+		cgoods_number=cgoods_number+1,cgoods_sub=cgoods_sub+cgoods_price where
+		cart_id=#{cart_id}
 	</update>
-	
+
+	<!-- 减少购物车商品 -->
+	<update id="redone" resulttype="bshow.pojo.Cart_table">
+		update cart_table set
+		cgoods_number=cgoods_number-1,cgoods_sub=cgoods_sub-cgoods_price where
+		cart_id=#{cart_id}
+	</update>
+
+	<update id="updateone">
+		update cart_table set cgoods_size=@{cgoods_size}
+		where cart_id=#{cart_id}
+	</update>
+
 	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
 		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
 		</select> and account_id=#{account_id} -->
 
 	<insert id="insertToCart">
-		insert into cart_table(cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account)
+		insert into
+		cart_table(cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account)
 		values(#{cgoods_photo},#{cgoods_desc},#{cgoods_number},#{cgoods_price},#{cgoods_sub},#{cgoods_no},#{cgoods_state},#{cgoods_color},#{cgoods_size},#{account})
 	</insert>
 
-	<select id="selectCartByGoodsno" resulttype="bshow.pojo.Cart_table">
-		select * from cart_table where 1=1 and cgoods_no=#{cgoods_no} and cgoods_color=#{cgoods_color} and cgoods_size=#{cgoods_size}
+	<select id="selectCartByGoodsno"
+		resulttype="bshow.pojo.Cart_table">
+		select * from cart_table where 1=1 and
+		cgoods_no=#{cgoods_no} and cgoods_color=#{cgoods_color} and
+		cgoods_size=#{cgoods_size}
 	</select>
-	
+
 	<update id="updateCart1">
-		update cart_table set cgoods_number=@{cgoods_number}  where cart_id=#{cart_id}
+		update cart_table set cgoods_number=@{cgoods_number}
+		where cart_id=#{cart_id}
 	</update>
 	<delete id="deleteone">
 		delete from cart_table where cart_id=#{cart_id}
 	</delete>
-	
-	
+
+
 </class>

@@ -257,7 +257,7 @@ public class Basedaoimpl implements Basedao, Looker {
 
 		// 查询还有的价格
 		Connection conn2 = DBhelper.getConnection();
-		String mysql2 = sql + " group by c.goods_price";
+		String mysql2 = sql + " group by c.goods_price order by c.goods_price";
 		mysql2 = mysql2.replace("@", "c.goods_price");
 		MyReplace mr2 = new MyReplace("goods_price", mysql2, conn2, this, form);
 		// 用线程处理查询

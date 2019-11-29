@@ -57,16 +57,17 @@ public class Sign_accountAction extends Action{
 		pt.setSex("");
 		boolean flagPersoninfo=dao1.saveObject("insertone", pt);
 		//编写返回给js页面的值
+		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		String json="";
 		if(flagPersoninfo&&flagAccount){
-			json="{\"code\":\"0\",\"msg\":\"successSgin\"}";
+			json="{\"code\":\"0\",\"msg\":\"successSgin登录成功\"}";
 			out.print(json);
 			return null;
 		}
 		
 		if(!flagPersoninfo){
-			json="{\"code\":\"0402\",\"msg\":\"Personin_tableSavefoError\"}";
+			json="{\"code\":\"412\",\"msg\":\"Personin_tableSavefoError信息添加出错\"}";
 			//只要有一边失败就要删除成功的表
 			
 			
@@ -75,7 +76,7 @@ public class Sign_accountAction extends Action{
 		}
 		
 		if(!flagAccount){
-			json="{\"code\":\"0401\",\"msg\":\"Account_tableSaveError\"}";
+			json="{\"code\":\"411\",\"msg\":\"Account_tableSaveError帐号添加出错\"}";
 		}
 		
 		return null;

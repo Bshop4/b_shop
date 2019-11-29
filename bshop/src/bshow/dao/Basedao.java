@@ -15,6 +15,6 @@ public interface Basedao {
 	public List<Object> selectByPagesize(String id,Object o,int page, int pagesize);
 	public int selectMaxPagesize(String id,Object o, int pagesize);
 	public Map<String, List<Goods_classify>> selectGoodsByConditions(GoodsByConditionsActionForm form);
-	public boolean insertMachTable(String id,Object o); 
+	public boolean deleteMachObject(String id,Object o,List<Object> list); 
 }
 

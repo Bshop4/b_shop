@@ -2,6 +2,7 @@ package bshow.web.servlet.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
 import bshow.web.servlet.form.Login_ActionForm;
+import net.sf.json.JSONObject;
 
 public class Login_Action extends Action{
 	private static final Logger log = Logger.getLogger(Test.class);
@@ -44,6 +46,8 @@ public class Login_Action extends Action{
 		at.setAccount(inAccount);
 		List<Object> list=dao.select("selectByAccount", at);
 		String json="";
+		response.setCharacterEncoding("utf-8");
+		//response.setHeader("Content-Type", "application/json;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		if(list.size()!=0){
 			Account_table outAccountObject=(Account_table)list.get(0);
@@ -53,15 +57,15 @@ public class Login_Action extends Action{
 			if(inAccount.equals(outAccountObject.getAccount())){
 				//密码对比
 				if(inPass.equals(outAccountObject.getPassword())){
-					json="{\"code\":0,\"msg\":\"LoginSuccess\",\"data\":{\"token\":\""+uid+"\",\"username\":\""+outAccountObject.getAccount()+"\"}}";
+					json="{\"code\":0,\"msg\":\"LoginSuccess登录成功\",\"data\":{\"token\":\""+uid+"\",\"username\":\""+outAccountObject.getAccount()+"\"}}";
 					out.print(json);
 				}else{
-					json="{\"code\":\"0404\",\"msg\":\"LoginFailed\"}";
+					json="{\"code\":\"414\",\"msg\":\"LoginFailed帐号或密码不正确\"}";
 					out.print(json);
 				}
 			}
 		}else{
-			json="{\"code\":\"0403\",\"msg\":\"NoThisAccount\"}";
+			json="{\"code\":\"413\",\"msg\":\"NoThisAccount帐号不存在\"}";
 			out.print(json);
 		}
 		return null;

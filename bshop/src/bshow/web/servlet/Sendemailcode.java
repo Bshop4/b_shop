@@ -46,8 +46,8 @@ public class Sendemailcode extends HttpServlet {
 		// TODO Auto-generated method stub
 		Random r=new Random();
 		String email=request.getParameter("email");
-		PrintWriter out =response.getWriter();
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out =response.getWriter();
 		String json="";
 		StringBuffer code=new StringBuffer("");
 		BASE64Encoder be=new BASE64Encoder();
@@ -64,7 +64,7 @@ public class Sendemailcode extends HttpServlet {
 		}
 		//1041551225@qq.com    814402195@qq.com
 		
-		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
+		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess发送成功\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
 	}
 
 }

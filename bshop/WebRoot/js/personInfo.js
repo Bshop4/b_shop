@@ -51,7 +51,7 @@ $('.save').click(function(){
 	//账号
 	var account1 = $(".user-acc-input").val();
 	//昵称
-	var nickName1 = $(".user-in-nickName").attr("value");
+	var nickName1 = $(".user-in-nickName").val();
 	//性别
 	var sex1 = $('input:radio:checked').val() == "male" ? "男" : "女";
 	//日期
@@ -60,25 +60,25 @@ $('.save').click(function(){
 	var myAddress1 = $(".myAddress").val();
 	
 	var personInfo = {
-		"pid" : pid,	
-		"imgPhoto1" : imgPhoto1,
-		"account1" : account1,
-		"nickName1" : nickName1,
-		"sex1" : sex1,
-		"date1" : date1,
-		"myAddress1" : myAddress1
-	};
-//	console.log(personInfo)
+			"pid" : pid,	
+			"imgPhoto1" : imgPhoto1,
+			"account1" : account1,
+			"nickName1" : nickName1,
+			"sex1" : sex1,
+			"date1" : date1,
+			"myAddress1" : myAddress1
+		};
+	
+	console.log(personInfo)
 	$.ajax({
-		type : "post",
-		url : "updatePersonInfo.do",
-		date : {"msg" : JSON.stringify(personInfo)},
-		success : function(re){
-			
-			
-		}
-		
-	})
+        type : 'post',
+        url : 'updatePersonInfo.do',
+        data: {"msg":JSON.stringify(personInfo)},
+        success : function(result){
+        	
+        	
+        },
+    });
 	
 	
 	

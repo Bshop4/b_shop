@@ -171,9 +171,11 @@ function clickAll() {
 			if (event.target.checked == true) {
 				// 给当前元素加个标识(自定义的属性)
 				event.target.setAttribute('data-price', 'active');
+//				event.target.setAttribute('del-red','active')
 			} else {
 				// 拿掉标识(自定义的属性)
 				event.target.setAttribute('data-price', '');
+//				event.target.setAttribute('del-red', '');
 			}
 			allMounts();
 			// 求总价

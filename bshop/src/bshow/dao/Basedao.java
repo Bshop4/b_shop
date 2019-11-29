@@ -24,5 +24,4 @@ public interface Basedao {
 
 	public boolean deleteMachObject(String id, Object o, List<Object> list);
 
-	public boolean insertMachTable(String id, Object o);
 }

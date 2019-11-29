@@ -177,6 +177,83 @@ $('.save').click(function(){
         $(".user-right2").show();
         $(".user-right").hide();
         $(".user-right1").hide();
+        //从数据库查找地址数据然后显示在页面
+        var account = "zjl";
+    	$.ajax({
+    		type:"post",
+    		url:"selectReceiverByAccount.do",
+    		data:{"account":account},
+    		success:function(re){
+    			var obj = JSON.parse(re)
+    			var len = $(".user-right2").children().length;
+    			if(len == 2){
+    				if(obj.length == 0){
+        				$(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+        	            $(".nowaddress").css({
+        	                "font-size" : "25px",
+        	                "width" : "1000px",
+        	                "height" : "300px",
+        	                "text-align" : "center",
+        	                "line-height" : "300px"
+        	            })
+        				
+        			}
+//        			console.log(obj)
+        			if(obj.length > 0){
+        				for(var i = 0; i < obj.length; i++){
+        					$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+obj[i].receiver+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj[i].telephone+"</div><div class='insertPostcode'>邮编:"+obj[i].receiver+"</div><div class='insertMyaddress'>收货地址:"+obj[i].address+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+obj[i].rid+"'>删除</div></li></ul>");
+                            $(".addresslist").css({
+                                "width": "1000px",
+                                "height": "120px",
+                                "margin-left": "10px",
+                                "position": "relative"
+                            })
+
+                            $(".addresslist>li").css({
+                                "width": "750px",
+                                "height": "100px",
+                                "margin-top": "10px",
+                                "margin-left": "10px",
+                            })
+
+                            $(".insertName,.insertMyaddress,.insertPostcode").css({
+                                "padding": "0px 0px 10px",
+                            })
+
+                            $(".edit, .del").css({
+                                "width": "30px",
+                                "height": "20px",
+                                "font-size": "15px",
+                                "position": "absolute",
+                                "right": "50px",
+                                "top":"50%",
+                                "cursor": "pointer",
+                                "text-decoration": "underline"
+                            })
+
+                            $(".edit").css({
+                                "right":"90px"
+                            })
+
+                            $(".binggou").css({
+                                "width": "15px",
+                                "height":"15px",
+                                "background": "black",
+                                "display": "inline-block",
+                                "color": "whitesmoke",
+                                "cursor": "pointer",
+                            })
+
+                            $(".redefult").css({
+                                "font-weight": "bolder",
+                            })
+        				}
+    				}	
+    			}else if(len > 2){
+    				return;
+    			}
+    		}
+    	})
     })
 
 
@@ -249,55 +326,7 @@ $('.save').click(function(){
             }
         }
         AllAddress = getPro + getCity + getArea +  detailaddress;
-
-
             document.getElementById("save1").setAttribute("data-dismiss","modal");
-                $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
-                $(".addresslist").css({
-                    "width": "1000px",
-                    "height": "120px",
-                    "margin-left": "10px",
-                    "position": "relative"
-                })
-
-                $(".addresslist>li").css({
-                    "width": "750px",
-                    "height": "100px",
-                    "margin-top": "10px",
-                    "margin-left": "10px",
-                })
-
-                $(".insertName,.insertMyaddress,.insertPostcode").css({
-                    "padding": "0px 0px 10px",
-                })
-
-                $(".edit, .del").css({
-                    "width": "30px",
-                    "height": "20px",
-                    "font-size": "15px",
-                    "position": "absolute",
-                    "right": "50px",
-                    "top":"50%",
-                    "cursor": "pointer",
-                    "text-decoration": "underline"
-                })
-
-                $(".edit").css({
-                    "right":"90px"
-                })
-
-                $(".binggou").css({
-                    "width": "15px",
-                    "height":"15px",
-                    "background": "black",
-                    "display": "inline-block",
-                    "color": "whitesmoke",
-                    "cursor": "pointer",
-                })
-
-                $(".redefult").css({
-                    "font-weight": "bolder",
-                })
                 
                 //插入数据库
                 var account = "zjl"
@@ -314,48 +343,87 @@ $('.save').click(function(){
                     url : 'insertIntoReceiver.do',
                     data: {"msg":JSON.stringify(reveiver)},
                     success : function(result){
-                    	console.log(result)
-                    	
+                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                         $(".addresslist").css({
+                             "width": "1000px",
+                             "height": "120px",
+                             "margin-left": "10px",
+                             "position": "relative"
+                         })
+
+                         $(".addresslist>li").css({
+                             "width": "750px",
+                             "height": "100px",
+                             "margin-top": "10px",
+                             "margin-left": "10px",
+                         })
+
+                         $(".insertName,.insertMyaddress,.insertPostcode").css({
+                             "padding": "0px 0px 10px",
+                         })
+
+                         $(".edit, .del").css({
+                             "width": "30px",
+                             "height": "20px",
+                             "font-size": "15px",
+                             "position": "absolute",
+                             "right": "50px",
+                             "top":"50%",
+                             "cursor": "pointer",
+                             "text-decoration": "underline"
+                         })
+
+                         $(".edit").css({
+                             "right":"90px"
+                         })
+
+                         $(".binggou").css({
+                             "width": "15px",
+                             "height":"15px",
+                             "background": "black",
+                             "display": "inline-block",
+                             "color": "whitesmoke",
+                             "cursor": "pointer",
+                         })
+
+                         $(".redefult").css({
+                             "font-weight": "bolder",
+                         })
+                         var len = $(".user-right2").children().length;
+                         if(len > 3){
+                             $(".nowaddress").remove();
+                         }
+
+                         document.getElementById("myname").value = "";
+                         document.getElementById("myiphone").value = "";
+                         document.getElementById("mypostcode").value = "";
+                         document.getElementById("mydetailaddress").value = "";
+                         
                     },
                 });
                 
 
         }
-        var len = $(".user-right2").children().length;
-        if(len > 3){
-            $(".nowaddress").remove();
-        }
-
-        document.getElementById("myname").value = "";
-        document.getElementById("myiphone").value = "";
-        document.getElementById("mypostcode").value = "";
-        document.getElementById("mydetailaddress").value = "";
+       
 
     }
 
 
     function  delclick(obj){
 
-        $(obj).parent().parent().remove();
-        var len = $(".user-right2").children().length;
-        if(len == 2){
-            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
-            $(".nowaddress").css({
-                "font-size" : "25px",
-                "width" : "1000px",
-                "height" : "300px",
-                "text-align" : "center",
-                "line-height" : "300px"
-            })
-        }
-
-    }
-    
-    //判断是否有地址
-    (function () {
+//    	console.log()
+    	var rid = $(obj).attr("data-rid");
+    	$.ajax({
+    		
+    		type : "post",
+    		url : "deleteAddressByRid.do",
+    		data : {"msg" : rid},
+    		success : function (re) {
+    			
+    		}
+    	})
     	
-    	
-    	
+//        $(obj).parent().parent().remove();
 //        var len = $(".user-right2").children().length;
 //        if(len == 2){
 //            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
@@ -367,6 +435,11 @@ $('.save').click(function(){
 //                "line-height" : "300px"
 //            })
 //        }
-    })()
+
+        
+        
+    }
+    
+
     
 

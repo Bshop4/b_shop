@@ -9,10 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Account_table;
 import bshow.pojo.Personinfo_table;
+import bshow.test.Test;
+import bshow.util.Encryptdecrypt;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
@@ -20,7 +24,7 @@ import bshow.web.servlet.form.Sign_accountActionForm;
 import xyw.util.SendmailUtil;
 
 public class Sign_accountAction extends Action{
-
+	private static final Logger log = Logger.getLogger(Test.class);
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
@@ -33,9 +37,16 @@ public class Sign_accountAction extends Action{
 		Account_table at=new Account_table();
 		at.setAccount(saa.getAccount());
 		at.setEmail(saa.getEmail());
-		at.setPassword(saa.getPassword());
+		try {
+			String pass=Encryptdecrypt.encrypt(saa.getPassword());
+			at.setPassword(pass);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log.warn(e+"==Sign_accountAction密码加密两次出错");
+		}
 		at.setIpaddress(getIpAddress(request));
-		dao.saveObject("insertone", at);
+		boolean flagAccount=dao.saveObject("insertone", at);
 		//给信息表添加帐号
 		Personinfo_table pt=new Personinfo_table();
 		pt.setAccount(saa.getAccount());
@@ -44,12 +55,30 @@ public class Sign_accountAction extends Action{
 		pt.setNickname("");
 		pt.setBirthday("");
 		pt.setSex("");
-		dao1.saveObject("insertone", pt);
+		boolean flagPersoninfo=dao1.saveObject("insertone", pt);
 		//编写返回给js页面的值
+		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
-		UUID uid=UUID.randomUUID();
-		String json="{\"code\":\"0\",\"msg\":\"successSgin\",\"token\":\""+uid.toString()+"\"}";
-		out.print(json);
+		String json="";
+		if(flagPersoninfo&&flagAccount){
+			json="{\"code\":\"0\",\"msg\":\"successSgin登录成功\"}";
+			out.print(json);
+			return null;
+		}
+		
+		if(!flagPersoninfo){
+			json="{\"code\":\"412\",\"msg\":\"Personin_tableSavefoError信息添加出错\"}";
+			//只要有一边失败就要删除成功的表
+			
+			
+			
+			
+		}
+		
+		if(!flagAccount){
+			json="{\"code\":\"411\",\"msg\":\"Account_tableSaveError帐号添加出错\"}";
+		}
+		
 		return null;
 	}
 

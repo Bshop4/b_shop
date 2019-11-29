@@ -275,7 +275,7 @@ function delAll() {
 //		console.log(tr.length);         
 		
 		var cart_id = $('.check').attr("data-no");
-		console.log(cart_id)
+		console.log(cart_id) 
 //		$.ajax({
 //			type:"POST",
 //			url:"deleteCartGoods.do",

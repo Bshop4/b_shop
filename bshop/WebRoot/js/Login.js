@@ -24,13 +24,10 @@
 		if($('.pyl_login_user input').val().length<4||$('.pyl_login_user input').val().length>20){
 			$('.pyl_login_user_tips').show();
 			userflag=false;
-			return;}
-		else{$('.pyl_login_user_tips').hide();}
-		
-		//验证数据库是否有这个帐号
-		$('.pyl_login_user_tips').html('帐号不存在').show();
-		
-		
+			return;
+		}else{
+			$('.pyl_login_user_tips').hide();
+		};
 		userflag=true;
 	});
 	
@@ -79,42 +76,37 @@
 	
 	//立即登录按钮点击
 	$('.pyl_fastlogin_btn').click(function(){
-				console.log(1);
 		if(!passflag||!userflag){
 			console.log(passflag+''+userflag+$('.pyl_login_user input').val());
 			$('.pyl_login_password_tips').show();
 			return;
 		}
 		
-		console.log(2);
 		//去数据库验证帐号
 		var uName=$('.pyl_login_user input').val();
 		var upass=$('.pyl_login_userpass input').val();
 		
-		
 		//如果前面两个都对了就开始请求服务器
-		$.post('http://www.wjian.top/shop/api_user.php?',
-			{status:'login',
-			 username:uName,
-			 password:upass,
+		$.post('Login_Action.do',
+			{
+			account:uName,
+			password:upass,
 			},function(result){
-				console.log(3);
 				var obj=JSON.parse(result);
+				//var obj=result;
 				console.log(obj);
 				
-				var goodsID=getUrlVal('goods_id');
-				
 				//登录分两种加入购物车过来和直接登录
-				if(obj.code!=0){return;};
-					console.log(goodsID);
-				if(goodsID){
-					
-					localStorage.setItem('cartnumber','3');
-					localStorage.setItem('username',obj.data.username);
-					localStorage.setItem('token',obj.data.token);			
-					location.href='detail.jsp?goods_id='+goodsID;	
-					
-				}else{
+				if(obj.code==0){
+					var goodsID=getUrlVal('goods_id');
+					if(goodsID){
+						
+						localStorage.setItem('cartnumber','3');
+						localStorage.setItem('username',obj.data.username);
+						localStorage.setItem('token',obj.data.token);			
+						location.href='detail.jsp?goods_id='+goodsID;	
+						
+					}else{
 						//直接登录
 						localStorage.setItem('cartnumber','0');
 						localStorage.setItem('username',obj.data.username);
@@ -124,8 +116,14 @@
 						setTimeout(function(){
 							location.href='index.jsp';	
 						},1500);
-				}
-					
+					}
+				};
+				if(obj.code==414){
+					$('.pyl_login_password_tips').show().html(obj.msg);//密码错误
+				};
+				if(obj.code==413){
+					$('.pyl_login_user_tips').html(obj.msg).show();//帐号不存在
+				};
 					
 			}
 		);

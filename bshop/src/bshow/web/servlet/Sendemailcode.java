@@ -46,8 +46,8 @@ public class Sendemailcode extends HttpServlet {
 		// TODO Auto-generated method stub
 		Random r=new Random();
 		String email=request.getParameter("email");
-		PrintWriter out =response.getWriter();
 		response.setCharacterEncoding("UTF-8");
+		PrintWriter out =response.getWriter();
 		String json="";
 		StringBuffer code=new StringBuffer("");
 		BASE64Encoder be=new BASE64Encoder();
@@ -59,12 +59,12 @@ public class Sendemailcode extends HttpServlet {
 			SendmailUtil.send(email, "嘿店注册", "验证码:"+code);
 		} catch (Exception e) {
 			// TODO: handle exception
-			String jsonfalse="{code:'404',msg:'邮箱格式错误'}";
+			String jsonfalse="{code:'0405',msg:'邮箱格式错误'}";
 			out.print(jsonfalse);
 		}
 		//1041551225@qq.com    814402195@qq.com
 		
-		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
+		out.print("{\"code\":\"0\",\"msg\":\"sendSuccess发送成功\",\"passage\":\""+ be.encode(code.toString().getBytes())+"\"}");
 	}
 
 }

@@ -94,11 +94,26 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
-	
+	<!-- 更新个人信息 -->
 	<PagePattern name="updatePersonInfo">
 		<ActionForm>bshow.web.servlet.form.UpdatePersonInfoForm</ActionForm>
 		<Action>bshow.web.servlet.action.UpdatePersonInfoAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	
+	<!-- 插入地址数据 -->
+	<PagePattern name="insertIntoReceiver">
+		<ActionForm>bshow.web.servlet.form.InsertIntoReceiverForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertIntoReceiverAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 查找地址数据 -->
+	<PagePattern name="selectReceiverByAccount">
+		<ActionForm>bshow.web.servlet.form.SelectReceiverByAccountForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectReceiverByAccountAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	
 </properties>

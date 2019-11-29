@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
 					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
 					<span class="badge store_number">0</span>
-					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿点<p class="glyphicon glyphicon-chevron-down"></p>
+					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
 								<a href="personInfo.jsp">个人中心</a>
@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input  readonly class="user-acc-input">
             </div>
             <div class="nickName">
-                <label class="user-nickName">昵称:</label>
+                <label class="user-nickName" id="user-nickname1">昵称:</label>
                 <input type="text" class="user-in-nickName"/>
             </div>
             <div class="sex">

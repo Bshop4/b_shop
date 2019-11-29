@@ -42,6 +42,9 @@ public class GetInfoAction extends Action{
 		list1.add(pt1.getAddress());//4
 		list1.add(pt1.getSex());//5
 		list1.add(pt1.getBirthday());//6
+//		list1.add(pt1.getTel());//7
+//		list1.add(pt1.getPostcode());//8
+		
 		response.setCharacterEncoding("UTF-8");
 //		for (Object object : list1) {
 //			System.out.println(object);

@@ -8,7 +8,6 @@
 		dataType:"json",
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success:function(result){
-			console.log(result)
 			var str = ``;
 			for(var i = 0; i < result.length; i++) {
 				if(i < result.length - 1) {

@@ -6,7 +6,6 @@
 		data:{"account":account},
 		success:function(re){
 			var obj = JSON.parse(re);
-//			console.log(obj)
 			
 			//头像
 			$('#imgPhoto').attr("src",`${obj[3]}`);
@@ -30,12 +29,12 @@
 			var userdate = `${obj[6]}`;
 			$(".userdate").attr("value",userdate);
 			
+			//保存按钮保存personInfo_id
+			$(".save").attr("data-id",`${obj[0]}`);
+			
 			//地址
 			var useraddress = `${obj[4]}`;
 			$('.myAddress').attr("value",useraddress);
-			
-			//保存按钮保存personInfo_id
-			$(".save").attr("data-id",`${obj[0]}`);
 		}
 		
 	})
@@ -43,6 +42,7 @@
 	
 })()
 
+//更新个人信息
 $('.save').click(function(){
 	//id
 	var pid = $('.save').attr("data-id");
@@ -69,7 +69,7 @@ $('.save').click(function(){
 			"myAddress1" : myAddress1
 		};
 	
-	console.log(personInfo)
+//	console.log(personInfo)
 	$.ajax({
         type : 'post',
         url : 'updatePersonInfo.do',
@@ -131,7 +131,7 @@ $('.save').click(function(){
 
 
 
-
+//切换
     $("#myinfo").click(function(){
         $("#myinfo").css({
             color:"red"
@@ -185,6 +185,7 @@ $('.save').click(function(){
         document.getElementById("save1").setAttribute("data-dismiss","");
     })
 
+    //保存地址
     function mysaveclick(){
         var name = document.getElementById("myname").value;
         var iphone = document.getElementById("myiphone").value;
@@ -297,6 +298,27 @@ $('.save').click(function(){
                 $(".redefult").css({
                     "font-weight": "bolder",
                 })
+                
+                //插入数据库
+                var account = "zjl"
+                
+                var reveiver = {
+                	"name" : name,
+                	"iphone" : iphone,
+                	"postcode" : postcode,
+                	"AllAddress" : AllAddress,
+                	"account" : account
+                }
+                $.ajax({
+                    type : 'post',
+                    url : 'insertIntoReceiver.do',
+                    data: {"msg":JSON.stringify(reveiver)},
+                    success : function(result){
+                    	console.log(result)
+                    	
+                    },
+                });
+                
 
         }
         var len = $(".user-right2").children().length;
@@ -329,18 +351,22 @@ $('.save').click(function(){
 
     }
     
+    //判断是否有地址
     (function () {
-        var len = $(".user-right2").children().length;
-        if(len == 2){
-            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
-            $(".nowaddress").css({
-                "font-size" : "25px",
-                "width" : "1000px",
-                "height" : "300px",
-                "text-align" : "center",
-                "line-height" : "300px"
-            })
-        }
+    	
+    	
+    	
+//        var len = $(".user-right2").children().length;
+//        if(len == 2){
+//            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+//            $(".nowaddress").css({
+//                "font-size" : "25px",
+//                "width" : "1000px",
+//                "height" : "300px",
+//                "text-align" : "center",
+//                "line-height" : "300px"
+//            })
+//        }
     })()
     
 

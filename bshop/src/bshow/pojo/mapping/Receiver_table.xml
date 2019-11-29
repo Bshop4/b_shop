@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Receiver_table" table="receiver_table">
+	<property name="rid" column="rid"/>
+	<property name="receiver" column="receiver"/>
+	<property name="postcode" column="postcode"/>
+	<property name="address" column="address"/>
+	<property name="tel" column="tel"/>
+	<property name="account" column="account"/>
+	
+
+
+</class>

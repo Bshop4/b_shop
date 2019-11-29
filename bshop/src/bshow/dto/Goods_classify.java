@@ -13,6 +13,7 @@ public class Goods_classify implements Serializable{
 	private String goods_name;
 	private String goods_photo;
 	private String goods_no;
+	private int maxPageCount;
 	public String getGoods_price() {
 		return goods_price;
 	}
@@ -73,12 +74,18 @@ public class Goods_classify implements Serializable{
 	public void setGoods_no(String goods_no) {
 		this.goods_no = goods_no;
 	}
+	public int getMaxPageCount() {
+		return maxPageCount;
+	}
+	public void setMaxPageCount(int maxPageCount) {
+		this.maxPageCount = maxPageCount;
+	}
 	@Override
 	public String toString() {
 		return "Goods_classify [goods_price=" + goods_price + ", goods_brand=" + goods_brand + ", middle_color="
 				+ middle_color + ", middle_size=" + middle_size + ", goods_place=" + goods_place + ", middle_repertory="
 				+ middle_repertory + ", middle_type=" + middle_type + ", goods_name=" + goods_name + ", goods_photo="
-				+ goods_photo + ", goods_no=" + goods_no + "]";
+				+ goods_photo + ", goods_no=" + goods_no + ", maxPageCount=" + maxPageCount + "]";
 	}
 	
 

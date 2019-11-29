@@ -28,6 +28,7 @@ var pagesize = 16;
 	
 	//商品刷新
 	getGoodsList();
+	
 })();
 
 //鼠标点击下一页
@@ -207,7 +208,6 @@ function getGoodsList() {
 					break;
 				}
 			}
-			
 		}
 	})
 }

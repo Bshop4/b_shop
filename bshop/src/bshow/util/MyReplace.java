@@ -136,6 +136,17 @@ public class MyReplace implements Runnable,Subject{
 					gc.setGoods_brand(rs.getString("goods_brand"));
 					mylist.add(gc);
 				}
+			}else if("maxPageCount".equals(mykey)){
+				//存储总数
+				Goods_classify gc=new Goods_classify();
+				int count=0;
+				if (rs.next()) {
+					count = rs.getInt(1);
+				}
+				int maxPageCount=count % 16 == 0 ? (count / 16) : (count / 16 + 1);
+				System.out.println("最大的页数为"+maxPageCount);
+				gc.setMaxPageCount(maxPageCount);
+				mylist.add(gc);
 			}else{
 				Goods_classify gc=new Goods_classify();
 				while(rs.next()){

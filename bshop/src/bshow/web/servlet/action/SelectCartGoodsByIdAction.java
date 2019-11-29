@@ -16,19 +16,17 @@ import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
 import net.sf.json.JSONArray;
 
-public class SelectCartGoodsAction extends Action {
+public class SelectCartGoodsByIdAction extends Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-//		String cgoods_no = request.getParameter("cgoods_no");
-		String account = request.getParameter("account");
-//		System.out.println("cgoods_no");
-//		System.out.println(cgoods_no);
+		String cart_id = request.getParameter("cart_id");
+		int goods_id = Integer.parseInt(cart_id);
 		Cart_table ct = new Cart_table();
-		ct.setAccount(account);
+		ct.setCart_id(goods_id);
 		Basedao bd = new Basedaoimpl();
-		List<Object> list = bd.select("selectone", ct);
+		List<Object> list = bd.select("selectById", ct);
 //		System.out.println("ct");
 		JSONArray ja = JSONArray.fromObject(list);
 //		将数据交给前端

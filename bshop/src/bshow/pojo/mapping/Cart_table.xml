@@ -24,6 +24,12 @@
 		select * from cart_table where
 		1=1 and account=#{account}
 	</select>
+	
+	<!-- 根据商品id查询购物车商品 -->
+	<select id="selectById" resulttype="bshow.pojo.Cart_table">
+		select * from cart_table where
+		1=1 and cart_id=#{cart_id}
+	</select>
 
 	<!-- 删除商品 -->
 	<delete id="deleteone" resulttype="bshow.pojo.Cart_table">

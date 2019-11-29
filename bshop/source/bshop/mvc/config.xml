@@ -26,7 +26,7 @@
 
 	
 
-	<!-- 查询购物车商品 -->
+	<!-- 根据用户名查询购物车商品 -->
 	<PagePattern name="selectCartGoods">
 		<ActionForm>bshow.web.servlet.form.SelectCartGoodsForm</ActionForm>
 		<Action>bshow.web.servlet.action.SelectCartGoodsAction</Action>
@@ -44,6 +44,27 @@
 	<PagePattern name="addCartGoods">
 		<ActionForm>bshow.web.servlet.form.AddCartGoodsForm</ActionForm>
 		<Action>bshow.web.servlet.action.AddCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 根据商品id查询购物车的商品 -->
+	<PagePattern name="selectCartGoodsById">
+		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByIdForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCartGoodsByIdAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 插入订单表商品 -->
+	<PagePattern name="insertBillGoods">
+		<ActionForm>bshow.web.servlet.form.InsertBillForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertBillAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 插入到订单表bill_table -->
+	<PagePattern name="insertBill">
+		<ActionForm>bshow.web.servlet.form.InsertBillForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertBillAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	

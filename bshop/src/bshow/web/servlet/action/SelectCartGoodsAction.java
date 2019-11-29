@@ -30,10 +30,10 @@ public class SelectCartGoodsAction extends Action {
 		Basedao bd = new Basedaoimpl();
 		List<Object> list = bd.select("selectone", ct);
 //		System.out.println("ct");
-		response.setCharacterEncoding("UTF-8");
 		JSONArray ja = JSONArray.fromObject(list);
 //		将数据交给前端
 		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("UTF-8");
 		out.print(ja.toString());
 		return null;
 	}

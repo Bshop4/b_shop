@@ -9,6 +9,7 @@
 	<property name="birthday" column="birthday"/>
 
 
+
 	
 	<insert id="insertone">
 		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})
@@ -31,5 +32,8 @@
 	 <update id="updatePersonInfo">
 		update personinfo_table set nickname=@{nickname} , photo=@{photo} , address=@{address} , sex=@{sex} , birthday=@{birthday} where personInfo_id=#{personInfo_id}
 	</update>
-
+	
+	<update id="updateAddress">
+		update personinfo_table set address=@{address} where account=#{account}
+	</update>
 </class>

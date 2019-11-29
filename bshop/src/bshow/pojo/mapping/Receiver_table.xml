@@ -6,15 +6,28 @@
 	<property name="postal" column="postal"/>
 	<property name="address" column="address"/>
 	<property name="account" column="account"/>
+	<property name="ischeck" column="ischeck"/>
 	
 	<!-- 插入地址到数据库 -->
 	<insert id="insertIntoReceiver">
-		insert into receiver_table(receiver,telephone,postal,address,account) values(#{receiver},#{telephone},#{postal},#{address},#{account})
+		insert into receiver_table(receiver,telephone,postal,address,account,ischeck) values(#{receiver},#{telephone},#{postal},#{address},#{account},#{ischeck})
 	</insert>
 	
 	<select id="selectReceiverByAccount" resulttype="bshow.pojo.Receiver_table">
 		select * from receiver_table where 1=1 and account=#{account}
 	</select>
 
+	<delete id="deleteAddress">
+		delete  from receiver_table where rid=#{rid}
+	</delete>
+	
+	<select id="selectReceiverByAll" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and receiver=#{receiver} and telephone=#{telephone} and postal=#{postal} and address=#{address} and account=#{account} and ischeck=#{ischeck}
+	</select>
+	
+	<!-- 更新是否check -->
+	<update id="updateIsCheck">
+		update receiver_table set receiver=@{receiver} , telephone=@{telephone} , postal=@{postal} , address=@{address} , account=@{account} , ischeck=@{ischeck} where rid=#{rid}
+	</update>
 
 </class>

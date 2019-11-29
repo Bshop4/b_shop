@@ -171,9 +171,11 @@ function clickAll() {
 			if (event.target.checked == true) {
 				// 给当前元素加个标识(自定义的属性)
 				event.target.setAttribute('data-price', 'active');
+//				event.target.setAttribute('del-red','active')
 			} else {
 				// 拿掉标识(自定义的属性)
 				event.target.setAttribute('data-price', '');
+//				event.target.setAttribute('del-red', '');
 			}
 			allMounts();
 			// 求总价
@@ -272,18 +274,19 @@ function delAll() {
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
 //		console.log(tab);
-//		console.log(tr.length);
+//		console.log(tr.length);         
+		
 		var cart_id = $('.check').attr("data-no");
-		console.log(cart_id)
-		$.ajax({
-			type:"POST",
-			url:"deleteCartGoods.do",
-			data:{"cart_id":cart_id},
-			success:function(result){
+		console.log(cart_id) 
+//		$.ajax({
+//			type:"POST",
+//			url:"deleteCartGoods.do",
+//			data:{"cart_id":cart_id},
+//			success:function(result){
 //				var result = JSON.parse(result);
-				console.log(result);//true(删除成功)
-			}
-		});
+//				console.log(result);//true(删除成功)
+//			}
+//		});
 		tab.get(0).removeChild(tr.get(0));
 //		console.log(tr.get(0).length);
 	});
@@ -297,5 +300,8 @@ function allMounts() {
 	})
 }
 $('#open').click(function() {
-	window.open('account.jsp')
+	window.open('account.jsp');
+	$('[data-price="active"]').each(function(){
+		
+	})
 })

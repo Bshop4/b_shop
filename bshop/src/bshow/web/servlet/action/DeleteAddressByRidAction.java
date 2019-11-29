@@ -2,8 +2,6 @@ package bshow.web.servlet.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,34 +13,26 @@ import bshow.pojo.Receiver_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
-import bshow.web.servlet.form.SelectReceiverByAccountForm;
-import net.sf.json.JSONArray;
+import bshow.web.servlet.form.DeleteAddressByRidForm;
+import net.sf.json.JSONObject;
 
-public class SelectReceiverByAccountAction extends Action{
+public class DeleteAddressByRidAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-		
-		SelectReceiverByAccountForm sbaf = (SelectReceiverByAccountForm)form;
-		String account = sbaf.getAccount();
-		Basedao bd = new Basedaoimpl();
+		DeleteAddressByRidForm dabrf = (DeleteAddressByRidForm)form;
+		String rid = dabrf.getMsg();
 		
 		Receiver_table rt = new Receiver_table();
-		rt.setAccount(account);
-		rt.setAddress("");
-		rt.setPostal("");
-		rt.setReceiver("");
-		rt.setTelephone("");
-		rt.setIscheck(0);
-		
-		List<Object> list = bd.select("selectReceiverByAccount", rt);
-		
-		
-		response.setCharacterEncoding("UTF-8");
+		rt.setRid(Integer.parseInt(rid));
+		Basedao bd = new Basedaoimpl();
+		boolean f = bd.deleteObject("deleteAddress", rt);
 		PrintWriter pw = response.getWriter();
-		JSONArray ja = JSONArray.fromObject(list);
-		pw.print(ja.toString());
+		response.setCharacterEncoding("UTF-8");
+		if(f){
+			pw.print("1");			
+		}
 		
 		return null;
 	}

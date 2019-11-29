@@ -115,5 +115,17 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 删除地址 -->
+	<PagePattern name="deleteAddressByRid">
+		<ActionForm>bshow.web.servlet.form.DeleteAddressByRidForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteAddressByRidAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
+	<!-- 更新check和插入 -->
+	<PagePattern name="updateCheckAndInsert">
+		<ActionForm>bshow.web.servlet.form.UpdateCheckAndInsertForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateCheckAndInsertAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 </properties>

@@ -81,8 +81,10 @@
 				<th>商品</th>
 				<th>描述</th>
 				<th>数量</th>
-				<th>单价</th>
-				<th>小计</th>
+				<th>颜色</th>
+		        <th>尺码</th>
+		        <th>单价</th>
+		        <th>小计</th>
 			</tr>
 		</table>
 		<div class="footer">

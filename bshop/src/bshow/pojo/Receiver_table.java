@@ -10,6 +10,13 @@ public class Receiver_table implements Serializable{
 	private String address;//地址
 	private String telephone;//手机
 	private String account;//账户
+	private int ischeck;//是否默认S
+	public int getIscheck() {
+		return ischeck;
+	}
+	public void setIscheck(int ischeck) {
+		this.ischeck = ischeck;
+	}
 	public int getRid() {
 		return rid;
 	}
@@ -49,8 +56,9 @@ public class Receiver_table implements Serializable{
 	@Override
 	public String toString() {
 		return "Receiver_table [rid=" + rid + ", receiver=" + receiver + ", postal=" + postal + ", address=" + address
-				+ ", telephone=" + telephone + ", account=" + account + "]";
+				+ ", telephone=" + telephone + ", account=" + account + ", ischeck=" + ischeck + "]";
 	}
+	
 	
 	
 	

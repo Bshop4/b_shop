@@ -176,7 +176,7 @@
         #user-myaddress{
             position: absolute;
             right: 100px;
-            top:2px;
+            top:0px;
             width: 115px;
             height: 35px;
         }

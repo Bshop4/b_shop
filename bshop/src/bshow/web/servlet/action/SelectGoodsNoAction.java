@@ -29,7 +29,7 @@ public class SelectGoodsNoAction extends Action{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String goodsno = request.getParameter("goodsno");
-		System.out.println("goodsno"+goodsno);
+//		System.out.println("goodsno"+goodsno);
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
 		Basedao ba = new Basedaoimpl();

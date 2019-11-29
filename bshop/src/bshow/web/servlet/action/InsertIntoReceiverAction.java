@@ -1,6 +1,8 @@
 package bshow.web.servlet.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,12 +38,18 @@ public class InsertIntoReceiverAction extends Action{
 		rt.setPostal(postcode);
 		rt.setReceiver(name);
 		rt.setTelephone(iphone);
+		rt.setIscheck(0);
 //		System.out.println(rt);
+		
 		
 
 		Basedao bd = new Basedaoimpl();
 		bd.saveObject("insertIntoReceiver", rt);
 		
+		List<Object> lists = bd.select("selectReceiverByAll", rt);
+		Receiver_table rts = (Receiver_table)lists.get(0);
+		PrintWriter pw = response.getWriter();
+		pw.print(rts.getRid());
 		
 		return null;
 	}

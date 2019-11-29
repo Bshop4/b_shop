@@ -198,10 +198,14 @@ $('.save').click(function(){
         	            })
         				
         			}
-//        			console.log(obj)
+    				
         			if(obj.length > 0){
         				for(var i = 0; i < obj.length; i++){
-        					$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+obj[i].receiver+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj[i].telephone+"</div><div class='insertPostcode'>邮编:"+obj[i].receiver+"</div><div class='insertMyaddress'>收货地址:"+obj[i].address+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+obj[i].rid+"'>删除</div></li></ul>");
+        					if(obj[i].ischeck == "1"){
+        						$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>"+obj[i].receiver+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj[i].telephone+"</div><div class='insertPostcode'>邮编:"+obj[i].receiver+"</div><div class='insertMyaddress'>收货地址:"+obj[i].address+"</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+obj[i].rid+"'>删除</div></li></ul>");
+        					}else{
+        						$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+obj[i].receiver+"&nbsp;&nbsp;&nbsp;&nbsp;"+obj[i].telephone+"</div><div class='insertPostcode'>邮编:"+obj[i].receiver+"</div><div class='insertMyaddress'>收货地址:"+obj[i].address+"</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+obj[i].rid+"'>删除</div></li></ul>");
+        					}
                             $(".addresslist").css({
                                 "width": "1000px",
                                 "height": "120px",
@@ -247,11 +251,28 @@ $('.save').click(function(){
                             $(".redefult").css({
                                 "font-weight": "bolder",
                             })
+                            
         				}
     				}	
+//        			var len1 = $(".user-right2").children().length;
+//        			for(var i = 0;i < len1-2; i++){
+//        				console.log($(".user-right2").find("ul").get(i))
+//        				if($(".user-right2").find("ul").get(i).attr("data-ul") == "1"){
+//        					$(".user-right2").find("ul").get(i).parent().css({
+//        						"border" : "1px solid red"
+//        					})
+//        				}
+//        			}
+//        			for(var i = 0; i < obj.length; i++){
+//        				if(obj[i].ischeck == "1"){
+//        					
+//        				}
+//        			}
+        			
     			}else if(len > 2){
     				return;
     			}
+    			
     		}
     	})
     })
@@ -343,7 +364,7 @@ $('.save').click(function(){
                     url : 'insertIntoReceiver.do',
                     data: {"msg":JSON.stringify(reveiver)},
                     success : function(result){
-                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+result+"'>删除</div></li></ul>");
                          $(".addresslist").css({
                              "width": "1000px",
                              "height": "120px",
@@ -409,37 +430,85 @@ $('.save').click(function(){
     }
 
 
+    
+    //删除地址
     function  delclick(obj){
 
-//    	console.log()
     	var rid = $(obj).attr("data-rid");
-    	$.ajax({
+    	if(confirm("您确定要删除该地址吗?")){
+    		$.ajax({
     		
     		type : "post",
     		url : "deleteAddressByRid.do",
     		data : {"msg" : rid},
     		success : function (re) {
+//    			console.log(re)
+    			if(re == "1"){
+			        $(obj).parent().parent().remove();
+			        var len = $(".user-right2").children().length;
+			        if(len == 2){
+			            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+			            $(".nowaddress").css({
+			                "font-size" : "25px",
+			                "width" : "1000px",
+			                "height" : "300px",
+			                "text-align" : "center",
+			                "line-height" : "300px"
+			            })
+			        }
+    				
+    			}
+    		}
+    	})
+    }
+}  
+    
+    
+    function changeBinggou(obj) {
+    	var account = "zjl";
+    	
+    	var s1 = $(obj).parent().find("div").eq(0).html()
+    	var s2 = $(obj).parent().find("div").eq(1).html()
+    	var s3 = $(obj).parent().find("div").eq(2).html()
+    	
+    	var arr1 = s1.split("&nbsp;&nbsp;&nbsp;&nbsp;")
+    	var name = arr1[0];
+    	var iphone = arr1[1];
+    	var postcode = s2.slice(3);
+    	var address = s3.slice(5);
+    	var rid =$(obj).parent().find("div").eq(4).attr("data-rid");
+    	
+    	var mes = {
+    		"name" : name,
+    		"iphone" : iphone,
+    		"postcode" : postcode,
+    		"address" : address,
+    		"rid" : rid,
+    		"account" : account
+    	};
+    	
+    	$.ajax({
+    		
+    		type : "post",
+    		url : "updateCheckAndInsert.do",
+    		data : {"msg" : JSON.stringify(mes)},
+    		success : function (re) {
+//    		 	$(".binggou").css({
+//    	    		"color" : "white"
+//    	    	})
+//    	    	$(obj).css({
+//    	    		"color" : "red"
+//    	    	})
+    			$(".addresslist").css({
+    				"border" : ""
+    			})
+    			$(obj).parent().parent().css({
+    				"border" : "1px solid red"
+    			})
     			
     		}
     	})
-    	
-//        $(obj).parent().parent().remove();
-//        var len = $(".user-right2").children().length;
-//        if(len == 2){
-//            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
-//            $(".nowaddress").css({
-//                "font-size" : "25px",
-//                "width" : "1000px",
-//                "height" : "300px",
-//                "text-align" : "center",
-//                "line-height" : "300px"
-//            })
-//        }
-
-        
-        
     }
-    
 
     
 

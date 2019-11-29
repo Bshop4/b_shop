@@ -27,7 +27,7 @@ import bshow.util.ober.Looker;
 import bshow.web.servlet.form.GoodsByConditionsActionForm;
 
 public class Basedaoimpl implements Basedao, Looker {
-	private static final Logger log = Logger.getLogger(Test.class);//日志
+	private static final Logger log = Logger.getLogger(Test.class);// 日志
 	// 用来存储所有的信息
 	Map<String, List<Goods_classify>> allNeeds = new ConcurrentHashMap<String, List<Goods_classify>>();
 
@@ -62,8 +62,8 @@ public class Basedaoimpl implements Basedao, Looker {
 				ps.setObject(i + 1, method.invoke(o, null));
 			}
 
-			int psint =ps.executeUpdate();
-			if(psint!=0){
+			int psint = ps.executeUpdate();
+			if (psint != 0) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -294,12 +294,10 @@ public class Basedaoimpl implements Basedao, Looker {
 		Thread t5 = new Thread(mr5);
 		t5.start();
 
-		
-		//查询商品
-		Connection conn6=DBhelper.getConnection();
-		String mysql6=sql+" group by c.goods_no limit ?,?";
-		mysql6=mysql6.replace("@", "c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
-		System.out.println(mysql6);
+		// 查询商品
+		Connection conn6 = DBhelper.getConnection();
+		String mysql6 = sql + " group by c.goods_no limit ?,?";
+		mysql6 = mysql6.replace("@", "c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
 		MyReplace mr6 = new MyReplace("goodsConditions", mysql6, conn6, this, form);
 		// 用线程处理查询
 		Thread t6 = new Thread(mr6);
@@ -309,15 +307,24 @@ public class Basedaoimpl implements Basedao, Looker {
 		Connection conn7 = DBhelper.getConnection();
 		String mysql7 = sql + " group by c.goods_place";
 		mysql7 = mysql7.replace("@", "c.goods_place");
-		System.out.println(mysql7);
 		MyReplace mr7 = new MyReplace("goods_place", mysql7, conn7, this, form);
 		// 用线程处理查询
 		Thread t7 = new Thread(mr7);
 		t7.start();
+		
+		// 查询最大页数
+		Connection conn8 = DBhelper.getConnection();
+		String mysql8 = "SELECT COUNT(d.goods_no) from ("+sql + " group by c.goods_no) as d";
+		mysql8 = mysql8.replace("@", "c.goods_no");
+		MyReplace mr8 = new MyReplace("maxPageCount", mysql8, conn8, this, form);
+		// 用线程处理查询
+		Thread t8 = new Thread(mr8);
+		t8.start();
+		
 
 		// 满足条件跳出循环
 		while (true) {
-			if (allNeeds.size() == 7) {
+			if (allNeeds.size() == 8) {
 				break;
 			}
 		}
@@ -439,52 +446,48 @@ public class Basedaoimpl implements Basedao, Looker {
 		}
 		return false;
 	}
-	
-	//delete from table where id in (#{int},#{String},#{int})
-	//表删除多行
+
+	// delete from table where id in (#{int},#{String},#{int})
+	// 表删除多行
 	@Override
 	public boolean deleteMachObject(String id, Object o, List<Object> list) {
 		// TODO Auto-generated method stub
-		Connection conn=DBhelper.getConnection();
-		//拿到对应的配置文件
-		Class c=o.getClass();
-		Document doc=DBhelper.getDocumentByClass(c);
-		Element deleteElement=(Element)doc.selectSingleNode("/class/delete[@id='"+ id +"']");
-		String sql=deleteElement.getTextTrim();
+		Connection conn = DBhelper.getConnection();
+		// 拿到对应的配置文件
+		Class c = o.getClass();
+		Document doc = DBhelper.getDocumentByClass(c);
+		Element deleteElement = (Element) doc.selectSingleNode("/class/delete[@id='" + id + "']");
+		String sql = deleteElement.getTextTrim();
 		// 获得多少个参数
 		int paramterCount = 0;
-		Pattern p=Pattern.compile("#[{]\\w+[}]");
-		List<String> typelist=new ArrayList<String>();//存类型
-		Matcher m=p.matcher(sql);
-		while(m.find()){
+		Pattern p = Pattern.compile("#[{]\\w+[}]");
+		List<String> typelist = new ArrayList<String>();// 存类型
+		Matcher m = p.matcher(sql);
+		while (m.find()) {
 			paramterCount++;
 		}
-		sql=sql.replaceAll("#[{]\\w+[}]", "?");
-		if(list.isEmpty()){
+		sql = sql.replaceAll("#[{]\\w+[}]", "?");
+		if (list.isEmpty()) {
 			log.warn("deleteMachObject类的参数list为空");
 		}
-		
+
 		try {
-			PreparedStatement ps=conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
 			for (int i = 0; i < paramterCount; i++) {
-				ps.setObject(i+1, list.get(i));
+				ps.setObject(i + 1, list.get(i));
 			}
-			int psint=ps.executeUpdate(sql);
-			if(psint==paramterCount){
+			int psint = ps.executeUpdate(sql);
+			if (psint == paramterCount) {
 				return true;
-			}else{
-				//回滚
+			} else {
+				// 回滚
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			log.error(e.toString()+"======"+"dao删除多行数据获取sql语句");
+			log.error(e.toString() + "======" + "dao删除多行数据获取sql语句");
 		}
-		
+
 		return false;
 	}
-
-	
-	
-	
 
 }

@@ -38,6 +38,7 @@ public class InsertIntoReceiverAction extends Action{
 		rt.setPostal(postcode);
 		rt.setReceiver(name);
 		rt.setTelephone(iphone);
+		rt.setIscheck(0);
 //		System.out.println(rt);
 		
 		

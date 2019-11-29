@@ -34,6 +34,7 @@ public class SelectReceiverByAccountAction extends Action{
 		rt.setPostal("");
 		rt.setReceiver("");
 		rt.setTelephone("");
+		rt.setIscheck(0);
 		
 		List<Object> list = bd.select("selectReceiverByAccount", rt);
 		System.out.println(list.size());

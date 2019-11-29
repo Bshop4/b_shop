@@ -41,7 +41,7 @@ public class UpdatePersonInfoAction extends Action{
 		pt1.setPhoto(imgPhoto1.getBytes());
 		pt1.setSex(sex1);
 		pt1.setNickname(nickName1);
-		System.out.println(pt1);
+//		System.out.println(pt1);
 		
 		Basedao bd = new Basedaoimpl();
 		bd.updataObject("updatePersonInfo", pt1);

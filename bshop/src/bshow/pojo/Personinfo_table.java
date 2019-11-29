@@ -11,9 +11,37 @@ public class Personinfo_table implements Serializable{
 	private String address;//收货地址
 	private String sex;//性别
 	private String birthday;//生日
+//	private String tel;//手机号
+//	private String postcode;//邮编
 	
+	
+	
+//	@Override
+//	public String toString() {
+//		return "Personinfo_table [personInfo_id=" + personInfo_id + ", nickname=" + nickname + ", account=" + account
+//				+ ", photo=" + Arrays.toString(photo) + ", address=" + address + ", sex=" + sex + ", birthday="
+//				+ birthday + ", tel=" + tel + ", postcode=" + postcode + "]";
+//	}
+//	public String getPostcode() {
+//		return postcode;
+//	}
+//	public void setPostcode(String postcode) {
+//		this.postcode = postcode;
+//	}
+//	public String getTel() {
+//		return tel;
+//	}
+//	public void setTel(String tel) {
+//		this.tel = tel;
+//	}
 	public int getPersonInfo_id() {
 		return personInfo_id;
+	}
+	@Override
+	public String toString() {
+		return "Personinfo_table [personInfo_id=" + personInfo_id + ", nickname=" + nickname + ", account=" + account
+				+ ", photo=" + Arrays.toString(photo) + ", address=" + address + ", sex=" + sex + ", birthday="
+				+ birthday + "]";
 	}
 	public void setPersonInfo_id(int personInfo_id) {
 		this.personInfo_id = personInfo_id;
@@ -55,13 +83,8 @@ public class Personinfo_table implements Serializable{
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	@Override
-	public String toString() {
-		return "Personinfo_table [personInfo_id=" + personInfo_id + ", nickname=" + nickname + ", account=" + account
-				+ ", photo=" + Arrays.toString(photo) + ", address=" + address + ", sex=" + sex + ", birthday="
-				+ birthday + "]";
-	}
-
+	
+	
 	
 	
 	

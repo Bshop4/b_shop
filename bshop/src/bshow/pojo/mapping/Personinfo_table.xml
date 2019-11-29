@@ -7,6 +7,9 @@
 	<property name="address" column="address"/>
 	<property name="sex" column="sex"/>
 	<property name="birthday" column="birthday"/>
+
+
+
 	
 	<insert id="insertone">
 		insert into personinfo_table(nickname,account,photo,address,sex,birthday) values(#{nickname},#{account},#{photo},#{address},#{sex},#{birthday})

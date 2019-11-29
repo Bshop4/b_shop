@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Receiver_table" table="receiver_table">
+	<property name="rid" column="rid"/>
+	<property name="receiver" column="receiver"/>
+	<property name="telephone" column="telephone"/>
+	<property name="postal" column="postal"/>
+	<property name="address" column="address"/>
+	<property name="account" column="account"/>
+	
+	<!-- 插入地址到数据库 -->
+	<insert id="insertIntoReceiver">
+		insert into receiver_table(receiver,telephone,postal,address,account) values(#{receiver},#{telephone},#{postal},#{address},#{account})
+	</insert>
+	
+	<select id="selectReceiverByAccount" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and account=#{account}
+	</select>
+
+	<delete id="deleteAddress">
+		delete  from receiver_table where rid=#{rid}
+	</delete>
+	
+	<select id="selectReceiverByAll" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and receiver=#{receiver} and telephone=#{telephone} and postal=#{postal} and address=#{address} and account=#{account} 
+	</select>
+
+</class>

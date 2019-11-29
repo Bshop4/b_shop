@@ -23,7 +23,7 @@ public class DeleteCartGoodsAction extends Action {
 		String cart_ids = request.getParameter("cart_id");
 		// 转为int类型
 		int cart_id = Integer.parseInt(cart_ids);
-		System.out.println(cart_id);
+//		System.out.println(cart_id);
 		Cart_table ct = new Cart_table();
 		ct.setCart_id(cart_id);
 		Basedao bd = new Basedaoimpl();

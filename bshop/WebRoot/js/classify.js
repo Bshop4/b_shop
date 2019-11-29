@@ -37,11 +37,18 @@ $('.btnNext').click(function() {
 		page = 50;
 	}
 	$('.pageNum').val(page);
+	
+	//获取需要的值
+	getNeedsList();
+	
 	getGoodsList();
+	
 	//返回顶部
 	$('html').animate({
 		'scrollTop': 0
 	}, 100);
+	
+	
 })
 
 //鼠标点击上一页
@@ -51,7 +58,11 @@ $('.btnPrev').click(function() {
 		page = 1;
 	}
 	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
 	getGoodsList();
+	
 	//		返回顶部
 	$('html').animate({
 		'scrollTop': 0
@@ -275,5 +286,31 @@ function allIsNull(){
 	middle_type=undefined;
 	goods_name=undefined;
 }
-	
+
+//页面跳转，条件不变
+function noChangeCondition(){
+	if(middle_type){
+		//把条件拼接
+		$('.part-screen>.product-filter').append("<div data-condition='middle_type' data-condition-datail='"+middle_type+"'  onclick='duanjuntang(this)'><span>分类:</span><span>"+middle_type+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(goods_price){
+		$('.part-screen>.product-filter').append("<div data-condition='goods_price' data-condition-datail='"+goods_price+"'  onclick='duanjuntang(this)'><span>价格:</span><span>"+goods_price+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(goods_brand){
+		$('.part-screen>.product-filter').append("<div data-condition='goods_brand' data-condition-datail='"+goods_brand+"'  onclick='duanjuntang(this)'><span>品牌:</span><span>"+goods_brand+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(middle_color){
+		$('.part-screen>.product-filter').append("<div data-condition='middle_color' data-condition-datail='"+middle_color+"'  onclick='duanjuntang(this)'><span>颜色:</span><span>"+middle_color+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(middle_size){
+		$('.part-screen>.product-filter').append("<div data-condition='middle_size' data-condition-datail='"+middle_size+"'  onclick='duanjuntang(this)'><span>尺码:</span><span>"+middle_size+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(goods_place){
+		$('.part-screen>.product-filter').append("<div data-condition='goods_place' data-condition-datail='"+goods_place+"'  onclick='duanjuntang(this)'><span>发货地:</span><span>"+goods_place+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+	if(goods_name){
+		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	}
+}
+
 

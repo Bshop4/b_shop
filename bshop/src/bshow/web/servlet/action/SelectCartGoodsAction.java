@@ -21,15 +21,11 @@ public class SelectCartGoodsAction extends Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-//		String cgoods_no = request.getParameter("cgoods_no");
 		String account = request.getParameter("account");
-//		System.out.println("cgoods_no");
-//		System.out.println(cgoods_no);
 		Cart_table ct = new Cart_table();
 		ct.setAccount(account);
 		Basedao bd = new Basedaoimpl();
 		List<Object> list = bd.select("selectone", ct);
-//		System.out.println("ct");
 		JSONArray ja = JSONArray.fromObject(list);
 //		将数据交给前端
 		response.setCharacterEncoding("UTF-8");

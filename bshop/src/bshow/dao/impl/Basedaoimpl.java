@@ -298,7 +298,6 @@ public class Basedaoimpl implements Basedao, Looker {
 		Connection conn6 = DBhelper.getConnection();
 		String mysql6 = sql + " group by c.goods_no limit ?,?";
 		mysql6 = mysql6.replace("@", "c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
-		System.out.println(mysql6);
 		MyReplace mr6 = new MyReplace("goodsConditions", mysql6, conn6, this, form);
 		// 用线程处理查询
 		Thread t6 = new Thread(mr6);
@@ -308,15 +307,24 @@ public class Basedaoimpl implements Basedao, Looker {
 		Connection conn7 = DBhelper.getConnection();
 		String mysql7 = sql + " group by c.goods_place";
 		mysql7 = mysql7.replace("@", "c.goods_place");
-		System.out.println(mysql7);
 		MyReplace mr7 = new MyReplace("goods_place", mysql7, conn7, this, form);
 		// 用线程处理查询
 		Thread t7 = new Thread(mr7);
 		t7.start();
+		
+		// 查询最大页数
+		Connection conn8 = DBhelper.getConnection();
+		String mysql8 = "SELECT COUNT(d.goods_no) from ("+sql + " group by c.goods_no) as d";
+		mysql8 = mysql8.replace("@", "c.goods_no");
+		MyReplace mr8 = new MyReplace("maxPageCount", mysql8, conn8, this, form);
+		// 用线程处理查询
+		Thread t8 = new Thread(mr8);
+		t8.start();
+		
 
 		// 满足条件跳出循环
 		while (true) {
-			if (allNeeds.size() == 7) {
+			if (allNeeds.size() == 8) {
 				break;
 			}
 		}

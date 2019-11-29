@@ -38,8 +38,8 @@
       // 把每次组装好的添加进table
       $('table').append(str);
     };
-		allMount = goodsList.length;
-    // 所有的业务逻辑都在这之后
+//		allMount = goodsList.length;
+//     所有的业务逻辑都在这之后
 // clickAll();
   });
 

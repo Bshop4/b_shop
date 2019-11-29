@@ -272,18 +272,19 @@ function delAll() {
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
 //		console.log(tab);
-//		console.log(tr.length);
+//		console.log(tr.length);         
+		
 		var cart_id = $('.check').attr("data-no");
 		console.log(cart_id)
-		$.ajax({
-			type:"POST",
-			url:"deleteCartGoods.do",
-			data:{"cart_id":cart_id},
-			success:function(result){
+//		$.ajax({
+//			type:"POST",
+//			url:"deleteCartGoods.do",
+//			data:{"cart_id":cart_id},
+//			success:function(result){
 //				var result = JSON.parse(result);
-				console.log(result);//true(删除成功)
-			}
-		});
+//				console.log(result);//true(删除成功)
+//			}
+//		});
 		tab.get(0).removeChild(tr.get(0));
 //		console.log(tr.get(0).length);
 	});
@@ -297,5 +298,8 @@ function allMounts() {
 	})
 }
 $('#open').click(function() {
-	window.open('account.jsp')
+	window.open('account.jsp');
+	$('[data-price="active"]').each(function(){
+		
+	})
 })

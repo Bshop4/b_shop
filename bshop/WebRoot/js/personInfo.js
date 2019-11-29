@@ -249,55 +249,7 @@ $('.save').click(function(){
             }
         }
         AllAddress = getPro + getCity + getArea +  detailaddress;
-
-
             document.getElementById("save1").setAttribute("data-dismiss","modal");
-                $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
-                $(".addresslist").css({
-                    "width": "1000px",
-                    "height": "120px",
-                    "margin-left": "10px",
-                    "position": "relative"
-                })
-
-                $(".addresslist>li").css({
-                    "width": "750px",
-                    "height": "100px",
-                    "margin-top": "10px",
-                    "margin-left": "10px",
-                })
-
-                $(".insertName,.insertMyaddress,.insertPostcode").css({
-                    "padding": "0px 0px 10px",
-                })
-
-                $(".edit, .del").css({
-                    "width": "30px",
-                    "height": "20px",
-                    "font-size": "15px",
-                    "position": "absolute",
-                    "right": "50px",
-                    "top":"50%",
-                    "cursor": "pointer",
-                    "text-decoration": "underline"
-                })
-
-                $(".edit").css({
-                    "right":"90px"
-                })
-
-                $(".binggou").css({
-                    "width": "15px",
-                    "height":"15px",
-                    "background": "black",
-                    "display": "inline-block",
-                    "color": "whitesmoke",
-                    "cursor": "pointer",
-                })
-
-                $(".redefult").css({
-                    "font-weight": "bolder",
-                })
                 
                 //插入数据库
                 var account = "zjl"
@@ -314,22 +266,68 @@ $('.save').click(function(){
                     url : 'insertIntoReceiver.do',
                     data: {"msg":JSON.stringify(reveiver)},
                     success : function(result){
-                    	console.log(result)
-                    	
+                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                         $(".addresslist").css({
+                             "width": "1000px",
+                             "height": "120px",
+                             "margin-left": "10px",
+                             "position": "relative"
+                         })
+
+                         $(".addresslist>li").css({
+                             "width": "750px",
+                             "height": "100px",
+                             "margin-top": "10px",
+                             "margin-left": "10px",
+                         })
+
+                         $(".insertName,.insertMyaddress,.insertPostcode").css({
+                             "padding": "0px 0px 10px",
+                         })
+
+                         $(".edit, .del").css({
+                             "width": "30px",
+                             "height": "20px",
+                             "font-size": "15px",
+                             "position": "absolute",
+                             "right": "50px",
+                             "top":"50%",
+                             "cursor": "pointer",
+                             "text-decoration": "underline"
+                         })
+
+                         $(".edit").css({
+                             "right":"90px"
+                         })
+
+                         $(".binggou").css({
+                             "width": "15px",
+                             "height":"15px",
+                             "background": "black",
+                             "display": "inline-block",
+                             "color": "whitesmoke",
+                             "cursor": "pointer",
+                         })
+
+                         $(".redefult").css({
+                             "font-weight": "bolder",
+                         })
+                         var len = $(".user-right2").children().length;
+                         if(len > 3){
+                             $(".nowaddress").remove();
+                         }
+
+                         document.getElementById("myname").value = "";
+                         document.getElementById("myiphone").value = "";
+                         document.getElementById("mypostcode").value = "";
+                         document.getElementById("mydetailaddress").value = "";
+                         
                     },
                 });
                 
 
         }
-        var len = $(".user-right2").children().length;
-        if(len > 3){
-            $(".nowaddress").remove();
-        }
-
-        document.getElementById("myname").value = "";
-        document.getElementById("myiphone").value = "";
-        document.getElementById("mypostcode").value = "";
-        document.getElementById("mydetailaddress").value = "";
+       
 
     }
 
@@ -353,9 +351,6 @@ $('.save').click(function(){
     
     //判断是否有地址
     (function () {
-    	
-    	
-    	
 //        var len = $(".user-right2").children().length;
 //        if(len == 2){
 //            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
@@ -367,6 +362,10 @@ $('.save').click(function(){
 //                "line-height" : "300px"
 //            })
 //        }
+    	var account = "zjl";
+    	
+    	
+    	
     })()
     
 

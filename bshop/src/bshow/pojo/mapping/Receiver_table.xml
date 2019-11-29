@@ -2,11 +2,15 @@
 <class name="bshow.pojo.Receiver_table" table="receiver_table">
 	<property name="rid" column="rid"/>
 	<property name="receiver" column="receiver"/>
-	<property name="postcode" column="postcode"/>
+	<property name="telephone" column="telephone"/>
+	<property name="postal" column="postal"/>
 	<property name="address" column="address"/>
-	<property name="tel" column="tel"/>
 	<property name="account" column="account"/>
 	
+	
+	<insert id="insertIntoReceiver">
+		insert into receiver_table(receiver,telephone,postal,address,account) values(#{receiver},#{telephone},#{postal},#{address},#{account})
+	</insert>
 
 
 </class>

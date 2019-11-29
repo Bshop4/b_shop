@@ -343,7 +343,7 @@ $('.save').click(function(){
                     url : 'insertIntoReceiver.do',
                     data: {"msg":JSON.stringify(reveiver)},
                     success : function(result){
-                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)'>删除</div></li></ul>");
+                    	 $(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>"+name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone+"</div><div class='insertPostcode'>邮编:"+postcode+"</div><div class='insertMyaddress'>收货地址:"+AllAddress+"</div><span class='binggou'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='"+result+"'>删除</div></li></ul>");
                          $(".addresslist").css({
                              "width": "1000px",
                              "height": "120px",
@@ -409,32 +409,39 @@ $('.save').click(function(){
     }
 
 
+    
+    //删除地址
     function  delclick(obj){
 
-//    	console.log()
     	var rid = $(obj).attr("data-rid");
-    	$.ajax({
+    	if(confirm("您确定要删除该地址吗?")){
+    		$.ajax({
     		
     		type : "post",
     		url : "deleteAddressByRid.do",
     		data : {"msg" : rid},
     		success : function (re) {
-    			
+//    			console.log(re)
+    			if(re == "1"){
+			        $(obj).parent().parent().remove();
+			        var len = $(".user-right2").children().length;
+			        if(len == 2){
+			            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
+			            $(".nowaddress").css({
+			                "font-size" : "25px",
+			                "width" : "1000px",
+			                "height" : "300px",
+			                "text-align" : "center",
+			                "line-height" : "300px"
+			            })
+			        }
+    				
+    			}
     		}
     	})
+    }
     	
-//        $(obj).parent().parent().remove();
-//        var len = $(".user-right2").children().length;
-//        if(len == 2){
-//            $(".user-right2").append("<div class='nowaddress'>-_-您现在暂无收获地址~<div>");
-//            $(".nowaddress").css({
-//                "font-size" : "25px",
-//                "width" : "1000px",
-//                "height" : "300px",
-//                "text-align" : "center",
-//                "line-height" : "300px"
-//            })
-//        }
+    	
 
         
         

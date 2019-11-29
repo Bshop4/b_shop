@@ -16,5 +16,12 @@
 		select * from receiver_table where 1=1 and account=#{account}
 	</select>
 
+	<delete id="deleteAddress">
+		delete  from receiver_table where rid=#{rid}
+	</delete>
+	
+	<select id="selectReceiverByAll" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and receiver=#{receiver} and telephone=#{telephone} and postal=#{postal} and address=#{address} and account=#{account} 
+	</select>
 
 </class>

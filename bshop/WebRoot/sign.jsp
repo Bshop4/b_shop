@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<nav class="navbar navbar-inverse">
 			<!--logo-->
 			<div class="navbar-header">
-				<a href="new_file.jsp" class="navbar-brand aimg">
+				<a href="index.jsp" class="navbar-brand aimg">
 					<img class="navbar-left" src="img/bg-logo2-white.png">
 				</a>
 				<button class="navbar-toggle" data-toggle="collapse" data-target="#pyl_nav">

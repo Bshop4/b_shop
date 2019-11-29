@@ -74,6 +74,8 @@
 	<delete id="deleteone">
 		delete from cart_table where cart_id=#{cart_id}
 	</delete>
-
+	<delete id="delectMachObjectById">
+		delete from cart_table where cart_id in (#{5},#{8},#{9})
+	</delete>
 
 </class>

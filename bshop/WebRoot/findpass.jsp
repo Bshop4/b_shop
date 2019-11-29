@@ -70,13 +70,21 @@
 		<div class="top-safety">安全校验</div>
 		<div class="top-forget">你忘记密码了吗？</div>
 		<div class="if-foget">如果您忘记了密码，请输入您用于创建账户的手 机号码，我们将会给你发送一条验证码信息，以 便恢复密码。</div>
-		<div class="phone-num">手机号码</div>
-		<input autocomplete="off" type="text" class="input-control" />
-		<div class="img-varify">图形验证码</div>
-		<input autocomplete="off" type="text" class="input-control" />
-		<div class="msg-varify">短信验证码</div>
-		<div class="msg-msg">
-			<input autocomplete="off" type="text" class="input-controls" /><button class="el-button">发送验证码</button>
+		<div class="pyl_div">
+			<div class="phone-num">帐号</div>
+			<input autocomplete="off" type="text" class="input-control user" />
+			<div class="use-tips">帐号格式不正确</div>
+			<div class="userclear"></div>
+		</div>
+		<div class="pyl_div">
+			<div class="img-varify">邮箱</div>
+			<input autocomplete="off" type="text" class="input-control email" />
+			<div class="email-tips">邮箱格式不正确</div>
+		</div>
+		<div class="pyl_div">
+			<div class="msg-varify">邮箱验证码</div>
+			<input autocomplete="off" type="text" class="input-controls emailcode" /><button class="el-button">免费获取验证码</button>
+			<div class="emailcode-tips">邮箱验证码不正确</div>
 		</div>
 		<button class="find-button">找回密码</button>
 
@@ -168,4 +176,221 @@
     </div>
 	</body>
 </html>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+	var pyl_flag_email=false;
+	var pyl_flag_sendEmailcode=false;
+	var pyl_flag_user=false;
+	var flagclear=false;
+	var pyl_flag_emailcodeMath=false;
+	var pyl_flag_emailcode=false;
+	
+	//用户名失焦
+	$('.user').blur(function(){
+		if(flagclear){flagclear=false;return;};
+		$('.userclear').hide();
+		if($('.user').val()==""){return;};
+		var re =/^[\u4e00-\u9fa5A-z\d-_]{4,20}$/g;
+		var renumber=/^\d+$/g;
+		if(renumber.test($('.user').val())){
+			$('.use-tips').html("&otimes; 不能为纯数字").css('color','red').show();return;
+		};
+		var users=$('.user').val();
+		if(re.test($('.user').val())){
+			$.ajax({
+				url:"Check_isaccount",
+				type:"post",
+				data:{"account":users,"state":"A"},
+				success:function(result){
+					if(result=="false"){
+						$('.userclear').hide();
+					}else{
+						$('.user').attr("pyl_flag_user",0).focus();
+						$('.use-tips').html("&otimes;该帐号不存在").css('color','red').show();
+					}
+				}
+			});
+			return;
+		}else{
+			$('.user').siblings('.pyl_true').hide();$('.use-tips').html("&otimes; 帐号长度为4-20个字符").css('color','orange').show();
+			$('.userclear').show();
+		};
+		pyl_flag_user=false;
+		
+	});
+	
+	//用户获焦
+	$('.user').focus(function(){
+		$('.use-tips').hide();
+		$('.userclear').show();
+	});
+	
+	//用户点击清空输出
+	$('.userclear').click(function(){
+		//$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
+		$('.user').val('').focus();
+	});
+	//用户鼠标进入清空
+	$('.userclear').mouseover(function(){
+		flagclear=true;
+	});
+	//用户鼠标进入清空
+	$('.userclear').mouseout(function(){
+		flagclear=false;
+	});
+	
+	
+	//邮箱失焦
+	$('.email').blur(function(){
+		if($('.email').val()==""){
+			$('.email-tips').hide();return;
+		}
+		var  re=/^[0-9A-z_]+@[0-9A-z_]+\.com$/g;
+		if(re.test($('.email').val())){
+			$('.email-tips').hide();
+			pyl_flag_email=true; //成功返回不变false，最后注册验证
+			return;
+		}else{
+			$('.email-tips').show();
+		}
+		pyl_flag_email=false; 
+	});
+	
+	
+	//邮箱获焦
+	$('.email').focus(function(){
+		$('.email-tips').hide();
+	});
+	
+	
+	
+	
+	var clickSendcode=0;
+	//点击发送验证码
+	$(".el-button").click(function(){
+		if(!pyl_flag_email){return};//当邮箱正确时才能发送验证码
+		if(pyl_flag_sendEmailcode){return;}//还在倒计时60S时不能发送验证码
+		clickSendcode++;
+		pyl_flag_sendEmailcode=true;
+		console.log("发送验证码");
+		email1=$('.email').val();
+		$.ajax({
+			url:"Sendemailcode",
+			type:"post",
+			data:{"email":email1},
+			success:function(result){
+				var resu=JSON.parse(result);
+				$('.emailcode').attr("serverEmailCode",resu.passage);
+				emailCodeDie(resu.passage);
+			}
+		});
+	});
+	
+	var Timeout=null;//用来放倒计时验证码失效的 
+	//倒计时60秒。验证码失效
+	function emailCodeDie(code){
+		var timeemail=60; 
+		var c=code;
+		pyl_flag_emailcodeDie=true;
+		var Timer=setInterval(function() {
+			timeemail--;
+			$(".el-button").html(timeemail+"S秒后重新获取");
+			if(timeemail==0){
+				$(".el-button").html("免费获取验证码");
+				pyl_flag_sendEmailcode=false;//是否发送了验证码；
+				clearTimeout(Timer);
+			}
+		}, 1000);
+		
+		if(clickSendcode==1){
+			clickSendcode=0;
+			clearTimeout(Timeout);
+			Timeout=setTimeout(function() {
+				c="无";//服务器反馈来的
+				pyl_flag_emailcodeDie=false;//验证码失效
+			}, 180000);
+		}
+	};
+	
+	
+	//邮箱验证码失焦
+	$('.emailcode').blur(function(){
+		if($('.emailcode').val()==''){return;};
+		var re3=/^\d+$/g;
+		if(re3.test($('.emailcode').val())){
+			pyl_flag_emailcodeMath=true;//邮箱验证码是否为数字
+		}else{
+			pyl_flag_emailcodeMath=false;//邮箱验证码是否为数字
+		}
+	});
+	
+	//验证码获焦
+	$('.emailcode').blur(function(){
+		$('.emailcode-tips').hide();
+	});
+	
+	
+	//点击找回密码
+	$('.find-button').click(function(){
+		var email1=$('.email').val();
+		var users=$('.user').val();
+		
+		//获得用户的验证码
+		var EmailCode=$('.emailcode').val();
+		var clientEmailCode=Base64.encode(EmailCode);
+		
+		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').show().html("&otimes; 验证码不正确");return;}//邮箱验证码不为数字
+		if(clientEmailCode){
+			if(!pyl_flag_emailcodeDie){$('.emailcode-tips').show().html("&otimes; 验证码已失效，请重新发送");return;};
+		}
+		
+		//获得服务器返回的验证码
+		var serverEmailCode=$('.emailcode').attr("serverEmailCode");
+		if(clientEmailCode==serverEmailCode&&clientEmailCode){
+			pyl_flag_emailcode=true;
+		}else{
+			$('.emailcode-tips').show().html("&otimes; 验证码不正确");
+			pyl_flag_emailcode=false;
+			return;
+		}
+		
+		$.ajax({
+			url:"Check_isaccount",
+			type:"post",
+			data:{
+				"account":users,
+				"email":email1,
+				"state":"AE"
+				},
+			success:function(result){
+				if(result=="true"){
+					$('.user').attr("pyl_flag_user",1);
+				}else{
+					$('.user').attr("pyl_flag_user",0).focus();
+					$('.use-tips').html("&otimes;该帐号与邮箱不匹配").css('color','red').show();
+				}
+				
+				
+				
+				//帐号为对就为真
+				if($('.user').attr("pyl_flag_user")==1){
+					pyl_flag_user=true;//成功就对，返回不变false
+				}else{
+					pyl_flag_user=false;//成功就对，返回不变false
+					return;
+				}
+				
+				//所有的逻辑都为真后
+				if(pyl_flag_email&&pyl_flag_user&&pyl_flag_emailcode){
+					alert("修改密码");
+				}
+				
+			}
+		});
+		
+		
+	});
+	
+</script>
     

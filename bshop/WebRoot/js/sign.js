@@ -29,7 +29,7 @@
 			$.ajax({
 				url:"Check_isaccount",
 				type:"post",
-				data:{"account":users},
+				data:{"account":users,"state":"A"},
 				success:function(result){
 					if(result=="true"){
 						$('.user').siblings('.pyl_true').show();
@@ -77,7 +77,7 @@
 	//用户点击清空输出
 	$('.userclear').click(function(){
 		$('.use-tips').html("&Theta; 支持中文，英文，数字，'-','_'的组合，4-20个字符").css('color','gray').hide();
-		$('.user').val('');
+		$('.user').val('').focus();
 	});
 	//用户鼠标进入清空
 	$('.userclear').mouseover(function(){
@@ -89,7 +89,6 @@
 	});
 	
 	
-//	var flag_pass=false;
 	//密码获焦事件
 	$('.pyl_sign_password').focus(function(){
 		$('.pass-tips').show();

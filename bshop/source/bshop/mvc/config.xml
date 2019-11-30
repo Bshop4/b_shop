@@ -149,4 +149,24 @@
 		<Action>bshow.web.servlet.action.UpdateCheckAndInsertAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	
+	<!-- 查找颜色 -->
+	<PagePattern name="selectColor">
+		<ActionForm>bshow.web.servlet.form.SelectColorForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectColortAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </properties>

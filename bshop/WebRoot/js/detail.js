@@ -194,6 +194,21 @@ var goodsno = getUrlVal('goods_no');
 //各种操作
 function opration(){
 
+	//图片切换0
+    $('.zjl-bottom ul li').each(function(i){
+      $(this).mouseenter(function(){
+          //$('.zjl-top ul li').eq(i).show().siblings().hide();
+          $(this).css('border','1px solid black').siblings().css('border','');
+
+          var imgSrc = $(this).children().attr('src');
+          $('.zjl-top ul li img').attr('src',imgSrc);
+          $('.big').css({
+              'background':'url('+ imgSrc +')',
+          });
+      }) ;
+  });
+	
+	
     //注册
     $('.zjl-register').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
@@ -397,19 +412,19 @@ function opration(){
 
 
 
-    //图片切换0
-      $('.zjl-bottom ul li').each(function(i){
-        $(this).mouseenter(function(){
-            //$('.zjl-top ul li').eq(i).show().siblings().hide();
-            $(this).css('border','1px solid black').siblings().css('border','');
-
-            var imgSrc = $(this).children().attr('src');
-            $('.zjl-top ul li img').attr('src',imgSrc);
-            $('.big').css({
-                'background':'url('+ imgSrc +')',
-            });
-        }) ;
-    });
+//    //图片切换0
+//      $('.zjl-bottom ul li').each(function(i){
+//        $(this).mouseenter(function(){
+//            //$('.zjl-top ul li').eq(i).show().siblings().hide();
+//            $(this).css('border','1px solid black').siblings().css('border','');
+//
+//            var imgSrc = $(this).children().attr('src');
+//            $('.zjl-top ul li img').attr('src',imgSrc);
+//            $('.big').css({
+//                'background':'url('+ imgSrc +')',
+//            });
+//        }) ;
+//    });
    
     //颜色选择
     $('.zjl-product-color ul li').each(function(i){
@@ -472,6 +487,20 @@ function opration(){
         	            'z-index': 999,
         	            display: 'none',
         	        })
+        	        
+        	      //图片切换0
+        	        $('.zjl-bottom ul li').each(function(i){
+        	          $(this).mouseenter(function(){
+        	              //$('.zjl-top ul li').eq(i).show().siblings().hide();
+        	              $(this).css('border','1px solid black').siblings().css('border','');
+
+        	              var imgSrc = $(this).children().attr('src');
+        	              $('.zjl-top ul li img').attr('src',imgSrc);
+        	              $('.big').css({
+        	                  'background':'url('+ imgSrc +')',
+        	              });
+        	          }) ;
+        	      });
             		
             	}
             })

@@ -21,7 +21,7 @@ var pagesize = 16;
 		middle_type=decodeURI(getUrlVal("middle_type"));
 	};
 	if(getUrlVal("goods_name")){
-		middle_type=decodeURI(getUrlVal("goods_name"));
+		goods_name=decodeURI(getUrlVal("goods_name"));
 	}
 	console.log(middle_type);
 	$('title').html('B-SHOP嘿店——'+middle_type);
@@ -363,5 +363,17 @@ function noChangeCondition(){
 		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	}
 }
+
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
+
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
 
 

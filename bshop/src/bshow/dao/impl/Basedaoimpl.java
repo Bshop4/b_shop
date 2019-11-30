@@ -222,10 +222,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		if (form.getGoods_name() != null) {
 			char[] myname = form.getGoods_name().toCharArray();
 			for (int i = 0; i < myname.length; i++) {
-				sb.append(" and (c.goods_name like ? or c.goods_brand like ?");
-				if (i == myname.length - 1) {
-					sb.append(" and c.goods_name like ? or c.goods_brand like ?)");
-				}
+				sb.append(" and (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
 			}
 		}
 		if (form.getGoods_price() != null) {

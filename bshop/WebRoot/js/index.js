@@ -70,11 +70,17 @@
 //添加按钮
 function more(){
 	var moreB=`
-		<a href="allStore.jsp" target="_blank">
+		<a href="/bshop/allStore.jsp" target="_blank">
 			发现更多
 			<span class="glyphicon glyphicon-chevron-right"></span>		
 		</a>
 	`;
 	$('.more').append(moreB);
 }
+
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
 

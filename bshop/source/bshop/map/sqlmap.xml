@@ -9,6 +9,6 @@
 		<mapping path="bshow/pojo/mapping/Personinfo_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Bill_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Receiver_table.xml"/>
-		
+		<mapping path="bshow/pojo/mapping/Repertory_table.xml"/>
 	</mappings>	
 </properties>

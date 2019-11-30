@@ -45,7 +45,6 @@ public class SelectColortAction extends Action{
 //		Middle_table mt = new Middle_table();
 //		mt.setGoods_no(goods_no);
 //		mt.setMiddle_color(color);
-//		
 //		Basedao bd = new Basedaoimpl();
 //		List<Object> list = bd.select("selectColorAndNo", mt);
 //		for (Object object : list) {
@@ -68,12 +67,12 @@ public class SelectColortAction extends Action{
 //		for (String string : listcolorphoto) {
 //			System.out.println(string);
 //		}
-		
+//		
 //		request.setCharacterEncoding("UTF-8");
 //		PrintWriter pw = response.getWriter();
 //		JSONArray ja = JSONArray.fromObject(listcolorphoto);
 //		pw.print(ja.toString());
-		
+//		
 		return null;
 	}
 	

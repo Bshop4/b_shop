@@ -17,6 +17,7 @@ import bshow.dao.impl.Basedaoimpl;
 import bshow.db.DBhelper;
 import bshow.pojo.Goods_table;
 import bshow.pojo.Middle_table;
+import bshow.pojo.Repertory_table;
 import bshow.pojo.Shop_table;
 import junit.framework.TestCase;
 import net.sf.json.JSONArray;
@@ -28,22 +29,20 @@ public class Loadgoods{
 	private Basedao dao2=new Basedaoimpl();
 	private Shop_table shop=new Shop_table();
 	public void action(){
-		for (int i = 6; i <= 20; i++) {
+		for (int i = 3; i <= 20; i++) {
 			fun(i);
-			System.out.println("第"+i+"页");
+			System.out.println("第===="+i+"====页");
 		}
 		
 	}
 	public void fun(int pageNum){
-		Random r=new Random();
-		//获取连接
-		//Connection conn=DBhelper.getConnection();
 		
+		Random r=new Random();
 		Document doc=null;
 		try {
-			//男装http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum=1&dispId=004&deviceNumber=1574825469317&channel=1
-			//女装---http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1
-			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=004&deviceNumber=1574825469317&channel=1").ignoreContentType(true).timeout(10000).get();
+			//男装http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=004&deviceNumber=1575120792064&channel=1     21页起步
+			//女装---http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=003&deviceNumber=1574651749650&channel=1   30页起步
+			doc =Jsoup.connect("http://139.9.0.154:8090/product/search?v=1&appKey=100001&pageSize=20&pageNum="+pageNum+"&dispId=004&deviceNumber=1575120792064&channel=1").ignoreContentType(true).timeout(15000).get();
 			String body = doc.body().html();
 			JSONObject json = JSONObject.fromObject(body);
 			Object data=json.get("data");
@@ -52,7 +51,11 @@ public class Loadgoods{
 			JSONObject jsondata2=null;//相当于JSONObject data2=(JSONObject)json2.get("data");
 			java.text.DecimalFormat   df =new java.text.DecimalFormat("#.00");  
 			//df.format(你要格式化的数字);
+			int count=0;
 			for (Object object : jlist) {
+				count++;
+				Repertory_table repertory=new Repertory_table();//库存
+				ArrayList<Repertory_table> listrepertory=new ArrayList<Repertory_table>();
 				Middle_table middle=new Middle_table();
 				ArrayList<Middle_table> listmiddle=new ArrayList<Middle_table>();
 				Goods_table goods=new Goods_table();
@@ -76,6 +79,7 @@ public class Loadgoods{
 				middle.setGoods_no(code);//中间表
 				goods.setGoods_no(code);
 				shop.setGoods_no(code);
+				repertory.setGoods_no(code);
 				
 				//详情网页请求 http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid=250711473283551&deviceNumber=1574582545228&channel=1
 				doc =Jsoup.connect("http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid="+code+"&deviceNumber=1574582545228&channel=1").ignoreContentType(true).timeout(10000).get();
@@ -107,7 +111,13 @@ public class Loadgoods{
 				int colorlength=0;
 				StringBuffer sb=new StringBuffer("");
 				StringBuffer sbtype=null;
-				for (Object object2 : arr) {
+				int arrint=1;
+				if(!arr.isEmpty()){
+					arrint=arr.size();
+				}
+				for (int t=0;t<arrint;t++) {
+//				for (Object object2 : arr) {
+					Object object2=arr.get(t);
 					colorlength++;
 					JSONObject  arr_0=(JSONObject)object2;
 					//System.out.println("颜色"+arr_0.getString("firstClassAttrName"));
@@ -132,31 +142,30 @@ public class Loadgoods{
 							sbsmal.append(",");
 						}
 					}
-					System.out.println(sbsmal.toString());
 					
 					//第一个颜色
 					if(colorlength==1){
-						//goods.setGoods_color(arr_0.getString("firstClassAttrName"));
 						middle.setMiddle_color(arr_0.getString("firstClassAttrName"));
 						middle.setGoods_smallphoto(sbsmal.toString().getBytes());
+						repertory.setRepertory_color(arr_0.getString("firstClassAttrName"));
 					}
 					
 					//如果颜色有多种就克隆一个商品
 					if(colorlength>1){
 						try {
 							Middle_table middleclone =(Middle_table)middle.clone();
+							Repertory_table repertoryclone =(Repertory_table)repertory.clone();
+							
+							//middleclone克隆的加颜色和小图
 							middleclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
-//							for (Middle_table color : listmiddle) {
-////								color.setMiddle_color(arr_0.getString("firstClassAttrName"));
-////								color.setGoods_smallphoto(sbsmal.toString());
-//								Middle_table colorclone =(Middle_table)color.clone();
-//								colorclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
-//								colorclone.setGoods_smallphoto(sbsmal.toString());
-//								//把克隆放进集合
-//								listmiddle.add(colorclone);
-//							}
+							middleclone.setGoods_smallphoto(sbsmal.toString().getBytes());
+							
+							//repertoryclone克隆的加颜色
+							repertoryclone.setRepertory_color(arr_0.getString("firstClassAttrName"));
+							
 							//把克隆放进集合
 							listmiddle.add(middleclone);
+							listrepertory.add(repertoryclone);
 						} catch (CloneNotSupportedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -207,6 +216,7 @@ public class Loadgoods{
 					StringBuffer sbsize=new StringBuffer("");
 					JSONArray sizelist=(JSONArray)arr_0.get("skuAndPriceList");
 					int ii=listmiddle.size();
+					int ij=listrepertory.size();
 					for (Object object3 : sizelist) {
 						sizelength++;
 						JSONObject objsize=(JSONObject)object3;
@@ -219,8 +229,12 @@ public class Loadgoods{
 //						第一个尺码
 						if(sizelength==1){
 							middle.setMiddle_size(objsize.getString("subClassAttrName"));
+							repertory.setRepertory_size(objsize.getString("subClassAttrName"));
 							for (Middle_table size : listmiddle) {
 								size.setMiddle_size(objsize.getString("subClassAttrName"));
+							}
+							for (Repertory_table lrepertory : listrepertory) {
+								lrepertory.setRepertory_size(objsize.getString("subClassAttrName"));
 							}
 						}
 						
@@ -230,15 +244,25 @@ public class Loadgoods{
 								if(colorlength==1){
 									
 									Middle_table middleclone =(Middle_table)middle.clone();
-									//把克隆放进集合
+									Repertory_table repertoryclone =(Repertory_table)repertory.clone();
+									//设值
 									middleclone.setMiddle_size(objsize.getString("subClassAttrName"));
+									repertoryclone.setRepertory_size(objsize.getString("subClassAttrName"));
+									//把克隆放进集合
 									listmiddle.add(middleclone);
+									listrepertory.add(repertoryclone);
 								}
 								for (int j = 0; j <ii; j++) {
 									Middle_table sizeclone =(Middle_table)listmiddle.get(j).clone();
 									sizeclone.setMiddle_size(objsize.getString("subClassAttrName"));
 									//把克隆放进集合
 									listmiddle.add(sizeclone);
+								}
+								for (int j = 0; j <ij; j++) {
+									Repertory_table repertoryclone =(Repertory_table)listrepertory.get(j).clone();
+									repertoryclone.setRepertory_size(objsize.getString("subClassAttrName"));
+									//把克隆放进集合
+									listrepertory.add(repertoryclone);
 								}
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
@@ -312,7 +336,9 @@ public class Loadgoods{
 					if(colorlength==1){
 						//System.out.println(colorlength+"====="+middle.toString());
 						middle.setMiddle_repertory(r.nextInt(99));
+						repertory.setRepertory_number(r.nextInt(99));
 						dao2.saveObject("insertone", middle);
+						dao1.saveObject("insertone", repertory);
 					}
 					
 					//打印中间表
@@ -322,9 +348,16 @@ public class Loadgoods{
 						dao2.saveObject("insertone", listmiddle.get(j));
 					}
 					
+					for (int j = 0; j < listrepertory.size(); j++) {
+						listrepertory.get(j).setRepertory_number(r.nextInt(99));
+						dao1.saveObject("insertone", listrepertory.get(j));
+					}
+					
 					//把listmiddle
 					listmiddle=null;
 					listmiddle=new ArrayList<Middle_table>();
+					listrepertory=null;
+					listrepertory=new ArrayList<Repertory_table>();
 					
 				}
 				
@@ -355,6 +388,7 @@ public class Loadgoods{
 				//System.out.println("goods"+goods);
 				dao.saveObject("insertone", goods);
 				dao1.saveObject("insertone", shop);
+				System.out.println("第"+count+"件");
 			}
 			
 			
@@ -363,7 +397,6 @@ public class Loadgoods{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			//DBhelper.closeConnection(conn);
 		}
 		
 	}

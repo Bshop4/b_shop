@@ -158,7 +158,12 @@
 	</PagePattern>
 	
 	
-	
+	<!-- 修改密码 -->
+	<PagePattern name="UpdateAccoutPassWordAction">
+		<ActionForm>bshow.web.servlet.form.UpdateAccoutPassWordActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateAccoutPassWordAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 	

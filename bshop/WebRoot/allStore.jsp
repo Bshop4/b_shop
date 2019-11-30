@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a>品牌</a>
 					</li>
 					<li class="tab">
-						<a>走秀移动版</a>
+						<a>嘿店移动版</a>
 					</li>
 				</ul>
 			</div>

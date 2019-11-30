@@ -266,6 +266,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 
 
@@ -292,6 +293,31 @@
 					<li class="qrcpde"><img src="img/erweima.png"></li>
 					<li class="qrcpde"><img src="img/erweima.png"></li>
 					<li class="qrcpde"><img src="img/erweima.png"></li>
+=======
+		<!--导航-->
+		<div class="taber-bar">
+			<!--上部分导航-->
+			<div class="tabs-list-top">
+				<ul class="tabs-list text-center">
+					<li class="tab">
+						<a href="index.jsp">首页</a>
+					</li>
+					<li class="tab">
+						<a>新品</a>
+					</li>
+					<li class="tab">
+						<a>男士</a>
+					</li>
+					<li class="tab">
+						<a>女士</a>
+					</li>
+					<li class="tab">
+						<a>品牌</a>
+					</li>
+					<li class="tab">
+						<a>嘿店移动版</a>
+					</li>
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 				</ul>
 			</div>
 			<div class="contact-wrap">

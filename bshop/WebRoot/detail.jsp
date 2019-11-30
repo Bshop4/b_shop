@@ -199,8 +199,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <label for=""><img src="img/1.png" alt="">正品保障</label>
                     <label for=""><img src="img/2.png" alt="">七天退货</label>
                     <label for=""><img src="img/3.png" alt="">权威质检</label>
-                    <label for=""><a href=""><img src="img/4.png" alt="">收藏商品</a></label>
                     <label for=""> <a href=""><img src="img/5.png" alt="">收藏品牌</a></label>
+                    <!-- <label for=""><a href=""><img src="img/4.png" alt="">收藏商品</a></label> -->
                 </div>
             </div>
         </div>
@@ -356,3 +356,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/bigGlass.js"></script>
 <script src="js/base.js"></script>
 <script src="js/detail.js"></script>
+<script src="js/cart_account.js"></script>

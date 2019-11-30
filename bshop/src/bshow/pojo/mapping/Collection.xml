@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Collection_table" table="collection_table">
+	<property name="cid" column="cid"/>
+	<property name="account" column="account"/>
+	<property name="goods_no" column="goods_no"/>
+	<property name="state" column="state"/>
+	
+	
+	
+
+
+</class>

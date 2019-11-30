@@ -171,6 +171,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 立即购买 -->
+	<PagePattern name="insertCartBuy">
+		<ActionForm>bshow.web.servlet.form.InsertCartBuyForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertCartBuyAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	
 	
 	

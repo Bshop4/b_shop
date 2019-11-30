@@ -2,7 +2,7 @@
 	var userflag=false;
 	var passflag=false;
 	
-	if(localStorage.getItem('token')){$('.pyl_panel').show();};
+	if(localStorage.getItem('token')) {$('.pyl_panel').show();};
 	
 	$('.pyl_panel #backheadpage').click(function(){
 		location.href='index.jsp';
@@ -69,7 +69,16 @@
 		}else{
 			location.href='sign.jsp';
 		}
-		
+	});
+	
+	//点击找回密码按钮
+	$('.pyl_userfindpass #pyl_findpass').click(function(){
+		var goodsID=getUrlVal('goods_id');
+		if(goodsID){
+			location.href='findpass.jsp?goods_id='+goodsID;
+		}else{
+			location.href='findpass.jsp';
+		}
 	});
 	
 	

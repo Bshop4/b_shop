@@ -195,6 +195,7 @@ img{
     font-weight: normal;
     position: relative;
     overflow: hidden;
+    margin-top: 2px;
 }
 
 .zjl-product-color ul li>a{
@@ -245,6 +246,7 @@ img{
     font-weight: normal;
     position: relative;
     overflow: hidden;
+    margin-top: 2px 
 }
 .zjl-product-size ul li>a{
     width: 12px;
@@ -269,7 +271,7 @@ img{
 .zjl-product-condition{
     height: 40px;
     width: 550px;
-    margin-top: 20px;
+    margin-top: 30px;
     position: relative;
 }
 

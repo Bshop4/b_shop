@@ -16,7 +16,7 @@
 
         .user{
             width: 1200px;
-            height: 682px;
+            height: 750px;
             margin: 0px auto;
             /*border: 1px solid red;*/
             position: relative;
@@ -176,7 +176,7 @@
         #user-myaddress{
             position: absolute;
             right: 100px;
-            top:2px;
+            top:0px;
             width: 115px;
             height: 35px;
         }

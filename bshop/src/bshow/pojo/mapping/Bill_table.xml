@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class name="bshow.pojo.Bill_table" table="bill_table">
-	<property name="bill_id" column="bill_id"/>
-	<property name="address" column="address"/>
-	<property name="bill_time" column="bill_time"/>
-	<property name="allprice" column="allprice"/>
-	<property name="account" column="account"/>
-	<property name="goods_name" column="goods_name"/>
-	<property name="goods_price" column="goods_price"/>
-	<property name="cart_number" column="cart_number"/>
-	<property name="bill_isclearing" column="bill_isclearing"/>
-	<property name="bill_code" column="bill_code"/>
-	
-	
-	
-	
+	<property name="bill_id" column="bill_id" />
+	<property name="address" column="address" />
+	<property name="bill_time" column="bill_time" />
+	<property name="allprice" column="allprice" />
+	<property name="account" column="account" />
+	<property name="goods_name" column="goods_name" />
+	<property name="goods_price" column="goods_price" />
+	<property name="cart_number" column="cart_number" />
+	<property name="bill_isclearing" column="bill_isclearing" />
+	<property name="bill_code" column="bill_code" />
+	<property name="goods_photo" column="goods_photo" />
+	<property name="goods_id" column="goods_id" />
+	<property name="goods_color" column="goods_color" />
+	<property name="goods_size" column="goods_size" />
+	<property name="goods_no" column="goods_no" />
+
+
+
+
 	<insert id="insertone">
-		insert into bill_table(address,bill_time,allprice,account,goods_name,goods_price,cart_number,bill_isclearing,bill_code) values(#{address},#{bill_time},#{allprice},#{account},#{goods_name},#{goods_price},#{cart_number},#{bill_isclearing},#{bill_code})
+		insert into
+		bill_table(address,bill_time,allprice,account,goods_name,goods_price,cart_number,bill_isclearing,bill_code,goods_photo,goods_id,goods_color,goods_size,goods_no)
+		values(#{address},#{bill_time},#{allprice},#{account},#{goods_name},#{goods_price},#{cart_number},#{bill_isclearing},#{bill_code},#{goods_photo},#{goods_id},#{goods_color},#{goods_size},#{goods_no})
 	</insert>
 	<select id="selectone" resulttype="bshow.pojo.Bill_table">
-		select * from  bill_table where 1=1 and bill_id=#{bill_id}
+		select * from bill_table where
+		1=1 and account=#{account}
 	</select>
-	<!--
-	<select id="selecttow" resulttype="bshow.pojo.Account_table">
-		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
-	</select>
-	 and account_id=#{account_id} -->
+	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
+		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
+		</select> and account_id=#{account_id} -->
 
 </class>

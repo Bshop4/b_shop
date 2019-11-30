@@ -171,11 +171,11 @@ function clickAll() {
 			if (event.target.checked == true) {
 				// 给当前元素加个标识(自定义的属性)
 				event.target.setAttribute('data-price', 'active');
-//				event.target.setAttribute('del-red','active')
+				event.target.setAttribute('del-red','active')
 			} else {
 				// 拿掉标识(自定义的属性)
 				event.target.setAttribute('data-price', '');
-//				event.target.setAttribute('del-red', '');
+				event.target.setAttribute('del-red', '');
 			}
 			allMounts();
 			// 求总价
@@ -276,17 +276,17 @@ function delAll() {
 //		console.log(tab);
 //		console.log(tr.length);         
 		
-		var cart_id = $('.check').attr("data-no");
+		var cart_id = $('[del-red="active"]').attr("data-no");
 		console.log(cart_id) 
-//		$.ajax({
-//			type:"POST",
-//			url:"deleteCartGoods.do",
-//			data:{"cart_id":cart_id},
-//			success:function(result){
-//				var result = JSON.parse(result);
-//				console.log(result);//true(删除成功)
-//			}
-//		});
+		$.ajax({
+			type:"POST",
+			url:"deleteCartGoods.do",
+			data:{"cart_id":cart_id},
+			success:function(result){
+				var result = JSON.parse(result);
+				console.log(result);//true(删除成功)
+			}
+		});
 		tab.get(0).removeChild(tr.get(0));
 //		console.log(tr.get(0).length);
 	});
@@ -302,6 +302,41 @@ function allMounts() {
 $('#open').click(function() {
 	window.open('account.jsp');
 	$('[data-price="active"]').each(function(){
-		
+//		var account = "pyla1";
+		var cart_id = $('[del-red="active"]').attr("data-no");
+		console.log(cart_id);
+//		先根cart_id查询一遍
+		$.ajax({
+			type : "POST",
+			url : "selectCartGoodsById.do",
+			data : {"cart_id" : cart_id},
+			success : function(result) {
+//				var result=JSON.parse(result);
+				console.log(result);
+//				再一件一件添加到bill_table数据库
+				$.ajax({
+					type:"POST",
+					url:"insertBillGoods.do",
+					data:{"msg":JSON.stringify(result)},
+					success:function(result){
+						console.log(result+"第二个");
+					}
+				})
+			}
+		})
+//		$.ajax({
+//			type : "POST",
+//			url : "selectCartGoods.do",
+//			data : {"account" : account},
+//			success : function(result) {
+//				var result=JSON.parse(result);
+//				returnResult = result;
+//				// 验证
+//				if (result.account==0) {
+//					console.log("请求数据失败");
+//					return;
+//				}
+//			}
+//		}
 	})
 })

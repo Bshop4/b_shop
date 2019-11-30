@@ -10,10 +10,15 @@ public class Bill_table implements Serializable {
 	private String account; // 用户帐号
 	private String goods_name;// 商品名称
 	private double goods_price;// 商品单价
-	private String goods_photo;// 商品图片
 	private int cart_number;// （购车里的商品数量）
-	private int bill_isclearing; // 订单是否付钱 1表示结算了 2 表示未结算
+	private int bill_state;// 1表示选中，0表示未选中
 	private String bill_code;// 订单编码
+	private String goods_photo;// 商品图片
+	private String goods_id;// 商品编号
+	private int bill_isclearing; // 订单是否付钱 1表示结算了 2 表示未结算
+	private String goods_color;// 商品颜色
+	private String goods_size;// 商品尺寸
+	private int goods_no;// 商品number
 
 	public int getBill_isclearing() {
 		return bill_isclearing;
@@ -101,6 +106,46 @@ public class Bill_table implements Serializable {
 
 	public void setGoods_photo(String goods_photo) {
 		this.goods_photo = goods_photo;
+	}
+
+	public String getGoods_id() {
+		return goods_id;
+	}
+
+	public void setGoods_id(String goods_id) {
+		this.goods_id = goods_id;
+	}
+
+	public int getBill_state() {
+		return bill_state;
+	}
+
+	public void setBill_state(int bill_state) {
+		this.bill_state = bill_state;
+	}
+
+	public String getGoods_color() {
+		return goods_color;
+	}
+
+	public void setGoods_color(String goods_color) {
+		this.goods_color = goods_color;
+	}
+
+	public String getGoods_size() {
+		return goods_size;
+	}
+
+	public void setGoods_size(String goods_size) {
+		this.goods_size = goods_size;
+	}
+
+	public int getGoods_no() {
+		return goods_no;
+	}
+
+	public void setGoods_no(int goods_no) {
+		this.goods_no = goods_no;
 	}
 
 }

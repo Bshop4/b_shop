@@ -56,7 +56,8 @@ public class MyReplace implements Runnable,Subject{
 		try {
 			PreparedStatement ps=conn.prepareStatement(mysql);
 			if(form.getGoods_name()!=null){
-				char[] myname=form.getGoods_name().toCharArray();
+				String name=form.getGoods_name().replaceAll("\\s", "");
+				char[] myname = name.toCharArray();
 				for (int i = 0; i < myname.length; i++) {
 					ps.setString(++index, "%"+myname[i]+"%");
 					ps.setString(++index, "%"+myname[i]+"%");
@@ -114,11 +115,11 @@ public class MyReplace implements Runnable,Subject{
 					if(d>=3000&&d<=4999){
 						myset.add("3000-4999");
 					}
-					if(d>=5000&&d<=9999){
-						myset.add("5000-9999");
+					if(d>=5000&&d<=9998){
+						myset.add("5000-9998");
 					}
-					if(d>=10000&&d<=100000){
-						myset.add("10000-100000");
+					if(d>=9999&&d<=100000){
+						myset.add("9999-100000");
 					}
 					if(myset.size()==5){
 						break;

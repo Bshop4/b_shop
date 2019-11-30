@@ -193,4 +193,7 @@ img {
 .btn-address-span {
 	margin: 15px;
 }
+.selected{
+	border:2px solid #400040!important;
+}
 </style>

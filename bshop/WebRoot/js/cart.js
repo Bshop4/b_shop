@@ -1,4 +1,4 @@
-//请求数据库的购物车数据
+ //请求数据库的购物车数据
 var XMLHttp;
 // 创建ajax对象
 function createXMLHttp() {
@@ -16,8 +16,9 @@ function createXMLHttp() {
 }
 //定义一个需要进行操作的变量
 var returnResult;
+var account;
 $(document).ready(function() {
-	var account = "pyla1";
+	account = "pyla1";
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
@@ -241,8 +242,11 @@ function clickAll() {
 			delAll();
 			// 调用总价
 			sumAll();
+		};
+		if(event.target.className == 'btn-account'){
+			consolelog("点了去结算");
+			
 		}
-		;
 	});
 };
 
@@ -278,15 +282,15 @@ function delAll() {
 		
 		var cart_id = $('[del-red="active"]').attr("data-no");
 		console.log(cart_id) 
-		$.ajax({
-			type:"POST",
-			url:"deleteCartGoods.do",
-			data:{"cart_id":cart_id},
-			success:function(result){
-				var result = JSON.parse(result);
-				console.log(result);//true(删除成功)
-			}
-		});
+//		$.ajax({
+//			type:"POST",
+//			url:"deleteCartGoods.do",
+//			data:{"cart_id":cart_id},
+//			success:function(result){
+//				var result = JSON.parse(result);
+//				console.log(result);//true(删除成功)
+//			}
+//		});
 		tab.get(0).removeChild(tr.get(0));
 //		console.log(tr.get(0).length);
 	});
@@ -299,44 +303,27 @@ function allMounts() {
 		allMounts;
 	})
 }
+var cart_id;
 $('#open').click(function() {
-	window.open('account.jsp');
-	$('[data-price="active"]').each(function(){
-//		var account = "pyla1";
-		var cart_id = $('[del-red="active"]').attr("data-no");
-		console.log(cart_id);
-//		先根cart_id查询一遍
+	$('[data-price="active"]').each(function() {
+		console.log($(this));	
+		var tab = $(this).parent().parent().parent();
+		var tr = $(this).parent().parent();
+		cart_id = $('[del-red="active"]').attr("data-no");
+		console.log(cart_id) 
+//		先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
 		$.ajax({
 			type : "POST",
 			url : "selectCartGoodsById.do",
 			data : {"cart_id" : cart_id},
 			success : function(result) {
-//				var result=JSON.parse(result);
+				var result=JSON.parse(result);
 				console.log(result);
-//				再一件一件添加到bill_table数据库
-				$.ajax({
-					type:"POST",
-					url:"insertBillGoods.do",
-					data:{"msg":JSON.stringify(result)},
-					success:function(result){
-						console.log(result+"第二个");
-					}
-				})
 			}
 		})
-//		$.ajax({
-//			type : "POST",
-//			url : "selectCartGoods.do",
-//			data : {"account" : account},
-//			success : function(result) {
-//				var result=JSON.parse(result);
-//				returnResult = result;
-//				// 验证
-//				if (result.account==0) {
-//					console.log("请求数据失败");
-//					return;
-//				}
-//			}
-//		}
+		tab.get(0).removeChild(tr.get(0));
 	})
+//	window.open('account.jsp');
+	location.href="account.jsp?account_name="+account;
+//	window.localStorage.setItem('goods_id',cart_id);
 })

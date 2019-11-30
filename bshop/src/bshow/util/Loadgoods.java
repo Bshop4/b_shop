@@ -132,6 +132,7 @@ public class Loadgoods{
 							sbsmal.append(",");
 						}
 					}
+					System.out.println(sbsmal.toString());
 					
 					//第一个颜色
 					if(colorlength==1){

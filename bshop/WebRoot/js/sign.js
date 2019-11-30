@@ -274,7 +274,7 @@
 			Timeout=setTimeout(function() {
 				c="无";//服务器反馈来的
 				pyl_flag_emailcodeDie=false;//验证码失效
-			}, 180000);
+			}, 60000);
 		}
 		
 	}

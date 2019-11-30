@@ -87,7 +87,45 @@
 			<div class="emailcode-tips">邮箱验证码不正确</div>
 		</div>
 		<button class="find-button">找回密码</button>
+		
+		
+	<!-- 模态框 -->
+	<div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:700px;height:540px;">
+                <div class="modal-header">
+                    <h2 class="text-success modal-title">请设置新密码
+                        <span class="close" data-dismiss="modal">&times;</span>
+                    </h2>
+                </div>
 
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <label>新密码:</label>
+                                <input type="text" class="form-control" id="myname"/><label class="namelable">收货人姓名不能为空</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>确认密码:</label>
+                                <input type="text" class="form-control" id="myiphone"/><label class="iplabel">手机号格式错误</label>
+                            </div>
+
+                    	</div>
+                    	 
+                    </div>
+               </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success"   id="save1" onclick="mysaveclick()">保存</button>
+                    <button class="btn btn-danger" data-dismiss="modal" id="cancel1" >取消</button>
+                </div>
+
+        	</div>
+   		</div>
+    </div>
+    
     <!--底部-->
     <div id="row-1">
     	<!--底部三个图标-->
@@ -185,6 +223,8 @@
 	var flagclear=false;
 	var pyl_flag_emailcodeMath=false;
 	var pyl_flag_emailcode=false;
+	var pyl_flag_emailcodeDie=false;
+	
 	
 	//用户名失焦
 	$('.user').blur(function(){
@@ -309,7 +349,7 @@
 			Timeout=setTimeout(function() {
 				c="无";//服务器反馈来的
 				pyl_flag_emailcodeDie=false;//验证码失效
-			}, 180000);
+			}, 60000);
 		}
 	};
 	
@@ -371,11 +411,10 @@
 					$('.use-tips').html("&otimes;该帐号与邮箱不匹配").css('color','red').show();
 				}
 				
-				
-				
 				//帐号为对就为真
 				if($('.user').attr("pyl_flag_user")==1){
 					pyl_flag_user=true;//成功就对，返回不变false
+					$('.use-tips').hide();
 				}else{
 					pyl_flag_user=false;//成功就对，返回不变false
 					return;
@@ -383,7 +422,7 @@
 				
 				//所有的逻辑都为真后
 				if(pyl_flag_email&&pyl_flag_user&&pyl_flag_emailcode){
-					alert("修改密码");
+					
 				}
 				
 			}

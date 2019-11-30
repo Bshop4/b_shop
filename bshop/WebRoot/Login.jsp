@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="row">
 						<div class="col-sm-7 col-sm-offset-4 text-right pyl_userfindpass">
-							<button class="btn pull-right">找回密码</button>
+							<button class="btn pull-right" id="pyl_findpass">找回密码</button>
 							<button class="btn  pull-right" id="pyl_login">注册帐号</button>
 						</div>
 					</div>

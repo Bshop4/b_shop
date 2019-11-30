@@ -254,6 +254,9 @@ $('.save').click(function(){
                             
         				}
     				}	
+        			$("[data-ul='1']").css({
+        				"border" : "1px solid red"
+        			})
 //        			var len1 = $(".user-right2").children().length;
 //        			for(var i = 0;i < len1-2; i++){
 //        				console.log($(".user-right2").find("ul").get(i))

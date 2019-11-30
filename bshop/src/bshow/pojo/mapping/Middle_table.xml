@@ -27,5 +27,10 @@
 		select * from middle_table where 1=1 and goods_no=#{goods_no}
 	</select>
 	
-
+	<!-- 查找颜色 -->
+	<select id="selectColorAndNo" resulttype="bshow.pojo.Middle_table">
+		select * from middle_table where 1=1 and goods_no=#{goods_no} and middle_color=#{middle_color}
+	</select>
+	
+	
 </class>

@@ -57,6 +57,17 @@ $('.logo').click(function(){
 	location.href='index.jsp';
 });
 
+//判断是否登陆成功,并获得所需要的值
+(function(){
+	$.ajax({
+		type:"post",
+		url:"judgementLogin",
+		success:function(result){
+			
+		}
+	})
+})();
+
 
 
 //获得地址栏参数值?  cat_id=55&name=xiaoming

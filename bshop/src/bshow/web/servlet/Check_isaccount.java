@@ -42,16 +42,39 @@ public class Check_isaccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String account=request.getParameter("account");
-		Basedao dao=new Basedaoimpl();
-		Account_table at=new Account_table();
-		at.setAccount(account);
-		List<Object> list=dao.select("selectByAccount",at);
-		PrintWriter out =response.getWriter();
-		if(list.size()==0){
-			out.print(true);
-		}else{
-			out.print(false);
+		String state=request.getParameter("state");
+		//A代表帐号E代表邮箱。根据AE来查询是否有
+		if("AE".equalsIgnoreCase(state)){
+			String account=request.getParameter("account");
+			String email=request.getParameter("email");
+			Basedao dao=new Basedaoimpl();
+			Account_table at=new Account_table();
+			at.setAccount(account);
+			at.setEmail(email);
+			List<Object> list=dao.select("selectByAE",at);
+			PrintWriter out =response.getWriter();
+			if(list.size()==0){
+				out.print(false);
+			}else{
+				out.print(true);
+			}
+			return;
+		}
+		
+		//A代表帐号,根据A来查询是否有
+		if("A".equalsIgnoreCase(state)){
+			String account=request.getParameter("account");
+			Basedao dao=new Basedaoimpl();
+			Account_table at=new Account_table();
+			at.setAccount(account);
+			List<Object> list=dao.select("selectByAccount",at);
+			PrintWriter out =response.getWriter();
+			if(list.size()==0){
+				out.print(true);
+			}else{
+				out.print(false);
+			}
+			return;
 		}
 		
 	}

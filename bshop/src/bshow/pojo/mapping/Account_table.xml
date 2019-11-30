@@ -16,6 +16,11 @@
 	<select id="selectByAccount" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account=#{account}
 	</select>
+	
+	<select id="selectByAE" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account=#{account} and email=#{email}
+	</select>
+	
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
 	</select>

@@ -1,114 +1,155 @@
-			*{margin: 0px;padding: 0px;}
-			a{text-decoration: none;}
-			li{list-style: none;}
-			.top-safety{
-				height: 22px;
-				width: 300px;
-				margin: 40px auto 0px;
-				line-height: 22px;
-				font-size: 22px;
-				font-weight: 700;
-			}
-			.top-forget{
-				height: 16px;
-				font-family: "microsoft yahei";
-				font-weight: 700;
-				width: 300px;
-				margin: auto;
-				font-size: 16px;
-				margin-top: 30px;
-			}
-			.if-foget{
-				width: 300px;
-				height: 72px;
-				margin: auto;
-				padding-top: 40px;
-    			color: #111;
-			    font-size: 14px;
-			    line-height: 24px;
-			}
-			.phone-num{
-				width: 300px;
-				padding-top: 55px;
-				margin:auto;
-				padding-bottom: 5px;
-			    color: #999;
-			    font-size: 12px;
-			}
-			.input-control{
-				width: 296px;
-				height: 28px;
-				margin: auto;
-				display: block;
-			    line-height: 28px;
-			    font-size: 14px;
-			    border-top: none;
-			    border-right: none;
-			    border-left: none;
-			    border-bottom: 1px solid #D5D5D5;;
-			    outline: none;
-			}
-			.img-varify{
-				width: 300px;
-				padding-top: 25px;
-				margin:auto;
-				padding-bottom: 5px;
-			    color: #999;
-			    font-size: 12px;
-			}
-			.msg-varify{
-				width: 300px;
-				padding-top: 25px;
-				margin:auto;
-				padding-bottom: 5px;
-			    color: #999;
-			    font-size: 12px;
-			}
-			.msg-msg{
-				width: 300px;
-				height: 32;
-				margin:auto;
-			}
-			.el-button{
-			    line-height: 1;
-			    cursor: pointer;
-			    background: #fff;
-			    border: 1px solid #dcdfe6;
-			    color: #606266;
-			    text-align: center;
-			    font-weight: 500;
-			    padding: 12px 20px;
-			    font-size: 14px;
-			    border-radius: 4px;
-			    position: relative;
-			    left: 186px;
-			    top: -45px;
-			    border: none;
-			}
-			.input-controls{
-				width: 296px;
-				height: 27px;
-				margin: auto;
-				display: inline-block;
-			    line-height: 28px;
-			    font-size: 14px;
-			    border-top: none;
-			    border-right: none;
-			    border-left: none;
-			    border-bottom: 1px solid #D5D5D5;;
-			    outline: none;
-			}
-			.find-button{
-				width: 300px;
-				height: 50px;
-			    border: none;
-			    display: block;
-			    margin-top: 45px;
-			    height: 50px;
-			    line-height: 50px;
-			    color: #fff;
-			    font-size: 16px;
-			    background-color: #bebebe;
-			    cursor: pointer;
-			    margin: auto;
-			}
+*{margin: 0px;padding: 0px;}
+a{text-decoration: none;}
+li{list-style: none;}
+.top-safety{
+	height: 22px;
+	width: 300px;
+	margin: 40px auto 0px;
+	line-height: 22px;
+	font-size: 22px;
+	font-weight: 700;
+}
+.top-forget{
+	height: 16px;
+	font-family: "microsoft yahei";
+	font-weight: 700;
+	width: 300px;
+	margin: auto;
+	font-size: 16px;
+	margin-top: 30px;
+}
+.if-foget{
+	width: 300px;
+	height: 72px;
+	margin: auto;
+	padding-top: 40px;
+ 			color: #111;
+    font-size: 14px;
+    line-height: 24px;
+}
+.phone-num{
+	width: 300px;
+	padding-top: 55px;
+	margin:auto;
+	padding-bottom: 5px;
+    color: #999;
+    font-size: 14px;
+}
+.input-control{
+	width: 296px;
+	height: 28px;
+	margin: auto;
+	display: block;
+    line-height: 28px;
+    font-size: 14px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #D5D5D5;;
+    outline: none;
+}
+.img-varify{
+	width: 300px;
+	padding-top: 25px;
+	margin:auto;
+	padding-bottom: 5px;
+    color: #999;
+    font-size: 14px;
+}
+.msg-varify{
+	width: 300px;
+	padding-top: 25px;
+	margin:auto;
+	padding-bottom: 5px;
+    color: #999;
+    font-size: 14px;
+}
+.msg-msg{
+	width: 300px;
+	height: 32;
+	margin:auto;
+}
+.el-button{
+    line-height: 1;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    text-align: center;
+    font-weight: 500;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    position: relative;
+    left: 186px;
+    top: -45px;
+    border: none;
+}
+.input-controls{
+	width: 296px;
+	height: 27px;
+	margin: auto;
+	display: inline-block;
+    line-height: 28px;
+    font-size: 14px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #D5D5D5;;
+    outline: none;
+}
+.find-button{
+	width: 300px;
+	height: 50px;
+    border: none;
+    display: block;
+    margin-top: 45px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #bebebe;
+    cursor: pointer;
+    margin: auto;
+}
+
+
+.pyl_div{
+	width: 300px;
+	margin: auto;
+	position: relative;
+}
+
+.email-tips{
+	height: 20px;
+	color: red;
+	position: absolute;
+	right:0px;top:82px;
+	display:none;
+}
+
+.emailcode-tips{
+	height: 20px;
+	color: red;
+	position: absolute;
+	right:0px;top:82px;
+	display:none;
+}
+
+.use-tips{
+	height: 20px;
+	color: red;
+	position: absolute;
+	right:0px;top:110px;
+	display:none;
+}
+.userclear{
+	width: 18px;height: 18px;
+	background: url(../img/reg_icons.png);
+	position: absolute;
+	right: 14px;bottom: 5px;
+	background-position: -44px -25px;
+	display: none;
+	cursor: pointer;
+}
+

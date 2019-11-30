@@ -102,13 +102,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<ul>
-					<li><a>Ann Demeulemeester</a></li>
-					<li><a>Acne Studios</a></li>
-					<li><a>Emporio Armani</a></li>
-					<li><a>Alberta Ferretti</a></li>
-					<li><a>Aquazzura</a></li>
-					<li><a>Anna Baiguera</a></li>
-					<li><a>Amina Muaddi</a></li>
 				</ul>
 			</div>
 			<div class="product-next container">
@@ -118,13 +111,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<ul>
-					<li><a>女鞋</a></li>
-					<li><a>时尚鞋款</a></li>
-					<li><a>运动鞋</a></li>
-					<li><a>靴子</a></li>
-					<li><a>单鞋</a></li>
-					<li><a>凉鞋</a></li>
-					<li><a>高跟鞋</a></li>
 				</ul>
 			</div>
 			<div class="product-next container">
@@ -134,14 +120,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<ul>
-					<li><a>意大利</a></li>
-					<li><a>香港</a></li>
-					<li><a>上海</a></li>
-					<li><a>锦州</a></li>
-					<li><a>天津</a></li>
-					<li><a>法国.巴黎</a></li>
-					<li><a>泉州</a></li>
-					<li><a>深圳</a></li>
 				</ul>
 			</div>
 			<div class="product-next container">
@@ -151,13 +129,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<ul>
-					<li><a>黑色</a></li>
-					<li><a>白色</a></li>
-					<li><a>绿色</a></li>
-					<li><a>黄色</a></li>
-					<li><a>红色</a></li>
-					<li><a>粉色</a></li>
-					<li><a>蓝色</a></li>
 				</ul>
 			</div>
 			<div class="product-next container">
@@ -167,13 +138,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 				<ul>
-					<li><a>39</a></li>
-					<li><a>36</a></li>
-					<li><a>37</a></li>
-					<li><a>38</a></li>
-					<li><a>40</a></li>
-					<li><a>35</a></li>
-					<li><a>42</a></li>
 				</ul>
 			</div>
 			<div class="product-next container">
@@ -198,16 +162,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</section>
 		<!--跳转页面-->
-		<center>
 			<section class="pageSkining">
-				<div class="container">
-					<button class="btn btnPrev pull-left ">上一页</button>
-					<input class="pull-left text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
-					<button class="btn btnJump pull-left">跳转</button>
-					<button class="btn btnNext pull-left">下一页</button>
-				</div>
+				<center>
+					<span></span>
+					<button class="btn btnStart">首页</button>
+					<button class="btn btnPrev">上一页</button>
+					<input class="text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
+					<button class="btn btnJump">跳转</button>
+					<button class="btn btnNext">下一页</button>
+					<button class="btn btnEnd">尾页</button>
+				</center>
 			</section>
-		</center>
 		<!--返回顶部-->
 		<div class="toTop">
 			<span class="glyphicon glyphicon-open"></span>

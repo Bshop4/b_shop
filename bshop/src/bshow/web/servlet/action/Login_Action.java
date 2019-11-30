@@ -57,6 +57,7 @@ public class Login_Action extends Action{
 			if(inAccount.equals(outAccountObject.getAccount())){
 				//密码对比
 				if(inPass.equals(outAccountObject.getPassword())){
+					//更新当前的ip地址
 					json="{\"code\":0,\"msg\":\"LoginSuccess登录成功\",\"data\":{\"token\":\""+uid+"\",\"username\":\""+outAccountObject.getAccount()+"\"}}";
 					out.print(json);
 				}else{

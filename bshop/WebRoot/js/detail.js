@@ -2,8 +2,8 @@
  * Created by 10415 on 2019/10/26.
  */
 
+var goodsno = getUrlVal('goods_no');
 (function(){
-      var goodsno = getUrlVal('goods_no');
 //	var goodsno = "467936110633540";
     //发起
 	$.ajax({
@@ -376,7 +376,7 @@ function opration(){
    
     //颜色选择
     $('.zjl-product-color ul li').each(function(i){
-    	var goods_no = "467936110633540";
+    	var goods_no = goodsno;
         $(this).click(function(i){
             $(this).children().show().parent().siblings().children().hide();
             $(this).attr("data-color","checked").siblings().attr("data-color","");

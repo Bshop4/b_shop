@@ -8,6 +8,9 @@ var goods_place;
 var middle_type;
 var goods_name;
 
+//最大页数
+var maxPageCount;
+
 //分类id
 var page = 1;
 var pagesize = 16;
@@ -34,8 +37,8 @@ var pagesize = 16;
 //鼠标点击下一页
 $('.btnNext').click(function() {
 	page++;
-	if(page >= 50) {
-		page = 50;
+	if(page >= maxPageCount) {
+		page = maxPageCount;
 	}
 	$('.pageNum').val(page);
 	
@@ -45,7 +48,7 @@ $('.btnNext').click(function() {
 	getGoodsList();
 	
 	//返回顶部
-	$('html').animate({
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 	
@@ -65,16 +68,16 @@ $('.btnPrev').click(function() {
 	getGoodsList();
 	
 	//		返回顶部
-	$('html').animate({
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 })
 
-//失焦跳转
+//点击跳转
 $('.btnJump').click(function() {
 	page = $('.pageNum').val();
-	if(parseInt($('.pageNum').val()) > 50) {
-		page = 50;
+	if(parseInt($('.pageNum').val()) > maxPageCount) {
+		page = maxPageCount;
 	}
 	if(parseInt($('.pageNum').val()) < 1) {
 			page = 1;
@@ -82,7 +85,37 @@ $('.btnJump').click(function() {
 	$('.pageNum').val(page);
 	getGoodsList();
 	//返回顶部
-	$('html').animate({
+	$('body').animate({
+		'scrollTop': 0
+	}, 100);
+})
+
+//点击首页
+$('.btnStart').click(function(){
+	page = 1;
+	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
+	getGoodsList();
+	
+	//		返回顶部
+	$('body').animate({
+		'scrollTop': 0
+	}, 100);
+})
+
+//点击尾页
+$('.btnEnd').click(function(){
+	page = maxPageCount;
+	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
+	getGoodsList();
+	
+	//		返回顶部
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 })
@@ -126,7 +159,22 @@ function getGoodsList() {
 			$('.merchandise>ul').empty();
 			
 			console.log(result);
-			//渲染数据
+			
+			//存取最大页数
+			maxPageCount=result[0].maxPageCount[0].maxPageCount;
+			
+//			//渲染数据,如果当前页大于总页数
+//			page = $('.pageNum').val();
+//			if(parseInt($('.pageNum').val()) > maxPageCount) {
+//				page = maxPageCount;
+//				$('.pageNum').val(page);
+//				
+//				$('.merchandise>ul').empty();
+//				$('.part-screen>.product-next>ul').empty();
+//				
+//				getGoodsList();
+//				return;
+//			}
 			
 			$('.merchandise>ul').empty();
 			$('.part-screen>.product-next>ul').empty();
@@ -208,6 +256,9 @@ function getGoodsList() {
 					break;
 				}
 			}
+			
+			//渲染
+			$('.pageSkining>center>span').html("总共："+maxPageCount+"页");
 		}
 	})
 }

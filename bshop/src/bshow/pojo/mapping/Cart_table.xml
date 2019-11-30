@@ -74,7 +74,7 @@
 	</select>
 
 	<update id="updateCart1">
-		update cart_table set cgoods_number=@{cgoods_number}
+		update cart_table set cgoods_number=@{cgoods_number},cgoods_sub=@{cgoods_sub}
 		where cart_id=#{cart_id}
 	</update>
 	<delete id="deleteone">

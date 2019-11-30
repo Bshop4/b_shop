@@ -216,7 +216,7 @@ function clickAll() {
   	return result[2];
   };
   
-  $('#btn-account').click(function() {
+  $('#btn-account').click(function() { 
 //		$('[data-price="active"]').each(function() {
 //			console.log($(this));	
 //			var tab = $(this).parent().parent().parent();

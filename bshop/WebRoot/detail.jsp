@@ -356,3 +356,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/bigGlass.js"></script>
 <script src="js/base.js"></script>
 <script src="js/detail.js"></script>
+<script src="js/cart_account.js"></script>

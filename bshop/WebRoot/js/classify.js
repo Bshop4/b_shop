@@ -8,6 +8,15 @@ var goods_place;
 var middle_type;
 var goods_name;
 
+//为了能自动跳分页
+var a;
+var b;
+var c;
+var d;
+var e;
+var f;
+var g;
+
 //最大页数
 var maxPageCount;
 
@@ -163,18 +172,26 @@ function getGoodsList() {
 			//存取最大页数
 			maxPageCount=result[0].maxPageCount[0].maxPageCount;
 			
-//			//渲染数据,如果当前页大于总页数
-//			page = $('.pageNum').val();
-//			if(parseInt($('.pageNum').val()) > maxPageCount) {
-//				page = maxPageCount;
-//				$('.pageNum').val(page);
-//				
-//				$('.merchandise>ul').empty();
-//				$('.part-screen>.product-next>ul').empty();
-//				
-//				getGoodsList();
-//				return;
-//			}
+			//渲染数据,如果当前页大于总页数
+			page = $('.pageNum').val();
+			if(parseInt($('.pageNum').val()) > maxPageCount) {
+				page = maxPageCount;
+				$('.pageNum').val(page);
+				
+				$('.merchandise>ul').empty();
+				$('.part-screen>.product-next>ul').empty();
+				
+				goods_price=a;
+				goods_brand=b;
+				middle_color=c;
+				middle_size=d;
+				goods_place=e;
+				middle_type=f;
+				goods_name=g;
+				
+				getGoodsList();
+				return;
+			}
 			
 			$('.merchandise>ul').empty();
 			$('.part-screen>.product-next>ul').empty();
@@ -259,6 +276,7 @@ function getGoodsList() {
 			
 			//渲染
 			$('.pageSkining>center>span').html("总共："+maxPageCount+"页");
+			
 		}
 	})
 }
@@ -272,6 +290,9 @@ function djtAdd(obj){
 	
 	//调用筛选
 	getNeedsList();
+	
+	oldValue();
+	
 	getGoodsList();
 	
 	//赋值为空
@@ -336,6 +357,17 @@ function allIsNull(){
 	goods_place=undefined;
 	middle_type=undefined;
 	goods_name=undefined;
+}
+
+//用来存储旧值
+function oldValue(){
+	a=goods_price;
+	b=goods_brand;
+	c=middle_color;
+	d=middle_size;
+	e=goods_place;
+	f=middle_type;
+	g=goods_name;
 }
 
 //页面跳转，条件不变

@@ -40,7 +40,7 @@
 				<li class="tab"><a>男士</a></li>
 				<li class="tab"><a>女士</a></li>
 				<li class="tab"><a>品牌</a></li>
-				<li class="tab"><a>走秀移动版</a></li>
+				<li class="tab"><a>嘿店移动版</a></li>
 			</ul>
 		</div>
 		<!--下部分导航-->

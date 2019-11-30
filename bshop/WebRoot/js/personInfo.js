@@ -210,7 +210,8 @@ $('.save').click(function(){
                                 "width": "1000px",
                                 "height": "120px",
                                 "margin-left": "10px",
-                                "position": "relative"
+                                "position": "relative",
+                                "border" : "1px solid white"
                             })
 
                             $(".addresslist>li").css({
@@ -255,7 +256,7 @@ $('.save').click(function(){
         				}
     				}	
         			$("[data-ul='1']").css({
-        				"border" : "1px solid red"
+        				"border" : "1px solid black"
         			})
 //        			var len1 = $(".user-right2").children().length;
 //        			for(var i = 0;i < len1-2; i++){
@@ -503,10 +504,10 @@ $('.save').click(function(){
 //    	    		"color" : "red"
 //    	    	})
     			$(".addresslist").css({
-    				"border" : ""
+    				"border" : "1px solid white"
     			})
     			$(obj).parent().parent().css({
-    				"border" : "1px solid red"
+    				"border" : "1px solid black"
     			})
     			
     		}

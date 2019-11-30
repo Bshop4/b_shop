@@ -93,7 +93,7 @@
 				<span>备注留言：</span><input
 					style="height: 36px; width: 600px; border: 1px solid dashed; padding-left: 10px;"
 					placeholder="50字以内" maxlength="50" class="l_a_m ";> </input> <span
-					class="sum-all" style="font-size: 20px; line-height: 40px;" id="sum-all">应付金额：¥0.00</span>
+					class="sum-all" style="font-size: 20px; line-height: 40px;" id="sum-all">合计：¥0.00</span>
 			</div>
 
 			<div class="account">

@@ -100,7 +100,7 @@ public class MyReplace implements Runnable,Subject{
 			}
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
-				System.out.println("goods_price");
+//				System.out.println("goods_price");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -127,7 +127,7 @@ public class MyReplace implements Runnable,Subject{
 					
 				}
 			}else if("goodsConditions".equals(mykey)){
-				System.out.println("goodsConditions");
+//				System.out.println("goodsConditions");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -146,7 +146,7 @@ public class MyReplace implements Runnable,Subject{
 					count = rs.getInt(1);
 				}
 				int maxPageCount=count % 16 == 0 ? (count / 16) : (count / 16 + 1);
-				System.out.println("最大的页数为"+maxPageCount);
+//				System.out.println("最大的页数为"+maxPageCount);
 				gc.setMaxPageCount(maxPageCount);
 				mylist.add(gc);
 			}else{

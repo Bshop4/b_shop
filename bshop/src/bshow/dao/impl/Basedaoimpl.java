@@ -254,7 +254,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		}
 		// 根据条件构成sql语句
 		sql = sb.toString();
-		System.out.println(sql);
+//		System.out.println(sql);
 
 		// 查询还有的品牌
 		String mysql = sql + " group by c.goods_brand";

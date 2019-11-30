@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Repertory_table" table="repertory_table">
+	<property name="repertory_id" column="repertory_id"/>
+	<property name="goods_no" column="goods_no"/>
+	<property name="repertory_color" column="repertory_color"/>
+	<property name="repertory_size" column="repertory_size"/>
+	<property name="repertory_number" column="repertory_number"/>
+	
+	<insert id="insertone">
+		insert into repertory_table(goods_no,repertory_color,repertory_size,repertory_number) values(#{goods_no},#{repertory_color},#{repertory_size},#{repertory_number})
+	</insert>
+	
+	
+	<select id="selectone" resulttype="bshow.pojo.Repertory_table">
+		select * from repertory_table	where 1=1 and goods_no=#{goods_no} and repertory_color=#{repertory_color} and repertory_size=#{repertory_size}
+	</select>
+	
+</class>

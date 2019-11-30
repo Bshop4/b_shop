@@ -8,6 +8,18 @@ var goods_place;
 var middle_type;
 var goods_name;
 
+//为了能自动跳分页
+var a;
+var b;
+var c;
+var d;
+var e;
+var f;
+var g;
+
+//最大页数
+var maxPageCount;
+
 //分类id
 var page = 1;
 var pagesize = 16;
@@ -18,7 +30,7 @@ var pagesize = 16;
 		middle_type=decodeURI(getUrlVal("middle_type"));
 	};
 	if(getUrlVal("goods_name")){
-		middle_type=decodeURI(getUrlVal("goods_name"));
+		goods_name=decodeURI(getUrlVal("goods_name"));
 	}
 	console.log(middle_type);
 	$('title').html('B-SHOP嘿店——'+middle_type);
@@ -34,8 +46,8 @@ var pagesize = 16;
 //鼠标点击下一页
 $('.btnNext').click(function() {
 	page++;
-	if(page >= 50) {
-		page = 50;
+	if(page >= maxPageCount) {
+		page = maxPageCount;
 	}
 	$('.pageNum').val(page);
 	
@@ -45,7 +57,7 @@ $('.btnNext').click(function() {
 	getGoodsList();
 	
 	//返回顶部
-	$('html').animate({
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 	
@@ -65,16 +77,16 @@ $('.btnPrev').click(function() {
 	getGoodsList();
 	
 	//		返回顶部
-	$('html').animate({
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 })
 
-//失焦跳转
+//点击跳转
 $('.btnJump').click(function() {
 	page = $('.pageNum').val();
-	if(parseInt($('.pageNum').val()) > 50) {
-		page = 50;
+	if(parseInt($('.pageNum').val()) > maxPageCount) {
+		page = maxPageCount;
 	}
 	if(parseInt($('.pageNum').val()) < 1) {
 			page = 1;
@@ -82,7 +94,37 @@ $('.btnJump').click(function() {
 	$('.pageNum').val(page);
 	getGoodsList();
 	//返回顶部
-	$('html').animate({
+	$('body').animate({
+		'scrollTop': 0
+	}, 100);
+})
+
+//点击首页
+$('.btnStart').click(function(){
+	page = 1;
+	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
+	getGoodsList();
+	
+	//		返回顶部
+	$('body').animate({
+		'scrollTop': 0
+	}, 100);
+})
+
+//点击尾页
+$('.btnEnd').click(function(){
+	page = maxPageCount;
+	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
+	getGoodsList();
+	
+	//		返回顶部
+	$('body').animate({
 		'scrollTop': 0
 	}, 100);
 })
@@ -126,7 +168,30 @@ function getGoodsList() {
 			$('.merchandise>ul').empty();
 			
 			console.log(result);
-			//渲染数据
+			
+			//存取最大页数
+			maxPageCount=result[0].maxPageCount[0].maxPageCount;
+			
+			//渲染数据,如果当前页大于总页数
+			page = $('.pageNum').val();
+			if(parseInt($('.pageNum').val()) > maxPageCount) {
+				page = maxPageCount;
+				$('.pageNum').val(page);
+				
+				$('.merchandise>ul').empty();
+				$('.part-screen>.product-next>ul').empty();
+				
+				goods_price=a;
+				goods_brand=b;
+				middle_color=c;
+				middle_size=d;
+				goods_place=e;
+				middle_type=f;
+				goods_name=g;
+				
+				getGoodsList();
+				return;
+			}
 			
 			$('.merchandise>ul').empty();
 			$('.part-screen>.product-next>ul').empty();
@@ -208,6 +273,10 @@ function getGoodsList() {
 					break;
 				}
 			}
+			
+			//渲染
+			$('.pageSkining>center>span').html("总共："+maxPageCount+"页");
+			
 		}
 	})
 }
@@ -221,6 +290,9 @@ function djtAdd(obj){
 	
 	//调用筛选
 	getNeedsList();
+	
+	oldValue();
+	
 	getGoodsList();
 	
 	//赋值为空
@@ -287,6 +359,17 @@ function allIsNull(){
 	goods_name=undefined;
 }
 
+//用来存储旧值
+function oldValue(){
+	a=goods_price;
+	b=goods_brand;
+	c=middle_color;
+	d=middle_size;
+	e=goods_place;
+	f=middle_type;
+	g=goods_name;
+}
+
 //页面跳转，条件不变
 function noChangeCondition(){
 	if(middle_type){
@@ -312,5 +395,17 @@ function noChangeCondition(){
 		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	}
 }
+
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
+
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
 
 

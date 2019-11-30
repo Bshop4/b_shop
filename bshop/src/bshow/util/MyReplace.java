@@ -56,8 +56,10 @@ public class MyReplace implements Runnable,Subject{
 		try {
 			PreparedStatement ps=conn.prepareStatement(mysql);
 			if(form.getGoods_name()!=null){
-				char[] myname=form.getGoods_name().toCharArray();
+				String name=form.getGoods_name().replaceAll("\\s", "");
+				char[] myname = name.toCharArray();
 				for (int i = 0; i < myname.length; i++) {
+					ps.setString(++index, "%"+myname[i]+"%");
 					ps.setString(++index, "%"+myname[i]+"%");
 					ps.setString(++index, "%"+myname[i]+"%");
 				}
@@ -98,7 +100,7 @@ public class MyReplace implements Runnable,Subject{
 			}
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
-				System.out.println("goods_price");
+//				System.out.println("goods_price");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -113,11 +115,11 @@ public class MyReplace implements Runnable,Subject{
 					if(d>=3000&&d<=4999){
 						myset.add("3000-4999");
 					}
-					if(d>=5000&&d<=9999){
-						myset.add("5000-9999");
+					if(d>=5000&&d<=9998){
+						myset.add("5000-9998");
 					}
-					if(d>=10000&&d<=100000){
-						myset.add("10000-100000");
+					if(d>=9999&&d<=100000){
+						myset.add("9999-100000");
 					}
 					if(myset.size()==5){
 						break;
@@ -125,7 +127,7 @@ public class MyReplace implements Runnable,Subject{
 					
 				}
 			}else if("goodsConditions".equals(mykey)){
-				System.out.println("goodsConditions");
+//				System.out.println("goodsConditions");
 				while(rs.next()){
 					//存储数据到集合中
 					Goods_classify gc=new Goods_classify();
@@ -144,7 +146,7 @@ public class MyReplace implements Runnable,Subject{
 					count = rs.getInt(1);
 				}
 				int maxPageCount=count % 16 == 0 ? (count / 16) : (count / 16 + 1);
-				System.out.println("最大的页数为"+maxPageCount);
+//				System.out.println("最大的页数为"+maxPageCount);
 				gc.setMaxPageCount(maxPageCount);
 				mylist.add(gc);
 			}else{

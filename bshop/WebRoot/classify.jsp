@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a>品牌</a>
 					</li>
 					<li class="tab">
-						<a>走秀移动版</a>
+						<a>嘿店移动版</a>
 					</li>
 				</ul>
 			</div>
@@ -164,16 +164,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</section>
 		<!--跳转页面-->
-		<center>
 			<section class="pageSkining">
-				<div class="container">
-					<button class="btn btnPrev pull-left ">上一页</button>
-					<input class="pull-left text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
-					<button class="btn btnJump pull-left">跳转</button>
-					<button class="btn btnNext pull-left">下一页</button>
-				</div>
+				<center>
+					<span></span>
+					<button class="btn btnStart">首页</button>
+					<button class="btn btnPrev">上一页</button>
+					<input class="text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
+					<button class="btn btnJump">跳转</button>
+					<button class="btn btnNext">下一页</button>
+					<button class="btn btnEnd">尾页</button>
+				</center>
 			</section>
-		</center>
 		<!--返回顶部-->
 		<div class="toTop">
 			<span class="glyphicon glyphicon-open"></span>

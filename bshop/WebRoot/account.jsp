@@ -40,7 +40,7 @@
 				<li class="tab"><a>男士</a></li>
 				<li class="tab"><a>女士</a></li>
 				<li class="tab"><a>品牌</a></li>
-				<li class="tab"><a>走秀移动版</a></li>
+				<li class="tab"><a>嘿店移动版</a></li>
 			</ul>
 		</div>
 		<!--下部分导航-->
@@ -72,7 +72,7 @@
 
 			<button id="user-myaddress" data-toggle="modal"
 				data-target="#addAddress"
-				style="background: white; left: 200px; top: 228px; border: 1px solid black;">+新增地址</button>
+				style="background: white; position:relative;left: 80px; top: -64px; border: 1px solid black;">+新增地址</button>
 
 		</div>
 		<div class="checkout-content-title">确认商品清单</div>
@@ -85,6 +85,7 @@
 		        <th>尺码</th>
 		        <th>单价</th>
 		        <th>小计</th>
+		        <th>操作</th>
 			</tr>
 		</table>
 		<div class="footer">
@@ -92,11 +93,11 @@
 				<span>备注留言：</span><input
 					style="height: 36px; width: 600px; border: 1px solid dashed; padding-left: 10px;"
 					placeholder="50字以内" maxlength="50" class="l_a_m ";> </input> <span
-					class="sum-all" style="font-size: 20px; line-height: 40px;" id="sum-all">应付金额：¥0.00</span>
+					class="sum-all" style="font-size: 20px; line-height: 40px;" id="sum-all">合计：¥0.00</span>
 			</div>
 
 			<div class="account">
-				<button type="button" class="btn-account">确认订单</button>
+				<button type="button" class="btn-account" id="btn-account">支付订单</button>
 			</div>
 		</div>
 	</div>

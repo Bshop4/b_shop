@@ -2,9 +2,10 @@
  * Created by 10415 on 2019/10/26.
  */
 
+var goodsno = getUrlVal('goods_no');
+//	var goodsno = "467936110633540";
+//	var goodsno = "6987766132287";
 (function(){
-//      var goodsno = getUrlVal('goods_no');
-	var goodsno = "231914979320863";
     //发起
 	$.ajax({
 		type:"POST",
@@ -16,6 +17,11 @@
 			var obj = result[len-1];
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
+	        
+	        var strColle = `
+	        	<label for="" data-coid=${obj.goods_no}><a href="javascript:;"><img src="img/4.png" alt="">收藏商品</a></label>
+	        `;
+	        $('.zjl-product-lableList').append(strColle);
 	        
 	        //商品名字
 	        var str = `
@@ -193,6 +199,21 @@
 //各种操作
 function opration(){
 
+	//图片切换0
+    $('.zjl-bottom ul li').each(function(i){
+      $(this).mouseenter(function(){
+          //$('.zjl-top ul li').eq(i).show().siblings().hide();
+          $(this).css('border','1px solid black').siblings().css('border','');
+
+          var imgSrc = $(this).children().attr('src');
+          $('.zjl-top ul li img').attr('src',imgSrc);
+          $('.big').css({
+              'background':'url('+ imgSrc +')',
+          });
+      }) ;
+  });
+	
+	
     //注册
     $('.zjl-register').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
@@ -247,7 +268,7 @@ function opration(){
         var token = localStorage.getItem('token');
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
-        
+        var account = "pyla1";//账号
         var getnumber = $('.number').attr('value');//数量
         var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
         var getgoodsname = $('.zjl-product-name').html();//商品名字
@@ -279,7 +300,7 @@ function opration(){
         	"getAllprice":getAllprice,
         	"getcolor":getcolor,
         	"getsize":getsize,
-        	"account":"pyla1"
+        	"account":account
         }
            
 //        console.log(allnew)
@@ -333,24 +354,60 @@ function opration(){
 
     $('#buyNowBtn').click(function(){
         var token = localStorage.getItem('token');
-        var goodsNo = $('#buyNowBtn').attr('data-goods-no');
+        
+        var goodsNo = $('#buyNowBtn').children().attr('data-goods-no');
+        console.log(goodsNo)
+        var account = "pyla1";//账户
+        var getnumber = $('.number').attr('value');//数量
+        var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
+        var getgoodsname = $('.zjl-product-name').html();//商品名字
+        var getprice = $('.realPrice').html();//单价-string
+        var getAllprice = parseInt(getprice) * parseInt(getnumber);//总价-int
+        getAllprice+="";
+        
+        var getcolor = "";//颜色
+        $('.zjl-product-color ul li').each(function(i){
+        	if($(this).attr("data-color") == "checked"){
+        		getcolor = $(this).text();
+        	}
+        })
+        
+        var getsize = "";//尺寸
+        $('.zjl-product-size ul li').each(function(i){
+        	if($(this).attr("data-size") == "checked"){
+        		getsize = $(this).text();
+        	}
+        })
 
+        var allnew = {
+        	"goodsNo":goodsNo,
+        	"getnumber":getnumber,
+        	"imgurl":imgurl,
+        	"getgoodsname":getgoodsname,
+        	"getprice":getprice,
+        	"getAllprice":getAllprice,
+        	"getcolor":getcolor,
+        	"getsize":getsize,
+        	"account":account
+        }
+        
+        
         //验证
         if(token){
 
-//            console.log(111)
-//            $.ajax({
-//                type : 'post',
-//                url : 'http://www.wjian.top/shop/api_cart.php',
-//                data: {'goods_id':goodsId, 'number': parseInt($('.number').attr('value'))},
-//                dataType:'json',
-//                success : function(e){
-//                    
-////                  数据库
-//                    
-//                    
-//                },
-//            });
+        	$.ajax({
+        		type : "post",
+        		url : "insertCartBuy.do",
+        		data : {"msg" : JSON.stringify(allnew)},
+        		success : function (re) {
+        			
+        			if(re == "1"){
+        				location.href = "account.jsp?account_name="+account;
+        			}
+        			
+        		}
+        	})
+        	
         }else{
             if(confirm('未登录，点击确定跳到登录界面')){
                 location.href = 'Login.jsp?goods_id=' + goodsId;
@@ -360,29 +417,28 @@ function opration(){
 
 
 
-    //图片切换0
-      $('.zjl-bottom ul li').each(function(i){
-        $(this).mouseenter(function(){
-            //$('.zjl-top ul li').eq(i).show().siblings().hide();
-            $(this).css('border','1px solid black').siblings().css('border','');
-
-            var imgSrc = $(this).children().attr('src');
-            $('.zjl-top ul li img').attr('src',imgSrc);
-            $('.big').css({
-                'background':'url('+ imgSrc +')',
-            });
-        }) ;
-    });
+//    //图片切换0
+//      $('.zjl-bottom ul li').each(function(i){
+//        $(this).mouseenter(function(){
+//            //$('.zjl-top ul li').eq(i).show().siblings().hide();
+//            $(this).css('border','1px solid black').siblings().css('border','');
+//
+//            var imgSrc = $(this).children().attr('src');
+//            $('.zjl-top ul li img').attr('src',imgSrc);
+//            $('.big').css({
+//                'background':'url('+ imgSrc +')',
+//            });
+//        }) ;
+//    });
    
     //颜色选择
     $('.zjl-product-color ul li').each(function(i){
-    	var goods_no = "231914979320863";
+    	var goods_no = goodsno;
         $(this).click(function(i){
             $(this).children().show().parent().siblings().children().hide();
             $(this).attr("data-color","checked").siblings().attr("data-color","");
             
             var color = $(this).text();
-            console.log(color);
             var nocolor = {
             	"goods_no" : goods_no,
             	"color" : color
@@ -393,8 +449,63 @@ function opration(){
             	url : "selectColor.do",
             	data : {"msg" : JSON.stringify(nocolor)},
             	success : function (re) {
-//            		var obj = JSON.parse(re);
-//            		console.log(obj)
+            		$('.zjl-top').html("");
+            		$('.zjl-bottom').html("");
+            		var obj = JSON.parse(re);
+            		var strsm = "";
+            		for(var i = 0; i < obj.length; i++){
+            			strsm+="<li><img src='"+obj[i]+"'/></li>";
+            		}
+            		var strsmm = `
+        	        	<ul>
+        	              ${strsm}
+        	            </ul>
+        	            <span class="glyphicon glyphicon-chevron-left left-span"></span>
+        	            <span class="glyphicon glyphicon-chevron-right right-span"></span>
+        	        `;
+            		$('.zjl-bottom').append(strsmm);
+            		
+            		var strbig = `
+        	            <ul>
+        	             <li class="active"><img src=${obj[0]}></li>
+        	             </ul>
+        	            <div class="slide"></div>
+        	        `;
+            		$('.zjl-top').append(strbig);
+            		
+            		var imgStr = `${obj[0]}`;
+        	        
+        	        //放大镜大图
+        	        $('.big').css({
+
+        	            width: 400,
+        	            height: 400,
+        	            border: '2px solid orange',
+        	            position: 'absolute',
+        	            left: 600,
+        	            top: 10,
+        	            background: 'url("'+imgStr+'")',
+        	            /*background-image: url("img/big-01.jpg");*/
+        	            'background-size': '800px 800px' ,
+        	            'background-position': '0px 0px',
+        	            'z-index': 999,
+        	            display: 'none',
+        	        })
+        	        
+        	      //图片切换0
+        	        $('.zjl-bottom ul li').each(function(i){
+        	          $(this).mouseenter(function(){
+        	              //$('.zjl-top ul li').eq(i).show().siblings().hide();
+        	              $(this).css('border','1px solid black').siblings().css('border','');
+
+        	              var imgSrc = $(this).children().attr('src');
+        	              $('.zjl-top ul li img').attr('src',imgSrc);
+        	              $('.big').css({
+        	                  'background':'url('+ imgSrc +')',
+        	              });
+        	          }) ;
+        	      });
+            		
             	}
             })
             

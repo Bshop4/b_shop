@@ -13,23 +13,21 @@ img {
 	border: none;
 	vertical-align: bottom;
 }
-/*è·³è½¬é¡µé¢*/
-.pageSkining{
-	width: 100%;
+/*µ×²¿°´Å¥*/
+.pageSkining>center>button{
+	display: inline-block;
 }
-.pageSkining>.container{
-	width: 1200px;
-	margin: 50px;
+.pageSkining>center>input{
+	display: inline-block;
+	width:47px;
+	margin-left:10px;
+	padding-bottom:5px;
+	border-radius: 4px;
 }
-.pageSkining>.container>button.btnPrev{
-	margin-left: 470px;
+.pageSkining>center>button.btnJump{
+	margin-right:10px;
 }
-.pageSkining>.container>button.btnJump{
-	margin:4px 15px 4px 4px;
+.pageSkining>center>span{
+	line-height:38px;
 }
-.pageSkining>.container>input{
-	width: 50px;
-	height: 34px;
-	margin:4px 0px 4px 15px;
-	border-radius: 3px;
-}
+

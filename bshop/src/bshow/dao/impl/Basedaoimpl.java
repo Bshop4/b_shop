@@ -220,11 +220,17 @@ public class Basedaoimpl implements Basedao, Looker {
 		String sql = "select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb = new StringBuffer(sql);
 		if (form.getGoods_name() != null) {
-			char[] myname = form.getGoods_name().toCharArray();
+			String name=form.getGoods_name().replaceAll("\\s", "");
+			char[] myname = name.toCharArray();
 			for (int i = 0; i < myname.length; i++) {
-				sb.append(" and (c.goods_name like ? or c.goods_brand like ?");
-				if (i == myname.length - 1) {
-					sb.append(" and c.goods_name like ? or c.goods_brand like ?)");
+				if(i==0 && myname.length-1>0){
+					sb.append(" and ( (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
+				}else if(i==0){
+					sb.append(" and (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
+				}else if(i==myname.length-1){
+					sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?) )");
+				}else{
+					sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
 				}
 			}
 		}
@@ -248,7 +254,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		}
 		// 根据条件构成sql语句
 		sql = sb.toString();
-		System.out.println(sql);
+//		System.out.println(sql);
 
 		// 查询还有的品牌
 		String mysql = sql + " group by c.goods_brand";

@@ -59,6 +59,8 @@ public class InsertCartAction extends Action{
 			int num = ct1.getCgoods_number();
 			num += Integer.parseInt(getnumber);
 			ct1.setCgoods_number(num);
+			int allprice = num * Integer.parseInt(getprice);
+			ct1.setCgoods_sub(Double.valueOf(allprice));
 			boolean f = bd.updataObject("updateCart1", ct1);
 		}
 		

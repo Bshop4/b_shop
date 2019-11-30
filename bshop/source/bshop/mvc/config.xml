@@ -47,10 +47,24 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 减少购物车商品 -->
+	<PagePattern name="redCartGoods">
+		<ActionForm>bshow.web.servlet.form.RedCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.RedCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 根据商品id查询购物车的商品 -->
 	<PagePattern name="selectCartGoodsById">
 		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByIdForm</ActionForm>
 		<Action>bshow.web.servlet.action.SelectCartGoodsByIdAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 根据商品id和状态值查询购物车的商品 -->
+	<PagePattern name="selectCartGoodsByState">
+		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByStateForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCartGoodsByStateAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
@@ -154,6 +168,13 @@
 	<PagePattern name="selectColor">
 		<ActionForm>bshow.web.servlet.form.SelectColorForm</ActionForm>
 		<Action>bshow.web.servlet.action.SelectColortAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 立即购买 -->
+	<PagePattern name="insertCartBuy">
+		<ActionForm>bshow.web.servlet.form.InsertCartBuyForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertCartBuyAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	

@@ -18,6 +18,11 @@ var goodsno = getUrlVal('goods_no');
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        
+	        var strColle = `
+	        	<label for="" data-coid=${obj.goods_no}><a href="javascript:;"><img src="img/4.png" alt="">收藏商品</a></label>
+	        `;
+	        $('.zjl-product-lableList').append(strColle);
+	        
 	        //商品名字
 	        var str = `
 	            <span>${obj.goods_name}</span>

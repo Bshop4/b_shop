@@ -279,7 +279,7 @@ function delAll() {
 		console.log($(this));
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
-// console.log(tab);
+// console.log(tab); 
 // console.log(tr.length);
 		
 		var cart_id = $('[del-red="active"]').attr("data-no");

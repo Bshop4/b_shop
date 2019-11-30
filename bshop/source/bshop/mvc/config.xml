@@ -54,6 +54,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 根据商品id和状态值查询购物车的商品 -->
+	<PagePattern name="selectCartGoodsByState">
+		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByStateForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCartGoodsByStateAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 插入订单表商品 -->
 	<PagePattern name="insertBillGoods">
 		<ActionForm>bshow.web.servlet.form.InsertBillForm</ActionForm>

@@ -3,8 +3,9 @@
  */
 
 var goodsno = getUrlVal('goods_no');
-(function(){
 //	var goodsno = "467936110633540";
+//	var goodsno = "6987766132287";
+(function(){
     //发起
 	$.ajax({
 		type:"POST",

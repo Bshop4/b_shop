@@ -55,15 +55,31 @@ public class SelectColortAction extends Action{
 			hs.add(new String(((Middle_table)object).getGoods_smallphoto()));
 		}
 		List<String> list1 = new ArrayList<String>(hs);
+		List<String> list2 = new ArrayList<String>();
 		List<String> listStr = new ArrayList<String>();
-		
-		if(list1.size() >= 4){
-			for (int i = 0; i < 4; i++) {
-				listStr.add(list1.get(i));
+		for (String string : list1) {
+			if(string.contains(",")){
+				String[] strArr = string.split(",");
+				for (String string2 : strArr) {
+					list2.add(string2);
+				}
+				
+			}else{
+				list2.add(string);
 			}
-		}else if(list1.size() >=1 && list1.size() < 4){
-			for (int i = 0; i < list1.size(); i++) {
-				listStr.add(list1.get(i));
+		}
+//		for (String string : list2) {
+//			System.out.println("ls2 " + string);
+//		}
+		
+		
+		if(list2.size() >= 4){
+			for (int i = 0; i < 4; i++) {
+				listStr.add(list2.get(i));
+			}
+		}else if(list2.size() >=1 && list2.size() < 4){
+			for (int i = 0; i < list2.size(); i++) {
+				listStr.add(list2.get(i));
 			}
 		}
 		

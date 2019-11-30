@@ -1,53 +1,104 @@
-  //请求用户的购物车数据
-  function goodsList(page, callback){
-    var page = page ? page : 1;
-    // 页面打开就可以看到商品
-    $.get('http://www.wjian.top/shop/api_goods.php',{
-      'pagesize':3,
-      'page':page,
-    }, function(result){
-      var result = JSON.parse(result);
-      // 验证
-      if(result.code != 0){
-        console.log('数据请求失败');
-        return;
-      };
-      // 调用
-      callback(result);
-    }); 
-  };
-  var allMount = 0;
-  goodsList(1, function(result){
-    var goodsList = result.data;
-    // 得到数据了之后，在这里操作数据
-    // 组装DOM结构
-    for(var i = 0; i < goodsList.length; i++){
-      var str = `
-        <tr>
-          <td class="left">
-            <img src="${goodsList[i].goods_thumb}"/>
-          </td>
-          <td class="desc">${goodsList[i].goods_desc}</td>
-          <td class="calculate">
-            <span class="count">1</span>
-          </td>
-          <td>${goodsList[i].price}</td>
-          <td class="subtotal">${goodsList[i].price}</td>
-        </tr>
-      `;
-      // 把每次组装好的添加进table
-      $('table').append(str);
-    };
-//		allMount = goodsList.length;
-//     所有的业务逻辑都在这之后
-// clickAll();
-  });
+//请求数据库的购物车数据
+var XMLHttp;
+// 创建ajax对象
+function createXMLHttp() {
+	// google
+	if (window.XMLHttpRequest) {
+		XMLHttp = new XMLHttpRequest();
+	} else {
+		try {
+			// IE
+			XMLHttp = new ActiveXObject("Msxm2.XMLHTTP");
+		} catch (e) {
+			XMLHttp = new ActiveXObject("MicrosoftXMLHTTP");
+		}
+	}
+}
+// 定义一个需要进行操作的变量
+var returnResult;
+//定义应付金额
+var sum=0;
+// 页面加载查询数据库状态值为1的商品
+$(document).ready(function() {
+	var account_name = getUrlVal("account_name");
+// var goods_ids = window.localStorage.getItem('goods_id');
+// console.log(account_name);
+// var account = "pyla1";
+	createXMLHttp();
+	$.ajax({
+		type : "POST",
+		url : "selectCartGoodsByState.do",
+		data : {"account" : account_name},
+		success : function(result) {
+			var result=JSON.parse(result);
+			returnResult = result;
+			// 验证
+			if (result.account==0) {
+				console.log("请求数据失败");
+				return;
+			};
+			for (var i = 0; i < result.length; i++) {
+//				console.log(result[i].cgoods_sub);
+				sum += result[i].cgoods_sub;
+//				console.log(sum)
+				var str = `
+					<tr>
+						<td class="left">
+							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
+						</td>
+						<td class="desc">${result[i].cgoods_desc}</td>
+			            <td class="calculate">
+				            <span class="count">${result[i].cgoods_number}</span>
+			            </td>
+						<td>${result[i].cgoods_color}</td>
+						<td>${result[i].cgoods_size}</td>
+			            <td>${result[i].cgoods_price}</td>
+			            <td class="subtotal">${result[i].cgoods_sub}</td>
+			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id}>删除</a></td>
+			        </tr>
+					`;
+				 // 把每次组装好的添加进table
+			     $('table').append(str);
+			};
+			console.log(sum);
+			// 设置总价
+			$('.sum-all').html('合计：¥' + sum + '.00');
+//			console.log(sum);
+			allMount = result.length;
+		    // 所有的业务逻辑都在这之后
+		    clickAll();
+		}
+	})
+})
 
- var content = window.opener.document.getElementById("all-sum").innerHTML;
- (function(){
- console.log(1111111111);
- $('#sum-all').html(content);
- })()
+function clickAll() {
+	// 点击删除 当前元素tr删除
+	// 点击整个表格
+	$('table').click(function(event) {
+		// 点击删除
+		if (event.target.className == 'del') {
+			// 要做商品减的业务
+			console.log('点击了删除');
+			// 找到tr删除自己
+			var tab = event.target.parentNode.parentNode.parentNode;
+			var tr = event.target.parentNode.parentNode;
+			// 得到删除的商品的id
+			var cart_id = $(event.target).attr("data-id");
+			$.ajax({
+				type:"POST",
+				url:"deleteCartGoods.do",
+				data:{"cart_id":cart_id},
+				success:function(result){
+					var result = JSON.parse(result);
+				}
+			});
+			tab.removeChild(tr);
+			// 调用总价
+			sumAll();
+		}
+		;
+	});
+};
 
 
   function mysaveclicks(){
@@ -116,8 +167,9 @@
 
       document.getElementById("save1").setAttribute("data-dismiss","modal");
       $(".address-list").css({
-  		"width": "1180px",
-  		"height": "80px",
+//  		"width": "1180px",
+//  		"height": "80px",
+    	"display":"inline-block",
   		"margin-left": "10px",
   		"position": "relative",
   	  })
@@ -126,7 +178,7 @@
   	  })
   	  
   	  if(reiphone.test(iphone) == true && name != "" && postcode != ""){
-	  	  var obj = $("<li style='float: left;margin-left: 20px;'></li>");
+	  	  var obj = $("<li style='float: left;margin-left: 20px;border:2px solid white;'></li>");
 	  	  $(".address-list").append(obj)
 	  	  obj.append("收货人姓名：" + name);
 	  	  obj.append(document.createElement("br"));
@@ -135,6 +187,11 @@
 	  	  obj.append("收货人邮编：" + postcode);
 	  	  obj.append(document.createElement("br"));
 	  	  obj.append("收货人地址：" + AllAddress);
+	  	  
+	  	  $("li").click(function() {
+	        $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
+	        $(this).addClass('selected');                            // 为当前li添加边框样式
+	  	  });
 	
 	  	  document.getElementById("myname").value = "";
 	  	  document.getElementById("myiphone").value = "";
@@ -142,7 +199,45 @@
 	  	  document.getElementById("province").value = "请选择省份";
 	  	  document.getElementById("city").value = "请选择城市";
 	  	  document.getElementById("area").value = "请选择区县";
-	  	  document.getElementById("mydetailaddress").value = "";  	  
+	  	  document.getElementById("mydetailaddress").value = "";  
       }
       }
   }
+  
+// 获得地址参数栏的值
+  function getUrlVal(property) {
+  	// 地址栏
+  	var urlStr = window.location.search.substring(1);
+  	var re = new RegExp('(^|&)' + property + '=([^&]*)(&|$)');
+  	var result = urlStr.match(re);
+  	if(result == null) {
+  		return;
+  	};
+  	return result[2];
+  };
+  
+  $('#btn-account').click(function() { 
+//		$('[data-price="active"]').each(function() {
+//			console.log($(this));	
+//			var tab = $(this).parent().parent().parent();
+//			var tr = $(this).parent().parent();
+//			cart_id = $('[del-red="active"]').attr("data-no");
+//			console.log(cart_id) 
+////			先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
+//			$.ajax({
+//				type : "POST",
+//				url : "selectCartGoodsById.do",
+//				data : {"cart_id" : cart_id},
+//				success : function(result) {
+//					var result=JSON.parse(result);
+//					console.log(result);
+//				}
+//			})
+//			tab.get(0).removeChild(tr.get(0));
+//		})
+////		window.open('account.jsp');
+//		location.href="account.jsp?account_name="+account;
+////		window.localStorage.setItem('goods_id',cart_id);
+	})
+  
+  

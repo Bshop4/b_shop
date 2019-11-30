@@ -72,7 +72,7 @@
 
 			<button id="user-myaddress" data-toggle="modal"
 				data-target="#addAddress"
-				style="background: white; left: 200px; top: 228px; border: 1px solid black;">+新增地址</button>
+				style="background: white; position:relative;left: 80px; top: -64px; border: 1px solid black;">+新增地址</button>
 
 		</div>
 		<div class="checkout-content-title">确认商品清单</div>
@@ -85,6 +85,7 @@
 		        <th>尺码</th>
 		        <th>单价</th>
 		        <th>小计</th>
+		        <th>操作</th>
 			</tr>
 		</table>
 		<div class="footer">
@@ -96,7 +97,7 @@
 			</div>
 
 			<div class="account">
-				<button type="button" class="btn-account">确认订单</button>
+				<button type="button" class="btn-account" id="btn-account">支付订单</button>
 			</div>
 		</div>
 	</div>

@@ -47,6 +47,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 减少购物车商品 -->
+	<PagePattern name="redCartGoods">
+		<ActionForm>bshow.web.servlet.form.RedCartGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.RedCartGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 根据商品id查询购物车的商品 -->
 	<PagePattern name="selectCartGoodsById">
 		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByIdForm</ActionForm>

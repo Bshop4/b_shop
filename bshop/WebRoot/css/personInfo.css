@@ -53,13 +53,13 @@
             padding: 20px 0px 0px;
         }
 
-        .title2, .title1, .title{
+        .title3,.title2, .title1, .title{
             height: 18px;
             width: 1020px;
             padding: 0px 0px 24px 16px;
 
         }
-        .title2,.title1,.title>p{
+        .title3,.title2,.title1,.title>p{
             height: 18px;
             /*width: 1020px;*/
             font-size: 18px;
@@ -281,3 +281,71 @@
             color: red;
             display: none;
         }
+        
+        .user-right3{
+            display: none;
+            width: 1020px;
+            height: 662px;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
+        
+        .pro-list{
+        	width:1020px;
+        	height: 512px;
+        	border : 1px solid red;
+        	margin: 16px 2px 0px;
+        	
+        	
+        }
+        
+        
+        
+        .pro-product{
+        	width: 184px;
+        	height: 244px;
+        	border : 1px solid red;
+        	margin: 0px 9px 12px;
+        	padding: 0px 0px 20px;
+        	float: left;
+        	position: relative;
+        }
+        
+        .pro-logo{
+        	width: 182px;
+        	height: 182px;
+        	
+        }
+        
+        .pro-name{
+        	width: 182px;
+        	height: 44px;
+        	color : #111111;
+        	padding: 8px 20px 0px;
+        	font-size: 13px;
+        }
+        
+        .pro-select{
+        	position: absolute;
+        	top: 0px;
+        	left: 0px;
+        }
+        
+        #pro-show{
+        	display: none
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

@@ -3,8 +3,8 @@
  */
 
 (function(){
-//      var goodsno = getUrlVal('goods_no');
-	var goodsno = "231914979320863";
+      var goodsno = getUrlVal('goods_no');
+//	var goodsno = "467936110633540";
     //发起
 	$.ajax({
 		type:"POST",
@@ -376,12 +376,13 @@ function opration(){
    
     //颜色选择
     $('.zjl-product-color ul li').each(function(i){
-    	var goods_no = "231914979320863";
+    	var goods_no = "467936110633540";
         $(this).click(function(i){
             $(this).children().show().parent().siblings().children().hide();
             $(this).attr("data-color","checked").siblings().attr("data-color","");
             
             var color = $(this).text();
+//            console.log(color)
             var nocolor = {
             	"goods_no" : goods_no,
             	"color" : color
@@ -392,8 +393,49 @@ function opration(){
             	url : "selectColor.do",
             	data : {"msg" : JSON.stringify(nocolor)},
             	success : function (re) {
-//            		var obj = JSON.parse(re);
-//            		console.log(obj)
+            		$('.zjl-top').html("");
+            		$('.zjl-bottom').html("");
+            		var obj = JSON.parse(re);
+            		var strsm = "";
+            		for(var i = 0; i < obj.length; i++){
+            			strsm+="<li><img src='"+obj[i]+"'/></li>";
+            		}
+            		var strsmm = `
+        	        	<ul>
+        	              ${strsm}
+        	            </ul>
+        	            <span class="glyphicon glyphicon-chevron-left left-span"></span>
+        	            <span class="glyphicon glyphicon-chevron-right right-span"></span>
+        	        `;
+            		$('.zjl-bottom').append(strsmm);
+            		
+            		var strbig = `
+        	            <ul>
+        	             <li class="active"><img src=${obj[0]}></li>
+        	             </ul>
+        	            <div class="slide"></div>
+        	        `;
+            		$('.zjl-top').append(strbig);
+            		
+            		var imgStr = `${obj[0]}`;
+        	        
+        	        //放大镜大图
+        	        $('.big').css({
+
+        	            width: 400,
+        	            height: 400,
+        	            border: '2px solid orange',
+        	            position: 'absolute',
+        	            left: 600,
+        	            top: 10,
+        	            background: 'url("'+imgStr+'")',
+        	            /*background-image: url("img/big-01.jpg");*/
+        	            'background-size': '800px 800px' ,
+        	            'background-position': '0px 0px',
+        	            'z-index': 999,
+        	            display: 'none',
+        	        })
+            		
             	}
             })
             

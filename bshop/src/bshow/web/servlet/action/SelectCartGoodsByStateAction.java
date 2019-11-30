@@ -2,6 +2,7 @@ package bshow.web.servlet.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,22 +16,18 @@ import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
 import net.sf.json.JSONArray;
 
-public class SelectCartGoodsByIdAction extends Action {
+public class SelectCartGoodsByStateAction extends Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-		String cart_ids = request.getParameter("cart_id");
-		// 转int
-		int cart_id = Integer.parseInt(cart_ids);
+		String account = request.getParameter("account");
 		Cart_table ct = new Cart_table();
-		ct.setCart_id(cart_id);
+		ct.setAccount(account);
 		Basedao bd = new Basedaoimpl();
-		boolean flag = bd.updataObject("updateById", ct);
-//		List<Object> list = bd.select("selectById", ct);
-//		System.out.println("ct");
+		List<Object> list = bd.select("selectByState", ct);
 //		JSONArray ja = JSONArray.fromObject(list);
-		JSONArray ja = JSONArray.fromObject(flag);
+		JSONArray ja = JSONArray.fromObject(list);
 //		将数据交给前端
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();

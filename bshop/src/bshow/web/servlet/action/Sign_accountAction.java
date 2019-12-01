@@ -53,7 +53,7 @@ public class Sign_accountAction extends Action{
 		pt.setAccount(saa.getAccount());
 		pt.setPhoto("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1574939266&di=75f2a98533ef7c3b864db90f3dd90856&src=http://bpic.588ku.com/element_origin_min_pic/01/31/87/96573b585a7c9c4.jpg".getBytes());
 		pt.setAddress("");
-		pt.setNickname("");
+		pt.setNickname(saa.getAccount());
 		pt.setBirthday("");
 		pt.setSex("");
 		boolean flagPersoninfo=dao1.saveObject("insertone", pt);

@@ -1,4 +1,8 @@
 
+//全局变量
+var myflag;
+
+
 //导航栏上菜单
 (function() {
 	$.ajax({
@@ -57,16 +61,41 @@ $('.logo').click(function(){
 	location.href='index.jsp';
 });
 
-//判断是否登陆成功,并获得所需要的值
+//立即执行
 (function(){
+	judgementLogin();
+})();
+
+//判断是否登陆成功,并获得所需要的值
+function judgementLogin(){
 	$.ajax({
 		type:"post",
 		url:"judgementLogin",
 		success:function(result){
-			
+			if(result[0]=="noPeopleLogin"){
+				$('.top-bar>.btn').show();
+				$('.logBtn').hide();
+				return;
+			}else{
+				$('.store_number').html(result[1]);
+				$('.mingZi').html('你好,'+result[0]);
+				$('.logBtn').show();
+				$('.top-bar>.btn').hide();
+			}
 		}
 	})
-})();
+}
+
+//退出登录
+function exitLogin(){
+	$.ajax({
+		type:"post",
+		url:"exitLogin",
+		success:function(result){
+			myflag=result;
+		}
+	})
+}
 
 
 
@@ -79,32 +108,32 @@ function getUrlVal(property){
   if(result == null){return null};
   return result[2];
 };
-//首页打开，判断用户是否登录
-function checkLogin(){
-	var userName=localStorage.getItem('username');
-	var token=localStorage.getItem('token');
-	var cartNumber=localStorage.getItem('cartnumber');
-	$('.store_number').html(cartNumber);
-	$('.mingZi').html('你好,'+userName);
-	//验证
-	if(token){
-		$('.logBtn').show();
-		$('.top-bar>.btn').hide();
-	}else{
-		$('.top-bar>.btn').show();
-		$('.logBtn').hide();
-	}
-}
-checkLogin();
+
+////首页打开，判断用户是否登录
+//function checkLogin(){
+//	var userName=localStorage.getItem('username');
+//	var token=localStorage.getItem('token');
+//	var cartNumber=localStorage.getItem('cartnumber');
+//	$('.store_number').html(cartNumber);
+//	$('.mingZi').html('你好,'+userName);
+//	//验证
+//	if(token){
+//		$('.logBtn').show();
+//		$('.top-bar>.btn').hide();
+//	}else{
+//		$('.top-bar>.btn').show();
+//		$('.logBtn').hide();
+//	}
+//}
+//checkLogin();
 
 //退出
 $('.logBtn>.exitM').click(function(){
-	localStorage.removeItem('username');
-	localStorage.removeItem('token');
-	localStorage.removeItem('cartnumber');
-	
-	$('.top-bar>.btn').show();
-	$('.logBtn').hide();
+	exitLogin();
+	if(myflag){
+		$('.top-bar>.btn').show();
+		$('.logBtn').hide();
+	}
 })
 
 //鼠标进入
@@ -115,27 +144,6 @@ $('.logBtn>.last-span').mouseleave(function(){
 	$('.personalInfo').fadeOut(300);
 })
 
-////鼠标点击进行筛选
-//$('.part-screen>.product-next>ul').each(function(u){
-//	var ttt=$('.part-screen>.product-next>ul').eq(u).siblings().children().children().html();
-//	$('.part-screen>.product-next>ul').eq(u).children().each(function(i){
-//		var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i).children();
-//		myli.click(function(){
-//			myli.css("color",'black');
-//			myli.css("font-weight",'bold');
-//			var condition=myli.html();
-//			$('.part-screen>.product-filter').append("<div onclick='duanjuntang(this,"+u+","+i+")'><span>"+ttt+":</span><span>"+condition+"</span><span class='glyphicon glyphicon-remove'></span></div>");
-//		})
-//	})
-//})
-//
-////获得筛选中的值
-//function duanjuntang(obj,u,i){
-//	$(obj).remove();
-//	var myli=$('.part-screen>.product-next>ul').eq(u).children().eq(i);
-//	myli.children().css("color",'#337ab7');
-//	myli.children().css("font-weight",'normal');
-//}
 
 //BASE64加密解密方法
 //创建Base64对象

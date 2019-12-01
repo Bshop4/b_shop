@@ -50,6 +50,8 @@ public class JudgementLogin extends HttpServlet {
 		String account = null;
 		String nickname = null;
 		int cartNum = 0;
+		
+		//获取account在session和cookie的值
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
@@ -61,9 +63,9 @@ public class JudgementLogin extends HttpServlet {
 		if(account==null){
 			HttpSession session=request.getSession();
 			account=(String)session.getAttribute("account");
-
 		}
 
+		
 		if (account == null) {
 			nickname = "noPeopleLogin";
 			cartNum = 0;

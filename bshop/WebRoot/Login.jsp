@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h2 class="">登录成功</h2>
 			<p>最近本店又来一批新的产品</p>
 			<p>稍等，马上入店。</p>
-			<a href="Login.jsp" target="_blank" class="animated fadeIn wow"><div class="zhang"></div></a>
+			<a href="index.jsp" target="_blank" class="animated fadeIn wow"><div class="zhang"></div></a>
 		</div>
 		
 		

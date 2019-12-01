@@ -318,8 +318,9 @@
 				},function(result){
 					console.log(result);
 					var obj=JSON.parse(result);
-					var objlogin=null;
+					pyl_flag_emailcodeDie=false;//验证码使用后失效
 					
+					var objlogin=null;
 					if(obj.code==0){
 						var goodsID=getUrlVal('goods_id');//从地址栏上拿属性
 						$.post('Login_Action.do',
@@ -332,7 +333,6 @@
 								//登录分两种加入购物车过来和直接登录
 								if(goodsID){
 									$('.pyl_sign_tips').show();
-									
 		//							不能写死需要去数据库查购物车的数量
 									localStorage.setItem('cartnumber','0');
 									localStorage.setItem('username',objlogin.data.username);

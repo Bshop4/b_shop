@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Collection_table" table="collection_table">
+	<property name="cid" column="cid"/>
+	<property name="account" column="account"/>
+	<property name="goods_no" column="goods_no"/>
+	<property name="state" column="state"/>
+	<property name="goods_photo" column="goods_photo"/>
+	<property name="goods_name" column="goods_name"/>
+	
+	<insert id="insertCollection">
+		insert into
+		collection_table(account,goods_no,state,goods_photo,goods_name)
+		values(#{account},#{goods_no},#{state},#{goods_photo},#{goods_name})
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="deleteCollection" resulttype="bshow.pojo.collection_table">
+		delete from collection_table where
+		goods_no=#{goods_no} and account=#{account}
+	</delete>
+	
+	
+	<select id="selectColloction" resulttype="bshow.pojo.Collection_table">
+		select * from collection_table where account=#{account} and goods_no=#{goods_no}
+	</select>
+
+	<select id="selectCollectionByAccount" resulttype="bshow.pojo.Collection_table">
+		select * from collection_table where account=#{account}
+	</select>
+
+</class>

@@ -109,7 +109,6 @@
 				if(obj.code==0){
 					var goodsID=getUrlVal('goods_id');
 					if(goodsID){
-						
 						localStorage.setItem('cartnumber','3');
 						localStorage.setItem('username',obj.data.username);
 						localStorage.setItem('token',obj.data.token);			

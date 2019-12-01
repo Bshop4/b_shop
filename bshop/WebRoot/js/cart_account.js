@@ -61,7 +61,7 @@ $(document).ready(function() {
 				 // 把每次组装好的添加进table
 			     $('table').append(str);
 			};
-			console.log(sum);
+//			console.log(sum);
 			// 设置总价
 			$('.sum-all').html('合计：¥' + sum + '.00');
 //			console.log(sum);

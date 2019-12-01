@@ -25,11 +25,10 @@ import net.sf.json.JSONObject;
 public class Load extends TestCase{
 	private Shop_table shop=new Shop_table();
 	public void action(){
-		for (int i = 1; i <= 20; i++) {
+		for (int i = 1; i <= 1; i++) {
 			fun(i);
 			System.out.println("第"+i+"页");
 		}
-		
 	}
 	public void fun(int pageNum){
 		Random r=new Random();
@@ -50,8 +49,10 @@ public class Load extends TestCase{
 			java.text.DecimalFormat   df =new java.text.DecimalFormat("#.00");  
 			//df.format(你要格式化的数字);
 			for (Object object : jlist) {
+				Repertory_table repertory=new Repertory_table();//库存
 				Middle_table middle=new Middle_table();
 				ArrayList<Middle_table> listmiddle=new ArrayList<Middle_table>();
+				ArrayList<Repertory_table> listrepertory=new ArrayList<Repertory_table>();
 				Goods_table goods=new Goods_table();
 				JSONObject obj=JSONObject.fromObject(object);
 				//System.out.println("￥"+obj.getString("cuPrice"));
@@ -73,9 +74,12 @@ public class Load extends TestCase{
 				middle.setGoods_no(code);//中间表
 				goods.setGoods_no(code);
 				shop.setGoods_no(code);
+				repertory.setGoods_no(code);
+				
 				
 				//详情网页请求 http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid=250711473283551&deviceNumber=1574582545228&channel=1
-				doc =Jsoup.connect("http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid="+code+"&deviceNumber=1574582545228&channel=1").ignoreContentType(true).timeout(10000).get();
+				//doc =Jsoup.connect("http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid="+code+"&deviceNumber=1574582545228&channel=1").ignoreContentType(true).timeout(10000).get();
+				doc =Jsoup.connect("http://139.9.0.154:8080/router?appKey=100001&v=1.0&method=product.newDetail.get&pid=231914979320863&deviceNumber=1575083700521&channel=1").ignoreContentType(true).timeout(10000).get();
 				//详情
 				JSONObject json2=JSONObject.fromObject(doc.text());
 				JSONObject data2=(JSONObject)json2.get("data");
@@ -129,30 +133,31 @@ public class Load extends TestCase{
 							sbsmal.append(",");
 						}
 					}
-					System.out.println(sbsmal.toString());
+					
 					
 					//第一个颜色
 					if(colorlength==1){
 						//goods.setGoods_color(arr_0.getString("firstClassAttrName"));
 						middle.setMiddle_color(arr_0.getString("firstClassAttrName"));
 						middle.setGoods_smallphoto(sbsmal.toString().getBytes());
+						repertory.setRepertory_color(arr_0.getString("firstClassAttrName"));
+						
 					}
 					
 					//如果颜色有多种就克隆一个商品
 					if(colorlength>1){
 						try {
 							Middle_table middleclone =(Middle_table)middle.clone();
+							Repertory_table repertoryclone =(Repertory_table)repertory.clone();
+							//middleclone克隆的加颜色和小图
 							middleclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
-//							for (Middle_table color : listmiddle) {
-////								color.setMiddle_color(arr_0.getString("firstClassAttrName"));
-////								color.setGoods_smallphoto(sbsmal.toString());
-//								Middle_table colorclone =(Middle_table)color.clone();
-//								colorclone.setMiddle_color(arr_0.getString("firstClassAttrName"));
-//								colorclone.setGoods_smallphoto(sbsmal.toString());
-//								//把克隆放进集合
-//								listmiddle.add(colorclone);
-//							}
-							//把克隆放进集合
+							middleclone.setGoods_smallphoto(sbsmal.toString().getBytes());
+							
+							//repertoryclone克隆的加颜色
+							repertoryclone.setRepertory_color(arr_0.getString("firstClassAttrName"));
+							
+							//添加到集合
+							listrepertory.add(repertoryclone);
 							listmiddle.add(middleclone);
 						} catch (CloneNotSupportedException e) {
 							// TODO Auto-generated catch block
@@ -160,42 +165,6 @@ public class Load extends TestCase{
 						}
 					}
 					
-					//商品小图
-//					int smallength=0;
-//					StringBuffer sbsmal=new StringBuffer("");
-//					JSONArray photolist=(JSONArray)arr_0.get("imgUrlList");
-//					for (int j = 0; j < photolist.size(); j++) {
-//						//System.out.println("小图==="+photolist.get(j));
-//						smallength++;
-//						if(photolist.size()==smallength){
-//							sbsmal.append(photolist.get(j).toString());
-//						}else{
-//							sbsmal.append(photolist.get(j).toString());
-//							sbsmal.append(",");
-//						}
-//					}
-					//第一个商品颜色小图
-//					if(colorlength==1){
-//						middle.setGoods_smallphoto(sbsmal.toString());
-//					}
-					
-					//如果颜色有多种就给克隆一个商品的小图
-//					if(colorlength>1){
-//						listmiddle.get(colorlength-2).setGoods_smallphoto(sbsmal.toString());
-						
-//						listgoods.get(colorlength-2).setGoods_smallphoto(sbsmal.toString());
-//						try {
-//							Goods_table goodsclone =(Goods_table)goods.clone();
-//							goodsclone.setGoods_smallphoto(sbsmal.toString());
-						//把克隆放进集合
-						//listgoods.add(goodsclone);
-//						} catch (CloneNotSupportedException e) {
-						// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
-//					}
-					//System.out.println(sbsmal.toString());
-					//goods.setGoods_smallphoto(sbsmal.toString());
 					
 					
 					
@@ -204,6 +173,7 @@ public class Load extends TestCase{
 					StringBuffer sbsize=new StringBuffer("");
 					JSONArray sizelist=(JSONArray)arr_0.get("skuAndPriceList");
 					int ii=listmiddle.size();
+					int ij=listrepertory.size();
 					for (Object object3 : sizelist) {
 						sizelength++;
 						JSONObject objsize=(JSONObject)object3;
@@ -216,9 +186,14 @@ public class Load extends TestCase{
 //						第一个尺码
 						if(sizelength==1){
 							middle.setMiddle_size(objsize.getString("subClassAttrName"));
+							repertory.setRepertory_size(objsize.getString("subClassAttrName"));
 							for (Middle_table size : listmiddle) {
 								size.setMiddle_size(objsize.getString("subClassAttrName"));
 							}
+							for (Repertory_table lrepertory : listrepertory) {
+								lrepertory.setRepertory_size(objsize.getString("subClassAttrName"));
+							}
+							
 						}
 						
 						//如果尺码有多种就克隆一个商品
@@ -227,15 +202,25 @@ public class Load extends TestCase{
 								if(colorlength==1){
 									
 									Middle_table middleclone =(Middle_table)middle.clone();
-									//把克隆放进集合
+									Repertory_table repertoryclone =(Repertory_table)repertory.clone();
+									//设值
 									middleclone.setMiddle_size(objsize.getString("subClassAttrName"));
+									repertoryclone.setRepertory_size(objsize.getString("subClassAttrName"));
+									//把克隆放进集合
 									listmiddle.add(middleclone);
+									listrepertory.add(repertoryclone);
 								}
 								for (int j = 0; j <ii; j++) {
 									Middle_table sizeclone =(Middle_table)listmiddle.get(j).clone();
 									sizeclone.setMiddle_size(objsize.getString("subClassAttrName"));
 									//把克隆放进集合
 									listmiddle.add(sizeclone);
+								}
+								for (int j = 0; j <ij; j++) {
+									Repertory_table repertoryclone =(Repertory_table)listrepertory.get(j).clone();
+									repertoryclone.setRepertory_size(objsize.getString("subClassAttrName"));
+									//把克隆放进集合
+									listrepertory.add(repertoryclone);
 								}
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
@@ -287,12 +272,6 @@ public class Load extends TestCase{
 									//把克隆放进集合
 									listmiddle.add(tpyeclone);
 								}
-//								for (Middle_table tpye : listmiddle) {
-//									Middle_table tpyeclone =(Middle_table)tpye.clone();
-//									tpyeclone.setMiddle_type(arr_1.getString("categName"));
-//									//把克隆放进集合
-//									listmiddle.add(tpyeclone);
-//								}
 							} catch (CloneNotSupportedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -302,25 +281,31 @@ public class Load extends TestCase{
 					
 					
 					
-					//设置克隆的尺码
+					//设置克隆的总尺码
 					//System.out.println(sbsize.toString());
 					goods.setGoods_size(sbsize.toString());
 					
 					if(colorlength==1){
-						//System.out.println(colorlength+"====="+middle.toString());
+						System.out.println(colorlength+"====="+middle.toString());
 						middle.setMiddle_repertory(r.nextInt(99));
+						repertory.setRepertory_number(r.nextInt(99));
+						System.out.println(repertory);
 					}
 					
 					//打印中间表
 					for (int j = 0; j < listmiddle.size(); j++) {
-						//System.out.println("颜色循坏"+colorlength+"====="+listmiddle.get(j));
 						listmiddle.get(j).setMiddle_repertory(r.nextInt(99));
 					}
-					
+					for (int j = 0; j < listrepertory.size(); j++) {
+						listrepertory.get(j).setRepertory_number(r.nextInt(99));
+						System.out.println(listrepertory.get(j));
+					}
+					System.out.println("=====================");
 					//把listmiddle
 					listmiddle=null;
 					listmiddle=new ArrayList<Middle_table>();
-					
+					listrepertory=null;
+					listrepertory=new ArrayList<Repertory_table>();
 				}
 				
 				//System.out.println(sb.toString());

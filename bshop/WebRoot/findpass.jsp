@@ -478,12 +478,15 @@
 	
 	//去数据库修改密码
 	function saveNewPassWord(){
+		var email1=$(".email").val();
+		var password1=$(".email").val();
+		var account1=$(".email").val();
 		//拿到上面的数据去修改帐号数据库
 		if(!truepassflag){return;};
 		$.ajax({
-			url:"",
+			url:"UpdateAccoutPassWordAction.do",
 			type:"post",
-			data:"",
+			data:{"account":account1,"email":email1,"password":password1,},
 			success:function(result){
 				console.log(11);
 			}

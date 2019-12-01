@@ -137,6 +137,7 @@ window.onload = function() {
 
 //切换
 $("#mycollection").click(function() {
+	
 	$("#mycollection").css({
 		color : "red"
 	});
@@ -155,6 +156,64 @@ $("#mycollection").click(function() {
 	$(".user-right").hide();
 	$(".user-right1").hide();
 	$(".user-right2").hide();
+	
+	$(".pro-list").html("");
+	
+	var account = "pyla1";
+	
+	$.ajax({
+		
+		type : "post",
+		url : "selectCollectionByAccount.do",
+		data : {"account" : account},
+		success : function (re) {
+			var obj = JSON.parse(re);
+			console.log(obj)
+			if(obj.length > 10){
+				var str="";
+				for(var i = 0; i < 10; i++){
+					str += `
+						<li class="pro-product">
+							<img class="pro-logo" src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+						</li>
+					`;
+					
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length > 0 && obj.length <= 10){
+				console.log(obj.length)
+				var str="";
+				for(var i = 0; i < obj.length; i++){
+					str += `
+						<li class="pro-product">
+							<img class="pro-logo" src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+						</li>
+					`;
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length == 0){
+				
+				var str = `
+					<div class="descr">-_-您现在暂无收藏</div>
+				`;
+				
+				$(".pro-list").append(str);
+			}
+			
+			
+			
+	}
+		
+		
+	})
+	
+	
 
 })
 

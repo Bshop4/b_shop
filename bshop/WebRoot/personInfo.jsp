@@ -159,54 +159,16 @@
 
 
 		</div>
-		
+
 		<div class="user-right3">
 			<div class="title3">
 				<p>我的收藏</p>
 			</div>
-			
 			<div class="my_collection">
-				<ul class="pro-list">
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-					<li class="pro-product">
-						<img class="pro-logo" src="img/big-01.jpg">
-						<img src="img/hide.png" class="pro-select" id="pro-hide">
-						<img src="img/show.png" class="pro-select" id="pro-show">
-						<div class="pro-name">你哈哈哈哈</div>
-					</li>
-				</ul>
+				<ul class="pro-list"></ul>
 			</div>
 		</div>
-		
+
 
 		<div class="modal fade" id="addAddress" data-backdrop="static"
 			id="addressform">
@@ -266,10 +228,24 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
 	</div>
 
 
+	<!--底部-->
+	<div id="row-1">
+		<!--底部三个图标-->
+		<div class="row-1">
+			<div class="ariplane">
+				<img src="img/airplane.png" /> 海外直销
+			</div>
+			<div class="handshake">
+				<img src="img/handshake.png" /> 品质保证
+			</div>
+			<div class="zheng">
+				<img src="img/zheng.png" /> 售后保障
+			</div>
+		</div>
+	</div>
 	<!--底部banner与二维码-->
 	<div id="row-2">
 		<div class="row-2">
@@ -293,31 +269,6 @@
 					<li class="qrcpde"><img src="img/erweima.png"></li>
 					<li class="qrcpde"><img src="img/erweima.png"></li>
 					<li class="qrcpde"><img src="img/erweima.png"></li>
-=======
-		<!--导航-->
-		<div class="taber-bar">
-			<!--上部分导航-->
-			<div class="tabs-list-top">
-				<ul class="tabs-list text-center">
-					<li class="tab">
-						<a href="index.jsp">首页</a>
-					</li>
-					<li class="tab">
-						<a>新品</a>
-					</li>
-					<li class="tab">
-						<a>男士</a>
-					</li>
-					<li class="tab">
-						<a>女士</a>
-					</li>
-					<li class="tab">
-						<a>品牌</a>
-					</li>
-					<li class="tab">
-						<a>嘿店移动版</a>
-					</li>
->>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
 				</ul>
 			</div>
 			<div class="contact-wrap">
@@ -343,7 +294,7 @@
 		<div class="row-4">
 			<div class="row-4-m">
 				<div class="row-4-service">
-					<a><img src="img/licence2.png"> </a>
+					<a><img src="img/licence2.png"></a>
 				</div>
 				<div class="row-4-service">
 					<a><img src="img/licence1.png"></a>
@@ -354,7 +305,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 

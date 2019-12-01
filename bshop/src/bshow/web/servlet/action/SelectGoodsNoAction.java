@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
+import bshow.pojo.Collection_table;
 import bshow.pojo.Goods_table;
 import bshow.pojo.Middle_table;
 import bshow.web.servlet.core.Action;
@@ -29,7 +30,8 @@ public class SelectGoodsNoAction extends Action{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String goodsno = request.getParameter("goodsno");
-//		System.out.println("goodsno"+goodsno);
+		String account = request.getParameter("account");
+		
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
 		Basedao ba = new Basedaoimpl();
@@ -50,17 +52,25 @@ public class SelectGoodsNoAction extends Action{
 		Goods_table gt1 = (Goods_table) list.get(0);
 		String exp = new String(gt1.getGoods_explainphoto());
 		listbb.add(exp);
+		
+		Collection_table ct = new Collection_table();
+		ct.setAccount(account);
+		ct.setGoods_no(goodsno);
+		List<Object> list12 = ba.select("selectColloction", ct);
+		String str = "";
+		if(list12.size() == 0){
+			str = "0";
+		}else{
+			str = "1";
+		}
+		listbb.add(str);
 		listbb.add(gt1);
 		
+		
 		response.setCharacterEncoding("UTF-8");
-//		response.setHeader("Content-Type", "application/json;charset=utf-8");
-//		for (Object object : listbb) {
-//			System.out.println(object);
-//		}
 		
 		JSONArray ja = JSONArray.fromObject(listbb);
 		PrintWriter out= response.getWriter();
-//		out.print(URLDecoder.decode(ja.toString(),"UTF-8"));
 		out.print(ja.toString());
 		return null;
 	}

@@ -186,7 +186,26 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 插入到收藏 -->
+	<PagePattern name="insertCollection">
+		<ActionForm>bshow.web.servlet.form.InsertCollectionForm</ActionForm>
+		<Action>bshow.web.servlet.action.InsertCollectionAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
+	<!-- delete收藏 -->
+	<PagePattern name="deleteCollection">
+		<ActionForm>bshow.web.servlet.form.DeleteCollectionForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteCollectionAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- select收藏 -->
+	<PagePattern name="selectCollectionByAccount">
+		<ActionForm>bshow.web.servlet.form.SelectCollectionByAccountForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectCollectionByAccountAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 	

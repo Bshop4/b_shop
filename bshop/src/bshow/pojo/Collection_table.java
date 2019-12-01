@@ -1,6 +1,7 @@
 package bshow.pojo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Collection_table implements Serializable{
 	
@@ -8,6 +9,20 @@ public class Collection_table implements Serializable{
 	private String account;
 	private String goods_no;
 	private int state;
+	private String goods_photo;
+	private String goods_name;
+	public String getGoods_photo() {
+		return goods_photo;
+	}
+	public void setGoods_photo(String goods_photo) {
+		this.goods_photo = goods_photo;
+	}
+	public String getGoods_name() {
+		return goods_name;
+	}
+	public void setGoods_name(String goods_name) {
+		this.goods_name = goods_name;
+	}
 	public int getCid() {
 		return cid;
 	}
@@ -35,8 +50,10 @@ public class Collection_table implements Serializable{
 	@Override
 	public String toString() {
 		return "Collection_table [cid=" + cid + ", account=" + account + ", goods_no=" + goods_no + ", state=" + state
-				+ "]";
+				+ ", goods_photo=" + goods_photo + ", goods_name=" + goods_name + "]";
 	}
+	
+	
 	
 	
 

@@ -7,20 +7,35 @@ var goodsno = getUrlVal('goods_no');
 //	var goodsno = "6987766132287";
 (function(){
     //发起
+	var account = "pyla1";
+	var test = {
+		"goodsno" : goodsno,
+		"account" : account
+	}
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
-		data:{"goodsno":goodsno},
+		data:{"goodsno":goodsno,"account":account},
 		success:function(result){
 			result=JSON.parse(result);
+//			console.log(result)
 			var len = result.length;
 			var obj = result[len-1];
+			var str = result[len-2];
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
-	        
-	        var strColle = `
-	        	<label for="" data-coid=${obj.goods_no}><a href="javascript:;"><img src="img/4.png" alt="">收藏商品</a></label>
+	        console.log(str)
+	        var strColle;
+	        if(str == "1"){
+	        	strColle = `
+		        	<label for="" data-coid=${obj.goods_no} onclick="collection(this)"><a href="javascript:;"><img src="img/6.png" alt="">收藏商品</a></label>
+		        `;
+	        }else if(str == "0"){
+	        	strColle = `
+	        		<label for="" data-coid=${obj.goods_no} onclick="collection(this)"><a href="javascript:;"><img src="img/4.png" alt="">收藏商品</a></label>
 	        `;
+	        }
+	        
 	        $('.zjl-product-lableList').append(strColle);
 	        
 	        //商品名字
@@ -572,5 +587,48 @@ function opration(){
 
 }
 
+function collection(obj) {
+	var goodsno = $(obj).attr("data-coid");
+	var account = "pyla1";
+	
+	var test = {
+		"goodsno" : goodsno,
+		"account" : account
+	};
+	if($(obj).children().children(":first").attr("src") == "img/6.png"){
+		console.log(1);
+		$.ajax({
+			
+			type : "post",
+			url : "deleteCollection.do",
+			data : {"msg" : JSON.stringify(test)},
+			success : function(re){
+				if(re == "1"){
+					$(obj).children().children(":first").attr("src","img/4.png");
+				}
+			}
+			
+		})	
+
+	}else{
+		console.log(2);
+		$.ajax({
+			type : "post",
+			url : "insertCollection.do",
+			data : {"msg" : JSON.stringify(test)},
+			success : function(re){
+				if(re == "1"){
+					$(obj).children().children(":first").attr("src","img/6.png");
+				}
+			}
+			
+		})
+	}
+	
+	
+	
+	
+	
+}
 
 

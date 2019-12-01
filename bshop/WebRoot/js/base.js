@@ -72,13 +72,14 @@ function judgementLogin(){
 		type:"post",
 		url:"JudgementLogin",
 		success:function(result){
+			console.log(result);
 			if(result[0]=="noPeopleLogin"){
 				$('.top-bar>.btn').show();
 				$('.logBtn').hide();
 				return;
 			}else{
-				$('.store_number').html(result[1]);
 				$('.mingZi').html('你好,'+result[0]);
+				$('.store_number').html(result[1]);
 				$('.logBtn').show();
 				$('.top-bar>.btn').hide();
 			}

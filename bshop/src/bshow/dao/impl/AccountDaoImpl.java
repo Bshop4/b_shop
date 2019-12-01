@@ -15,7 +15,7 @@ public class AccountDaoImpl implements AccountDao{
 	public String getNicknameByAccount(String account) {
 		String nickname=null;
 		Connection conn= DBhelper.getConnection();
-		String sql="select nickname from account_table where account=?";
+		String sql="select nickname from personinfo_table where account=?";
 		try {
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, account);

@@ -15,7 +15,7 @@ public class AccountDaoImpl implements AccountDao{
 	public String getNicknameByAccount(String account) {
 		String nickname=null;
 		Connection conn= DBhelper.getConnection();
-		String sql="select nickname from account_table where account=?";
+		String sql="select nickname from personinfo_table where account=?";
 		try {
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, account);
@@ -42,7 +42,7 @@ public class AccountDaoImpl implements AccountDao{
 			ps.setString(1, account);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next()){
-				cartNum=rs.getInt("cgoods_number");
+				cartNum=rs.getInt(1);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

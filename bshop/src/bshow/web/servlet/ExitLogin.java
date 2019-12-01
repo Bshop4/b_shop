@@ -46,6 +46,7 @@ public class ExitLogin extends HttpServlet {
 		HttpSession session=request.getSession();
 		boolean flag=false;
 		boolean flag1=false;
+		boolean flag2=false;
 		if(cookies!=null){
 			//移除cookie中账号
 			for (Cookie cookie : cookies) {
@@ -53,6 +54,11 @@ public class ExitLogin extends HttpServlet {
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
 					flag=true;
+				}
+				if("token".equals(cookie.getName())){
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+					flag2=true;
 				}
 			}
 		}
@@ -64,7 +70,7 @@ public class ExitLogin extends HttpServlet {
 		//传给前端
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Content-Type", "application/json;charset=utf-8");
-		JSONObject jo=JSONObject.fromObject(flag&flag1);
+		JSONObject jo=JSONObject.fromObject(flag&flag1&flag2);
 		PrintWriter out=response.getWriter();
 		out.print(URLDecoder.decode(jo.toString(), "utf-8"));
 	}

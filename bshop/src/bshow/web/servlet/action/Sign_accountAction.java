@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Account_table;
+import bshow.pojo.Cart_table;
 import bshow.pojo.Personinfo_table;
 import bshow.test.Test;
 import bshow.util.Encryptdecrypt;
@@ -52,15 +53,33 @@ public class Sign_accountAction extends Action{
 		pt.setAccount(saa.getAccount());
 		pt.setPhoto("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1574939266&di=75f2a98533ef7c3b864db90f3dd90856&src=http://bpic.588ku.com/element_origin_min_pic/01/31/87/96573b585a7c9c4.jpg".getBytes());
 		pt.setAddress("");
-		pt.setNickname("");
+		pt.setNickname(saa.getAccount());
 		pt.setBirthday("");
 		pt.setSex("");
 		boolean flagPersoninfo=dao1.saveObject("insertone", pt);
+		
+		
+		//给信息表添加帐号
+		Cart_table ct=new Cart_table();
+		//cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account
+		ct.setAccount(saa.getAccount());
+		ct.setCgoods_desc("");
+		ct.setCgoods_color("");
+		ct.setCgoods_no("");
+		ct.setCgoods_number(0);
+		ct.setCgoods_state(0);
+		ct.setCgoods_photo("");
+		ct.setCgoods_price(0);
+		ct.setCgoods_sub(0);
+		ct.setCgoods_size("");
+		boolean flagCart=dao1.saveObject("insertToCart", ct);
+		
+		
 		//编写返回给js页面的值
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		String json="";
-		if(flagPersoninfo&&flagAccount){
+		if(flagPersoninfo&&flagAccount&&flagCart){
 			json="{\"code\":\"0\",\"msg\":\"successSgin登录成功\"}";
 			out.print(json);
 			return null;
@@ -71,12 +90,15 @@ public class Sign_accountAction extends Action{
 			//只要有一边失败就要删除成功的表
 			
 			
-			
-			
 		}
 		
 		if(!flagAccount){
 			json="{\"code\":\"411\",\"msg\":\"Account_tableSaveError帐号添加出错\"}";
+		}
+		
+		
+		if(!flagCart){
+			json="{\"code\":\"416\",\"msg\":\"Account_tableSaveError购物车添加出错\"}";
 		}
 		
 		return null;

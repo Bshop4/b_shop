@@ -83,6 +83,8 @@
 	
 	
 	
+	var loginTimer=null;
+	
 	//立即登录按钮点击
 	$('.pyl_fastlogin_btn').click(function(){
 		if(!passflag||!userflag){
@@ -101,27 +103,26 @@
 			account:uName,
 			password:upass,
 			},function(result){
+				console.log(result);
 				var obj=JSON.parse(result);
 				//var obj=result;
-				console.log(obj);
 				
 				//登录分两种加入购物车过来和直接登录
 				if(obj.code==0){
 					var goodsID=getUrlVal('goods_id');
 					if(goodsID){
-						localStorage.setItem('cartnumber','3');
-						localStorage.setItem('username',obj.data.username);
-						localStorage.setItem('token',obj.data.token);			
+//						localStorage.setItem('username',obj.data.username);
+//						localStorage.setItem('token',obj.data.token);			
 						location.href='detail.jsp?goods_id='+goodsID;	
 						
 					}else{
 						//直接登录
-						localStorage.setItem('cartnumber','0');
-						localStorage.setItem('username',obj.data.username);
-						localStorage.setItem('token',obj.data.token);
+//						localStorage.setItem('cartnumber','0');
+//						localStorage.setItem('username',obj.data.username);
+//						localStorage.setItem('token',obj.data.token);
 						//提示成功登录
 						$('.pyl_sign_tips').show();
-						setTimeout(function(){
+						loginTimer=setTimeout(function(){
 							location.href='index.jsp';	
 						},1500);
 					}
@@ -136,3 +137,8 @@
 			}
 		);
 	});
+	
+	//关闭登录时的计时
+	function closeTime(){
+		clearTimeout(loginTimer);
+	}

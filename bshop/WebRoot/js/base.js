@@ -70,7 +70,7 @@ $('.logo').click(function(){
 function judgementLogin(){
 	$.ajax({
 		type:"post",
-		url:"judgementLogin",
+		url:"JudgementLogin",
 		success:function(result){
 			if(result[0]=="noPeopleLogin"){
 				$('.top-bar>.btn').show();
@@ -90,7 +90,7 @@ function judgementLogin(){
 function exitLogin(){
 	$.ajax({
 		type:"post",
-		url:"exitLogin",
+		url:"ExitLogin",
 		success:function(result){
 			myflag=result;
 		}

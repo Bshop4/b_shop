@@ -6,6 +6,7 @@ import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -64,6 +65,13 @@ public class Login_Action extends Action{
 					HttpSession session=request.getSession();//获得session
 					session.setAttribute("account", outAccountObject.getAccount());
 					session.setAttribute("password", outAccountObject.getPassword());
+					session.setAttribute("token", uid);
+					Cookie cookie=new Cookie("account", outAccountObject.getAccount());
+					Cookie cookiea=new Cookie("token",uid);
+					cookie.setMaxAge(60*60*24);
+					cookiea.setMaxAge(60*60*24);
+					response.addCookie(cookie);
+					response.addCookie(cookiea);
 					//更新当前的ip地址
 					json="{\"code\":0,\"msg\":\"LoginSuccess登录成功\",\"data\":{\"token\":\""+uid+"\",\"username\":\""+outAccountObject.getAccount()+"\"}}";
 					out.print(json);

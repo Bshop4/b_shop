@@ -373,7 +373,7 @@
 	
 	//点击找回密码
 	$('.find-button').click(function(){
-		popupModel();
+		
 		var email1=$('.email').val();
 		var users=$('.user').val();
 		
@@ -423,7 +423,7 @@
 				
 				//所有的逻辑都为真后
 				if(pyl_flag_email&&pyl_flag_user&&pyl_flag_emailcode){
-						
+					popupModel();	
 				}
 				
 			}
@@ -436,6 +436,12 @@
 	function popupModel(){
 		 $('#addAddress').modal('show');
 	}
+	
+	//模态框弹出方法
+	function hideModel(){
+		 $('#addAddress').modal('hide');
+	}
+	
 	var newPass=document.querySelector("#newPassWord");
 	var truePass=document.querySelector("#truePassWord");
 	
@@ -479,8 +485,8 @@
 	//去数据库修改密码
 	function saveNewPassWord(){
 		var email1=$(".email").val();
-		var password1=$(".email").val();
-		var account1=$(".email").val();
+		var password1=$("#newPassWord").val();
+		var account1=$(".user").val();
 		//拿到上面的数据去修改帐号数据库
 		if(!truepassflag){return;};
 		$.ajax({
@@ -488,7 +494,43 @@
 			type:"post",
 			data:{"account":account1,"email":email1,"password":password1,},
 			success:function(result){
-				console.log(11);
+				console.log(result);
+				pyl_flag_emailcodeDie=false;//使用后失效
+				var obj=JSON.parse(result);
+				if(obj.code==0){
+					$("#newPassWord").val("");
+					$("#truePassWord").val("");
+					$('.truePassWord-tips').html("再次输入密码").css("color","black");                                                                                                
+					$('.newPassWord-tips').html("设置一个新密码").css("color","black");                                                                                                
+					hideModel();	
+					if(confirm(obj.msg+",是否要直接登录?")){
+						$.ajax({
+							url:"Login_Action.do",
+							type:"post",
+							data:{"password":password1,"account":account1},
+							success:function(result1){
+								var obj1=JSON.parse(result1);
+								//登录分两种加入购物车过来和直接登录
+								if(obj.code==0){
+									var goodsID=getUrlVal('goods_id');
+									if(goodsID){
+										localStorage.setItem('cartnumber','3');
+										localStorage.setItem('username',obj1.data.username);
+										localStorage.setItem('token',obj1.data.token);			
+										location.href='detail.jsp?goods_id='+goodsID;	
+									}else{
+										//直接登录
+										localStorage.setItem('cartnumber','0');
+										localStorage.setItem('username',obj1.data.username);
+										localStorage.setItem('token',obj1.data.token);
+										//提示成功登录
+										location.href='index.jsp';	
+									}
+								};
+							}
+						});
+					}
+				}
 			}
 		})
 		

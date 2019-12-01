@@ -8,6 +8,7 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,11 +27,18 @@ public class SessionFilter implements Filter{
 		HttpServletRequest myrequest=(HttpServletRequest)request;
 		HttpServletResponse myresponse=(HttpServletResponse)response;
 		
+		String account=null;
 		//获取session中是否有值
 		HttpSession session=myrequest.getSession();
-		Object obj=session.getAttribute("account");
+		String obj=(String)session.getAttribute("account");
+		Cookie[] cookies=myrequest.getCookies();
+		for (Cookie cookie : cookies) {
+			if("account".equals(cookie.getName())){
+				account=cookie.getValue();
+			}
+		}
 		
-		if(obj==null){
+		if(obj==null&&account==null){
 			myresponse.sendRedirect("/bshop/login.jsp");
 		}else{
 			//放行

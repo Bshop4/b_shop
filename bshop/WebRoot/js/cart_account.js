@@ -43,8 +43,8 @@ $(document).ready(function() {
 				sum += result[i].cgoods_sub;
 //				console.log(sum)
 				var str = `
-					<tr>
-						<td class="left">
+					<tr class="go-bill">
+						<td class="left" data-id=${result[i].cart_id}>
 							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
 						</td>
 						<td class="desc">${result[i].cgoods_desc}</td>
@@ -218,16 +218,18 @@ function clickAll() {
   };
   
   $('#btn-account').click(function() { 
-//		$('[data-price="active"]').each(function() {
+	  console.log(222111);
+		$('go-bill').each(function(i) {
 //			console.log($(this));	
-//			var tab = $(this).parent().parent().parent();
-//			var tr = $(this).parent().parent();
-//			cart_id = $('[del-red="active"]').attr("data-no");
-//			console.log(cart_id) 
+			var tab = $(this).parent();
+			var tr = $(this);
+			console.log(111);
+			cart_id = $(this).eq(i).find("td:first").attr("data-id");
+			console.log(cart_id);
 ////			先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
 //			$.ajax({
 //				type : "POST",
-//				url : "selectCartGoodsById.do",
+//				url : "xsyinsertBill.do",
 //				data : {"cart_id" : cart_id},
 //				success : function(result) {
 //					var result=JSON.parse(result);
@@ -235,11 +237,14 @@ function clickAll() {
 //				}
 //			})
 //			tab.get(0).removeChild(tr.get(0));
-//		})
+		})
 //		window.open('pay.jsp');
-	  	var money = document.getElementById('btn-account').innerHtml;
-	  	console.log(money);
-		location.href="pay.jsp?pay-money="+money;
+	  	var mone = document.getElementById('sum-all').innerHTML;
+//	  	console.log(money);
+	  	var money = mone.substring(4);
+//		location.href="pay.jsp?pay_money="+money;
+		//var dizhi = $('.address-list'.children.class="selected");
+		//console.log(dizhi+"222");
 ////		window.localStorage.setItem('goods_id',cart_id);
 	})
   

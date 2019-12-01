@@ -82,6 +82,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- xsy从订单页面插入到订单表bill_table -->
+	<PagePattern name="xsyinsertBill">
+		<ActionForm>bshow.web.servlet.form.XsyInsertBillForm</ActionForm>
+		<Action>bshow.web.servlet.action.XsyInsertBillAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
 		<ActionForm>bshow.web.servlet.form.NavigationActionForm</ActionForm>

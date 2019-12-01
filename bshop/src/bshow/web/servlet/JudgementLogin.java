@@ -51,13 +51,15 @@ public class JudgementLogin extends HttpServlet {
 		String nickname=null;
 		int cartNum=0;
 		Cookie[] cookies=request.getCookies();
+		
 		if(cookies!=null){
 			for (Cookie cookie : cookies) {
 				if("account".equals(cookie.getName())){
 					account=cookie.getValue();
 				}
 			}
-		}else{
+		}
+		if(account==null){
 			HttpSession session=request.getSession();
 			account=(String)session.getAttribute("account");
 		}
@@ -76,7 +78,12 @@ public class JudgementLogin extends HttpServlet {
 		}
 		
 		list.add(nickname);
-		list.add(String.valueOf(account));
+		list.add(String.valueOf(cartNum));
+		
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i));
+		}
+		
 		//传给前端
 		response.setCharacterEncoding("utf-8");
 		response.setHeader("Content-Type", "application/json;charset=utf-8");

@@ -236,8 +236,10 @@ function clickAll() {
 //			})
 //			tab.get(0).removeChild(tr.get(0));
 //		})
-////		window.open('account.jsp');
-//		location.href="account.jsp?account_name="+account;
+//		window.open('pay.jsp');
+	  	var money = document.getElementById('btn-account').innerHtml;
+	  	console.log(money);
+		location.href="pay.jsp?pay-money="+money;
 ////		window.localStorage.setItem('goods_id',cart_id);
 	})
   

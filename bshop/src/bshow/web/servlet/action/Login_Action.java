@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -29,9 +30,12 @@ public class Login_Action extends Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		Basedao dao=new Basedaoimpl();
 		Login_ActionForm la=(Login_ActionForm)form;
 		String inAccount=la.getAccount();
+		if(inAccount==null||"".equals(inAccount)){return null;}
+		
 		String inPass="";
 		try {
 			inPass=Encryptdecrypt.encrypt(la.getPassword());
@@ -57,6 +61,9 @@ public class Login_Action extends Action{
 			if(inAccount.equals(outAccountObject.getAccount())){
 				//密码对比
 				if(inPass.equals(outAccountObject.getPassword())){
+					HttpSession session=request.getSession();//获得session
+					session.setAttribute("account", outAccountObject.getAccount());
+					session.setAttribute("password", outAccountObject.getPassword());
 					//更新当前的ip地址
 					json="{\"code\":0,\"msg\":\"LoginSuccess登录成功\",\"data\":{\"token\":\""+uid+"\",\"username\":\""+outAccountObject.getAccount()+"\"}}";
 					out.print(json);

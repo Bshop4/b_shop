@@ -24,6 +24,11 @@
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
 	</select>
+	
+	<update id="updatePassWord">
+		update account_table set password=@{password}
+		where account=#{account} and email=#{email}
+	</update>
 	<!-- and account_id=#{account_id} -->
 
 </class>

@@ -439,7 +439,6 @@ function opration(){
             $(this).attr("data-color","checked").siblings().attr("data-color","");
             
             var color = $(this).text();
-//            console.log(color)
             var nocolor = {
             	"goods_no" : goods_no,
             	"color" : color

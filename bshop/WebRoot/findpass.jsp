@@ -88,11 +88,10 @@
 		</div>
 		<button class="find-button">找回密码</button>
 		
-		
 	<!-- 模态框 -->
 	<div class="modal fade" id="addAddress" data-backdrop="static" id="addressform">
         <div class="modal-dialog">
-            <div class="modal-content" style="width:700px;height:540px;">
+            <div class="modal-content" style="width:700px;height:380px;">
                 <div class="modal-header">
                     <h2 class="text-success modal-title">请设置新密码
                         <span class="close" data-dismiss="modal">&times;</span>
@@ -104,22 +103,21 @@
                         <div class="col-md-8 col-md-offset-2">
                             <div class="form-group">
                                 <label>新密码:</label>
-                                <input type="text" class="form-control" id="myname"/><label class="namelable">收货人姓名不能为空</label>
+                                <input type="password" class="form-control" id="newPassWord"/><label class="newPassWord-tips">设置一个新密码</label>
                             </div>
 
                             <div class="form-group">
                                 <label>确认密码:</label>
-                                <input type="text" class="form-control" id="myiphone"/><label class="iplabel">手机号格式错误</label>
+                                <input type="password" class="form-control" id="truePassWord"/><label class="truePassWord-tips">再次输入密码</label>
                             </div>
-
                     	</div>
-                    	 
                     </div>
                </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-success"   id="save1" onclick="mysaveclick()">保存</button>
-                    <button class="btn btn-danger" data-dismiss="modal" id="cancel1" >取消</button>
+                	<center>
+                    <button class="btn btn-success "   id="savepass" onclick="saveNewPassWord()">确认修改</button>
+                	</center>
                 </div>
 
         	</div>
@@ -216,6 +214,7 @@
 </html>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/base.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script>
 	var pyl_flag_email=false;
 	var pyl_flag_sendEmailcode=false;
@@ -224,6 +223,7 @@
 	var pyl_flag_emailcodeMath=false;
 	var pyl_flag_emailcode=false;
 	var pyl_flag_emailcodeDie=false;
+	var truepassflag=false;//确定修改密码
 	
 	
 	//用户名失焦
@@ -373,6 +373,7 @@
 	
 	//点击找回密码
 	$('.find-button').click(function(){
+		popupModel();
 		var email1=$('.email').val();
 		var users=$('.user').val();
 		
@@ -422,7 +423,7 @@
 				
 				//所有的逻辑都为真后
 				if(pyl_flag_email&&pyl_flag_user&&pyl_flag_emailcode){
-					
+						
 				}
 				
 			}
@@ -430,6 +431,69 @@
 		
 		
 	});
+	
+	//模态框弹出方法
+	function popupModel(){
+		 $('#addAddress').modal('show');
+	}
+	var newPass=document.querySelector("#newPassWord");
+	var truePass=document.querySelector("#truePassWord");
+	
+	//新密码获焦事件
+	$('#newPassWord').focus(function(){
+		$('.newPassWord-tips').show().html("密码长度为6-20位").css("color","black");
+	});
+	//新密码失焦
+	$('#newPassWord').blur(function(){
+		if($('#newPassWord').val()==""){$('.newPassWord-tips').show().html("设置一个新密码").css("color","black");return;};
+		var re1_6_20=/^[\dA-z\W]{6,20}$/g;
+		if(re1_6_20.test($('#newPassWord').val())){
+			$('.newPassWord-tips').show().html("密码可用").css("color","green");
+		}else{
+			$('.newPassWord-tips').show().html("密码长度不对").css("color","red");
+		};
+	});
+	
+	
+	
+	//确认密码获焦事件
+	$('#truePassWord').focus(function(){
+		
+	});
+	
+	//确认密码失焦
+	$('#truePassWord').blur(function(){
+		if($('#truePassWord').val()==""){
+			$('.truePassWord-tips').show().html("再次输入密码").css("color","black");
+			return;
+		};
+		if($('#newPassWord').val()==$('#truePassWord').val()){
+			truepassflag=true;
+			$('.truePassWord-tips').show().html("完全一样").css("color","green");
+		}else{
+			$('.truePassWord-tips').show().html("两次密码不用").css("color","red");
+		};
+	});
+	
+	
+	//去数据库修改密码
+	function saveNewPassWord(){
+		var email1=$(".email").val();
+		var password1=$(".email").val();
+		var account1=$(".email").val();
+		//拿到上面的数据去修改帐号数据库
+		if(!truepassflag){return;};
+		$.ajax({
+			url:"UpdateAccoutPassWordAction.do",
+			type:"post",
+			data:{"account":account1,"email":email1,"password":password1,},
+			success:function(result){
+				console.log(11);
+			}
+		})
+		
+	}
+
 	
 </script>
     

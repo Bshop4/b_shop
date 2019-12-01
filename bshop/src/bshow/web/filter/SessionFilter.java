@@ -39,7 +39,7 @@ public class SessionFilter implements Filter{
 		}
 		
 		if(obj==null&&account==null){
-			myresponse.sendRedirect("/bshop/login.jsp");
+			myresponse.sendRedirect("/bshop/Login.jsp");
 		}else{
 			//放行
 			chain.doFilter(myrequest, myresponse);

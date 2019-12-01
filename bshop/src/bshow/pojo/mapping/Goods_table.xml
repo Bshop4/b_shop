@@ -13,6 +13,8 @@
 	<property name="shop_no" column="shop_no" />
 	
 	
+	
+	
 	<property name="goods_uptime" column="goods_uptime" />
 	<property name="goods_ban" column="goods_ban" />
 	<property name="goods_location" column="goods_location" />

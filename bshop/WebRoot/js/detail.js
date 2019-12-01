@@ -22,6 +22,7 @@ var goodsno = getUrlVal('goods_no');
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
+			console.log(result)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        console.log(str)
@@ -156,7 +157,7 @@ var goodsno = getUrlVal('goods_no');
 			`;
 				
 
-			var pp = result[len-2];
+			var pp = result[len-3];
 			$(".zjl-footer-img").append(pp);
 			
 			
@@ -596,7 +597,6 @@ function collection(obj) {
 		"account" : account
 	};
 	if($(obj).children().children(":first").attr("src") == "img/6.png"){
-		console.log(1);
 		$.ajax({
 			
 			type : "post",
@@ -611,7 +611,6 @@ function collection(obj) {
 		})	
 
 	}else{
-		console.log(2);
 		$.ajax({
 			type : "post",
 			url : "insertCollection.do",

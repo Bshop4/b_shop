@@ -53,7 +53,7 @@ public class ExitLogin extends HttpServlet {
 				if("account".equals(cookie.getName())){
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
-					flag=true;
+					flag=true;  
 				}
 				if("token".equals(cookie.getName())){
 					cookie.setMaxAge(0);

@@ -88,7 +88,7 @@
 	//立即登录按钮点击
 	$('.pyl_fastlogin_btn').click(function(){
 		if(!passflag||!userflag){
-			console.log(passflag+''+userflag+$('.pyl_login_user input').val());
+			//console.log(passflag+''+userflag+$('.pyl_login_user input').val());
 			$('.pyl_login_password_tips').show();
 			return;
 		}
@@ -103,17 +103,18 @@
 			account:uName,
 			password:upass,
 			},function(result){
-				console.log(result);
+				//console.log(result);
 				var obj=JSON.parse(result);
 				//var obj=result;
 				
 				//登录分两种加入购物车过来和直接登录
 				if(obj.code==0){
-					var goodsID=getUrlVal('goods_id');
-					if(goodsID){
+					var goodsNO=getUrlVal('goods_no');
+					console.log(goodsNO);
+					if(goodsNO){
 //						localStorage.setItem('username',obj.data.username);
 //						localStorage.setItem('token',obj.data.token);			
-						location.href='detail.jsp?goods_id='+goodsID;	
+						location.href='detail.jsp?goods_no='+goodsNO;	
 						
 					}else{
 						//直接登录
@@ -141,4 +142,5 @@
 	//关闭登录时的计时
 	function closeTime(){
 		clearTimeout(loginTimer);
+		location.href='index.jsp';
 	}

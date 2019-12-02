@@ -72,7 +72,7 @@
 
 			<button id="user-myaddress" data-toggle="modal"
 				data-target="#addAddress"
-				style="background: white;left: 200px; top: 220px; border: 1px solid black;">+新增地址</button>
+				style="background: white;left: 200px; top: 226px; border: 1px solid black;">+新增地址</button>
 
 		</div>
 		<div class="checkout-content-title">确认商品清单</div>

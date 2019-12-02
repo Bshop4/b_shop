@@ -315,7 +315,7 @@
         .pro-logo{
         	width: 182px;
         	height: 182px;
-        	
+        	cursor: pointer;
         }
         
         .pro-name{
@@ -351,8 +351,29 @@
         	font-size: 25px;
         }
         
+        .notModify{
+        	color:red;
+        	display: none;
+        	font-weight: bold;
+        }
         
         
+        #fileupload{
+        	cursor: pointer;
+        }
+        
+        
+        /*我的足迹*/
+        .user-right4{
+            display: none;
+            width: 1020px;
+            height: 662px;
+            border-left: 2px solid rgba(255, 145, 75, 0.28);
+            position: absolute;
+            left: 180px;
+            top: 0px;
+            padding: 20px 0px 0px;
+        }
         
         
         

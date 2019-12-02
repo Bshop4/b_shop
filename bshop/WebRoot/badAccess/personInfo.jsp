@@ -82,6 +82,7 @@
 				<li id="mymenu">我的订单</li>
 				<li id="myaddress">收货地址</li>
 				<li id="mycollection">我的收藏</li>
+				<li id="myfooter">我的足迹</li>
 			</ul>
 		</div>
 
@@ -100,6 +101,7 @@
 			<div class="account">
 				<label class="user-acc">账号:</label> <input readonly
 					class="user-acc-input">
+				<span class="notModify">账号不能修改</span>
 			</div>
 			<div class="nickName">
 				<label class="user-nickName" id="user-nickname1">昵称:</label> <input
@@ -168,6 +170,11 @@
 				<ul class="pro-list"></ul>
 			</div>
 		</div>
+		
+		<!-- 我的足迹 -->
+		<div class="user-right4">
+			
+		</div>
 
 
 		<div class="modal fade" id="addAddress" data-backdrop="static"
@@ -215,7 +222,6 @@
 									<label>详细地址:</label> <input type="text" class="form-control"
 										id="mydetailaddress" /> <label id="addlabel">收货地址不能为空</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -229,6 +235,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 
 	<!--底部-->

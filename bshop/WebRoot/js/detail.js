@@ -7,15 +7,7 @@ var goodsno = getUrlVal('goods_no');
 var account="";
 var token = "";
 (function(){
-	console.log(goodsno)
-	console.log(account)
-	console.log(token)
 	
-    //发起
-//	var test = {
-//		"goodsno" : goodsno,
-//		"account" : account
-//	}
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
@@ -23,13 +15,14 @@ var token = "";
 		success:function(result){
 			
 			result=JSON.parse(result);
+			console.log(result)
+			console.log(result.length)
+			
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
 			account = result[len-4];
-			console.log(account)
 			token = result[len-3];
-			console.log(token)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        var strColle;
@@ -60,18 +53,20 @@ var token = "";
 
 	        //小图
 	        var strsm="";
-	        if(len>=6){
-	        	for(var i = 0; i < 4; i++){
-	        		strsm+="<li><img src='"+result[i]+"'/></li>";
-	        	}
-	        }
-	        if(len>=3 && len <=5){
-	        	for(var i = 0; i < len-2; i++){
-	        		strsm+="<li><img src='"+result[i]+"'/></li>";
-	        	}
+//	        if(len>=4){
+//	        	for(var i = 0; i < 4; i++){
+//	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+//	        	}
+//	        }
+//	        if(len>=2 && len <=6){
+//	        	for(var i = 0; i < len-5; i++){
+//	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+//	        	}
+//	        }
+	        for(var i = 0;i < len-5; i++){
+	        	strsm+="<li><img src='"+result[i]+"'/></li>";
 	        }
 	        
-//	        console.log(strsm)
 	        var str2 = `
 	        	<ul>
 	              ${strsm}
@@ -271,7 +266,6 @@ function opration(){
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
     	
-    	console.log(token)
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
 //        var account = "pyla1";//账号
@@ -313,6 +307,7 @@ function opration(){
         if(token){
         	
         	if($('.zjl-flyincart img').is(':animated')){return;};
+        	
 //			动画飞入购物车动画,购物车的净位置,和加入购物车的净位置
 			var targetX=$('#zjl-login-cart').offset().left;
 			var targetY=$('#zjl-login-cart').offset().top;
@@ -322,9 +317,9 @@ function opration(){
 			
 //			需要判断库存数量????????????????????????????????????????????????????????????????????
 //			物品数量
-			var num=parseInt($('.zjl-product-condition .number').val());
-			goodsNumber+=num;
-			localStorage.setItem('cartnumber',goodsNumber);
+//			var num=parseInt($('.zjl-product-condition .number').val());
+//			goodsNumber+=num;
+//			localStorage.setItem('cartnumber',goodsNumber);
 			
 //			设置起始位置
 			$('.zjl-flyincart img').css({'left':intiX,'top':intiY,display:'block'});
@@ -332,7 +327,8 @@ function opration(){
 //			动画
 			$('.zjl-flyincart img').animate({left:targetX,top:targetY},1200,function(){
 				$('.zjl-flyincart img').css('display','none');
-				$('.store_number').html(goodsNumber);
+				judgementLogin();
+				//$('.store_number').html(goodsNumber);
 			});
 			
 			
@@ -591,14 +587,23 @@ function collection(obj) {
 					$(obj).children().children(":first").attr("src","img/6.png");
 				}
 			}
-			
 		})
-	}
-	
-	
-	
-	
-	
+	}	
 }
 
+//添加足迹
+(function(){
+	$.ajax({
+		type:"post",
+		url:"FootPrint.do",
+		data:{
+			footprint_goodsno:goodsno,
+		},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+			console.log(result)
+		}
+	})
+})();
 

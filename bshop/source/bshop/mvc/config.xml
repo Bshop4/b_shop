@@ -235,15 +235,20 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
-	<!-- 跳转info
-	<PagePattern name="personInfo">
-		<ActionForm>bshow.web.servlet.form.PersonInfoForm</ActionForm>
-		<Action>bshow.web.servlet.action.PersonInfoAction</Action>
+	<!-- 跳转info -->
+	<PagePattern name="deleteCollectionById">
+		<ActionForm>bshow.web.servlet.form.DeleteCollectionByIdForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteCollectionByIdAction</Action>
 		<Redirect>false</Redirect>
-	</PagePattern> -->
+	</PagePattern>
 	
 	
-	
+	<!-- 添加足迹 -->
+	<PagePattern name="FootPrint">
+		<ActionForm>bshow.web.servlet.form.FootPrintActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.FootPrintAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 	

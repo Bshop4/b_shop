@@ -143,7 +143,6 @@
 	
 	//确认密码获焦
 	$('.truepassword').focus(function(){
-//		$('.truepassword').parent().css('border-bottom','1px solid black');
 		$('.truepassword').parent().css('box-shadow','3px 3px 7px #666');
 		$('.truepassword').parent().css('border-radius','5px');
 	});
@@ -282,6 +281,10 @@
 	
 	//注册点击事件去匹配数据库
 	$('.pyl_sign_btn').click(function(){
+		if($('.user').val()==""){$('.emailcode-tips').show().html("&otimes; 请输入用户名");return;};
+		if($('.pyl_sign_password').val()==""){$('.emailcode-tips').show().html("&otimes; 请输入密码");return;};
+		if($('.truepassword').val()==""){$('.emailcode-tips').show().html("&otimes; 请再确认密码");return;};
+		if($('.email').val()==""){$('.emailcode-tips').show().html("&otimes; 请输入正确邮箱");return;};
 		//帐号为对就为真
 		if($('.user').attr("pyl_flag_user")==1){
 			pyl_flag_user=true;//成功就对，返回不变false
@@ -293,7 +296,7 @@
 		var EmailCode=$('.emailcode').val();
 		var clientEmailCode=Base64.encode(EmailCode);
 		
-		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').show().html("&otimes; 验证码不正确");return;}//邮箱验证码不为数字
+		if(!pyl_flag_emailcodeMath){$('.emailcode-tips').html("&otimes; 验证码不正确").show();return;}//邮箱验证码不为数字
 		if(clientEmailCode){
 			if(!pyl_flag_emailcodeDie){$('.emailcode-tips').show().html("&otimes; 验证码已失效，请重新发送");return;};
 		}
@@ -302,7 +305,7 @@
 		if(clientEmailCode==serverEmailCode&&clientEmailCode){
 			pyl_flag_emailcode=true;
 		}else{
-			$('.emailcode-tips').show().html("&otimes; 验证码不正确");
+			$('.emailcode-tips').html("&otimes; 验证码不正确").show();
 			pyl_flag_emailcode=false;
 			return;
 		}
@@ -348,7 +351,7 @@
 										//直接登录
 										//======================================
 										$('.pyl_sign_tips').show();
-										var t=3;
+										var t=2;
 										var time =setInterval(function(){
 											t--;
 											$('.pyl_sign_tips #backtime').html(t+'后秒自动进入主页');

@@ -1,4 +1,8 @@
 
+//加载更多
+var djtLoadMore;
+
+
 //全局变量
 var goods_price;
 var goods_brand;
@@ -36,8 +40,8 @@ var pagesize = 16;
 	$('title').html('B-SHOP嘿店——'+"所有商品");
 	
 	//把条件拼接
-	if(goods_name){
-		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>模糊查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+	if(middle_type){
+		$('.part-screen>.product-filter').append("<div data-condition='middle_type' data-condition-datail='"+middle_type+"'  onclick='duanjuntang(this)'><span>分类:</span><span>"+middle_type+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	}
 	
 	//商品刷新
@@ -161,11 +165,6 @@ function getGoodsList() {
 		dataType:"json",
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success:function(result){
-			//验证
-			if(result==null) {
-				alert('商品正在上架...');
-				return;
-			}
 			//清除内容
 			$('.merchandise>ul').empty();
 			
@@ -177,7 +176,11 @@ function getGoodsList() {
 			//判断是否搜到相应的商品
 			if(maxPageCount==0){
 				alert("未搜索到相关商品");
+				return;
 			}
+			
+			//为了加载更多
+			djtLoadMore=result;
 			
 			//渲染数据,如果当前页大于总页数
 			page = $('.pageNum').val();
@@ -227,6 +230,14 @@ function getGoodsList() {
 					var str=`<li><a data-msg="品牌" data-title="goods_brand" data-jump="${result[0].goods_brand[i].goods_brand}" onclick="djtAdd(this)">${result[0].goods_brand[i].goods_brand}</a></li>`;
 					$('.part-screen>.product-next>ul').eq(0).append(str);
 				}else{
+					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="品牌">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
+					$('.part-screen>.product-next>ul').eq(0).append(str);
+					var str=`<div class='pyl_moretype'>`;
+					for(var j=7;j<result[0].goods_brand.length;j++){
+						str+=`<span data-msg="品牌" data-title="goods_brand" onclick="djtAdd(this)">${result[0].goods_brand[j].goods_brand}</span>`;
+					}
+					str+=`</div>`;
+					$('.part-screen>.product-next>ul').eq(0).append(str);
 					break;
 				}
 			}
@@ -237,6 +248,14 @@ function getGoodsList() {
 					var str=`<li><a data-msg="分类" data-title="middle_type" data-jump="${result[0].middle_type[i].middle_type}"  onclick="djtAdd(this)">${result[0].middle_type[i].middle_type}</a></li>`;
 					$('.part-screen>.product-next>ul').eq(1).append(str);
 				}else{
+					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="分类" >加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
+					$('.part-screen>.product-next>ul').eq(1).append(str);
+					var str=`<div class='pyl_moretype'>`;
+					for(var j=9;j<result[0].middle_type.length;j++){
+						str+=`<span data-msg="分类" data-title="middle_type" onclick="djtAdd(this)">${result[0].middle_type[j].middle_type}</span>`;
+					}
+					str+=`</div>`;
+					$('.part-screen>.product-next>ul').eq(1).append(str);
 					break;
 				}
 			}
@@ -247,6 +266,14 @@ function getGoodsList() {
 					var str=`<li><a data-msg="发货地" data-title="goods_place" data-jump="${result[0].goods_place[i].goods_place}" onclick="djtAdd(this)">${result[0].goods_place[i].goods_place}</a></li>`;
 					$('.part-screen>.product-next>ul').eq(2).append(str);
 				}else{
+					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="发货地">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
+					$('.part-screen>.product-next>ul').eq(2).append(str);
+					var str=`<div class='pyl_moretype'>`;
+					for(var j=9;j<result[0].goods_place.length;j++){
+						str+=`<span data-msg="发货地" data-title="goods_place" onclick="djtAdd(this)">${result[0].goods_place[j].goods_place}</span>`;
+					}
+					str+=`</div>`;
+					$('.part-screen>.product-next>ul').eq(2).append(str);
 					break;
 				}
 			}
@@ -257,6 +284,14 @@ function getGoodsList() {
 					var str=`<li><a data-msg="颜色" data-title="middle_color" data-jump="${result[0].middle_color[i].middle_color}" onclick="djtAdd(this)">${result[0].middle_color[i].middle_color}</a></li>`;
 					$('.part-screen>.product-next>ul').eq(3).append(str);
 				}else{
+					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="颜色">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
+					$('.part-screen>.product-next>ul').eq(3).append(str);
+					var str=`<div class='pyl_moretype'>`;
+					for(var j=9;j<result[0].middle_color.length;j++){
+						str+=`<span data-msg="颜色" data-title="middle_color" onclick="djtAdd(this)">${result[0].middle_color[j].middle_color}</span>`;
+					}
+					str+=`</div>`;
+					$('.part-screen>.product-next>ul').eq(3).append(str);
 					break;
 				}
 			}
@@ -267,6 +302,14 @@ function getGoodsList() {
 					var str=`<li><a data-msg="尺码" data-title="middle_size" data-jump="${result[0].middle_size[i].middle_size}" onclick="djtAdd(this)">${result[0].middle_size[i].middle_size}</a></li>`;
 					$('.part-screen>.product-next>ul').eq(4).append(str);
 				}else{
+					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="尺码">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
+					$('.part-screen>.product-next>ul').eq(4).append(str);
+					var str=`<div class='pyl_moretype'>`;
+					for(var j=11;j<result[0].middle_size.length;j++){
+						str+=`<span data-msg="尺码" data-title="middle_size" onclick="djtAdd(this)">${result[0].middle_size[j].middle_size}</span>`;
+					}
+					str+=`</div>`;
+					$('.part-screen>.product-next>ul').eq(4).append(str);
 					break;
 				}
 			}
@@ -289,8 +332,16 @@ function getGoodsList() {
 
 //鼠标点击进行筛选
 function djtAdd(obj){
-	$(obj).css("color",'black');
-	$(obj).css("font-weight",'bold');
+	/*用来防止选择类别时重复点击*/
+	var myuse=$(obj).attr("data-jump");
+	var pylflag=$('[data-condition-datail="'+myuse+'"]');
+	if(pylflag.length!="0"){return;};
+	/*用来防止选择类别时重复点击*/
+	
+	
+	if($(obj).attr("djtclick")=="1"){return;};
+	/*$(obj).css("color",'black');
+	$(obj).css("font-weight",'bold');*/
 	var condition=$(obj).html();
 	$('.part-screen>.product-filter').append("<div data-condition='"+$(obj).attr('data-title')+"' data-condition-datail='"+condition+"'  onclick='duanjuntang(this)'><span>"+$(obj).attr('data-msg')+":</span><span>"+condition+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	
@@ -308,6 +359,7 @@ function djtAdd(obj){
 //点击筛选中的值
 function duanjuntang(obj){
 	var myuse=$(obj).attr("data-condition-datail");
+	/*其它操作*/
 	$(obj).remove();
 	$('[data-jump="'+myuse+'"]').css("color",'#337ab7');
 	$('[data-jump="'+myuse+'"]').css("font-weight",'normal');
@@ -407,5 +459,22 @@ $('.search-wrap>button').click(function(){
 	var goods_name=$('.search-wrap>input').val();
 	location.href="/bshop/search.jsp?goods_name="+goods_name;
 })
+
+//加载更多
+function djtAddMore(obj){
+		if($(".pyl_moretype").is(':animated')){return;}
+		$(obj).siblings(".pyl_moretype").slideToggle();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 

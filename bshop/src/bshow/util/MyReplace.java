@@ -98,6 +98,7 @@ public class MyReplace implements Runnable,Subject{
 				ps.setInt(++index, (page-1)*pagesize);
 				ps.setInt(++index, pagesize);
 			}
+			//执行查询
 			ResultSet rs=ps.executeQuery();
 			if("goods_price".equals(mykey)){
 //				System.out.println("goods_price");
@@ -163,11 +164,13 @@ public class MyReplace implements Runnable,Subject{
 			}
 			
 			//将set集合的数据(价格区间)存入mylist中
-			if("goods_price".equals(mykey)){
-				for (String string : myset) {
-					Goods_classify gc=new Goods_classify();
-					gc.setGoods_price(string);
-					mylist.add(gc);
+			if(myset!=null){
+				if("goods_price".equals(mykey)){
+					for (String string : myset) {
+						Goods_classify gc=new Goods_classify();
+						gc.setGoods_price(string);
+						mylist.add(gc);
+					}
 				}
 			}
 			

@@ -1,8 +1,74 @@
 
 var account = getUrlVal('account');
+
+	var s = `
+		<div class="modal fade" id="editMyAddress" data-backdrop="static"
+			id="addressform1">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:700px;height:540px;">
+
+					<div class="modal-header">
+						<h2 class="text-success modal-title">
+							编辑地址 <span class="close" data-dismiss="modal">&times;</span>
+						</h2>
+					</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="form-group">
+									<label>收货人姓名:</label> <input type="text" class="form-control"
+										id="myname1" /><label class="namelable">收货人姓名不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>手机号:</label> <input type="text" class="form-control"
+										id="myiphone1" /><label class="iplabel">手机号格式错误</label>
+								</div>
+
+								<div class="form-group">
+									<label>邮编:</label> <input type="text" class="form-control"
+										id="mypostcode1" /><label class="postlabel">邮编不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>收货地址:</label><br>
+									<!--修改-->
+									<select id="province" onchange="getCity(this)">
+										<option>请选择省份</option>
+									</select> <select name="" id="city" onchange="getArea(this)">
+										<option value="">请选择城市</option>
+									</select> <select name="" id="area">
+										<option value="">请选择区县</option>
+									</select>
+								</div>
+								<!--新增-->
+								<div class="form-group">
+									<label>详细地址:</label> <input type="text" class="form-control"
+										id="mydetailaddress" /> <label id="addlabel">收货地址不能为空</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn btn-success" id="save2" onclick="myeditclick()">保存</button>
+						<button class="btn btn-danger" data-dismiss="modal" id="cancel2">取消</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	`;
+	
+	$('.user').append(s);
+
+
+
 (function() {
 //	var account = "zjl";
-	console.log(account)
 	$.ajax({
 		type : "post",
 		url : "getInfo.do",
@@ -155,14 +221,17 @@ $("#mycollection").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right3").show();
 	$(".user-right").hide();
 	$(".user-right1").hide();
 	$(".user-right2").hide();
+	$(".user-right4").hide();
 	
 	$(".pro-list").html("");
 	
-//	var account = "pyla1";
 	
 	$.ajax({
 		
@@ -176,26 +245,25 @@ $("#mycollection").click(function() {
 				var str="";
 				for(var i = 0; i < 10; i++){
 					str += `
-						<li class="pro-product">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 					
 				}
 				$(".pro-list").append(str);
 			}else if(obj.length > 0 && obj.length <= 10){
-				console.log(obj.length)
 				var str="";
 				for(var i = 0; i < obj.length; i++){
 					str += `
-						<li class="pro-product">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 				}
@@ -208,16 +276,9 @@ $("#mycollection").click(function() {
 				
 				$(".pro-list").append(str);
 			}
-			
-			
-			
-	}
-		
+		}
 		
 	})
-	
-	
-
 })
 
 
@@ -235,11 +296,14 @@ $("#myinfo").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right").show();
 	$(".user-right1").hide();
 	$(".user-right2").hide();
 	$(".user-right3").hide();
-
+	$(".user-right4").hide();
 })
 
 $("#mymenu").click(function() {
@@ -255,10 +319,14 @@ $("#mymenu").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right1").show();
 	$(".user-right").hide();
 	$(".user-right2").hide();
 	$(".user-right3").hide();
+	$(".user-right4").hide();
 })
 
 $("#myaddress").click(function() {
@@ -274,10 +342,14 @@ $("#myaddress").click(function() {
 	$("#mymenu").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right2").show();
 	$(".user-right").hide();
 	$(".user-right1").hide();
 	$(".user-right3").hide();
+	$(".user-right4").hide();
 	//从数据库查找地址数据然后显示在页面
 //	var account = "zjl";
 	$.ajax({
@@ -305,7 +377,7 @@ $("#myaddress").click(function() {
 				if (obj.length > 0) {
 					for (var i = 0; i < obj.length; i++) {
 						if (obj[i].ischeck == "1") {
-							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'  data-eid='"+obj[i].rid+"' data-toggle='modal' data-target='#editMyAddress' onclick='editclick(this)'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						} else {
 							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						}
@@ -559,8 +631,15 @@ function delclick(obj) {
 }
 
 
+$(".user-acc-input").focus(function () {
+	$(".notModify").show();
+})
+$(".user-acc-input").blur(function () {
+	$(".notModify").hide();
+})
+
+
 function changeBinggou(obj) {
-//	var account = "zjl";
 
 	var s1 = $(obj).parent().find("div").eq(0).html()
 	var s2 = $(obj).parent().find("div").eq(1).html()
@@ -605,3 +684,113 @@ function changeBinggou(obj) {
 		}
 	})
 }
+
+
+
+
+
+
+//取消收藏
+function clickmyheart(obj) {
+	var myid = $(obj).attr("data-myid");
+	
+	$.ajax({
+		type : "post",
+		url : "deleteCollectionById.do",
+		data : {"account" : account, "myid" : myid},
+		success : function(re){
+			$(".pro-list").html("");
+			var obj = JSON.parse(re);
+			if(obj.length > 10){
+				var str="";
+				for(var i = 0; i < 10; i++){
+					str += `
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+						</li>
+					`;
+					
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length > 0 && obj.length <= 10){
+				var str="";
+				for(var i = 0; i < obj.length; i++){
+					str += `
+						<li class="pro-product"  onclick="clickli(this)">
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+						</li>
+					`;
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length == 0){
+				
+				var str = `
+					<div class="descr">-_-您现在暂无收藏</div>
+				`;
+				
+				$(".pro-list").append(str);
+			}
+		}
+	})
+}
+	
+	
+function clickli(obj){
+	
+	var id = $(obj).attr("data-url");
+	
+	location.href = "detail.jsp?goods_no=" + id;
+	
+}
+
+
+function enterMyHeart(obj) {
+	$(obj).attr("src","img/6.png")
+}
+
+function leaveMyHeart(obj) {
+	$(obj).attr("src","img/7.png")
+}
+
+
+function editclick(obj) {
+	console.log(obj.attr("data-eid"))
+	
+}
+
+//我的足迹点击
+$("#myfooter").click(function() {
+	$("#myinfo").css({
+		color : "black"
+	});
+
+	$("#mycollection").css({
+		color : "black"
+	});
+	$("#mymenu").css({
+		color : "black"
+	})
+	$("#myaddress").css({
+		color : "black"
+	})
+	$("#myfooter").css({
+		color : "red"
+	})
+	$(".user-right").hide();
+	$(".user-right1").hide();
+	$(".user-right2").hide();
+	$(".user-right3").hide();
+	$(".user-right4").show();
+})
+
+
+
+
+
+

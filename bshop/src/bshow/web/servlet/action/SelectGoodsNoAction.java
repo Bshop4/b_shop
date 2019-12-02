@@ -50,8 +50,8 @@ public class SelectGoodsNoAction extends Action{
 			token = (String)request.getSession().getAttribute("token");
 		}
 		
-		System.out.println("account " + account);
-		System.out.println("token " + token);
+//		System.out.println("account " + account);
+//		System.out.println("token " + token);
 		
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
@@ -64,11 +64,18 @@ public class SelectGoodsNoAction extends Action{
 		
 		String allimgurl = new String(((Middle_table)listb.get(0)).getGoods_smallphoto());
 		String[] strArr = allimgurl.split(",");
-		
 		List<Object> listbb = new ArrayList<Object>();
-		for (int i = 0; i < strArr.length; i++) {
-			listbb.add(strArr[i]);
+		
+		if(strArr.length > 4){
+			for (int i = 0; i < 4; i++) {
+				listbb.add(strArr[i]);
+			}
+		}else if(strArr.length <= 4){
+			for (int i = 0; i < strArr.length; i++) {
+				listbb.add(strArr[i]);
+			}
 		}
+		
 		
 		Goods_table gt1 = (Goods_table) list.get(0);
 		String exp = new String(gt1.getGoods_explainphoto());

@@ -96,6 +96,20 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 选中地址 -->
+	<PagePattern name="updateAddress">
+		<ActionForm>bshow.web.servlet.form.UpdateAddressForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 选中地址 -->
+	<PagePattern name="getMyAddress">
+		<ActionForm>bshow.web.servlet.form.GetMyAddressForm</ActionForm>
+		<Action>bshow.web.servlet.action.GetMyAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
 		<ActionForm>bshow.web.servlet.form.NavigationActionForm</ActionForm>

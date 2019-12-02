@@ -34,6 +34,7 @@ public class Basedaoimpl implements Basedao, Looker {
 	@Override
 	public boolean saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
+		System.out.println(o);
 		Connection conn = DBhelper.getConnection();
 		try {
 			// 拿到对应的文档xml
@@ -220,16 +221,16 @@ public class Basedaoimpl implements Basedao, Looker {
 		String sql = "select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb = new StringBuffer(sql);
 		if (form.getGoods_name() != null) {
-			String name=form.getGoods_name().replaceAll("\\s", "");
+			String name = form.getGoods_name().replaceAll("\\s", "");
 			char[] myname = name.toCharArray();
 			for (int i = 0; i < myname.length; i++) {
-				if(i==0 && myname.length-1>0){
+				if (i == 0 && myname.length - 1 > 0) {
 					sb.append(" and ( (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
-				}else if(i==0){
+				} else if (i == 0) {
 					sb.append(" and (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
-				}else if(i==myname.length-1){
+				} else if (i == myname.length - 1) {
 					sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?) )");
-				}else{
+				} else {
 					sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
 				}
 			}
@@ -317,16 +318,15 @@ public class Basedaoimpl implements Basedao, Looker {
 		// 用线程处理查询
 		Thread t7 = new Thread(mr7);
 		t7.start();
-		
+
 		// 查询最大页数
 		Connection conn8 = DBhelper.getConnection();
-		String mysql8 = "SELECT COUNT(d.goods_no) from ("+sql + " group by c.goods_no) as d";
+		String mysql8 = "SELECT COUNT(d.goods_no) from (" + sql + " group by c.goods_no) as d";
 		mysql8 = mysql8.replace("@", "c.goods_no");
 		MyReplace mr8 = new MyReplace("maxPageCount", mysql8, conn8, this, form);
 		// 用线程处理查询
 		Thread t8 = new Thread(mr8);
 		t8.start();
-		
 
 		// 满足条件跳出循环
 		while (true) {

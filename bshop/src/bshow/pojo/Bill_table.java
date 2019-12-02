@@ -18,7 +18,11 @@ public class Bill_table implements Serializable {
 	private int bill_isclearing; // 订单是否付钱 1表示结算了 2 表示未结算
 	private String goods_color;// 商品颜色
 	private String goods_size;// 商品尺寸
-	private int goods_no;// 商品number
+	private String goods_no;// 商品number
+
+	public Bill_table() {
+
+	}
 
 	public int getBill_isclearing() {
 		return bill_isclearing;
@@ -140,11 +144,11 @@ public class Bill_table implements Serializable {
 		this.goods_size = goods_size;
 	}
 
-	public int getGoods_no() {
+	public String getGoods_no() {
 		return goods_no;
 	}
 
-	public void setGoods_no(int goods_no) {
+	public void setGoods_no(String goods_no) {
 		this.goods_no = goods_no;
 	}
 

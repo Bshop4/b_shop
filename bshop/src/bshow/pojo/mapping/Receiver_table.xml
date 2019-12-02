@@ -29,5 +29,18 @@
 	<update id="updateIsCheck">
 		update receiver_table set receiver=@{receiver} , telephone=@{telephone} , postal=@{postal} , address=@{address} , account=@{account} , ischeck=@{ischeck} where rid=#{rid}
 	</update>
-
+	
+	<!-- 从订单页插入 -->
+	<insert id="insertaddressReceiver">
+		insert into receiver_table(receiver,telephone,postal,address,account,ischeck) values(#{receiver},#{telephone},#{postal},#{address},#{account},#{ischeck})
+	</insert>
+	
+	<!-- 在最后页面找出地址 -->
+	<select id="afterAddress" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and ischeck=#{ischeck}
+	</select>
+	
+	<update id="updateaddressReceiver">
+		update receiver_table set ischeck=1 where telephone=#{telephone}
+	</update>
 </class>

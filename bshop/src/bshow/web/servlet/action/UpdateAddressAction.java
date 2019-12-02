@@ -1,7 +1,6 @@
 package bshow.web.servlet.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +12,8 @@ import bshow.pojo.Receiver_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
-import net.sf.json.JSONArray;
 
-public class SaveAddressAction extends Action {
+public class UpdateAddressAction extends Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
@@ -27,20 +25,12 @@ public class SaveAddressAction extends Action {
 		String myAllAdress = name + "" + iphone + "" + postcode + "" + AllAddress;
 		System.out.println(myAllAdress);
 		Receiver_table rt = new Receiver_table();
-		rt.setReceiver(name);
 		rt.setTelephone(iphone);
-		rt.setPostal(postcode);
-		rt.setAddress(AllAddress);
-		rt.setAccount("aaa");
-		rt.setIscheck(0);
 		Basedao bd = new Basedaoimpl();
-		boolean flag = bd.saveObject("insertaddressReceiver", rt);
-		System.out.println(flag);
-		JSONArray ja = JSONArray.fromObject(flag);
-//		将数据交给前端
-		PrintWriter out = response.getWriter();
-		out.print(ja.toString());
+		bd.updataObject("updateaddressReceiver", rt);
+		System.out.println(1);
 		return null;
+
 	}
 
 }

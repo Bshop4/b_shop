@@ -94,6 +94,9 @@
 				cursor: pointer;
 				font-size: 25px;
 			}
+			.lblb{
+				cursor:pointer;
+			}
 		</style>
 	</head>
 
@@ -112,7 +115,7 @@
 			</div>
 			<div class="dis-mid">
 				<p class="ple-pay">请选择支付方式</p>
-				<p class="zfb-wx"><label><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="img/zhifubao11.png"></span></label><label><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="img/weixin11.png"></span></label></p>
+				<p class="zfb-wx"><label class="lblb"><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="img/zhifubao11.png"></span></label><label class="lblb"><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="img/weixin11.png"></span></label></p>
 			</div>
 			<div class="go-pay"><button type="button" class="pay-btn">去支付</button></div>
 		</div>
@@ -145,7 +148,17 @@
  $(document).ready(function() {
 	var pay_money = getUrlVal("pay_money");
 	document.getElementById('heji').innerHTML = "应付：￥"+pay_money;
-	document.getElementById('sh-msg').innerHTML =0; 
+	$.ajax({
+		type:"POST",
+		url:"getMyAddress.do",
+		data:{"msg":1},
+		success:function(result){
+			var result = JSON.parse(result);
+			console.log(result);
+			var obj1 = eval(result);
+			document.getElementById('sh-msg').innerHTML = "收货人:"+obj1[0].receiver +"  "+"电话:"+ obj1[0].telephone+"  "+"邮编:"+ obj1[0].postal+"  "+"地址:"+ obj1[0].address; 
+		}
+	})
  })
  // 获得地址参数栏的值
   function getUrlVal(property) {

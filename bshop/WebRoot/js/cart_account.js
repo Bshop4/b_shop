@@ -18,9 +18,10 @@ function createXMLHttp() {
 var returnResult;
 // 定义应付金额
 var sum=0;
+var account_name;
 // 页面加载查询数据库状态值为1的商品
 $(document).ready(function() {
-	var account_name = getUrlVal("account_name");
+	account_name = getUrlVal("account_name");
 // console.log(account_name)
 // var goods_ids = window.localStorage.getItem('goods_id');
 // console.log(account_name);
@@ -100,12 +101,16 @@ function clickAll() {
 		;
 	});
 };
-
+// 定义地址
+var name="";
+var iphone="";
+var postcode="";
+var AllAddress="";
 
   function mysaveclicks(){
-      var name = document.getElementById("myname").value;
-      var iphone = document.getElementById("myiphone").value;
-      var postcode = document.getElementById("mypostcode").value;
+      name = document.getElementById("myname").value;
+      iphone = document.getElementById("myiphone").value;
+      postcode = document.getElementById("mypostcode").value;
       var pro = document.getElementById("province").value;
       var city = document.getElementById("city").value;
       var area = document.getElementById("area").value;
@@ -147,7 +152,7 @@ function clickAll() {
       var getPro;
       var getCity;
       var getArea;
-      var AllAddress;
+      //var AllAddress;
 
       for(var i=0;i<infos.length;i++){
           if(infos[i].code == $('#province').val()){
@@ -199,9 +204,18 @@ function clickAll() {
 	  	  
 	  	  $("li").click(function() {
 	        $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
-	        $(this).addClass('selected');                            // 为当前li添加边框样式
+	        $(this).addClass('selected');// 为当前li添加边框样式
+//		    if ($(this).class='selected') {
+//		    	 $.ajax({
+//		    		 type:"POST",
+//		    		 url:"updateAddress.do",
+//		    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+//		    		 success:function(result){
+//		    			 console.log(result);
+//		    		 }
+//		    	  })
+//		     }
 	  	  });
-	
 	  	  document.getElementById("myname").value = "";
 	  	  document.getElementById("myiphone").value = "";
 	  	  document.getElementById("mypostcode").value = "";
@@ -226,35 +240,38 @@ function clickAll() {
   };
   
   $('#btn-account').click(function() { 
-//	  console.log(222111);
-//	  console.log($('[data-tr="active"]').parent().prev().prev().prev());
 		$('[data-tr="active"]').each(function() {
-// console.log($(this));
 			var tab = $(this).parent();
 			var tr = $(this);
-//			console.log($(this).parent().prev().prev().prev().result[0].innerText);
-//			console.log($(this).parent().prev().prev().prev());
-// console.log(111);
 			cart_id = $(this).find("td:first").attr("data-id");
 			console.log(cart_id);
-// // 先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
+// 先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
 			$.ajax({
 				type : "POST",
 				url : "xsyinsertBill.do",
-				data : {"cart_id" : cart_id},
-//				$(this).parentNode.previousElementSibling.previousElementSibling.previousElementSibling.find("li:second")
+				data : {"cart_id" : cart_id,"account":account_name},
 				success : function(result) {
-// var result=JSON.parse(result);
+					var result=JSON.parse(result);
 					console.log(result);
 				}
 			})
 // tab.get(0).removeChild(tr.get(0));
 		})
 // window.open('pay.jsp');
+	    if($('li').class='selected') {
+	    	 $.ajax({
+	    		 type:"POST",
+	    		 url:"updateAddress.do",
+	    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+	    		 success:function(result){
+	    			 console.log(result);
+	    		 }
+	    	  })
+	     }
 	  	var mone = document.getElementById('sum-all').innerHTML;
 // console.log(money);
 	  	var money = mone.substring(4);
-// location.href="pay.jsp?pay_money="+money;
+//	  	location.href="pay.jsp?pay_money="+money;
 		// var dizhi = $('.address-list'.children.class="selected");
 		// console.log(dizhi+"222");
 // // window.localStorage.setItem('goods_id',cart_id);

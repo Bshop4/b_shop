@@ -114,7 +114,7 @@
 					if(goodsNO){
 //						localStorage.setItem('username',obj.data.username);
 //						localStorage.setItem('token',obj.data.token);			
-						location.href='/bshop/badAccess/detail.jsp?goods_no='+goodsNO;	
+						location.href='/bshop/detail.jsp?goods_no='+goodsNO;	
 						
 					}else{
 						//直接登录

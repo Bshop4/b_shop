@@ -10,9 +10,11 @@
 	<insert id="insertone">
 		insert into account_table(account,password,email,ipaddress,ban) values(#{account},#{password},#{email},#{ipaddress},#{ban})
 	</insert>
+	
 	<select id="select" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account_id=#{account_id}
 	</select>
+	
 	<select id="selectByAccount" resulttype="bshow.pojo.Account_table">
 		select * from account_table	where 1=1 and account=#{account}
 	</select>
@@ -29,6 +31,7 @@
 		update account_table set password=@{password}
 		where account=#{account} and email=#{email}
 	</update>
+	
 	<!-- and account_id=#{account_id} -->
 
 </class>

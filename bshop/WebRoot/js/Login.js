@@ -5,7 +5,7 @@
 	if(localStorage.getItem('token')) {$('.pyl_panel').show();};
 	
 	$('.pyl_panel #backheadpage').click(function(){
-		location.href='index.jsp';
+		location.href='/bshop/index.jsp';
 	});
 	
 	$('.pyl_panel #backlogin').click(function(){
@@ -63,21 +63,21 @@
 	
 	//点击注册按钮
 	$('.pyl_userfindpass #pyl_login').click(function(){
-		var goodsID=getUrlVal('goods_id');
-		if(goodsID){
-			location.href='sign.jsp?goods_id='+goodsID;
+		var goodsNO=getUrlVal('goods_no');
+		if(goodsNO){
+			location.href='/bshop/sign.jsp?goods_no='+goodsNO;
 		}else{
-			location.href='sign.jsp';
+			location.href='/bshop/sign.jsp';
 		}
 	});
 	
 	//点击找回密码按钮
 	$('.pyl_userfindpass #pyl_findpass').click(function(){
-		var goodsID=getUrlVal('goods_id');
-		if(goodsID){
-			location.href='findpass.jsp?goods_id='+goodsID;
+		var goodsNO=getUrlVal('goods_no');
+		if(goodsNO){
+			location.href='/bshop/findpass.jsp?goods_no='+goodsNO;
 		}else{
-			location.href='findpass.jsp';
+			location.href='/bshop/findpass.jsp';
 		}
 	});
 	
@@ -88,7 +88,7 @@
 	//立即登录按钮点击
 	$('.pyl_fastlogin_btn').click(function(){
 		if(!passflag||!userflag){
-			console.log(passflag+''+userflag+$('.pyl_login_user input').val());
+			//console.log(passflag+''+userflag+$('.pyl_login_user input').val());
 			$('.pyl_login_password_tips').show();
 			return;
 		}
@@ -103,17 +103,18 @@
 			account:uName,
 			password:upass,
 			},function(result){
-				console.log(result);
+				//console.log(result);
 				var obj=JSON.parse(result);
 				//var obj=result;
 				
 				//登录分两种加入购物车过来和直接登录
 				if(obj.code==0){
-					var goodsID=getUrlVal('goods_id');
-					if(goodsID){
+					var goodsNO=getUrlVal('goods_no');
+					console.log(goodsNO);
+					if(goodsNO){
 //						localStorage.setItem('username',obj.data.username);
 //						localStorage.setItem('token',obj.data.token);			
-						location.href='detail.jsp?goods_id='+goodsID;	
+						location.href='/bshop/detail.jsp?goods_no='+goodsNO;	
 						
 					}else{
 						//直接登录
@@ -123,7 +124,7 @@
 						//提示成功登录
 						$('.pyl_sign_tips').show();
 						loginTimer=setTimeout(function(){
-							location.href='index.jsp';	
+							location.href='/bshop/index.jsp';	
 						},1500);
 					}
 				};
@@ -141,4 +142,5 @@
 	//关闭登录时的计时
 	function closeTime(){
 		clearTimeout(loginTimer);
+		location.href='/bshop/index.jsp';
 	}

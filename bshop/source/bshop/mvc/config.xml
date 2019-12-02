@@ -221,6 +221,14 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 跳转info
+	<PagePattern name="personInfo">
+		<ActionForm>bshow.web.servlet.form.PersonInfoForm</ActionForm>
+		<Action>bshow.web.servlet.action.PersonInfoAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern> -->
+	
+	
 	
 	
 	

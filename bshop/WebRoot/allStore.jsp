@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
-								<a>个人中心</a>
+								<a href="PersonInfo">个人中心</a>
 								<a>我的订单</a>
 								<a>我的收藏</a>
 							</div>
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="logo">
 				</div>
 				<div class="search-wrap">
-					<input placeholder="搜索商品" />
+					<input placeholder="搜索商品" maxlength="4"/>
 					<button class="glyphicon glyphicon-search"></button>
 				</div>
 			</div>

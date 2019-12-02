@@ -222,7 +222,6 @@
 									<label>详细地址:</label> <input type="text" class="form-control"
 										id="mydetailaddress" /> <label id="addlabel">收货地址不能为空</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -236,6 +235,8 @@
 			</div>
 		</div>
 	</div>
+
+
 
 
 	<!--底部-->

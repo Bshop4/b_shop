@@ -86,6 +86,7 @@ public class SelectGoodsNoAction extends Action{
 		}else{
 			str = "1";
 		}
+		
 		listbb.add(account);
 		listbb.add(token);
 		listbb.add(str);

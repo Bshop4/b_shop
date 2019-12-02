@@ -233,7 +233,7 @@ function getGoodsList() {
 					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="品牌">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
 					$('.part-screen>.product-next>ul').eq(0).append(str);
 					var str=`<div class='pyl_moretype'>`;
-					for(var j=9;j<result[0].goods_brand.length;j++){
+					for(var j=7;j<result[0].goods_brand.length;j++){
 						str+=`<span data-msg="品牌" data-title="goods_brand" onclick="djtAdd(this)">${result[0].goods_brand[j].goods_brand}</span>`;
 					}
 					str+=`</div>`;
@@ -287,7 +287,7 @@ function getGoodsList() {
 					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="颜色">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
 					$('.part-screen>.product-next>ul').eq(3).append(str);
 					var str=`<div class='pyl_moretype'>`;
-					for(var j=9;j<result[0].middle_color.length;j++){
+					for(var j=11;j<result[0].middle_color.length;j++){
 						str+=`<span data-msg="颜色" data-title="middle_color" onclick="djtAdd(this)">${result[0].middle_color[j].middle_color}</span>`;
 					}
 					str+=`</div>`;
@@ -305,7 +305,7 @@ function getGoodsList() {
 					var str=`<li class="djtMore" onclick="djtAddMore(this)"><span data-more="尺码">加载更多</span><span class="glyphicon glyphicon-chevron-down"></span></li>`;
 					$('.part-screen>.product-next>ul').eq(4).append(str);
 					var str=`<div class='pyl_moretype'>`;
-					for(var j=9;j<result[0].middle_size.length;j++){
+					for(var j=11;j<result[0].middle_size.length;j++){
 						str+=`<span data-msg="尺码" data-title="middle_size" onclick="djtAdd(this)">${result[0].middle_size[j].middle_size}</span>`;
 					}
 					str+=`</div>`;

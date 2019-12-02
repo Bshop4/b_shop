@@ -106,19 +106,20 @@
 					<div class="countDown" id="timer1">订单将在0小时0分0秒后关闭</div>
 				</div>
 				<div class="order-info">
-					<h4>应付：￥0.00</h4>
-					<p class="order-info-p"><span>收货信息:</span></p>
+					<h4 id="heji">合计：￥0.00</h4>
+					<p class="order-info-p" id="sh-msg"><span>收货信息:</span></p>
 				</div>
 			</div>
 			<div class="dis-mid">
 				<p class="ple-pay">请选择支付方式</p>
-				<p class="zfb-wx"><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="img/zhifubao11.png"></span><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="img/weixin11.png"></span></p>
+				<p class="zfb-wx"><label><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="img/zhifubao11.png"></span></label><label><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="img/weixin11.png"></span></label></p>
 			</div>
 			<div class="go-pay"><button type="button" class="pay-btn">去支付</button></div>
 		</div>
 	</body>
 
 </html>
+<script src="js/jquery.min.js"></script>
 <script> 
  //倒计时
   function countDown( maxtime,fn ) {   
@@ -141,5 +142,20 @@
     document.getElementById('timer1').innerHTML = msg; 
   }) 
  // 获取价格
- 
+ $(document).ready(function() {
+	var pay_money = getUrlVal("pay_money");
+	document.getElementById('heji').innerHTML = "应付：￥"+pay_money;
+	document.getElementById('sh-msg').innerHTML =0; 
+ })
+ // 获得地址参数栏的值
+  function getUrlVal(property) {
+  	// 地址栏
+  	var urlStr = window.location.search.substring(1);
+  	var re = new RegExp('(^|&)' + property + '=([^&]*)(&|$)');
+  	var result = urlStr.match(re);
+  	if(result == null) {
+  		return;
+  	};
+  	return result[2];
+  };
 </script> 

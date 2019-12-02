@@ -2,6 +2,7 @@
  * Created by 10415 on 2019/10/26.
  */
 
+
 var goodsno = getUrlVal('goods_no');
 var account="";
 var token = "";
@@ -292,7 +293,7 @@ function opration(){
 //        var coo document.cookie;
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
-        var account = "pyla1";//账号
+//        var account = "pyla1";//账号
         var getnumber = $('.number').attr('value');//数量
         var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
         var getgoodsname = $('.zjl-product-name').html();//商品名字
@@ -377,11 +378,11 @@ function opration(){
 
 
     $('#buyNowBtn').click(function(){
-        var token = localStorage.getItem('token');
+//        var token = localStorage.getItem('token');
         
         var goodsNo = $('#buyNowBtn').children().attr('data-goods-no');
         console.log(goodsNo)
-        var account = "pyla1";//账户
+//        var account = "pyla1";//账户
         var getnumber = $('.number').attr('value');//数量
         var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
         var getgoodsname = $('.zjl-product-name').html();//商品名字
@@ -598,7 +599,7 @@ function opration(){
 
 function collection(obj) {
 	var goodsno = $(obj).attr("data-coid");
-	var account = "pyla1";
+//	var account = "pyla1";
 	
 	var test = {
 		"goodsno" : goodsno,

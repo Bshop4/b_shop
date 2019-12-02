@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="logo">
 				</div>
 				<div class="search-wrap">
-					<input placeholder="搜索商品" />
+					<input placeholder="搜索商品" maxlength="4"/>
 					<button class="glyphicon glyphicon-search"></button>
 				</div>
 			</div>

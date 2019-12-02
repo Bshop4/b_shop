@@ -1,5 +1,8 @@
+
+var account = getUrlVal('account');
 (function() {
-	var account = "zjl";
+//	var account = "zjl";
+	console.log(account)
 	$.ajax({
 		type : "post",
 		url : "getInfo.do",
@@ -159,7 +162,7 @@ $("#mycollection").click(function() {
 	
 	$(".pro-list").html("");
 	
-	var account = "pyla1";
+//	var account = "pyla1";
 	
 	$.ajax({
 		
@@ -276,7 +279,7 @@ $("#myaddress").click(function() {
 	$(".user-right1").hide();
 	$(".user-right3").hide();
 	//从数据库查找地址数据然后显示在页面
-	var account = "zjl";
+//	var account = "zjl";
 	$.ajax({
 		type : "post",
 		url : "selectReceiverByAccount.do",
@@ -440,7 +443,7 @@ function mysaveclick() {
 		document.getElementById("save1").setAttribute("data-dismiss", "modal");
 
 		//插入数据库
-		var account = "zjl"
+//		var account = "zjl"
 
 		var reveiver = {
 			"name" : name,
@@ -557,7 +560,7 @@ function delclick(obj) {
 
 
 function changeBinggou(obj) {
-	var account = "zjl";
+//	var account = "zjl";
 
 	var s1 = $(obj).parent().find("div").eq(0).html()
 	var s2 = $(obj).parent().find("div").eq(1).html()

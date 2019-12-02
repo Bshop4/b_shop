@@ -296,10 +296,8 @@
         .pro-list{
         	width:1020px;
         	height: 512px;
-        	border : 1px solid red;
         	margin: 16px 2px 0px;
         	position: relative;
-        	
         }
         
         
@@ -307,7 +305,7 @@
         .pro-product{
         	width: 184px;
         	height: 244px;
-        	border : 1px solid red;
+        	border : 1px solid #dff0d8;
         	margin: 0px 9px 12px;
         	padding: 0px 0px 20px;
         	float: left;

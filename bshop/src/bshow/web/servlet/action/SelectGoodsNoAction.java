@@ -50,10 +50,8 @@ public class SelectGoodsNoAction extends Action{
 			token = (String)request.getSession().getAttribute("token");
 		}
 		
-		
-		
-//		System.out.println(account);
-		
+		System.out.println("account " + account);
+		System.out.println("token " + token);
 		
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);

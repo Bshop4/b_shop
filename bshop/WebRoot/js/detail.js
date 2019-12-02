@@ -7,14 +7,15 @@ var goodsno = getUrlVal('goods_no');
 var account="";
 var token = "";
 (function(){
-    //发起
-	console.log(document.cookie)
+	console.log(goodsno)
+	console.log(account)
+	console.log(token)
 	
-//	var account = "pyla1";
-	var test = {
-		"goodsno" : goodsno,
-		"account" : account
-	}
+    //发起
+//	var test = {
+//		"goodsno" : goodsno,
+//		"account" : account
+//	}
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
@@ -22,16 +23,15 @@ var token = "";
 		success:function(result){
 			
 			result=JSON.parse(result);
-//			console.log(result)
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
 			account = result[len-4];
+			console.log(account)
 			token = result[len-3];
-//			console.log(result)
+			console.log(token)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
-//	        console.log(str)
 	        var strColle;
 	        if(str == "1"){
 	        	strColle = `
@@ -80,17 +80,16 @@ var token = "";
 	            <span class="glyphicon glyphicon-chevron-right right-span"></span>
 	        `;
 	        
-//
 	        var str3 = `
 	            <div class="zjl-product-name">${obj.goods_name}</div>
 	        `;
 
-//	        //品牌
+	        //品牌
 	        var str4 = `
 	        	<span><a href="">品牌：${obj.goods_brand}</a></span>
 	           <span class="zjl-product-no">商品编号：${obj.goods_no}</span>
 	        `;
-//
+
 	        var price = parseFloat(`${obj.goods_price}`);
 	        var discount = parseFloat(`${obj.goods_discount}`)
 	        price = parseInt(price / discount);
@@ -105,7 +104,6 @@ var token = "";
 	            <span class="add">+</span>
 	        `;
 
-	        //console.log(obj.goods_no)
 	        var str7 = `
 	            <ul>
 	               <li id="buyNowBtn"><a href="javascript:;" data-goods-no=${obj.goods_no}>立即购买</a></li>
@@ -117,7 +115,7 @@ var token = "";
 	            <div class="big"></div>
 	        `;
 			
-//			飞入购物车的图
+			//飞入购物车的图
 			var str9=`<img src=${result[0]}>`
 			
 			//发货地
@@ -148,14 +146,14 @@ var token = "";
 			
 			
 			
-//			//尺码
+			//尺码
 			var strsize1 = obj.goods_size;
 			var arrSize = strsize1.split(",");
 			var strsize2 = "";
 			for(var i = 0; i < arrSize.length ;i++){
 				strsize2 += "<li>"+arrSize[i]+"<a></a></li>"
 			}
-//			console.log(strsize2)
+			
 			var str12 = `
 				<ul style="width:450px">
 	              ${strsize2}
@@ -255,27 +253,12 @@ function opration(){
     //点击购物车图标
     $('#zjl-cart').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
-//        var token = localStorage.getItem('token');
 
         console.log(goodsNo);
         console.log(token);
 
         //验证
         if(token){
-//            $.ajax({
-//                type : 'post',
-//                url : 'http://www.wjian.top/shop/api_cart.php',
-//                data: {'goods_id':goodsId, 'number': parseInt($('.number').attr('value'))},
-//                dataType:'json',
-//                success : function(e){
-//                    console.log(e);
-//                    
-//                    
-////                  待写进入数据库加数据        
-//
-//
-//                },
-//            });
         }else{
             if(confirm('未登录，点击确定跳到登录界面')){
                 location.href = 'Login.jsp?goods_no=' + goodsNo;
@@ -289,8 +272,6 @@ function opration(){
     $('#addCartBtn').click(function(e){
     	
     	console.log(token)
-//        var token = localStorage.getItem('token');
-//        var coo document.cookie;
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
 //        var account = "pyla1";//账号
@@ -328,8 +309,6 @@ function opration(){
         	"account":account
         }
            
-//        console.log(allnew)
-        
         //验证
         if(token){
         	
@@ -378,10 +357,8 @@ function opration(){
 
 
     $('#buyNowBtn').click(function(){
-//        var token = localStorage.getItem('token');
         
         var goodsNo = $('#buyNowBtn').children().attr('data-goods-no');
-        console.log(goodsNo)
 //        var account = "pyla1";//账户
         var getnumber = $('.number').attr('value');//数量
         var imgurl = $(".zjl-bottom ul li").eq(0).children().attr('src');//图片
@@ -440,21 +417,6 @@ function opration(){
         };
     })
 
-
-
-//    //图片切换0
-//      $('.zjl-bottom ul li').each(function(i){
-//        $(this).mouseenter(function(){
-//            //$('.zjl-top ul li').eq(i).show().siblings().hide();
-//            $(this).css('border','1px solid black').siblings().css('border','');
-//
-//            var imgSrc = $(this).children().attr('src');
-//            $('.zjl-top ul li img').attr('src',imgSrc);
-//            $('.big').css({
-//                'background':'url('+ imgSrc +')',
-//            });
-//        }) ;
-//    });
    
     //颜色选择
     $('.zjl-product-color ul li').each(function(i){

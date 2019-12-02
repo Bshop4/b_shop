@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Footprint_table" table="footprint_table">
+	<property name="footprint_id" column="footprint_id"/>
+	<property name="footprint_goodsno" column="footprint_goodsno"/>
+	<property name="footprint_time" column="footprint_time"/>
+	<property name="account" column="account"/>
+	
+	<insert id="insertone">
+		insert into footprint_table(footprint_goodsno,footprint_time,account) values(#{footprint_goodsno},#{footprint_time},#{account})
+	</insert>
+	<select id="selectone" resulttype="bshow.pojo.Shop_table">
+		select * from footprint_table where 1=1 and footprint_id=#{footprint_id}
+	</select>
+	<!--
+	
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

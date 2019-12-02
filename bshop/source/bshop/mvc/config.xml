@@ -229,7 +229,12 @@
 	</PagePattern>
 	
 	
-	
+	<!-- 添加足迹 -->
+	<PagePattern name="FootPrint">
+		<ActionForm>bshow.web.servlet.form.FootPrintActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.FootPrintAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 	

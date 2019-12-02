@@ -587,13 +587,23 @@ function collection(obj) {
 					$(obj).children().children(":first").attr("src","img/6.png");
 				}
 			}
-			
 		})
-	}
-	
-	
-	
-	
-	
+	}	
 }
+
+//添加足迹
+(function(){
+	$.ajax({
+		type:"post",
+		url:"FootPrint.do",
+		data:{
+			footprint_goodsno:goodsno,
+		},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+			console.log(result)
+		}
+	})
+})();
 

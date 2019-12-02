@@ -21,7 +21,7 @@ var sum=0;
 // 页面加载查询数据库状态值为1的商品
 $(document).ready(function() {
 	var account_name = getUrlVal("account_name");
-	console.log(account_name)
+//	console.log(account_name)
 // var goods_ids = window.localStorage.getItem('goods_id');
 // console.log(account_name);
 // var account = "pyla1";

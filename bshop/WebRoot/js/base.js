@@ -72,7 +72,7 @@ function judgementLogin(){
 		type:"post",
 		url:"JudgementLogin",
 		success:function(result){
-			console.log(result);
+//			console.log(result);
 			if(result[0]=="noPeopleLogin"){
 				$('.top-bar>.btn').show();
 				$('.logBtn').hide();

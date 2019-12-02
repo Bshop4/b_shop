@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +31,29 @@ public class SelectGoodsNoAction extends Action{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String goodsno = request.getParameter("goodsno");
-		String account = request.getParameter("account");
+//		String account = request.getParameter("account");
+		String account = "";
+		String token = "";
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if("account".equals(cookie.getName())){
+				account = cookie.getValue();
+			}
+			if("token".equals(cookie.getName())){
+				token = cookie.getValue();
+			}
+		}
+		if(account == ""){
+			account = (String)request.getSession().getAttribute("accouont");
+		}
+		if(token == ""){
+			token = (String)request.getSession().getAttribute("token");
+		}
+		
+		
+		
+//		System.out.println(account);
+		
 		
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
@@ -63,6 +86,8 @@ public class SelectGoodsNoAction extends Action{
 		}else{
 			str = "1";
 		}
+		listbb.add(account);
+		listbb.add(token);
 		listbb.add(str);
 		listbb.add(gt1);
 		

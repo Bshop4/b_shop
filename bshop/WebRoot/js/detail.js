@@ -3,11 +3,13 @@
  */
 
 var goodsno = getUrlVal('goods_no');
-//	var goodsno = "467936110633540";
-//	var goodsno = "6987766132287";
+var account="";
+var token = "";
 (function(){
     //发起
-	var account = "pyla1";
+	console.log(document.cookie)
+	
+//	var account = "pyla1";
 	var test = {
 		"goodsno" : goodsno,
 		"account" : account
@@ -15,17 +17,20 @@ var goodsno = getUrlVal('goods_no');
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
-		data:{"goodsno":goodsno,"account":account},
+		data:{"goodsno":goodsno},
 		success:function(result){
+			
 			result=JSON.parse(result);
 //			console.log(result)
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
-			console.log(result)
+			account = result[len-4];
+			token = result[len-3];
+//			console.log(result)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
-	        console.log(str)
+//	        console.log(str)
 	        var strColle;
 	        if(str == "1"){
 	        	strColle = `
@@ -249,7 +254,7 @@ function opration(){
     //点击购物车图标
     $('#zjl-cart').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
-        var token = localStorage.getItem('token');
+//        var token = localStorage.getItem('token');
 
         console.log(goodsNo);
         console.log(token);
@@ -281,7 +286,10 @@ function opration(){
     
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
-        var token = localStorage.getItem('token');
+    	
+    	console.log(token)
+//        var token = localStorage.getItem('token');
+//        var coo document.cookie;
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
         var account = "pyla1";//账号
@@ -410,7 +418,7 @@ function opration(){
         
         //验证
         if(token){
-
+        	
         	$.ajax({
         		type : "post",
         		url : "insertCartBuy.do",

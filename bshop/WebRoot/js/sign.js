@@ -322,7 +322,7 @@
 					
 					var objlogin=null;
 					if(obj.code==0){
-						var goodsID=getUrlVal('goods_id');//从地址栏上拿属性
+						var goodsNO=getUrlVal('goods_no');//从地址栏上拿属性
 						$.post('Login_Action.do',
 						{
 							account:account1,
@@ -331,19 +331,16 @@
 								console.log(result1+"立即去登录");
 								objlogin=JSON.parse(result1);
 								//登录分两种加入购物车过来和直接登录
-								if(goodsID){
+								if(goodsNO){
 									$('.pyl_sign_tips').show();
 		//							不能写死需要去数据库查购物车的数量
-									localStorage.setItem('cartnumber','0');
-									localStorage.setItem('username',objlogin.data.username);
-								    localStorage.setItem('token',objlogin.data.token);
 									var t=3;
 									var time =setInterval(function(){
 										t--;
 										$('.pyl_sign_tips #backtime').html(t+'后秒自动进入当前商品');
 										if(t==0){
 											clearInterval(time);
-											location.href='detail.jsp?goods_id='+goodsID;	
+											location.href='/bshop/detail.jsp?goods_no='+goodsNO;	
 										}
 									},1000);
 									
@@ -351,16 +348,13 @@
 										//直接登录
 										//======================================
 										$('.pyl_sign_tips').show();
-										localStorage.setItem('cartnumber','0');
-										localStorage.setItem('username',objlogin.data.username);
-									    localStorage.setItem('token',objlogin.data.token);
 										var t=3;
 										var time =setInterval(function(){
 											t--;
 											$('.pyl_sign_tips #backtime').html(t+'后秒自动进入主页');
 											if(t==0){
 												clearInterval(time);
-												location.href='index.jsp';
+												location.href='/bshop/index.jsp';
 											}
 										},1000);
 								}

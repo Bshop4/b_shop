@@ -52,6 +52,7 @@ public class XsyInsertBillAction extends Action {
 			bt.setGoods_size(obj.getCgoods_size());
 			bt.setBill_isclearing(0);
 			bt.setBill_code(GenericPrimaryKey.getPrimaryKey());
+
 		}
 		bd.saveObject("insertone", bt);
 //		AddBill ab = new AddBillImpl();

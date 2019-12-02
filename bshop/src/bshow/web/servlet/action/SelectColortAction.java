@@ -28,16 +28,6 @@ public class SelectColortAction extends Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		
-//		String goods_no = "467936110633540";
-//		Middle_table mt = new Middle_table();
-//		mt.setGoods_no(goods_no);
-//		Basedao bd = new Basedaoimpl();
-//		List<Object> list = bd.select("selectAllSm", mt);
-//		System.out.println(list.size());
-//		for (Object object : list) {
-//			System.out.println(new String(((Middle_table)object).getGoods_smallphoto()));
-//		}
-		
 		SelectColorForm scg = (SelectColorForm)form;
 		String msg = scg.getMsg();
 		JSONObject obj = JSONObject.fromObject(msg);

@@ -2,7 +2,6 @@
 var account = getUrlVal('account');
 (function() {
 //	var account = "zjl";
-	console.log(account)
 	$.ajax({
 		type : "post",
 		url : "getInfo.do",
@@ -162,7 +161,6 @@ $("#mycollection").click(function() {
 	
 	$(".pro-list").html("");
 	
-//	var account = "pyla1";
 	
 	$.ajax({
 		
@@ -176,26 +174,25 @@ $("#mycollection").click(function() {
 				var str="";
 				for(var i = 0; i < 10; i++){
 					str += `
-						<li class="pro-product">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 					
 				}
 				$(".pro-list").append(str);
 			}else if(obj.length > 0 && obj.length <= 10){
-				console.log(obj.length)
 				var str="";
 				for(var i = 0; i < obj.length; i++){
 					str += `
-						<li class="pro-product">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 				}
@@ -208,16 +205,9 @@ $("#mycollection").click(function() {
 				
 				$(".pro-list").append(str);
 			}
-			
-			
-			
-	}
-		
+		}
 		
 	})
-	
-	
-
 })
 
 
@@ -559,8 +549,15 @@ function delclick(obj) {
 }
 
 
+$(".user-acc-input").focus(function () {
+	$(".notModify").show();
+})
+$(".user-acc-input").blur(function () {
+	$(".notModify").hide();
+})
+
+
 function changeBinggou(obj) {
-//	var account = "zjl";
 
 	var s1 = $(obj).parent().find("div").eq(0).html()
 	var s2 = $(obj).parent().find("div").eq(1).html()
@@ -604,4 +601,77 @@ function changeBinggou(obj) {
 
 		}
 	})
+}
+
+
+
+
+
+
+//取消收藏
+function clickmyheart(obj) {
+	var myid = $(obj).attr("data-myid");
+	
+	$.ajax({
+		type : "post",
+		url : "deleteCollectionById.do",
+		data : {"account" : account, "myid" : myid},
+		success : function(re){
+			$(".pro-list").html("");
+			var obj = JSON.parse(re);
+			if(obj.length > 10){
+				var str="";
+				for(var i = 0; i < 10; i++){
+					str += `
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+						</li>
+					`;
+					
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length > 0 && obj.length <= 10){
+				var str="";
+				for(var i = 0; i < obj.length; i++){
+					str += `
+						<li class="pro-product"  onclick="clickli(this)">
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+						</li>
+					`;
+				}
+				$(".pro-list").append(str);
+			}else if(obj.length == 0){
+				
+				var str = `
+					<div class="descr">-_-您现在暂无收藏</div>
+				`;
+				
+				$(".pro-list").append(str);
+			}
+		}
+	})
+}
+	
+	
+function clickli(obj){
+	
+	var id = $(obj).attr("data-url");
+	
+	location.href = "detail.jsp?goods_no=" + id;
+	
+}
+
+
+function enterMyHeart(obj) {
+	$(obj).attr("src","img/6.png")
+}
+
+function leaveMyHeart(obj) {
+	$(obj).attr("src","img/7.png")
 }

@@ -100,6 +100,7 @@
 			<div class="account">
 				<label class="user-acc">账号:</label> <input readonly
 					class="user-acc-input">
+				<span class="notModify">账号不能修改</span>
 			</div>
 			<div class="nickName">
 				<label class="user-nickName" id="user-nickname1">昵称:</label> <input

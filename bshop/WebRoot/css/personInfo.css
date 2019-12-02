@@ -315,7 +315,7 @@
         .pro-logo{
         	width: 182px;
         	height: 182px;
-        	
+        	cursor: pointer;
         }
         
         .pro-name{
@@ -351,8 +351,16 @@
         	font-size: 25px;
         }
         
+        .notModify{
+        	color:red;
+        	display: none;
+        	font-weight: bold;
+        }
         
         
+        #fileupload{
+        	cursor: pointer;
+        }
         
         
         

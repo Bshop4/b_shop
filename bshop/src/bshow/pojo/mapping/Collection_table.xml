@@ -19,6 +19,11 @@
 		goods_no=#{goods_no} and account=#{account}
 	</delete>
 	
+	<delete id="deleteCollectionById" resulttype="bshow.pojo.collection_table">
+		delete from collection_table where
+		cid=#{cid}
+	</delete>
+	
 	
 	<select id="selectColloction" resulttype="bshow.pojo.Collection_table">
 		select * from collection_table where account=#{account} and goods_no=#{goods_no}
@@ -27,5 +32,8 @@
 	<select id="selectCollectionByAccount" resulttype="bshow.pojo.Collection_table">
 		select * from collection_table where account=#{account}
 	</select>
+	
+	
+	
 
 </class>

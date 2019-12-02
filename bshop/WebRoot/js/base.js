@@ -94,6 +94,11 @@ function exitLogin(){
 		url:"ExitLogin",
 		success:function(result){
 			myflag=result;
+			if(myflag){
+				$('.top-bar>.btn').show();
+				$('.logBtn').hide();
+				location.reload();
+			}
 		}
 	})
 }
@@ -110,31 +115,9 @@ function getUrlVal(property){
   return result[2];
 };
 
-////首页打开，判断用户是否登录
-//function checkLogin(){
-//	var userName=localStorage.getItem('username');
-//	var token=localStorage.getItem('token');
-//	var cartNumber=localStorage.getItem('cartnumber');
-//	$('.store_number').html(cartNumber);
-//	$('.mingZi').html('你好,'+userName);
-//	//验证
-//	if(token){
-//		$('.logBtn').show();
-//		$('.top-bar>.btn').hide();
-//	}else{
-//		$('.top-bar>.btn').show();
-//		$('.logBtn').hide();
-//	}
-//}
-//checkLogin();
-
 //退出
 $('.logBtn>.exitM').click(function(){
 	exitLogin();
-	if(myflag){
-		$('.top-bar>.btn').show();
-		$('.logBtn').hide();
-	}
 })
 
 //鼠标进入

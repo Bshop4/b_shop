@@ -65,6 +65,8 @@ public class ExitLogin extends HttpServlet {
 		if(session!=null){
 			//移除session中的账号
 			session.removeAttribute("account");
+			session.removeAttribute("password");
+			session.removeAttribute("token");
 			flag1=true;
 		}
 		//传给前端

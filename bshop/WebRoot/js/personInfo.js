@@ -174,11 +174,11 @@ $("#mycollection").click(function() {
 				var str="";
 				for(var i = 0; i < 10; i++){
 					str += `
-						<li class="pro-product" data-url=${obj[i].goods_no} onclick="clickli(this)">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 					
@@ -188,11 +188,11 @@ $("#mycollection").click(function() {
 				var str="";
 				for(var i = 0; i < obj.length; i++){
 					str += `
-						<li class="pro-product" data-url=${obj[i].goods_no} onclick="clickli(this)">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 				}
@@ -623,11 +623,11 @@ function clickmyheart(obj) {
 				var str="";
 				for(var i = 0; i < 10; i++){
 					str += `
-						<li class="pro-product" data-url=${obj[i].goods_no} onclick="clickli(this)">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img onclick="clickmyheart(obj)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 					
@@ -637,11 +637,11 @@ function clickmyheart(obj) {
 				var str="";
 				for(var i = 0; i < obj.length; i++){
 					str += `
-						<li class="pro-product" data-url=${obj[i].goods_no} onclick="clickli(this)">
-							<img class="pro-logo" src=${obj[i].goods_photo}>
+						<li class="pro-product"  onclick="clickli(this)">
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
 							<img src="img/show.png" class="pro-select" id="pro-hide">
 							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/6.png"/></div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
 				}
@@ -665,4 +665,13 @@ function clickli(obj){
 	
 	location.href = "detail.jsp?goods_no=" + id;
 	
+}
+
+
+function enterMyHeart(obj) {
+	$(obj).attr("src","img/6.png")
+}
+
+function leaveMyHeart(obj) {
+	$(obj).attr("src","img/7.png")
 }

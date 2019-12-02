@@ -310,13 +310,12 @@
         	padding: 0px 0px 20px;
         	float: left;
         	position: relative;
-        	cursor: pointer;
         }
         
         .pro-logo{
         	width: 182px;
         	height: 182px;
-        	
+        	cursor: pointer;
         }
         
         .pro-name{

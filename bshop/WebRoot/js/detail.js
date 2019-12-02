@@ -271,7 +271,6 @@ function opration(){
 //	添加到购物车      	点一次数量也要加一次?????????????
     $('#addCartBtn').click(function(e){
     	
-    	console.log(token)
         var goodsNumber=parseInt(localStorage.getItem('cartnumber'))+0;
         var goodsNo = $('#addCartBtn').children().attr('data-goods-no');//编号
 //        var account = "pyla1";//账号
@@ -313,6 +312,7 @@ function opration(){
         if(token){
         	
         	if($('.zjl-flyincart img').is(':animated')){return;};
+        	
 //			动画飞入购物车动画,购物车的净位置,和加入购物车的净位置
 			var targetX=$('#zjl-login-cart').offset().left;
 			var targetY=$('#zjl-login-cart').offset().top;
@@ -322,9 +322,9 @@ function opration(){
 			
 //			需要判断库存数量????????????????????????????????????????????????????????????????????
 //			物品数量
-			var num=parseInt($('.zjl-product-condition .number').val());
-			goodsNumber+=num;
-			localStorage.setItem('cartnumber',goodsNumber);
+//			var num=parseInt($('.zjl-product-condition .number').val());
+//			goodsNumber+=num;
+//			localStorage.setItem('cartnumber',goodsNumber);
 			
 //			设置起始位置
 			$('.zjl-flyincart img').css({'left':intiX,'top':intiY,display:'block'});
@@ -332,7 +332,8 @@ function opration(){
 //			动画
 			$('.zjl-flyincart img').animate({left:targetX,top:targetY},1200,function(){
 				$('.zjl-flyincart img').css('display','none');
-				$('.store_number').html(goodsNumber);
+				judgementLogin();
+				//$('.store_number').html(goodsNumber);
 			});
 			
 			
@@ -600,5 +601,4 @@ function collection(obj) {
 	
 	
 }
-
 

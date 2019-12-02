@@ -82,6 +82,7 @@ function judgementLogin(){
 				$('.store_number').html(result[1]);
 				$('.logBtn').show();
 				$('.top-bar>.btn').hide();
+				
 			}
 		}
 	})

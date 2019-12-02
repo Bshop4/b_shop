@@ -19,11 +19,22 @@
 
 
 
-	<insert id="insertone">
+	<insert id="insertone" resulttype="bshow.pojo.Bill_table">
 		insert into
 		bill_table(address,bill_time,allprice,account,goods_name,goods_price,cart_number,bill_isclearing,bill_code,goods_photo,goods_id,goods_color,goods_size,goods_no)
 		values(#{address},#{bill_time},#{allprice},#{account},#{goods_name},#{goods_price},#{cart_number},#{bill_isclearing},#{bill_code},#{goods_photo},#{goods_id},#{goods_color},#{goods_size},#{goods_no})
 	</insert>
+
+	<!-- 插入地址 -->
+	<insert id="insertaddressBill" resulttype="bshow.pojo.Bill_table">
+		insert into bill_table where 1=1 and address=#{address}
+	</insert>
+	
+	<!-- 插入商品 -->
+	<insert id="insertgoodsBill" resulttype="bshow.pojo.Bill_table">
+		insert into bill_table where 1=1 and goods_no=#{goods_no}
+	</insert>
+
 	<select id="selectone" resulttype="bshow.pojo.Bill_table">
 		select * from bill_table where
 		1=1 and account=#{account}

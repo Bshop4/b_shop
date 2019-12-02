@@ -89,6 +89,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 插入地址 -->
+	<PagePattern name="saveAddress">
+		<ActionForm>bshow.web.servlet.form.SaveAddressForm</ActionForm>
+		<Action>bshow.web.servlet.action.SaveAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!--查询导航栏信息  -->
 	<PagePattern name="navigationAction">
 		<ActionForm>bshow.web.servlet.form.NavigationActionForm</ActionForm>

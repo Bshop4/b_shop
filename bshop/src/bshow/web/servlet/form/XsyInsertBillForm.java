@@ -3,14 +3,23 @@ package bshow.web.servlet.form;
 import bshow.web.servlet.core.ActionForm;
 
 public class XsyInsertBillForm extends ActionForm {
-	private String msg;
+	private String cart_id;
+	private String dizhi;
 
-	public String getMsg() {
-		return msg;
+	public String getCart_id() {
+		return cart_id;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setCart_id(String cart_id) {
+		this.cart_id = cart_id;
+	}
+
+	public String getDizhi() {
+		return dizhi;
+	}
+
+	public void setDizhi(String dizhi) {
+		this.dizhi = dizhi;
 	}
 
 }

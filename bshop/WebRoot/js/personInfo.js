@@ -1,5 +1,72 @@
 
 var account = getUrlVal('account');
+
+	var s = `
+		<div class="modal fade" id="editMyAddress" data-backdrop="static"
+			id="addressform1">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:700px;height:540px;">
+
+					<div class="modal-header">
+						<h2 class="text-success modal-title">
+							编辑地址 <span class="close" data-dismiss="modal">&times;</span>
+						</h2>
+					</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="form-group">
+									<label>收货人姓名:</label> <input type="text" class="form-control"
+										id="myname1" /><label class="namelable">收货人姓名不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>手机号:</label> <input type="text" class="form-control"
+										id="myiphone1" /><label class="iplabel">手机号格式错误</label>
+								</div>
+
+								<div class="form-group">
+									<label>邮编:</label> <input type="text" class="form-control"
+										id="mypostcode1" /><label class="postlabel">邮编不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>收货地址:</label><br>
+									<!--修改-->
+									<select id="province" onchange="getCity(this)">
+										<option>请选择省份</option>
+									</select> <select name="" id="city" onchange="getArea(this)">
+										<option value="">请选择城市</option>
+									</select> <select name="" id="area">
+										<option value="">请选择区县</option>
+									</select>
+								</div>
+								<!--新增-->
+								<div class="form-group">
+									<label>详细地址:</label> <input type="text" class="form-control"
+										id="mydetailaddress" /> <label id="addlabel">收货地址不能为空</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn btn-success" id="save2" onclick="myeditclick()">保存</button>
+						<button class="btn btn-danger" data-dismiss="modal" id="cancel2">取消</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	`;
+	
+	$('.user').append(s);
+
+
+
 (function() {
 //	var account = "zjl";
 	$.ajax({
@@ -295,7 +362,7 @@ $("#myaddress").click(function() {
 				if (obj.length > 0) {
 					for (var i = 0; i < obj.length; i++) {
 						if (obj[i].ischeck == "1") {
-							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'  data-eid='"+obj[i].rid+"' data-toggle='modal' data-target='#editMyAddress' onclick='editclick(this)'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						} else {
 							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						}
@@ -674,4 +741,11 @@ function enterMyHeart(obj) {
 
 function leaveMyHeart(obj) {
 	$(obj).attr("src","img/7.png")
+}
+
+
+
+function editclick(obj) {
+	console.log(obj.attr("data-eid"))
+	
 }

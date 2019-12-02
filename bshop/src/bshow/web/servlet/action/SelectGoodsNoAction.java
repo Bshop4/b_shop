@@ -87,10 +87,10 @@ public class SelectGoodsNoAction extends Action{
 			str = "1";
 		}
 		
-		listbb.add(account);
-		listbb.add(token);
-		listbb.add(str);
-		listbb.add(gt1);
+		listbb.add(account);//-4
+		listbb.add(token);//-3
+		listbb.add(str);//-2
+		listbb.add(gt1);//-1
 		
 		
 		response.setCharacterEncoding("UTF-8");

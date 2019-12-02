@@ -29,7 +29,6 @@ public class XsyInsertBillAction extends Action {
 		Cart_table ct = new Cart_table();
 		Bill_table bt = new Bill_table();
 		ct.setAccount(account);
-
 		Basedao bd = new Basedaoimpl();
 		List<Object> list = bd.select("selectByState", ct);
 		System.out.println(list.size());

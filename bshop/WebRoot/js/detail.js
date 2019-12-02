@@ -162,7 +162,7 @@ var token = "";
 			`;
 				
 
-			var pp = result[len-3];
+			var pp = result[len-5];
 			$(".zjl-footer-img").append(pp);
 			
 			

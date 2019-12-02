@@ -16,12 +16,12 @@ function createXMLHttp() {
 }
 // 定义一个需要进行操作的变量
 var returnResult;
-//定义应付金额
+// 定义应付金额
 var sum=0;
 // 页面加载查询数据库状态值为1的商品
 $(document).ready(function() {
 	var account_name = getUrlVal("account_name");
-//	console.log(account_name)
+// console.log(account_name)
 // var goods_ids = window.localStorage.getItem('goods_id');
 // console.log(account_name);
 // var account = "pyla1";
@@ -39,11 +39,11 @@ $(document).ready(function() {
 				return;
 			};
 			for (var i = 0; i < result.length; i++) {
-//				console.log(result[i].cgoods_sub);
+// console.log(result[i].cgoods_sub);
 				sum += result[i].cgoods_sub;
-//				console.log(sum)
+// console.log(sum)
 				var str = `
-					<tr class="go-bill">
+					<tr class="go-bill" data-tr="active">
 						<td class="left" data-id=${result[i].cart_id}>
 							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
 						</td>
@@ -61,10 +61,10 @@ $(document).ready(function() {
 				 // 把每次组装好的添加进table
 			     $('table').append(str);
 			};
-//			console.log(sum);
+// console.log(sum);
 			// 设置总价
 			$('.sum-all').html('合计：¥' + sum + '.00');
-//			console.log(sum);
+// console.log(sum);
 			allMount = result.length;
 		    // 所有的业务逻辑都在这之后
 		    clickAll();
@@ -168,8 +168,8 @@ function clickAll() {
 
       document.getElementById("save1").setAttribute("data-dismiss","modal");
       $(".address-list").css({
-//  		"width": "1180px",
-//  		"height": "80px",
+// "width": "1180px",
+// "height": "80px",
     	"display":"inline-block",
   		"margin-left": "10px",
   		"position": "relative",
@@ -179,6 +179,14 @@ function clickAll() {
   	  })
   	  
   	  if(reiphone.test(iphone) == true && name != "" && postcode != ""){
+  		  $.ajax({
+  			  type:"POST",
+  			  url:"saveAddress.do",
+  			  data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+  			  success:function(result){
+  				  console.log(result);
+  			  }
+  		  })
 	  	  var obj = $("<li style='float: left;margin-left: 20px;border:2px solid white;'></li>");
 	  	  $(".address-list").append(obj)
 	  	  obj.append("收货人姓名：" + name);
@@ -218,34 +226,38 @@ function clickAll() {
   };
   
   $('#btn-account').click(function() { 
-	  console.log(222111);
-		$('go-bill').each(function(i) {
-//			console.log($(this));	
+//	  console.log(222111);
+//	  console.log($('[data-tr="active"]').parent().prev().prev().prev());
+		$('[data-tr="active"]').each(function() {
+// console.log($(this));
 			var tab = $(this).parent();
 			var tr = $(this);
-			console.log(111);
-			cart_id = $(this).eq(i).find("td:first").attr("data-id");
+//			console.log($(this).parent().prev().prev().prev().result[0].innerText);
+//			console.log($(this).parent().prev().prev().prev());
+// console.log(111);
+			cart_id = $(this).find("td:first").attr("data-id");
 			console.log(cart_id);
-////			先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
-//			$.ajax({
-//				type : "POST",
-//				url : "xsyinsertBill.do",
-//				data : {"cart_id" : cart_id},
-//				success : function(result) {
-//					var result=JSON.parse(result);
-//					console.log(result);
-//				}
-//			})
-//			tab.get(0).removeChild(tr.get(0));
+// // 先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
+			$.ajax({
+				type : "POST",
+				url : "xsyinsertBill.do",
+				data : {"cart_id" : cart_id},
+//				$(this).parentNode.previousElementSibling.previousElementSibling.previousElementSibling.find("li:second")
+				success : function(result) {
+// var result=JSON.parse(result);
+					console.log(result);
+				}
+			})
+// tab.get(0).removeChild(tr.get(0));
 		})
-//		window.open('pay.jsp');
+// window.open('pay.jsp');
 	  	var mone = document.getElementById('sum-all').innerHTML;
-//	  	console.log(money);
+// console.log(money);
 	  	var money = mone.substring(4);
-//		location.href="pay.jsp?pay_money="+money;
-		//var dizhi = $('.address-list'.children.class="selected");
-		//console.log(dizhi+"222");
-////		window.localStorage.setItem('goods_id',cart_id);
+// location.href="pay.jsp?pay_money="+money;
+		// var dizhi = $('.address-list'.children.class="selected");
+		// console.log(dizhi+"222");
+// // window.localStorage.setItem('goods_id',cart_id);
 	})
   
   

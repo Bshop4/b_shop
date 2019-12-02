@@ -79,7 +79,7 @@ public class DBhelper {
 	
 	
 	//加载所有的映射文件
-	public static void loadMappings(){
+	public synchronized static void loadMappings(){
 		List<Element> list =doc.selectNodes("/properties/mappings/mapping");
 		try {
 			for(Element element : list) {

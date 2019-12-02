@@ -82,6 +82,7 @@
 				<li id="mymenu">我的订单</li>
 				<li id="myaddress">收货地址</li>
 				<li id="mycollection">我的收藏</li>
+				<li id="myfooter">我的足迹</li>
 			</ul>
 		</div>
 
@@ -168,6 +169,11 @@
 			<div class="my_collection">
 				<ul class="pro-list"></ul>
 			</div>
+		</div>
+		
+		<!-- 我的足迹 -->
+		<div class="user-right4">
+			
 		</div>
 
 

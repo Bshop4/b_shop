@@ -154,10 +154,14 @@ $("#mycollection").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right3").show();
 	$(".user-right").hide();
 	$(".user-right1").hide();
 	$(".user-right2").hide();
+	$(".user-right4").hide();
 	
 	$(".pro-list").html("");
 	
@@ -225,11 +229,14 @@ $("#myinfo").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right").show();
 	$(".user-right1").hide();
 	$(".user-right2").hide();
 	$(".user-right3").hide();
-
+	$(".user-right4").hide();
 })
 
 $("#mymenu").click(function() {
@@ -245,10 +252,14 @@ $("#mymenu").click(function() {
 	$("#myaddress").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right1").show();
 	$(".user-right").hide();
 	$(".user-right2").hide();
 	$(".user-right3").hide();
+	$(".user-right4").hide();
 })
 
 $("#myaddress").click(function() {
@@ -264,10 +275,14 @@ $("#myaddress").click(function() {
 	$("#mymenu").css({
 		color : "black"
 	})
+	$("#myfooter").css({
+		color : "black"
+	})
 	$(".user-right2").show();
 	$(".user-right").hide();
 	$(".user-right1").hide();
 	$(".user-right3").hide();
+	$(".user-right4").hide();
 	//从数据库查找地址数据然后显示在页面
 //	var account = "zjl";
 	$.ajax({
@@ -675,3 +690,32 @@ function enterMyHeart(obj) {
 function leaveMyHeart(obj) {
 	$(obj).attr("src","img/7.png")
 }
+
+
+//我的足迹点击
+$("#myfooter").click(function() {
+	$("#myinfo").css({
+		color : "black"
+	});
+
+	$("#mycollection").css({
+		color : "black"
+	});
+	$("#mymenu").css({
+		color : "black"
+	})
+	$("#myaddress").css({
+		color : "black"
+	})
+	$("#myfooter").css({
+		color : "red"
+	})
+	$(".user-right").hide();
+	$(".user-right1").hide();
+	$(".user-right2").hide();
+	$(".user-right3").hide();
+	$(".user-right4").show();
+})
+
+
+

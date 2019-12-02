@@ -21,7 +21,7 @@
 				for(var i = 0; i < result.length; i++) {
 					var str = `
 					<li>
-						<a target="_blank" href="/bshop/badAccess/detail.jsp?goods_no=${result[i].goods_no}">
+						<a target="_blank" href="/bshop/detail.jsp?goods_no=${result[i].goods_no}">
 							<img src="${result[i].goods_photo}" />
 							<div class="buttom">
 								<span class="left" href="javascript:;">${result[i].goods_brand}</span>

@@ -97,6 +97,7 @@ function exitLogin(){
 			if(myflag){
 				$('.top-bar>.btn').show();
 				$('.logBtn').hide();
+				location.reload();
 			}
 		}
 	})

@@ -207,7 +207,7 @@ function getGoodsList() {
 			for(var i=0;i<result[0].goodsConditions.length;i++){
 				var str = `
 					<li>
-						<a target="_blank" href="/bshop/badAccess/detail.jsp?goods_no=${result[0].goodsConditions[i].goods_no}">
+						<a target="_blank" href="/bshop/detail.jsp?goods_no=${result[0].goodsConditions[i].goods_no}">
 							<img src="${result[0].goodsConditions[i].goods_photo}" />
 							<div class="buttom">
 								<span class="left">${result[0].goodsConditions[i].goods_brand}</span>

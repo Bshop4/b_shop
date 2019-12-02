@@ -30,9 +30,6 @@ public class SelectCollectionByAccountAction extends Action{
 		Collection_table ct = new Collection_table();
 		ct.setAccount(account);
 		List<Object> list = bd.select("selectCollectionByAccount", ct);
-		for (Object object : list) {
-			System.out.println(object);
-		}
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter pw = response.getWriter();
 		

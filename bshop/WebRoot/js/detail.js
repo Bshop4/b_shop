@@ -7,15 +7,7 @@ var goodsno = getUrlVal('goods_no');
 var account="";
 var token = "";
 (function(){
-	console.log(goodsno)
-	console.log(account)
-	console.log(token)
 	
-    //发起
-//	var test = {
-//		"goodsno" : goodsno,
-//		"account" : account
-//	}
 	$.ajax({
 		type:"POST",
 		url:"selectGoodsNo.do",
@@ -23,13 +15,14 @@ var token = "";
 		success:function(result){
 			
 			result=JSON.parse(result);
+			console.log(result)
+			console.log(result.length)
+			
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
 			account = result[len-4];
-			console.log(account)
 			token = result[len-3];
-			console.log(token)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        var strColle;
@@ -60,18 +53,20 @@ var token = "";
 
 	        //小图
 	        var strsm="";
-	        if(len>=6){
-	        	for(var i = 0; i < 4; i++){
-	        		strsm+="<li><img src='"+result[i]+"'/></li>";
-	        	}
-	        }
-	        if(len>=3 && len <=5){
-	        	for(var i = 0; i < len-2; i++){
-	        		strsm+="<li><img src='"+result[i]+"'/></li>";
-	        	}
+//	        if(len>=4){
+//	        	for(var i = 0; i < 4; i++){
+//	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+//	        	}
+//	        }
+//	        if(len>=2 && len <=6){
+//	        	for(var i = 0; i < len-5; i++){
+//	        		strsm+="<li><img src='"+result[i]+"'/></li>";
+//	        	}
+//	        }
+	        for(var i = 0;i < len-5; i++){
+	        	strsm+="<li><img src='"+result[i]+"'/></li>";
 	        }
 	        
-//	        console.log(strsm)
 	        var str2 = `
 	        	<ul>
 	              ${strsm}

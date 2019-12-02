@@ -310,6 +310,7 @@
         	padding: 0px 0px 20px;
         	float: left;
         	position: relative;
+        	cursor: pointer;
         }
         
         .pro-logo{
@@ -351,8 +352,16 @@
         	font-size: 25px;
         }
         
+        .notModify{
+        	color:red;
+        	display: none;
+        	font-weight: bold;
+        }
         
         
+        #fileupload{
+        	cursor: pointer;
+        }
         
         
         

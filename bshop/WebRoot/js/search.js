@@ -48,6 +48,8 @@ var pagesize = 16;
 		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>模糊查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	}
 	
+	g=goods_name;
+	
 	//商品刷新
 	getGoodsList();
 	
@@ -168,10 +170,9 @@ function getUrlVal(property) {
 };
 
 function getGoodsList() {
-	
-	gg=goods_name;
+
 	djtIndex++;
-	gg=gg+djtIndex;
+	gg=goods_name+djtIndex;
 	
 	$.ajax({
 		type:"post",
@@ -200,10 +201,22 @@ function getGoodsList() {
 			
 			//判断是否搜到相应的商品
 			if(maxPageCount==0){
-				if(djtIndex==1){
+				if(djtIndex<=2){
+					
+					goods_price=a;
+					goods_brand=b;
+					middle_color=c;
+					middle_size=d;
+					goods_place=e;
+					middle_type=f;
+					goods_name=g;
+					
+					gg=undefined;
+					
 					getGoodsList();
 					return;
-				}else{
+				}
+				if(djtIndex==3){
 					alert("未搜索到相应商品")
 					return;
 				}
@@ -409,6 +422,8 @@ function duanjuntang(obj){
 	
 	djtIndex=0;
 	gg=undefined;
+	
+	oldValue();
 	
 	getGoodsList();
 	

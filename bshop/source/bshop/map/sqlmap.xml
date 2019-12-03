@@ -12,6 +12,7 @@
 		<mapping path="bshow/pojo/mapping/Repertory_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Collection_table.xml"/>
 		<mapping path="bshow/pojo/mapping/Footprint_table.xml"/>
+		<mapping path="bshow/pojo/mapping/Administrator_table.xml"/>
 		
 	</mappings>	
 </properties>

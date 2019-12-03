@@ -36,7 +36,7 @@ $(document).ready(function() {
 				console.log("请求数据失败");
 				return;
 			};
-			if (length-1==0) {
+			if (length-1==0) { 
 				return;
 			}
 			for (var i = 0; i < length-1; i++) {

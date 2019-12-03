@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Middle_table;
+import bshow.pojo.Repertory_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
@@ -33,6 +34,7 @@ public class SelectColortAction extends Action{
 		JSONObject obj = JSONObject.fromObject(msg);
 		String goods_no = obj.getString("goods_no");
 		String color = obj.getString("color");
+		String size = obj.getString("size");
 		
 		Middle_table mt = new Middle_table();
 		mt.setGoods_no(goods_no);
@@ -72,6 +74,15 @@ public class SelectColortAction extends Action{
 				listStr.add(list2.get(i));
 			}
 		}
+		
+		Repertory_table rt = new Repertory_table();
+		rt.setGoods_no(goods_no);
+		rt.setRepertory_color(color);
+		rt.setRepertory_size(size);
+		List<Object> listnum = bd.select("selectNum", rt);
+		int num = ((Repertory_table)listnum.get(0)).getRepertory_number();
+		
+		listStr.add(String.valueOf(num));
 		
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter pw = response.getWriter();

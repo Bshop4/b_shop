@@ -275,6 +275,16 @@ img{
     position: relative;
 }
 
+.xiaoliang{
+	position: absolute;
+	top: -297px;
+	left:460px;
+	display:block;
+	height: 40px;
+	width: 100px;
+	font-size: 22px;
+}
+
 .zjl-product-condition .buyName{
     font-weight: bold;
     float: left;

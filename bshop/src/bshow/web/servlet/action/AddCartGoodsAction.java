@@ -17,6 +17,8 @@ import net.sf.json.JSONArray;
 
 public class AddCartGoodsAction extends Action {
 
+	
+	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {

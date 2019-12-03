@@ -1,0 +1,54 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+img {
+	border: none;
+	vertical-align: bottom;
+}
+
+#admi_top{
+	height: 100px;
+}
+
+
+.admi_form span{
+	font-weight: bold;
+}
+
+.admi_form input{
+	margin: 15px 0px;
+	
+}
+.admi_form input:focus{
+	outline: black auto;
+}
+.users{
+	width: 300px;
+	height: 30px;
+}
+.pass{
+	width: 300px;
+	height: 30px;
+}
+
+.admi_btn{
+	width: 376px;
+	height: 36px;
+	background-color: black;
+	outline: none;
+	border-radius: 6px;
+	color: gold;
+	position: relative;
+}
+
+.admi_anim{
+	position: absolute;
+	top: 8px;left: 172px;
+}

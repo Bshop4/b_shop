@@ -48,4 +48,9 @@
 		select * from receiver_table where 1=1 and rid=#{rid}
 	</select>
 	
+	<!-- 更新all -->
+	<update id="updateAllAddress">
+		update receiver_table set receiver=@{receiver} , telephone=@{telephone} , postal=@{postal} , address=@{address} , account=@{account}  where rid=#{rid}
+	</update>
+	
 </class>

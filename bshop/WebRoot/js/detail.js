@@ -15,14 +15,21 @@ var token = "";
 		success:function(result){
 			
 			result=JSON.parse(result);
-			console.log(result)
-			console.log(result.length)
+//			console.log(result)
+//			console.log(result.length)
 			
 			var len = result.length;
 			var obj = result[len-1];
 			var str = result[len-2];
 			account = result[len-4];
 			token = result[len-3];
+			var num = result[len-5];
+//			console.log("销量：" + num)
+			
+			var strnum = `
+				<span class="xiaoliang">库存：${num}<span>
+			`;
+			$(".zjl-product-condition").append(strnum)
 			
 	        $('title').html('B-SHOP嘿店——'+obj.goods_name);
 	        var strColle;
@@ -63,7 +70,7 @@ var token = "";
 //	        		strsm+="<li><img src='"+result[i]+"'/></li>";
 //	        	}
 //	        }
-	        for(var i = 0;i < len-5; i++){
+	        for(var i = 0;i < len-6; i++){
 	        	strsm+="<li><img src='"+result[i]+"'/></li>";
 	        }
 	        
@@ -156,7 +163,7 @@ var token = "";
 			`;
 				
 
-			var pp = result[len-5];
+			var pp = result[len-6];
 			$(".zjl-footer-img").append(pp);
 			
 			
@@ -421,10 +428,12 @@ function opration(){
             $(this).children().show().parent().siblings().children().hide();
             $(this).attr("data-color","checked").siblings().attr("data-color","");
             
+            var size = $("[data-size='checked']").text();
             var color = $(this).text();
             var nocolor = {
             	"goods_no" : goods_no,
-            	"color" : color
+            	"color" : color,
+            	"size" : size,
             }
             
             $.ajax({
@@ -435,8 +444,10 @@ function opration(){
             		$('.zjl-top').html("");
             		$('.zjl-bottom').html("");
             		var obj = JSON.parse(re);
+            		var num = obj[obj.length-1];
+            		$(".xiaoliang").html("库存："+num)
             		var strsm = "";
-            		for(var i = 0; i < obj.length; i++){
+            		for(var i = 0; i < obj.length-1; i++){
             			strsm+="<li><img src='"+obj[i]+"'/></li>";
             		}
             		var strsmm = `
@@ -500,6 +511,31 @@ function opration(){
         $(this).click(function(){
             $(this).children().show().parent().siblings().children().hide();
             $(this).attr("data-size","checked").siblings().attr("data-size","");
+            
+            var size = $(this).text();
+            var color = $("[data-color='checked']").text();
+            
+            var test = {
+            	"size" : size,
+            	"color" : color,
+            	"goodsno" : goodsno
+            };
+            
+            $.ajax({
+            	
+            	type : "post",
+            	url : "getNum.do",
+            	data : {"msg" : JSON.stringify(test)},
+            	success : function (re) {
+            		
+            		$(".xiaoliang").html("库存："+re)
+            		
+            	}
+            	
+            })
+            
+            
+            
         })
     })
 
@@ -602,7 +638,7 @@ function collection(obj) {
 		dataType:"json",
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 		success:function(result){
-			console.log(result)
+//			console.log(result)
 		}
 	})
 })();

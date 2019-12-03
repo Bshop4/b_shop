@@ -72,7 +72,6 @@ public class Sign_accountAction extends Action{
 //		ct.setCgoods_price(0);
 //		ct.setCgoods_sub(0);
 //		ct.setCgoods_size("");
-//		boolean flagCart=dao1.saveObject("insertToCart", ct);
 		
 		
 		//编写返回给js页面的值
@@ -88,8 +87,6 @@ public class Sign_accountAction extends Action{
 		if(!flagPersoninfo){
 			json="{\"code\":\"412\",\"msg\":\"Personin_tableSavefoError信息添加出错\"}";
 			//只要有一边失败就要删除成功的表
-			
-			
 		}
 		
 		if(!flagAccount){

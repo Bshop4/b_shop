@@ -31,6 +31,12 @@
 		1=1 and account=#{account} and cgoods_state=1
 	</select>
 	
+	<!-- 根据用户名和状态值查询购物车商品然后放到bill表 -->
+	<select id="selectState" resulttype="bshow.pojo.Cart_table">
+		select * from cart_table where
+		1=1 and account=#{account} and cgoods_state=1 and cart_id=#{cart_id}
+	</select>
+	
 	<!-- 根据状态值查询购物车商品 
 	<select id="selectState" resulttype="bshow.pojo.Cart_table">
 		select * from cart_table where

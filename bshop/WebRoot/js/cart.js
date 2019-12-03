@@ -18,27 +18,28 @@ function createXMLHttp() {
 var returnResult;
 var account;
 $(document).ready(function() {
-	account = "pyla1";
+//	account = "pyla1";
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
 		url : "selectCartGoods.do",
-		data : {"account" : account},
+//		data : {"account" : account},
 		success : function(result) {
 			var result=JSON.parse(result);
 			returnResult = result;
-// console.log(returnResult.length);
-// console.log(result);
-// console.log(result.length);
+			console.log(returnResult);
+			var length  = returnResult.length;
+			account = returnResult[length-1];
+			console.log(account);
 			// 验证
 			if (result.account==0) {
 				console.log("请求数据失败");
 				return;
 			};
-// console.log(result[0].cgoods_photo);
-// var goodsList = result.data;
-			for (var i = 0; i < result.length; i++) {
-// console.log(result[i].cart_id)
+			if (length-1==0) {
+				return;
+			}
+			for (var i = 0; i < length-1; i++) {
 				var str = `
 					<tr>
 						<td class="left">

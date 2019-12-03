@@ -40,7 +40,23 @@
 		select * from receiver_table where 1=1 and ischeck=#{ischeck}
 	</select>
 	
+	<!-- 从订单页设置 -->
 	<update id="updateaddressReceiver">
-		update receiver_table set ischeck=1 where telephone=#{telephone}
+		update receiver_table set ischeck=2 where telephone=#{telephone}
 	</update>
+	
+	<!-- 从订单页修改 -->
+	<update id="updateaddressReceiver1">
+		update receiver_table set ischeck=0 where telephone=#{telephone}
+	</update>
+	
+	<!-- 从订单页修改 -->
+	<update id="updateaddressReceiver2">
+		update receiver_table set receiver=@{receiver},telephone=@{telephone},postal=@{postal},address=@{address},account=@{account}, ischeck=@{ischeck} where rid=#{rid}
+	</update>
+	
+	<!-- 获得默认地址 -->
+	<select id="defaultAddress" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where account=#{account}
+	</select>
 </class>

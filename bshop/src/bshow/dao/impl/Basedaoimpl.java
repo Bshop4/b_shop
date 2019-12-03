@@ -34,7 +34,7 @@ public class Basedaoimpl implements Basedao, Looker {
 	@Override
 	public boolean saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
-		System.out.println(o);
+
 		Connection conn = DBhelper.getConnection();
 		try {
 			// 拿到对应的文档xml
@@ -61,6 +61,7 @@ public class Basedaoimpl implements Basedao, Looker {
 				String methodname = "get" + filedname.substring(0, 1).toUpperCase() + filedname.substring(1);
 				Method method = c.getMethod(methodname, null);
 				ps.setObject(i + 1, method.invoke(o, null));
+
 			}
 
 			int psint = ps.executeUpdate();
@@ -129,7 +130,6 @@ public class Basedaoimpl implements Basedao, Looker {
 					String columnstr = column.getValue();
 					method.invoke(obj, rs.getObject(columnstr));
 				}
-//				System.out.println("xsy" + obj);
 				list.add(obj);
 			}
 

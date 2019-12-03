@@ -96,10 +96,24 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 获得默认地址 -->
+	<PagePattern name="defaultAddress">
+		<ActionForm>bshow.web.servlet.form.DefaultAddressForm</ActionForm>
+		<Action>bshow.web.servlet.action.DefaultAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 选中地址 -->
 	<PagePattern name="updateAddress">
 		<ActionForm>bshow.web.servlet.form.UpdateAddressForm</ActionForm>
 		<Action>bshow.web.servlet.action.UpdateAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 选中地址 -->
+	<PagePattern name="updateAddress1">
+		<ActionForm>bshow.web.servlet.form.UpdateAddress1Form</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateAddress1Action</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	

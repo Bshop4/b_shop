@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/index.css" />
 <link rel="stylesheet" href="css/base.css" />
-
-<link rel="stylesheet" href="css/base.css" />
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="stylesheet" href="css/personInfo.css" />
 
@@ -63,17 +61,16 @@
 		<a href="cart.jsp">＜返回购物车</a>
 	</div>
 	<div class="address-layout">
-		<div class="title-title">选择收获地址</div>
+		<div class="title-title">选择收获地址<span style="color:red;font-size:12px">（选中才可以支付哦!）</span></div>
 		<ul class="address-list">
 			<li style="float: left"></li>
 		</ul>
 		<div class="more-wrap">
 			<span class="btn-no-data" style="font-size: 13px;" class="now-no">暂无收货地址 </span>
-
-			<button id="user-myaddress" data-toggle="modal"
+			<div class="woaidong" style="position:relative;left:0px;top:0px"><button id="user-myaddress" data-toggle="modal"
 				data-target="#addAddress"
-				style="background: white;left: 200px; top: 226px; border: 1px solid black;">+新增地址</button>
-
+				style="background: white; border: 1px solid black;">+新增地址</button>
+			</div>
 		</div>
 		<div class="checkout-content-title">确认商品清单</div>
 		<table border="0" cellpadding="0" cellspacing="0">

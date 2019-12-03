@@ -151,11 +151,12 @@
 	$.ajax({
 		type:"POST",
 		url:"getMyAddress.do",
-		data:{"msg":1},
+		data:{"msg":2},
 		success:function(result){
 			var result = JSON.parse(result);
 			console.log(result);
 			var obj1 = eval(result);
+			//设置收货地址
 			document.getElementById('sh-msg').innerHTML = "收货人:"+obj1[0].receiver +"  "+"电话:"+ obj1[0].telephone+"  "+"邮编:"+ obj1[0].postal+"  "+"地址:"+ obj1[0].address; 
 		}
 	})

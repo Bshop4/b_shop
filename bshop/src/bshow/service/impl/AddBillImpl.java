@@ -13,6 +13,7 @@ public class AddBillImpl implements AddBill {
 	public boolean AddBill(String id) {
 		Connection conn = DBhelper.getConnection();
 		String sql = "insert into bill_table (goods_id,goods_photo,goods_name,cart_number,goods_price,allprice,account,goods_color,goods_size,goods_no) select cart_id,cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,account,cgoods_color,cgoods_size,cgoods_no from cart_table as ct where ct.cart_id=?";
+		String sql1 = "SELECT cart_id,cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_color,cgoods_size,address FROM cart_table as c,receiver_table AS r WHERE c.account=r.account and c.cgoods_state=1 and r.ischeck=1";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, id);

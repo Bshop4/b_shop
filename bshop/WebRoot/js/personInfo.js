@@ -708,32 +708,6 @@ function editclick(obj) {
 	
 }
 
-//我的足迹点击
-$("#myfooter").click(function() {
-	$("#myinfo").css({
-		color : "black"
-	});
-
-	$("#mycollection").css({
-		color : "black"
-	});
-	$("#mymenu").css({
-		color : "black"
-	})
-	$("#myaddress").css({
-		color : "black"
-	})
-	$("#myfooter").css({
-		color : "red"
-	})
-	$(".user-right").hide();
-	$(".user-right1").hide();
-	$(".user-right2").hide();
-	$(".user-right3").hide();
-	$(".user-right4").show();
-})
-
-
 //下拉列表
 var pro1 = document.getElementById("province1");
 function getPro1() {
@@ -927,9 +901,103 @@ function mysaveclick1() {
 		}
 		
 	})
-	
-	
 }
+
+//我的足迹点击
+$("#myfooter").click(function() {
+	$("#myinfo").css({
+		color : "black"
+	});
+
+	$("#mycollection").css({
+		color : "black"
+	});
+	$("#mymenu").css({
+		color : "black"
+	})
+	$("#myaddress").css({
+		color : "black"
+	})
+	$("#myfooter").css({
+		color : "red"
+	})
+	$(".user-right").hide();
+	$(".user-right1").hide();
+	$(".user-right2").hide();
+	$(".user-right3").hide();
+	$(".user-right4").show();
+	
+	getFooter();
+})
+
+//根据账号查看我的足迹
+function getFooter(){
+	$.ajax({
+		type : "post",
+		url : "MyFooter",
+		success:function(result){
+			if(result==null){
+				alert("你没有浏览过任何商品");
+				return;
+			}
+			console.log(result);
+			var mylength=result.length-1;
+			
+			for(var i=mylength;i>=0;i--){
+				if(i==mylength){
+					var str=`
+					<p class="djtDate">${result[i].footprint_time}</p>
+					<div onclick="djtclick(this)">
+						<img src="${result[i].goods_photo}">
+						<span class="djtbrand">${result[i].goods_brand}</span>
+						<span class="djtprice">￥${result[i].goods_price}</span>
+						<p class="djtname">${result[i].goods_name}</p>
+						<span class="djtdelete glyphicon glyphicon-trash"></span>
+					</div>
+					`;
+					$('.user-right4').append(str);
+				}else{
+					//日期不相等就创建日期
+					if(result[i+1].footprint_time!=result[i].footprint_time){
+						var str=`
+							<p class="djtDate">${result[i].footprint_time}</p>
+							<div onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span class="djtdelete glyphicon glyphicon-trash"></span>
+							</div>
+						`;
+					$('.user-right4').append(str);
+					}else{
+						var str=`
+							<div onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span class="djtdelete glyphicon glyphicon-trash"></span>
+							</div>
+						`;
+						$('.user-right4').append(str);
+					}
+					//显示删除
+					$('.user-right4>div').each(function(i){
+						$('.user-right4>div').eq(i).mouseover(function(){
+							$('.user-right4>div').eq(i).children('span.djtdelete').show();
+						})
+						$('.user-right4>div').eq(i).mouseout(function(){
+							$('.user-right4>div').eq(i).children('span.djtdelete').hide();
+						})
+					})
+				}
+			}
+		}
+	})
+}
+
+//
 
 
 

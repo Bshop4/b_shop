@@ -214,6 +214,7 @@ function getGoodsList() {
 							<img src="${result[0].goodsConditions[i].goods_photo}" />
 							<div class="buttom">
 								<span class="left">${result[0].goodsConditions[i].goods_brand}</span>
+								<span class="right">${result[0].goodsConditions[i].goods_like}❤</span>
 							</div>
 							<p>${result[0].goodsConditions[i].goods_name}</p>
 							<h3>￥${result[0].goodsConditions[i].goods_price}</h3>

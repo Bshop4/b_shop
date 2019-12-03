@@ -250,8 +250,19 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 新品 -->
+	<PagePattern name="newsGoodByTime">
+		<ActionForm>bshow.web.servlet.form.NewsGoodByTimeActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.NewsGoodByTimeAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
-	
+	<!-- 爆款 -->
+	<PagePattern name="explosiveGood">
+		<ActionForm>bshow.web.servlet.form.NewsGoodByTimeActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.ExplosiveGoodAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 	

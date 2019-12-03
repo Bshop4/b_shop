@@ -12,6 +12,10 @@ var goods_place;
 var middle_type;
 var goods_name;
 
+//第一次为精准查询，第二次为模糊查询
+var djtIndex=0;
+var gg;
+
 //为了能自动跳分页
 var a;
 var b;
@@ -60,6 +64,9 @@ $('.btnNext').click(function() {
 	//获取需要的值
 	getNeedsList();
 	
+	gg=undefined;
+	djtIndex=0;
+	
 	getGoodsList();
 	
 	//返回顶部
@@ -80,6 +87,9 @@ $('.btnPrev').click(function() {
 	//获取需要的值
 	getNeedsList();
 	
+	gg=undefined;
+	djtIndex=0;
+	
 	getGoodsList();
 	
 	//		返回顶部
@@ -98,6 +108,10 @@ $('.btnJump').click(function() {
 			page = 1;
 	}
 	$('.pageNum').val(page);
+	
+	gg=undefined;
+	djtIndex=0;
+	
 	getGoodsList();
 	//返回顶部
 	$('body').animate({
@@ -111,6 +125,9 @@ $('.btnStart').click(function(){
 	$('.pageNum').val(page);
 	//获取需要的值
 	getNeedsList();
+	
+	gg=undefined;
+	djtIndex=0;
 	
 	getGoodsList();
 	
@@ -126,6 +143,9 @@ $('.btnEnd').click(function(){
 	$('.pageNum').val(page);
 	//获取需要的值
 	getNeedsList();
+	
+	gg=undefined;
+	djtIndex=0;
 	
 	getGoodsList();
 	
@@ -148,6 +168,11 @@ function getUrlVal(property) {
 };
 
 function getGoodsList() {
+	
+	gg=goods_name;
+	djtIndex++;
+	gg=gg+djtIndex;
+	
 	$.ajax({
 		type:"post",
 		url:"goodsByConditionsAction.do",
@@ -157,7 +182,7 @@ function getGoodsList() {
 			middle_color:middle_color,
 			middle_size:middle_size,
 			goods_place:goods_place,
-			goods_name:goods_name,
+			goods_name:gg,
 			page:page,
 			pagesize:pagesize,
 			middle_type:middle_type,
@@ -175,8 +200,13 @@ function getGoodsList() {
 			
 			//判断是否搜到相应的商品
 			if(maxPageCount==0){
-				alert("未搜索到相关商品");
-				return;
+				if(djtIndex==1){
+					getGoodsList();
+					return;
+				}else{
+					alert("未搜索到相应商品")
+					return;
+				}
 			}
 			
 			//为了加载更多
@@ -199,6 +229,9 @@ function getGoodsList() {
 				middle_type=f;
 				goods_name=g;
 				
+				djtIndex=0;
+				gg=undefined;
+				
 				getGoodsList();
 				return;
 			}
@@ -214,6 +247,7 @@ function getGoodsList() {
 							<img src="${result[0].goodsConditions[i].goods_photo}" />
 							<div class="buttom">
 								<span class="left">${result[0].goodsConditions[i].goods_brand}</span>
+								<span class="right">${result[0].goodsConditions[i].goods_like}❤</span>
 							</div>
 							<p>${result[0].goodsConditions[i].goods_name}</p>
 							<h3>￥${result[0].goodsConditions[i].goods_price}</h3>
@@ -350,6 +384,9 @@ function djtAdd(obj){
 	
 	oldValue();
 	
+	djtIndex=0;
+	gg=undefined;
+	
 	getGoodsList();
 	
 	//赋值为空
@@ -369,6 +406,10 @@ function duanjuntang(obj){
 	
 	//调用筛选
 	getNeedsList();
+	
+	djtIndex=0;
+	gg=undefined;
+	
 	getGoodsList();
 	
 	allIsNull();
@@ -415,6 +456,8 @@ function allIsNull(){
 	goods_place=undefined;
 	middle_type=undefined;
 	goods_name=undefined;
+	gg=undefined;
+	djtIndex=0;
 }
 
 //用来存储旧值
@@ -453,12 +496,6 @@ function noChangeCondition(){
 		$('.part-screen>.product-filter').append("<div data-condition='goods_name' data-condition-datail='"+goods_name+"'  onclick='duanjuntang(this)'><span>查询:</span><span>"+goods_name+"</span><span class='glyphicon glyphicon-remove'></span></div>");
 	}
 }
-
-//点击搜寻
-$('.search-wrap>button').click(function(){
-	var goods_name=$('.search-wrap>input').val();
-	location.href="/bshop/search.jsp?goods_name="+goods_name;
-})
 
 //加载更多
 function djtAddMore(obj){

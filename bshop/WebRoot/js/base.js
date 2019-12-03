@@ -129,6 +129,12 @@ $('.logBtn>.last-span').mouseleave(function(){
 	$('.personalInfo').fadeOut(300);
 })
 
+//点击搜寻
+$('.search-wrap>button').click(function(){
+	var goods_name=$('.search-wrap>input').val();
+	location.href="/bshop/search.jsp?goods_name="+goods_name;
+})
+
 
 //BASE64加密解密方法
 //创建Base64对象

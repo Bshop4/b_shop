@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="logo">
 				</div>
 				<div class="search-wrap">
-					<input placeholder="搜索商品" maxlength="4" onkeyup="this.value=this.value.replace(/[^a-zA-Z\u4e00-\u9fa5]/g,'')" />
+					<input placeholder="搜索品牌或类别或名字" maxlength="4" onkeyup="this.value=this.value.replace(/[^a-zA-Z\u4e00-\u9fa5]/g,'')" />
 					<button class="glyphicon glyphicon-search"></button>
 				</div>
 			</div>
@@ -68,16 +68,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="index.jsp">首页</a>
 					</li>
 					<li class="tab">
-						<a>新品</a>
+						<a href="/bshop/newsGood.jsp">新品</a>
 					</li>
 					<li class="tab">
-						<a>男士</a>
+						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
 					</li>
 					<li class="tab">
-						<a>女士</a>
+						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
 					</li>
 					<li class="tab">
-						<a>品牌</a>
+						<a href="/bshop/explosiveGood.jsp">爆款</a>
 					</li>
 					<li class="tab">
 						<a>嘿店移动版</a>

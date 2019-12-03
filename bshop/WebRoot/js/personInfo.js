@@ -883,8 +883,6 @@ function mysaveclick1() {
 	}
 	
 	
-	
-	
 //	for (var j = 0; j < cities.length; j++) {
 //		if (cities[j].code == $('#city1').val()) {
 //			getCity = cities[j].name; //城市

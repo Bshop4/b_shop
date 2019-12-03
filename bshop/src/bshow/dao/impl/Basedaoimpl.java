@@ -218,7 +218,7 @@ public class Basedaoimpl implements Basedao, Looker {
 		// from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no)
 		// as c where
 		// 多条件查询
-		String sql = "select @ from (select a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
+		String sql = "select @ from (select a.goods_like,a.goods_place,a.goods_photo,a.goods_no,a.goods_name,a.goods_price,a.goods_brand,b.middle_color,b.middle_size,b.middle_type from goods_table as a inner join middle_table as b on a.goods_no=b.goods_no) as c where 1=1";
 		StringBuffer sb = new StringBuffer(sql);
 		if (form.getGoods_name() != null) {
 			String name = form.getGoods_name().replaceAll("\\s", "");
@@ -303,8 +303,8 @@ public class Basedaoimpl implements Basedao, Looker {
 
 		// 查询商品
 		Connection conn6 = DBhelper.getConnection();
-		String mysql6 = sql + " group by c.goods_no limit ?,?";
-		mysql6 = mysql6.replace("@", "c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
+		String mysql6 = sql + " group by c.goods_no order by c.goods_like desc limit ?,?";
+		mysql6 = mysql6.replace("@", "c.goods_like,c.goods_no,c.goods_brand,c.goods_name,c.goods_photo,c.goods_price");
 		MyReplace mr6 = new MyReplace("goodsConditions", mysql6, conn6, this, form);
 		// 用线程处理查询
 		Thread t6 = new Thread(mr6);

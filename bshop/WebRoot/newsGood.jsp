@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
+
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -17,28 +18,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-		<title>B-SHOP嘿店——所有商品</title>
-		<link rel="stylesheet" href="css/animate.css" />
-		<link rel="stylesheet" href="css/bootstrap.css" />
-		<link rel="stylesheet" href="css/index.css" />
-		<link rel="stylesheet" href="css/allStore.css" />
-		<link rel="stylesheet" href="css/search.css" />
-		<link rel="stylesheet" href="css/base.css" />
+	<title>新品</title>
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/index.css" />
+
   </head>
   
-<body>
-		<!--头部-->
+  <body>
+    	<!--头部-->
 		<div class="top">
 			<div class="top-bar">
 				<div class="btn">
-					<a href="sign.jsp">注册</a>
-					<a href="Login.jsp">登录</a>
+					<a href="sign.jsp" target="_blank">注册</a>
+					<a href="Login.jsp" target="_blank">登录</a>
 					<a class="glyphicon glyphicon-shopping-cart"></a>
 				</div>
 				<div class="logBtn">
 					<a class="mingZi"></a>
-					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-					<a class="glyphicon glyphicon-shopping-cart"  href="cart.jsp"></a>
+					<a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;|
+					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
 					<span class="badge store_number">0</span>
 					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
@@ -49,12 +49,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</li>
 					</ul>
+					
 				</div>
+
 				<!--整合logo-->
 				<div class="logo">
 				</div>
 				<div class="search-wrap">
-					<input placeholder="搜索商品" maxlength="4" onkeyup="this.value=this.value.replace(/[^a-zA-Z\u4e00-\u9fa5]/g,'')" />
+					<input placeholder="搜索品牌或类别或名字" maxlength="4" onkeyup="this.value=this.value.replace(/[^a-zA-Z\u4e00-\u9fa5]/g,'')" />
 					<button class="glyphicon glyphicon-search"></button>
 				</div>
 			</div>
@@ -68,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="index.jsp">首页</a>
 					</li>
 					<li class="tab">
-						<a href="/bshop/newsGood.jsp">新品</a>
+						<a>新品</a>
 					</li>
 					<li class="tab">
 						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
@@ -77,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
 					</li>
 					<li class="tab">
-						<a href="/bshop/explosiveGood.jsp">爆款</a>
+						<a>爆款</a>
 					</li>
 					<li class="tab">
 						<a>嘿店移动版</a>
@@ -90,89 +92,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 		</div>
-		<!-- 筛选部分 -->
-		<div class="part-screen">
-			<div class="product-filter container">
-				<span class="product-title">筛选</span>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>品牌</p>
-					</div>
-				</div>
-				<ul>
-				</ul>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>分类</p>
-					</div>
-				</div>
-				<ul>
-				</ul>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>发货地</p>
-					</div>
-				</div>
-				<ul>
-				</ul>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>颜色</p>
-					</div>
-				</div>
-				<ul>
-				</ul>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>尺码</p>
-					</div>
-				</div>
-				<ul>
-				</ul>
-			</div>
-			<div class="product-next container">
-				<div class="product-next-header">
-					<div class="ping">
-						<p>价格</p>
-					</div>
-				</div>
-				<ul>
-					<li><a>0-999</a></li>
-					<li><a>1000-2999</a></li>
-					<li><a>3000-4999</a></li>
-					<li><a>5000-9999</a></li>
-					<li><a>10000-100000</a></li>
-				</ul>
-			</div>
-		</div>
-		<!--所有商品-->
+		<!-- 每日上新 -->
+		<section class="section-title">
+			<div class="topic-title text-center">每日一新</div>
+		</section>
 		<section class="section-merchandise">
 			<div class="merchandise">
 				<ul></ul>
 			</div>
+			<div id="loading" class="h4 loading text-center">加载中...</div>
 		</section>
-		<!--跳转页面-->
-			<section class="pageSkining">
-				<center>
-					<span></span>
-					<button class="btn btnStart">首页</button>
-					<button class="btn btnPrev">上一页</button>
-					<input class="text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
-					<button class="btn btnJump">跳转</button>
-					<button class="btn btnNext">下一页</button>
-					<button class="btn btnEnd">尾页</button>
-				</center>
-			</section>
 		<!--返回顶部-->
 		<div class="toTop">
 			<span class="glyphicon glyphicon-open"></span>
@@ -253,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="row-4">
 				<div class="row-4-m">
 					<div class="row-4-service">
-						<a><img src="img/licence2.png"> </a></div>
+						<a><img src="img/licence2.png"></a></div>
 					<div class="row-4-service">
 						<a><img src="img/licence1.png"></a>
 					</div>
@@ -263,10 +192,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
-	</body>
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+  </body>
+  	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/allStore.js"></script>
+	<script type="text/javascript" src="js/banner.js"></script>
 	<script type="text/javascript" src="js/base.js"></script>
-
+	<script type="text/javascript" src="js/newsGood.js"></script>
+	<script type="text/javascript" src="js/wow.min.js"></script>
+	<script src="js/donghua.js"></script>
 </html>

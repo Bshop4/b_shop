@@ -137,6 +137,7 @@ public class MyReplace implements Runnable,Subject{
 					gc.setGoods_no(rs.getString("goods_no"));
 					gc.setGoods_photo(rs.getString("goods_photo"));
 					gc.setGoods_brand(rs.getString("goods_brand"));
+					gc.setGoods_like(rs.getInt("goods_like"));
 					mylist.add(gc);
 				}
 			}else if("maxPageCount".equals(mykey)){

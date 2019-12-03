@@ -278,5 +278,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 得到销量 -->
+	<PagePattern name="getNum">
+		<ActionForm>bshow.web.servlet.form.GetNumForm</ActionForm>
+		<Action>bshow.web.servlet.action.GetNumAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 </properties>

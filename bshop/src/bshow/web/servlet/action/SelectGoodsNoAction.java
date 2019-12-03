@@ -18,6 +18,7 @@ import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Collection_table;
 import bshow.pojo.Goods_table;
 import bshow.pojo.Middle_table;
+import bshow.pojo.Repertory_table;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
@@ -50,8 +51,6 @@ public class SelectGoodsNoAction extends Action{
 			token = (String)request.getSession().getAttribute("token");
 		}
 		
-//		System.out.println("account " + account);
-//		System.out.println("token " + token);
 		
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
@@ -78,6 +77,22 @@ public class SelectGoodsNoAction extends Action{
 		
 		
 		Goods_table gt1 = (Goods_table) list.get(0);
+//		System.out.println(gt1.getGoods_color());
+//		System.out.println(gt1.getGoods_size());
+		String colorstr = gt1.getGoods_color();
+		String[] colorarr = colorstr.split(",");
+		String color = colorarr[0];
+		String sizestr = gt1.getGoods_size();
+		String[] sizearr = sizestr.split(",");
+		String size = sizearr[0];
+		Repertory_table rt = new Repertory_table();
+		rt.setGoods_no(goodsno);
+		rt.setRepertory_color(color);
+		rt.setRepertory_size(size);
+		List<Object> listrt =  ba.select("selectNum", rt);
+		Repertory_table rt1 = (Repertory_table)listrt.get(0);
+		int num = rt1.getRepertory_number();
+		
 		String exp = new String(gt1.getGoods_explainphoto());
 		listbb.add(exp);
 		
@@ -91,15 +106,15 @@ public class SelectGoodsNoAction extends Action{
 		}else{
 			str = "1";
 		}
-		
+		listbb.add(num);//-5
 		listbb.add(account);//-4
 		listbb.add(token);//-3
 		listbb.add(str);//-2
 		listbb.add(gt1);//-1
 		
 		
-		response.setCharacterEncoding("UTF-8");
 		
+		response.setCharacterEncoding("UTF-8");
 		JSONArray ja = JSONArray.fromObject(listbb);
 		PrintWriter out= response.getWriter();
 		out.print(ja.toString());

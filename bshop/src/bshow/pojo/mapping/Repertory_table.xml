@@ -11,7 +11,7 @@
 	</insert>
 	
 	
-	<select id="selectone" resulttype="bshow.pojo.Repertory_table">
+	<select id="selectNum" resulttype="bshow.pojo.Repertory_table">
 		select * from repertory_table	where 1=1 and goods_no=#{goods_no} and repertory_color=#{repertory_color} and repertory_size=#{repertory_size}
 	</select>
 	

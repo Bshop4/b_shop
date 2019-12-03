@@ -362,22 +362,79 @@
         	cursor: pointer;
         }
         
+        .savesuccess{
+        	position:absolute;
+        	width: 100px;
+        	height: 35px;
+        	top: 20px;
+        	left: 432px;
+        	text-align: center;
+        	opacity: 0
+        }
         
-        /*我的足迹*/
+        .greenImg{
+        	width: 20px;
+        	height: 20px;
+        }
+        .savespan{
+        	font-weight: bold;
+        	font-size: 14px;
+        }
+        
+         /*我的足迹*/
         .user-right4{
             display: none;
             width: 1020px;
-            height: 662px;
             border-left: 2px solid rgba(255, 145, 75, 0.28);
             position: absolute;
             left: 180px;
             top: 0px;
             padding: 20px 0px 0px;
         }
+        .user-right4>.djtDate{
+        	font-size:20px;
+        	font-weight:bold;
+        	display:block;
+        	padding-left:40px;
+        }
+        .user-right4>div{
+        	float:left;
+        	width:195px;
+        	position:relative;
+        	height:260px;
+        	margin-left:30px;
+        	margin-top:20px;
+        	background:#f7f7f7;
+        }
+        .user-right4>div>img{
+        	width:195px;
+        	height:195px
+        }
+        .user-right4>div>span.djtbrand{
+        	display:inline-block;
+        	font-size:14px;
+        	color:#f10;
+        	margin-left:10px;
+        	margin-top:15px;
+        }
+        .user-right4>div>span.djtprice{
+        	display:inline-block;
+        	font-size:14px;
+        	color:#111;
+        	margin-left: 50px;
+        	margin-top:15px;
+        }
+        .user-right4>div>p.djtname{
+        	font-size:12px;
+        	padding-left:10px;
+        }
         
-        
-        
-        
-        
-        
+        .user-right4>div>span.djtdelete{
+        	position:absolute;
+        	top:0px;
+        	left:0px;
+        	font-size:20px;
+        	cursor: pointer;
+        	display:none;
+        }
         

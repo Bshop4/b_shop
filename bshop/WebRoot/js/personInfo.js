@@ -1,72 +1,6 @@
 
 var account = getUrlVal('account');
 
-	var s = `
-		<div class="modal fade" id="editMyAddress" data-backdrop="static"
-			id="addressform1">
-			<div class="modal-dialog">
-				<div class="modal-content" style="width:700px;height:540px;">
-
-					<div class="modal-header">
-						<h2 class="text-success modal-title">
-							编辑地址 <span class="close" data-dismiss="modal">&times;</span>
-						</h2>
-					</div>
-
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-md-8 col-md-offset-2">
-								<div class="form-group">
-									<label>收货人姓名:</label> <input type="text" class="form-control"
-										id="myname1" /><label class="namelable">收货人姓名不能为空</label>
-								</div>
-
-								<div class="form-group">
-									<label>手机号:</label> <input type="text" class="form-control"
-										id="myiphone1" /><label class="iplabel">手机号格式错误</label>
-								</div>
-
-								<div class="form-group">
-									<label>邮编:</label> <input type="text" class="form-control"
-										id="mypostcode1" /><label class="postlabel">邮编不能为空</label>
-								</div>
-
-								<div class="form-group">
-									<label>收货地址:</label><br>
-									<!--修改-->
-									<select id="province" onchange="getCity(this)">
-										<option>请选择省份</option>
-									</select> <select name="" id="city" onchange="getArea(this)">
-										<option value="">请选择城市</option>
-									</select> <select name="" id="area">
-										<option value="">请选择区县</option>
-									</select>
-								</div>
-								<!--新增-->
-								<div class="form-group">
-									<label>详细地址:</label> <input type="text" class="form-control"
-										id="mydetailaddress" /> <label id="addlabel">收货地址不能为空</label>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="modal-footer">
-						<button class="btn btn-success" id="save2" onclick="myeditclick()">保存</button>
-						<button class="btn btn-danger" data-dismiss="modal" id="cancel2">取消</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-	`;
-	
-	$('.user').append(s);
-
-
-
 (function() {
 //	var account = "zjl";
 	$.ajax({
@@ -146,7 +80,16 @@ $('.save').click(function() {
 		data : {
 			"msg" : JSON.stringify(personInfo)
 		},
-		success : function(result) {},
+		success : function(result) {
+			
+			$(".savesuccess").animate({opacity: "1"},500,function(){
+				setTimeout(function() {
+					$('.savesuccess').css("opacity",0);
+				}, 1500)
+			})
+			
+			
+		},
 	});
 
 
@@ -360,6 +303,7 @@ $("#myaddress").click(function() {
 		},
 		success : function(re) {
 			var obj = JSON.parse(re)
+			console.log(obj)
 			var len = $(".user-right2").children().length;
 			if (len == 2) {
 				if (obj.length == 0) {
@@ -377,9 +321,9 @@ $("#myaddress").click(function() {
 				if (obj.length > 0) {
 					for (var i = 0; i < obj.length; i++) {
 						if (obj[i].ischeck == "1") {
-							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'  data-eid='"+obj[i].rid+"' data-toggle='modal' data-target='#editMyAddress' onclick='editclick(this)'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].postal + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						} else {
-							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].postal + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						}
 						$(".addresslist").css({
 							"width" : "1000px",
@@ -531,7 +475,7 @@ function mysaveclick() {
 				"msg" : JSON.stringify(reveiver)
 			},
 			success : function(result) {
-				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
+				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
 				$(".addresslist").css({
 					"width" : "1000px",
 					"height" : "120px",
@@ -764,6 +708,201 @@ function editclick(obj) {
 	
 }
 
+//下拉列表
+var pro1 = document.getElementById("province1");
+function getPro1() {
+	for (var i = 0; i < infos.length; i++) {
+		pro1.innerHTML += "<option value='" + infos[i].code + "'>" + infos[i].name + "</option>";
+	}
+	;
+}
+;
+var cities1 = [];
+var city1 = document.getElementById("city1");
+function getCity1(t) {
+	//				console.log(t.value);
+	var proID1 = t.value;
+	area1.innerHTML = "<option>请选择县区</option>";
+	city1.innerHTML = "<option>请选择城市</option>";
+	for (var i = 0; i < infos.length; i++) {
+		if (proID1 == infos[i].code) {
+			cities1 = infos[i].city;
+			//遍历city
+			for (var j = 0; j < cities1.length; j++) {
+				city1.innerHTML += "<option value='" + cities1[j].code + "'>" + cities1[j].name + "</option>";
+			}
+			break;
+		}
+	}
+	;
+}
+var area1 = document.getElementById("area1");
+function getArea1(t) {
+	var areaID1 = t.value;
+	area1.innerHTML = "<option>请选择县区</option>";
+	for (var j = 0; j < cities1.length; j++) {
+		if (areaID1 == cities1[j].code) {
+			for (var k = 0; k < cities1[j].area.length; k++) {
+				area1.innerHTML += "<option value='" + cities1[j].area[k].code + "'>" + cities1[j].area[k].name + "</option>";
+			}
+			break;
+		}
+	}
+}
+
+
+
+var eid="";
+function editclick(obj) {
+	getPro1();
+	$("#editAddress").modal('show');
+//	console.log(eid);
+	eid = $(obj).attr('data-eid')
+	console.log(eid);
+	
+	$.ajax({
+		
+		type : "post",
+		url : "editModal.do",
+		data : {"eid" : eid},
+		success : function (re) {
+			var obj = JSON.parse(re);
+			
+			var address = obj.address;
+			var postal = obj.postal;
+			var receiver = obj.receiver;
+			var tel = obj.telephone;
+			
+			$("#myname1").attr("value",receiver);
+			$("#myiphone1").attr("value",tel);
+			$("#mypostcode1").attr("value",postal);
+			
+			var p;
+			var pname;
+			for (var i = 0; i < infos.length; i++) {
+				if(address.indexOf(infos[i].name) != -1){
+					p = infos[i].code;
+					pname = infos[i].name;
+					$("#province1").find("option[value='"+p+"']").attr("selected",true);
+					break;
+				}
+			}
+			
+			var c;
+			var c1;
+			var cname;
+			for (var i = 0; i < infos.length; i++) {
+				if (p == infos[i].code) {
+					c1 = infos[i].city;
+					//遍历city
+					for (var j = 0; j < c1.length; j++) {
+						if(address.indexOf(c1[j].name) != -1){
+							c = c1[j].code;
+							cname = c1[j].name;
+							city1.innerHTML = "<option value='" + c1[j].code + "'>" + c1[j].name + "</option>";
+						}
+					}
+					break;
+				}
+			}
+			
+			var aname;
+			for (var j = 0; j < c1.length; j++) {
+				if (c == c1[j].code) {
+					for (var k = 0; k < c1[j].area.length; k++) {
+						if(address.indexOf(c1[j].area[k].name) != -1){
+							aname = c1[j].area[k].name;
+							area1.innerHTML = "<option value='" + c1[j].area[k].code + "'>" + c1[j].area[k].name + "</option>";
+						}
+					}
+					break;
+				}
+			}
+			
+			var dname;
+			dname = address.replace(pname, "");
+			dname = dname.replace(cname, "");
+			dname = dname.replace(aname,"");
+			
+			$("#mydetailaddress1").attr("value",dname);
+		}
+	})
+}
+
+function mysaveclick1() {
+	var name = document.getElementById("myname1").value;
+	var iphone = document.getElementById("myiphone1").value;
+	var postcode = document.getElementById("mypostcode1").value;
+	var pro = document.getElementById("province1").value;
+	var city = document.getElementById("city1").value;
+	var area = document.getElementById("area1").value;
+	var detailaddress = document.getElementById("mydetailaddress1").value;
+	
+//	console.log(name)
+//	console.log(iphone)
+//	console.log(postcode)
+//	console.log(pro)
+//	console.log(city)
+//	console.log(area)
+//	console.log(detailaddress)
+	
+	var getPro;
+	var getCity;
+	var getArea;
+	var AllAddress;
+
+	var cities1;
+	for (var i = 0; i < infos.length; i++) {
+		if (infos[i].code == $('#province1').val()) {
+			getPro = infos[i].name; //省份
+			cities1 = infos[i].city;
+		}
+	}
+	
+//	var area1 = document.getElementById("area1");
+	for (var j = 0; j < cities1.length; j++) {
+		if (cities1[j].code == $('#city1').val()) {
+			getCity = cities1[j].name; //城市
+			for (var k = 0; k < cities1[j].area.length; k++) {
+				if (cities1[j].area[k].code == $('#area1').val()) {
+					getArea = cities1[j].area[k].name; //区县
+				}
+			}
+		}
+	}
+	AllAddress = getPro + getCity + getArea + detailaddress;
+	document.getElementById("save2").setAttribute("data-dismiss", "modal");
+
+//	console.log(AllAddress)
+//	console.log(eid)
+	
+	var test = {
+		"name" : name,
+		"iphone" : iphone,
+		"postcode" : postcode,
+		"AllAddress" : AllAddress,
+		"account" : account,
+		"eid" : eid,
+	}
+	
+	$.ajax({
+		
+		type : "post",
+		url : "updateAllAddress.do",
+		data : {"msg" : JSON.stringify(test)},
+		success : function (re) {
+			if(re == "1"){
+				var l = $("[data-eid='"+eid+"']").parent().children();
+				$(l).eq(0).html(name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone)
+				$(l).eq(1).html("邮编："+postcode);
+				$(l).eq(2).html("收货地址："+AllAddress);
+				
+			}
+		}
+		
+	})
+}
+
 //我的足迹点击
 $("#myfooter").click(function() {
 	$("#myinfo").css({
@@ -787,8 +926,78 @@ $("#myfooter").click(function() {
 	$(".user-right2").hide();
 	$(".user-right3").hide();
 	$(".user-right4").show();
+	
+	getFooter();
 })
 
+//根据账号查看我的足迹
+function getFooter(){
+	$.ajax({
+		type : "post",
+		url : "MyFooter",
+		success:function(result){
+			if(result==null){
+				alert("你没有浏览过任何商品");
+				return;
+			}
+			console.log(result);
+			var mylength=result.length-1;
+			
+			for(var i=mylength;i>=0;i--){
+				if(i==mylength){
+					var str=`
+					<p class="djtDate">${result[i].footprint_time}</p>
+					<div onclick="djtclick(this)">
+						<img src="${result[i].goods_photo}">
+						<span class="djtbrand">${result[i].goods_brand}</span>
+						<span class="djtprice">￥${result[i].goods_price}</span>
+						<p class="djtname">${result[i].goods_name}</p>
+						<span class="djtdelete glyphicon glyphicon-trash"></span>
+					</div>
+					`;
+					$('.user-right4').append(str);
+				}else{
+					//日期不相等就创建日期
+					if(result[i+1].footprint_time!=result[i].footprint_time){
+						var str=`
+							<p class="djtDate">${result[i].footprint_time}</p>
+							<div onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span class="djtdelete glyphicon glyphicon-trash"></span>
+							</div>
+						`;
+					$('.user-right4').append(str);
+					}else{
+						var str=`
+							<div onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span class="djtdelete glyphicon glyphicon-trash"></span>
+							</div>
+						`;
+						$('.user-right4').append(str);
+					}
+					//显示删除
+					$('.user-right4>div').each(function(i){
+						$('.user-right4>div').eq(i).mouseover(function(){
+							$('.user-right4>div').eq(i).children('span.djtdelete').show();
+						})
+						$('.user-right4>div').eq(i).mouseout(function(){
+							$('.user-right4>div').eq(i).children('span.djtdelete').hide();
+						})
+					})
+				}
+			}
+		}
+	})
+}
+
+//
 
 
 

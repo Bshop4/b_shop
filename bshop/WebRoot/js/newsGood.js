@@ -1,4 +1,3 @@
-
 //请求热门商品
 (function() {
 	var page = 1;
@@ -8,7 +7,7 @@
 		
 		$.ajax({
 			type:"post",
-			url:"pageBranchAction.do",
+			url:"newsGoodByTime.do",
 			data:{
 				page: page,
 				pagesize: pagesize,
@@ -49,7 +48,7 @@
 		var scrollTop = $(window).scrollTop();
 		var windowH = $(window).height();
 		var documentH = $(document).height();
-		if(scrollTop / documentH >0.8) {
+		if(scrollTop / documentH >0.6) {
 			if(lock) {
 				return
 			};
@@ -58,9 +57,8 @@
 			page++;
 			//加载中显示
 			$('#loading').css('display', 'block');
-			if(page > 3) {
+			if(page > 10) {
 				$('#loading').css('display', 'none');
-				more();
 				return;
 			} else {
 				getGoodsList();
@@ -68,15 +66,3 @@
 		}
 	})
 })()
-//添加按钮
-function more(){
-	var moreB=`
-		<a href="/bshop/allStore.jsp" target="_blank">
-			发现更多
-			<span class="glyphicon glyphicon-chevron-right"></span>		
-		</a>
-	`;
-	$('.more').append(moreB);
-}
-
-

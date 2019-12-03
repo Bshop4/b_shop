@@ -120,7 +120,7 @@
 				<label class="user-takeOver">收货地址:</label> <input type="text"
 					class="myAddress" readonly="readonly" />
 			</div>
-
+			<div class="savesuccess"><img class="greenImg" src="img/8.png"/><span class="savespan">保存成功</span></div>
 			<button class="cancel" id="cancel">取消</button>
 			<button class="save" id="save">保存</button>
 
@@ -173,7 +173,6 @@
 		
 		<!-- 我的足迹 -->
 		<div class="user-right4">
-			
 		</div>
 
 
@@ -185,7 +184,7 @@
 					<div class="modal-header">
 						<h2 class="text-success modal-title">
 							新增地址 <span class="close" data-dismiss="modal">&times;</span>
-						</h2>
+						</h2>  
 					</div>
 
 					<div class="modal-body">
@@ -236,6 +235,66 @@
 		</div>
 	</div>
 
+
+	<div class="modal fade" id="editAddress" data-backdrop="static"
+			id="addressform1">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:700px;height:540px;">
+
+					<div class="modal-header">
+						<h2 class="text-success modal-title">
+							编辑地址 <span class="close" data-dismiss="modal">&times;</span>
+						</h2>  
+					</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="form-group">
+									<label>收货人姓名:</label> <input type="text" class="form-control"
+										id="myname1" /><label class="namelable">收货人姓名不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>手机号:</label> <input type="text" class="form-control"
+										id="myiphone1" /><label class="iplabel">手机号格式错误</label>
+								</div>
+
+								<div class="form-group">
+									<label>邮编:</label> <input type="text" class="form-control"
+										id="mypostcode1" /><label class="postlabel">邮编不能为空</label>
+								</div>
+
+								<div class="form-group">
+									<label>收货地址:</label><br>
+									<!--修改-->
+									<select id="province1" onchange="getCity1(this)">
+										<option>请选择省份</option>
+									</select> <select name="" id="city1" onchange="getArea1(this)">
+										<option value="">请选择城市</option>
+									</select> <select name="" id="area1">
+										<option value="">请选择区县</option>
+									</select>
+								</div>
+								<!--新增-->
+								<div class="form-group">
+									<label>详细地址:</label> <input type="text" class="form-control"
+										id="mydetailaddress1" /> <label id="addlabel">收货地址不能为空</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button class="btn btn-success" id="save2" onclick="mysaveclick1()">保存</button>
+						<button class="btn btn-danger" data-dismiss="modal" id="cancel2">取消</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 
 

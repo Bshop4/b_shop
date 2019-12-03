@@ -250,6 +250,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 查地址Byid -->
+	<PagePattern name="editModal">
+		<ActionForm>bshow.web.servlet.form.EditModalForm</ActionForm>
+		<Action>bshow.web.servlet.action.EditModalAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	
 	
 	

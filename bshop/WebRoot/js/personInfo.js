@@ -303,6 +303,7 @@ $("#myaddress").click(function() {
 		},
 		success : function(re) {
 			var obj = JSON.parse(re)
+			console.log(obj)
 			var len = $(".user-right2").children().length;
 			if (len == 2) {
 				if (obj.length == 0) {
@@ -320,9 +321,9 @@ $("#myaddress").click(function() {
 				if (obj.length > 0) {
 					for (var i = 0; i < obj.length; i++) {
 						if (obj[i].ischeck == "1") {
-							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist' data-ul='1'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].postal + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						} else {
-							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].receiver + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
+							$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + obj[i].receiver + "&nbsp;&nbsp;&nbsp;&nbsp;" + obj[i].telephone + "</div><div class='insertPostcode'>邮编:" + obj[i].postal + "</div><div class='insertMyaddress'>收货地址:" + obj[i].address + "</div><span class='binggou' onclick='changeBinggou(this)' >√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + obj[i].rid + "'>删除</div></li></ul>");
 						}
 						$(".addresslist").css({
 							"width" : "1000px",
@@ -474,7 +475,7 @@ function mysaveclick() {
 				"msg" : JSON.stringify(reveiver)
 			},
 			success : function(result) {
-				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
+				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
 				$(".addresslist").css({
 					"width" : "1000px",
 					"height" : "120px",
@@ -781,7 +782,7 @@ var eid="";
 function editclick(obj) {
 	getPro1();
 	$("#editAddress").modal('show');
-	console.log(eid);
+//	console.log(eid);
 	eid = $(obj).attr('data-eid')
 	console.log(eid);
 	
@@ -863,39 +864,69 @@ function mysaveclick1() {
 	var area = document.getElementById("area1").value;
 	var detailaddress = document.getElementById("mydetailaddress1").value;
 	
-	console.log(name)
-	console.log(iphone)
-	console.log(postcode)
-	console.log(pro)
-	console.log(city)
-	console.log(area)
-	console.log(detailaddress)
+//	console.log(name)
+//	console.log(iphone)
+//	console.log(postcode)
+//	console.log(pro)
+//	console.log(city)
+//	console.log(area)
+//	console.log(detailaddress)
 	
 	var getPro;
 	var getCity;
 	var getArea;
 	var AllAddress;
 
+	var cities1;
 	for (var i = 0; i < infos.length; i++) {
 		if (infos[i].code == $('#province1').val()) {
 			getPro = infos[i].name; //省份
+			cities1 = infos[i].city;
 		}
 	}
 	
+//	var area1 = document.getElementById("area1");
+	for (var j = 0; j < cities1.length; j++) {
+		if (cities1[j].code == $('#city1').val()) {
+			getCity = cities1[j].name; //城市
+			for (var k = 0; k < cities1[j].area.length; k++) {
+				if (cities1[j].area[k].code == $('#area1').val()) {
+					getArea = cities1[j].area[k].name; //区县
+				}
+			}
+		}
+	}
+	AllAddress = getPro + getCity + getArea + detailaddress;
+	document.getElementById("save2").setAttribute("data-dismiss", "modal");
+
+//	console.log(AllAddress)
+//	console.log(eid)
 	
-//	for (var j = 0; j < cities.length; j++) {
-//		if (cities[j].code == $('#city1').val()) {
-//			getCity = cities[j].name; //城市
-//			for (var k = 0; k < cities[j].area.length; k++) {
-//				if (cities[j].area[k].code == $('#area1').val()) {
-//					getArea = cities[j].area[k].name; //区县
-//				}
-//			}
-//		}
-//	}
-//	AllAddress = getPro + getCity + getArea + detailaddress;
+	var test = {
+		"name" : name,
+		"iphone" : iphone,
+		"postcode" : postcode,
+		"AllAddress" : AllAddress,
+		"account" : account,
+		"eid" : eid,
+	}
 	
-	console.log(getPro)
+	$.ajax({
+		
+		type : "post",
+		url : "updateAllAddress.do",
+		data : {"msg" : JSON.stringify(test)},
+		success : function (re) {
+			if(re == "1"){
+				var l = $("[data-eid='"+eid+"']").parent().children();
+				$(l).eq(0).html(name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone)
+				$(l).eq(1).html("邮编："+postcode);
+				$(l).eq(2).html("收货地址："+AllAddress);
+				
+			}
+		}
+		
+	})
 	
 	
 }

@@ -271,6 +271,12 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 更新地址 -->
+	<PagePattern name="updateAllAddress">
+		<ActionForm>bshow.web.servlet.form.UpdateAllAddressForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateAllAddressAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 </properties>

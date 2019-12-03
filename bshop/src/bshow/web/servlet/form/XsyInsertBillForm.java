@@ -4,7 +4,8 @@ import bshow.web.servlet.core.ActionForm;
 
 public class XsyInsertBillForm extends ActionForm {
 	private String cart_id;
-	private String dizhi;
+	private String account;
+	private String address;
 
 	public String getCart_id() {
 		return cart_id;
@@ -14,12 +15,20 @@ public class XsyInsertBillForm extends ActionForm {
 		this.cart_id = cart_id;
 	}
 
-	public String getDizhi() {
-		return dizhi;
+	public String getAccount() {
+		return account;
 	}
 
-	public void setDizhi(String dizhi) {
-		this.dizhi = dizhi;
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 }

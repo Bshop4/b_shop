@@ -150,6 +150,9 @@ img {
     transition: opacity .3s;
 
 }
+.more-wrap{
+	position:relative;
+}
 .title-title {
 	padding-bottom: 12px;
 	margin-bottom: 12px;

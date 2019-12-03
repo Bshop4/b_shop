@@ -21,16 +21,15 @@ var sum=0;
 var account_name;
 // 页面加载查询数据库状态值为1的商品
 $(document).ready(function() {
+	// 支付订单按钮禁用
+	$(".btn-account").attr("disabled",true);
+	$(".btn-account").css({"cursor":"not-allowed"});
 	account_name = getUrlVal("account_name");
-// console.log(account_name)
-// var goods_ids = window.localStorage.getItem('goods_id');
-// console.log(account_name);
-// var account = "pyla1";
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
 		url : "selectCartGoodsByState.do",
-		data : {"account" : account_name},
+//		data : {"account" : account_name},
 		success : function(result) {
 			var result=JSON.parse(result);
 			returnResult = result;
@@ -40,9 +39,7 @@ $(document).ready(function() {
 				return;
 			};
 			for (var i = 0; i < result.length; i++) {
-// console.log(result[i].cgoods_sub);
 				sum += result[i].cgoods_sub;
-// console.log(sum)
 				var str = `
 					<tr class="go-bill" data-tr="active">
 						<td class="left" data-id=${result[i].cart_id}>
@@ -62,26 +59,52 @@ $(document).ready(function() {
 				 // 把每次组装好的添加进table
 			     $('table').append(str);
 			};
-// console.log(sum);
 			// 设置总价
 			$('.sum-all').html('合计：¥' + sum + '.00');
-// console.log(sum);
 			allMount = result.length;
 		    // 所有的业务逻辑都在这之后
 		    clickAll();
-		}
+		}				
 	})
+	// 找出买家默认地址
+	$.ajax({
+		type:"POST",
+		url:"defaultAddress.do",
+		data:{"account":account_name},
+		success:function(result){
+			var result = JSON.parse(result);
+			console.log(result);
+			var obj1 = eval(result);
+			$(".address-list").css({
+		    	"display":"inline-block",
+		  		"margin-left": "10px",
+		  		"position": "relative",
+		  	  })
+			 // 添加默认li标签
+		  	  for (var i = 0; i < obj1.length; i++) {
+			  	  var obj = $("<li onclick='defaultli(this)' style='float: left;margin-left: 20px;border:2px solid white;'></li>");
+			  	  $(".address-list").append(obj)
+			  	  console.log(obj1.length);
+		  		  obj.append("收货人姓名：" + obj1[i].receiver);
+		  		  obj.append(document.createElement("br"));
+		  		  obj.append("收货人电话：" + obj1[i].telephone);
+		  		  obj.append(document.createElement("br"));
+		  		  obj.append("收货人邮编：" + obj1[i].postal);
+		  		  obj.append(document.createElement("br"));
+		  		  obj.append("收货人地址：" + obj1[i].address);		
+			}
+		}
+	})	
+	
 })
 
 function clickAll() {
-	// 点击删除 当前元素tr删除
 	// 点击整个表格
 	$('table').click(function(event) {
 		// 点击删除
 		if (event.target.className == 'del') {
 			// 要做商品减的业务
-			console.log('点击了删除');
-			// 找到tr删除自己
+			// 找到tr
 			var tab = event.target.parentNode.parentNode.parentNode;
 			var tr = event.target.parentNode.parentNode;
 			// 得到删除的商品的id
@@ -94,6 +117,7 @@ function clickAll() {
 					var result = JSON.parse(result);
 				}
 			});
+			// 删除tr
 			tab.removeChild(tr);
 			// 调用总价
 			sumAll();
@@ -101,12 +125,14 @@ function clickAll() {
 		;
 	});
 };
+
 // 定义地址
 var name="";
 var iphone="";
 var postcode="";
 var AllAddress="";
 
+  // 点击模态框的保存
   function mysaveclicks(){
       name = document.getElementById("myname").value;
       iphone = document.getElementById("myiphone").value;
@@ -130,7 +156,6 @@ var AllAddress="";
       }else{
           $(".iplabel").hide();
       }
-
       if(postcode == ""){
           $(".postlabel").show();
           return ;
@@ -146,13 +171,11 @@ var AllAddress="";
           $("#addlabel").hide();
       }
 
-
       if(reiphone.test(iphone) == true && name != "" && postcode != ""){
       // 定义变量
       var getPro;
       var getCity;
       var getArea;
-      //var AllAddress;
 
       for(var i=0;i<infos.length;i++){
           if(infos[i].code == $('#province').val()){
@@ -173,8 +196,6 @@ var AllAddress="";
 
       document.getElementById("save1").setAttribute("data-dismiss","modal");
       $(".address-list").css({
-// "width": "1180px",
-// "height": "80px",
     	"display":"inline-block",
   		"margin-left": "10px",
   		"position": "relative",
@@ -184,6 +205,7 @@ var AllAddress="";
   	  })
   	  
   	  if(reiphone.test(iphone) == true && name != "" && postcode != ""){
+  		  // 收货信息不为空保存到数据库
   		  $.ajax({
   			  type:"POST",
   			  url:"saveAddress.do",
@@ -192,7 +214,8 @@ var AllAddress="";
   				  console.log(result);
   			  }
   		  })
-	  	  var obj = $("<li style='float: left;margin-left: 20px;border:2px solid white;'></li>");
+  		  // 添加li标签
+	  	  var obj = $("<li onclick='defaultli(this)' style='float: left;margin-left: 20px;border:2px solid white;' data=df></li>");
 	  	  $(".address-list").append(obj)
 	  	  obj.append("收货人姓名：" + name);
 	  	  obj.append(document.createElement("br"));
@@ -202,20 +225,39 @@ var AllAddress="";
 	  	  obj.append(document.createElement("br"));
 	  	  obj.append("收货人地址：" + AllAddress);
 	  	  
-	  	  $("li").click(function() {
-	        $(this).siblings('li').removeClass('selected');    // 删除其他li的边框样式
-	        $(this).addClass('selected');// 为当前li添加边框样式
-//		    if ($(this).class='selected') {
-//		    	 $.ajax({
-//		    		 type:"POST",
-//		    		 url:"updateAddress.do",
-//		    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
-//		    		 success:function(result){
-//		    			 console.log(result);
-//		    		 }
-//		    	  })
-//		     }
-	  	  });
+// $(".address-list li").click(function() {
+// $(this).siblings('li').removeClass('selected');// 删除其他li的边框样式
+// $(this).addClass('selected');// 为当前li添加边框样式
+// $(".btn-account").attr("disabled",false);//取消禁用标志
+// $(".btn-account").css({"cursor":"pointer"});
+// console.log($('li').prop("className"));
+//			
+// //如果是选中则将收获信息的状态值改为2
+// if($('.address-list li').prop("className")=='selected') {
+// $.ajax({
+// type:"POST",
+// url:"updateAddress.do",
+// data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+// success:function(result){
+// console.log(result);
+// }
+// })
+// }
+		      
+		    // 如果不是选中则将收获信息的状态值改为0
+// if($(this).siblings('li').class!='selected') {
+// $.ajax({
+// type:"POST",
+// url:"updateAddress1.do",
+// data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+// success:function(result){
+// console.log(result);
+// }
+// })
+// }
+// });
+
+	  	  // 保存后将地址信息设为空
 	  	  document.getElementById("myname").value = "";
 	  	  document.getElementById("myiphone").value = "";
 	  	  document.getElementById("mypostcode").value = "";
@@ -227,7 +269,7 @@ var AllAddress="";
       }
   }
   
-// 获得地址参数栏的值
+  // 获得地址参数栏的值
   function getUrlVal(property) {
   	// 地址栏
   	var urlStr = window.location.search.substring(1);
@@ -238,43 +280,92 @@ var AllAddress="";
   	};
   	return result[2];
   };
-  
+  // 点击支付订单存入数据并且跳转到倒计时页面
   $('#btn-account').click(function() { 
 		$('[data-tr="active"]').each(function() {
 			var tab = $(this).parent();
 			var tr = $(this);
 			cart_id = $(this).find("td:first").attr("data-id");
 			console.log(cart_id);
-// 先根cart_id更新一遍,选的是哪个id，将这个商品的状态值改变
+			// 把订单cart_id,account,address传给需要插入的action
 			$.ajax({
 				type : "POST",
 				url : "xsyinsertBill.do",
-				data : {"cart_id" : cart_id,"account":account_name},
+				data : {"cart_id" : cart_id,"account":account_name,"address":name+iphone+postcode+AllAddress,},
 				success : function(result) {
 					var result=JSON.parse(result);
 					console.log(result);
 				}
 			})
-// tab.get(0).removeChild(tr.get(0));
 		})
-// window.open('pay.jsp');
-	    if($('li').class='selected') {
-	    	 $.ajax({
-	    		 type:"POST",
-	    		 url:"updateAddress.do",
-	    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
-	    		 success:function(result){
-	    			 console.log(result);
-	    		 }
-	    	  })
-	     }
+		// 如果是选中则将收获信息的状态值改为1
+// if($('li').class='selected') {
+// $.ajax({
+// type:"POST",
+// url:"updateAddress.do",
+// data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+// success:function(result){
+// console.log(result);
+// }
+// })
+// }
 	  	var mone = document.getElementById('sum-all').innerHTML;
-// console.log(money);
 	  	var money = mone.substring(4);
-//	  	location.href="pay.jsp?pay_money="+money;
-		// var dizhi = $('.address-list'.children.class="selected");
-		// console.log(dizhi+"222");
-// // window.localStorage.setItem('goods_id',cart_id);
+	  	// 跳转
+	  	location.href="pay.jsp?pay_money="+money;
 	})
   
-  
+//  
+//function xsyli(obj){
+//	  $(obj).siblings('li').removeClass('selected');// 删除其他li的边框样式
+//      $(obj).addClass('selected');// 为当前li添加边框样式
+//      $(".btn-account").attr("disabled",false);// 取消禁用标志
+//      $(".btn-account").css({"cursor":"pointer"});
+//      console.log($(obj).prop("className"));
+//		
+//  	  // 如果是选中则将收获信息的状态值改为2
+//      if($(obj).prop("className")=='selected') {
+//    	 $.ajax({
+//    		 type:"POST",
+//    		 url:"updateAddress.do",
+//    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+//    		 success:function(result){
+//    			 console.log(result);
+//    		 }
+//    	  })
+//       }  
+//      if($(obj).prop("className")!="selected"){
+//    	  $.ajax({
+//     		 type:"POST",
+//     		 url:"updateAddress1.do",
+//     		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+//     		 success:function(result){
+//     			 console.log(result);
+//     		 }
+//     	  })
+//      }
+//  }
+
+function defaultli(obj){
+	var str = $(obj).text();
+	var str1 = str.split("收");
+	var name = str1[1].slice(5);
+	var iphone = str1[2].slice(5);
+	var postcode = str1[3].slice(5);
+	var AllAddress = str1[4].slice(5);
+	$(obj).siblings('li').removeClass('selected');// 删除其他li的边框样式
+    $(obj).addClass('selected');// 为当前li添加边框样式
+    $(".btn-account").attr("disabled",false);// 取消禁用标志
+    $(".btn-account").css({"cursor":"pointer"});
+	  // 如果是选中则将收获信息的状态值改为2
+//    if($(obj).prop("className")=='selected') {
+  	 $.ajax({
+  		 type:"POST",
+  		 url:"updateAddress.do",
+  		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress,"account":account_name},
+  		 success:function(result){
+  			 console.log(result);
+  		 }
+  	  })
+//    }
+}

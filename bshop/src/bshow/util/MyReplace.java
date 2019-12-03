@@ -56,12 +56,20 @@ public class MyReplace implements Runnable,Subject{
 		try {
 			PreparedStatement ps=conn.prepareStatement(mysql);
 			if(form.getGoods_name()!=null){
-				String name=form.getGoods_name().replaceAll("\\s", "");
-				char[] myname = name.toCharArray();
-				for (int i = 0; i < myname.length; i++) {
-					ps.setString(++index, "%"+myname[i]+"%");
-					ps.setString(++index, "%"+myname[i]+"%");
-					ps.setString(++index, "%"+myname[i]+"%");
+				String judgename = form.getGoods_name().replaceAll("\\s", "");
+				String name=judgename.substring(0,judgename.length()-1);
+				//第一次为精准查询，第二次为模糊查询
+				if(judgename.substring(judgename.length()-1).equals("1")){
+					ps.setString(++index, "%"+name+"%");
+					ps.setString(++index, "%"+name+"%");
+					ps.setString(++index, "%"+name+"%");
+				}else{
+					char[] myname = name.toCharArray();
+					for (int i = 0; i < myname.length; i++) {
+						ps.setString(++index, "%"+myname[i]+"%");
+						ps.setString(++index, "%"+myname[i]+"%");
+						ps.setString(++index, "%"+myname[i]+"%");
+					}
 				}
 			}
 			if(form.getGoods_price()!=null){

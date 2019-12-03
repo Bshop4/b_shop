@@ -43,4 +43,9 @@
 	<update id="updateaddressReceiver">
 		update receiver_table set ischeck=1 where telephone=#{telephone}
 	</update>
+	
+	<select id="selectById" resulttype="bshow.pojo.Receiver_table">
+		select * from receiver_table where 1=1 and rid=#{rid}
+	</select>
+	
 </class>

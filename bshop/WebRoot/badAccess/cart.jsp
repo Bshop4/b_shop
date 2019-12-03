@@ -20,7 +20,6 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<<<<<<< HEAD
 <title>B-SHOP嘿店——购物车</title>
 <link rel="stylesheet" href="css/cart.css" />
 <link rel="stylesheet" href="css/animate.css" />
@@ -88,90 +87,6 @@
 	</div>
 	</section>
 	<!--返回顶部-->
-	<!--<div class="toTop">
-=======
- <title>B-SHOP嘿店——购物车</title>
-    <link rel="stylesheet" href="css/cart.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <!--<link rel="stylesheet" href="css/footer.css" />-->
-  </head>
-  <body>
-    <!--头部-->
-    <div class="top">
-      <div class="top-bar">
-        <div class="btn">
-          <a href="sign.jsp">注册</a>
-          <a href="Login.jsp">登录</a>
-          <a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
-        </div>
-        <div class="logBtn">
-					<a class="mingZi"></a>
-					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-					<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a>
-					<span class="badge store_number">0</span>
-					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的走秀<p class="glyphicon glyphicon-chevron-down"></p>
-						<li>
-							<div class="personalInfo">
-								<a href="PersonInfo">个人中心</a>
-								<a>我的订单</a>
-								<a>我的收藏</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-        <div class="logo">
-        </div>
-        <div class="search-wrap">
-          <input placeholder="搜索商品" />
-          <button class="glyphicon glyphicon-search"></button>
-        </div>
-      </div>
-    </div>
-    <!--导航-->
-    <div class="taber-bar">
-      <!--上部分导航-->
-     <div class="tabs-list-top">
-				<ul class="tabs-list text-center">
-					<li class="tab">
-						<a href="index.jsp">首页</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/newsGood.jsp">新品</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/explosiveGood.jsp">爆款</a>
-					</li>
-					<li class="tab">
-						<a>嘿店移动版</a>
-					</li>
-				</ul>
-			</div>
-      <!--下部分导航-->
-      <div class="tabs-list-buttom">
-        <ul class="tabs-list text-center">
-        </ul>
-      </div>
-    </div>
-    <!--所有商品-->
-    <section class="section-merchandise">
-      <div class="merchandise">
-        <ul></ul>
-      </div>
-    </section>
-    <!--返回顶部-->
-    <!--<div class="toTop">
->>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
-      <span class="glyphicon glyphicon-open"></span>
-    </div>-->
 	<h3>
 		购物车(<span class="carts-number">0</span>)
 	</h3>

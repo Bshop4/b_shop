@@ -34,7 +34,7 @@
 			</div>
 			<div class="logBtn">
 				<a class="mingZi"></a> <a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-				<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a> <span
+				<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a> <span
 					class="badge store_number">0</span>
 				<ul class="last-span">
 					|&nbsp;&nbsp;&nbsp;我的嘿店

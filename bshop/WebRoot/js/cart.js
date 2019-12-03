@@ -39,6 +39,8 @@ $(document).ready(function() {
 			if (length-1==0) { 
 				return;
 			}
+			
+			console.log(length);
 			for (var i = 0; i < length-1; i++) {
 				var str = `
 					<tr>
@@ -62,8 +64,8 @@ $(document).ready(function() {
 				 // 把每次组装好的添加进table
 			     $('table').append(str);
 			};
-			$('.carts-number').text(result.length);
-			allMount = result.length;
+			$('.carts-number').text(returnResult.length-1);
+			allMount = returnResult.length-1;
 		    // 所有的业务逻辑都在这之后
 		    clickAll();
 		}
@@ -295,7 +297,6 @@ function delAll() {
 // }
 // });
 		tab.get(0).removeChild(tr.get(0));
-// console.log(tr.get(0).length);
 	});
 };
 
@@ -326,7 +327,5 @@ $('#open').click(function() {
 		})
 		tab.get(0).removeChild(tr.get(0));
 	})
-// window.open('account.jsp');
 	location.href="account.jsp?account_name="+account;
-// window.localStorage.setItem('goods_id',cart_id);
 })

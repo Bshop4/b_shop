@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="logBtn">
 					<a class="mingZi"></a>
 					<a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-					<a class="glyphicon glyphicon-shopping-cart" id="zjl-login-cart" href="cart.jsp"></a>
+					<a class="glyphicon glyphicon-shopping-cart" id="zjl-login-cart" href="/bshop/badAccess/cart.jsp"></a>
 					<span class="badge store_number">0</span>
 					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的走秀<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>

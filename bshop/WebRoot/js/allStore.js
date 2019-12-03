@@ -455,11 +455,6 @@ function noChangeCondition(){
 	}
 }
 
-//点击搜寻
-$('.search-wrap>button').click(function(){
-	var goods_name=$('.search-wrap>input').val();
-	location.href="/bshop/search.jsp?goods_name="+goods_name;
-})
 
 //加载更多
 function djtAddMore(obj){

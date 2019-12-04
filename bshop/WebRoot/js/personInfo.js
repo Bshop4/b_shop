@@ -930,6 +930,9 @@ $("#myfooter").click(function() {
 	getFooter();
 })
 
+
+
+var  footflag=false;
 //根据账号查看我的足迹
 function getFooter(){
 	$.ajax({
@@ -940,66 +943,120 @@ function getFooter(){
 				alert("你没有浏览过任何商品");
 				return;
 			}
+			
+			//清空记录
+			$('.user-right4').empty();
+			
 			console.log(result);
 			var mylength=result.length-1;
 			
+			var str=``;
 			for(var i=mylength;i>=0;i--){
 				if(i==mylength){
-					var str=`
-					<p class="djtDate">${result[i].footprint_time}</p>
-					<div onclick="djtclick(this)">
-						<img src="${result[i].goods_photo}">
-						<span class="djtbrand">${result[i].goods_brand}</span>
-						<span class="djtprice">￥${result[i].goods_price}</span>
-						<p class="djtname">${result[i].goods_name}</p>
-						<span class="djtdelete glyphicon glyphicon-trash"></span>
-					</div>
+					var strday=`
+					<p class="djtDate">${result[i].footprint_time}</p>`;
+					str+=`
+					<ul>
+						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+							<img src="${result[i].goods_photo}">
+							<span class="djtbrand">${result[i].goods_brand}</span>
+							<span class="djtprice">￥${result[i].goods_price}</span>
+							<p class="djtname">${result[i].goods_name}</p>
+							<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+						</li>
 					`;
-					$('.user-right4').append(str);
-				}else{
-					//日期不相等就创建日期
-					if(result[i+1].footprint_time!=result[i].footprint_time){
-						var str=`
-							<p class="djtDate">${result[i].footprint_time}</p>
-							<div onclick="djtclick(this)">
-								<img src="${result[i].goods_photo}">
-								<span class="djtbrand">${result[i].goods_brand}</span>
-								<span class="djtprice">￥${result[i].goods_price}</span>
-								<p class="djtname">${result[i].goods_name}</p>
-								<span class="djtdelete glyphicon glyphicon-trash"></span>
-							</div>
-						`;
-					$('.user-right4').append(str);
-					}else{
-						var str=`
-							<div onclick="djtclick(this)">
-								<img src="${result[i].goods_photo}">
-								<span class="djtbrand">${result[i].goods_brand}</span>
-								<span class="djtprice">￥${result[i].goods_price}</span>
-								<p class="djtname">${result[i].goods_name}</p>
-								<span class="djtdelete glyphicon glyphicon-trash"></span>
-							</div>
-						`;
-						$('.user-right4').append(str);
-					}
-					//显示删除
-					$('.user-right4>div').each(function(i){
-						$('.user-right4>div').eq(i).mouseover(function(){
-							$('.user-right4>div').eq(i).children('span.djtdelete').show();
-						})
-						$('.user-right4>div').eq(i).mouseout(function(){
-							$('.user-right4>div').eq(i).children('span.djtdelete').hide();
-						})
-					})
+					$('.user-right4').append(strday);
+					continue;
 				}
+				if(result[i+1].footprint_time!=result[i].footprint_time){
+					//日期不相等就创建日期
+					$('.user-right4').append(str);
+					var strday=`
+					<p class="djtDate">${result[i].footprint_time}</p>`;
+					str=`<ul>
+						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+							<img src="${result[i].goods_photo}">
+							<span class="djtbrand">${result[i].goods_brand}</span>
+							<span class="djtprice">￥${result[i].goods_price}</span>
+							<p class="djtname">${result[i].goods_name}</p>
+							<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+						</li>
+						`;
+					$('.user-right4').append(strday);
+				}else{
+						 str+=`
+							<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+							</li>
+						`;
+//						$('.user-right4').append(str);
+				}
+				if(i==0){
+					$('.user-right4').append(str);
+				}
+			}
+			//显示删除
+			$('.user-right4>ul>li').each(function(i){
+				$('.user-right4>ul>li').eq(i).mouseover(function(){
+					$('.user-right4>ul>li').eq(i).children('span.djtdelete').show();
+				})
+				$('.user-right4>ul>li').eq(i).mouseout(function(){
+					$('.user-right4>ul>li').eq(i).children('span.djtdelete').hide();
+				})
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseover(function(){
+					footflag=false;
+				});
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseout(function(){
+					footflag=true;
+				});
+			})
+		}
+		
+	})
+}
+
+//点击跳转
+function djtclick(obj){
+	if(!footflag){return;};
+	var goods_no=$(obj).attr('djt-data-goods');
+	location.href="/bshop/detail.jsp?goods_no="+goods_no;
+}
+
+var goods_no;
+var footprint_time;
+//点击删除
+function mydjtdelete(obj){
+	goods_no=$(obj).parent().attr('djt-data-goods');
+	footprint_time=$(obj).attr("djt-mtdate");
+	djtAjaxDelete();
+}
+
+//通过ajax删除
+function djtAjaxDelete(){
+	$.ajax({
+		type : "post",
+		url : "MyDelete.do",
+		data:{
+			goods_no:goods_no,
+			footprint_time:footprint_time,
+		},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+			if(result==true){
+				alert("删除成功");
+				//重新查询
+				getFooter();
+				return;
+			}else{
+				alert("删除失败");
 			}
 		}
 	})
 }
-
-//
-
-
-
 
 

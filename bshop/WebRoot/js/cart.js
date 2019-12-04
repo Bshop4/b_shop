@@ -327,5 +327,6 @@ $('#open').click(function() {
 		})
 		tab.get(0).removeChild(tr.get(0));
 	})
-	location.href="account.jsp?account_name="+account;
+	
+	location.href="/bshop/badAccess/account.jsp?account_name="+account;
 })

@@ -63,7 +63,7 @@ public class PersonInfo extends HttpServlet {
 				token = cookie.getValue();
 			}
 		}
-		System.out.println("token:" + token);
+//		System.out.println("token:" + token);
 		if(token != null){
 			response.sendRedirect("badAccess/personInfo.jsp?account="+account);
 		}else if(token == "" || token == null){

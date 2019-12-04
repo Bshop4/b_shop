@@ -73,7 +73,7 @@ $(document).ready(function() {
 		data:{"account":account_name},
 		success:function(result){
 			var result = JSON.parse(result);
-			console.log(result);
+//			console.log(result);
 			var obj1 = eval(result);
 			$(".address-list").css({
 		    	"display":"inline-block",
@@ -84,7 +84,7 @@ $(document).ready(function() {
 		  	  for (var i = 0; i < obj1.length; i++) {
 			  	  var obj = $("<li onclick='defaultli(this)' style='float: left;margin-left: 20px;border:2px solid white;'></li>");
 			  	  $(".address-list").append(obj)
-			  	  console.log(obj1.length);
+//			  	  console.log(obj1.length);
 		  		  obj.append("收货人姓名：" + obj1[i].receiver);
 		  		  obj.append(document.createElement("br"));
 		  		  obj.append("收货人电话：" + obj1[i].telephone);

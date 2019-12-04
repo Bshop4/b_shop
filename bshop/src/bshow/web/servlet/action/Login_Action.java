@@ -19,6 +19,7 @@ import bshow.pojo.Account_table;
 import bshow.test.Test;
 import bshow.util.Encryptdecrypt;
 import bshow.util.GenericPrimaryKey;
+import bshow.util.GetHttpIP;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
@@ -57,11 +58,20 @@ public class Login_Action extends Action{
 		if(list.size()!=0){
 			Account_table outAccountObject=(Account_table)list.get(0);
 			//用来对比是否是同一个帐号密码
+			
+			if(outAccountObject.getBan()==1){
+				json="{\"code\":\"418\",\"msg\":\"帐号被冻结，请联系客服\"}";
+				out.print(json);
+				return null;
+			}
 			//帐号对比
 			String uid=GenericPrimaryKey.getPrimaryKey();
 			if(inAccount.equals(outAccountObject.getAccount())){
 				//密码对比
 				if(inPass.equals(outAccountObject.getPassword())){
+					outAccountObject.setIpaddress(GetHttpIP.getIpAddress(request));
+					dao.updataObject("updateIP", outAccountObject);
+					
 					HttpSession session=request.getSession();//获得session
 					session.setAttribute("account", outAccountObject.getAccount());
 					session.setAttribute("password", outAccountObject.getPassword());

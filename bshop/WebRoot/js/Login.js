@@ -134,7 +134,10 @@
 				if(obj.code==413){
 					$('.pyl_login_user_tips').html(obj.msg).show();//帐号不存在
 				};
-					
+				if(obj.code==418){
+					$('.pyl_login_user_tips').html(obj.msg).show();//帐号冻结
+				};
+				
 			}
 		);
 	});

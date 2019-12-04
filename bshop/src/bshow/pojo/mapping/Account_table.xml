@@ -28,8 +28,11 @@
 	</select>
 	
 	<update id="updatePassWord">
-		update account_table set password=@{password}
-		where account=#{account} and email=#{email}
+		update account_table set password=@{password} where account=#{account} and email=#{email}
+	</update>
+	
+	<update id="updateIP">
+		update account_table set ipaddress=@{ipaddress} where account=#{account} and email=#{email}
 	</update>
 	
 	<!-- and account_id=#{account_id} -->

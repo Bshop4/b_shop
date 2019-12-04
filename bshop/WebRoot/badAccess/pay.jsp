@@ -337,7 +337,7 @@
  // }
   $("#pay-btn").click(function(){
 	  alert("支付成功！")
-	  $.ajax({
+	  $.ajax({ 
 		  
 	  })
   })

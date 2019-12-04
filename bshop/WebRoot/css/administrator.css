@@ -166,3 +166,19 @@ img {
 .play_context tr th:nth-child(5){
 	width: 202px;height: 24px;
 }
+
+.play_context>table>tr>td:nth-child(7){
+	cursor: pointer;
+}
+
+.right_play{
+	position: relative;
+}
+
+.myupdate{
+	top:100px;
+	left:40%;
+	position:absolute;
+	display: none;
+	background: white;
+}

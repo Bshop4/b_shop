@@ -135,7 +135,6 @@ var name="";
 var iphone="";
 var postcode="";
 var AllAddress="";
-
   // 点击模态框的保存
   function mysaveclicks(){
       name = document.getElementById("myname").value;
@@ -284,42 +283,8 @@ var AllAddress="";
   	};
   	return result[2];
   };
-  // 点击支付订单存入数据并且跳转到倒计时页面
-  $('#btn-account').click(function() { 
-		$('[data-tr="active"]').each(function() {
-			var tab = $(this).parent();
-			var tr = $(this);
-			cart_id = $(this).find("td:first").attr("data-id");
-			console.log(cart_id);
-			// 把订单cart_id,account,address传给需要插入的action
-			$.ajax({
-				type : "POST",
-				url : "xsyinsertBill.do",
-				data : {"cart_id" : cart_id,"account":account_name,"address":name+iphone+postcode+AllAddress,},
-				success : function(result) {
-					var result=JSON.parse(result);
-					console.log(result);
-				}
-			})
-		})
-		// 如果是选中则将收获信息的状态值改为1
-// if($('li').class='selected') {
-// $.ajax({
-// type:"POST",
-// url:"updateAddress.do",
-// data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
-// success:function(result){
-// console.log(result);
-// }
-// })
-// }
-	  	var mone = document.getElementById('sum-all').innerHTML;
-	  	var money = mone.substring(4);
-	  	console.log(money);
-	  	// 跳转
-	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name;
-	})
-
+  
+var dizhi;
 function defaultli(obj){
 	var str = $(obj).text();
 	var str1 = str.split("收");
@@ -331,6 +296,8 @@ function defaultli(obj){
     $(obj).addClass('selected');// 为当前li添加边框样式
     $(".btn-account").attr("disabled",false);// 取消禁用标志
     $(".btn-account").css({"cursor":"pointer"});
+    dizhi = AllAddress;
+    console.log(dizhi);
 	  // 如果是选中则将收获信息的状态值改为2
 //    if($(obj).prop("className")=='selected') {
   	 $.ajax({
@@ -343,4 +310,39 @@ function defaultli(obj){
   	  })
 //    }
 }
-  
+//点击支付订单存入数据并且跳转到倒计时页面
+$('#btn-account').click(function() { 
+		$('[data-tr="active"]').each(function() {
+			var tab = $(this).parent();
+			var tr = $(this);
+			//var sss = name+iphone+postcode+AllAddress;
+			cart_id = $(this).find("td:first").attr("data-id");
+			console.log(cart_id);
+			// 把订单cart_id,account,address传给需要插入的action
+			$.ajax({
+				type : "POST",
+				url : "xsyinsertBill.do",
+				data : {"cart_id" : cart_id,"account":account_name,"address":dizhi},
+				success : function(result) {
+					var result=JSON.parse(result);
+					console.log(result); 
+				} 
+			})
+		})
+		// 如果是选中则将收获信息的状态值改为1
+//if($('li').class='selected') {
+//$.ajax({
+//type:"POST",
+//url:"updateAddress.do",
+//data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+//success:function(result){
+//console.log(result);
+//}
+//})
+//}
+	  	var mone = document.getElementById('sum-all').innerHTML;
+	  	var money = mone.substring(4);
+	  	console.log(money);
+	  	// 跳转
+	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name;
+	})

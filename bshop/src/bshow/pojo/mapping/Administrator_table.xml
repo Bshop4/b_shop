@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="bshow.pojo.Administrator_table" table="administrator_table">
+	<property name="administrator_id" column="administrator_id"/>
+	<property name="administrator_account" column="administrator_account"/>
+	<property name="sdministrator_password" column="sdministrator_password"/>
+	
+	<insert id="insertone">
+		insert into administrator_table(administrator_account,sdministrator_password) values(#{administrator_account},#{sdministrator_password})
+	</insert>
+	<select id="selectone" resulttype="bshow.pojo.Administrator_table">
+		select * from administrator_table where 1=1 and administrator_account=#{administrator_account}
+	</select>
+	<!--
+	
+	<select id="selecttow" resulttype="bshow.pojo.Account_table">
+		select * from account_table	where 1=1 and account_id=#{account_id} and password=#{password}
+	</select>
+	 and account_id=#{account_id} -->
+
+</class>

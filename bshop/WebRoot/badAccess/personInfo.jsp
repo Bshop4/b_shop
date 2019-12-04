@@ -19,9 +19,9 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/personInfo.css" />
+<link rel="stylesheet" href="/bshop/css/base.css" />
+<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
+<link rel="stylesheet" href="/bshop/css/personInfo.css" />
 
 </head>
 <body>
@@ -34,7 +34,7 @@
 			</div>
 			<div class="logBtn">
 				<a class="mingZi"></a> <a class="exitM">[退出]&nbsp;&nbsp;&nbsp;|</a>
-				<a class="glyphicon glyphicon-shopping-cart" href="cart.jsp"></a> <span
+				<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a> <span
 					class="badge store_number">0</span>
 				<ul class="last-span">
 					|&nbsp;&nbsp;&nbsp;我的嘿店
@@ -377,12 +377,12 @@
 
 </body>
 </html>
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
-<script type="text/javascript" src="js/banner.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/personInfo.js"></script>
-<script type="text/javascript" src="js/infos.js"></script>
+<script src="/bshop/js/jquery.min.js"></script>
+<script type="text/javascript" src="/bshop/js/base.js"></script>
+<script type="text/javascript" src="/bshop/js/banner.js"></script>
+<script type="text/javascript" src="/bshop/js/bootstrap.js"></script>
+<script type="text/javascript" src="/bshop/js/personInfo.js"></script>
+<script type="text/javascript" src="/bshop/js/infos.js"></script>
 <script type="text/javascript">
 	function show(obj) {
 		var fr = new FileReader();

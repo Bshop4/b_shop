@@ -18,27 +18,30 @@ function createXMLHttp() {
 var returnResult;
 var account;
 $(document).ready(function() {
-	account = "pyla1";
+//	account = "pyla1";
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
 		url : "selectCartGoods.do",
-		data : {"account" : account},
+//		data : {"account" : account},
 		success : function(result) {
 			var result=JSON.parse(result);
 			returnResult = result;
-// console.log(returnResult.length);
-// console.log(result);
-// console.log(result.length);
+			console.log(returnResult);
+			var length  = returnResult.length;
+			account = returnResult[length-1];
+			console.log(account);
 			// 验证
 			if (result.account==0) {
 				console.log("请求数据失败");
 				return;
 			};
-// console.log(result[0].cgoods_photo);
-// var goodsList = result.data;
-			for (var i = 0; i < result.length; i++) {
-// console.log(result[i].cart_id)
+			if (length-1==0) { 
+				return;
+			}
+			
+			console.log(length);
+			for (var i = 0; i < length-1; i++) {
 				var str = `
 					<tr>
 						<td class="left">
@@ -61,8 +64,8 @@ $(document).ready(function() {
 				 // 把每次组装好的添加进table
 			     $('table').append(str);
 			};
-			$('.carts-number').text(result.length);
-			allMount = result.length;
+			$('.carts-number').text(returnResult.length-1);
+			allMount = returnResult.length-1;
 		    // 所有的业务逻辑都在这之后
 		    clickAll();
 		}
@@ -294,7 +297,6 @@ function delAll() {
 // }
 // });
 		tab.get(0).removeChild(tr.get(0));
-// console.log(tr.get(0).length);
 	});
 };
 
@@ -317,7 +319,7 @@ $('#open').click(function() {
 		$.ajax({
 			type : "POST",
 			url : "selectCartGoodsById.do",
-			data : {"cart_id" : cart_id},
+			data : {"cart_id" : cart_id}, 
 			success : function(result) {
 				var result=JSON.parse(result);
 				console.log(result);
@@ -325,7 +327,6 @@ $('#open').click(function() {
 		})
 		tab.get(0).removeChild(tr.get(0));
 	})
-// window.open('account.jsp');
-	location.href="account.jsp?account_name="+account;
-// window.localStorage.setItem('goods_id',cart_id);
+	
+	location.href="/bshop/badAccess/account.jsp?account_name="+account;
 })

@@ -60,26 +60,25 @@ public class Sign_accountAction extends Action{
 		
 		
 		//给信息表添加帐号
-		Cart_table ct=new Cart_table();
-		//cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account
-		ct.setAccount(saa.getAccount());
-		ct.setCgoods_desc("");
-		ct.setCgoods_color("");
-		ct.setCgoods_no("");
-		ct.setCgoods_number(0);
-		ct.setCgoods_state(0);
-		ct.setCgoods_photo("");
-		ct.setCgoods_price(0);
-		ct.setCgoods_sub(0);
-		ct.setCgoods_size("");
-		boolean flagCart=dao1.saveObject("insertToCart", ct);
+//		Cart_table ct=new Cart_table();
+//		//cgoods_photo,cgoods_desc,cgoods_number,cgoods_price,cgoods_sub,cgoods_no,cgoods_state,cgoods_color,cgoods_size,account
+//		ct.setAccount(saa.getAccount());
+//		ct.setCgoods_desc("");
+//		ct.setCgoods_color("");
+//		ct.setCgoods_no("");
+//		ct.setCgoods_number(0);
+//		ct.setCgoods_state(0);
+//		ct.setCgoods_photo("");
+//		ct.setCgoods_price(0);
+//		ct.setCgoods_sub(0);
+//		ct.setCgoods_size("");
 		
 		
 		//编写返回给js页面的值
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out=response.getWriter();
 		String json="";
-		if(flagPersoninfo&&flagAccount&&flagCart){
+		if(flagPersoninfo&&flagAccount){
 			json="{\"code\":\"0\",\"msg\":\"successSgin登录成功\"}";
 			out.print(json);
 			return null;
@@ -88,8 +87,6 @@ public class Sign_accountAction extends Action{
 		if(!flagPersoninfo){
 			json="{\"code\":\"412\",\"msg\":\"Personin_tableSavefoError信息添加出错\"}";
 			//只要有一边失败就要删除成功的表
-			
-			
 		}
 		
 		if(!flagAccount){
@@ -97,9 +94,9 @@ public class Sign_accountAction extends Action{
 		}
 		
 		
-		if(!flagCart){
-			json="{\"code\":\"416\",\"msg\":\"Account_tableSaveError购物车添加出错\"}";
-		}
+//		if(!flagCart){
+//			json="{\"code\":\"416\",\"msg\":\"Account_tableSaveError购物车添加出错\"}";
+//		}
 		
 		return null;
 	}

@@ -25,17 +25,17 @@ public class SaveAddressAction extends Action {
 		String postcode = request.getParameter("postcode");
 		String AllAddress = request.getParameter("AllAddress");
 		String myAllAdress = name + "" + iphone + "" + postcode + "" + AllAddress;
-		System.out.println(myAllAdress);
+//		System.out.println(myAllAdress);
 		Receiver_table rt = new Receiver_table();
 		rt.setReceiver(name);
 		rt.setTelephone(iphone);
 		rt.setPostal(postcode);
 		rt.setAddress(AllAddress);
-		rt.setAccount("aaa");
+		rt.setAccount("pyla1");
 		rt.setIscheck(0);
 		Basedao bd = new Basedaoimpl();
 		boolean flag = bd.saveObject("insertaddressReceiver", rt);
-		System.out.println(flag);
+//		System.out.println(flag);
 		JSONArray ja = JSONArray.fromObject(flag);
 //		将数据交给前端
 		PrintWriter out = response.getWriter();

@@ -27,7 +27,7 @@ public class InsertBillAction extends Action {
 		String msg = ib.getMsg();
 
 		JSONArray obj = JSONArray.fromObject(msg);
-		System.out.println(obj);
+//		System.out.println(obj);
 //		String account = obj.getString("account");
 //		String cart_id = obj.getString("cart_id");
 //		String cgoods_color = obj.getString("cgoods_color");

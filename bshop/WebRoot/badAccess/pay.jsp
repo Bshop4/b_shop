@@ -186,7 +186,7 @@
 				<p class="ple-pay">请选择支付方式</p>
 				<p class="zfb-wx"><label class="lblb"><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="/bshop/img/zhifubao11.png"></span></label><label class="lblb"><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="/bshop/img/weixin11.png"></span></label></p>
 			</div>
-			<div class="go-pay"><button type="button" class="pay-btn" id="pay-btn">支付</button></div>
+			<div class="go-pay"><button type="button" class="pay-btn" id="pay-btn" onclick="paypass()">支付</button></div>
 		</div>
 	<!--返回顶部-->
 		<div class="toTop">
@@ -335,10 +335,7 @@
  // document.getElementById("#pay-btn").onclick = function(){
 	 //console.log(222);
  // }
-  $("#pay-btn").click(function(){
-	  alert("支付成功！")
-	  $.ajax({ 
-		  
-	  })
-  })
+	function paypass(){
+		var str = prompt("请填写支付密码", "");
+	}
 </script> 

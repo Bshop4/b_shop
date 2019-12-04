@@ -298,6 +298,7 @@
         	height: 512px;
         	margin: 16px 2px 0px;
         	position: relative;
+        	overflow: scroll;
         }
         
         

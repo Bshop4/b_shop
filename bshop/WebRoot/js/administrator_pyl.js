@@ -1,4 +1,4 @@
-
+	
 //全局变量
 var pageNo=1;
 var pageSize=10;
@@ -43,7 +43,9 @@ var maxPageCount;
 	$('.find_key>.myaccount').keyup(function(){
 		emial=$('.find_key>.email').val();
 		if(account!=$('.find_key>.myaccount').val()){
-			account=$('.find_key>.myaccount').val()
+			account=$('.find_key>.myaccount').val();
+			pageNo=1;
+			$('.pageNum').val(pageNo);
 			myNeedsList();
 			getMaxPage();
 		}
@@ -54,6 +56,8 @@ var maxPageCount;
 		account=$('.find_key>.myaccount').val();
 		if(email!=$('.find_key>.myemail').val()){
 			email=$('.find_key>.myemail').val();
+			pageNo=1;
+			$('.pageNum').val(pageNo);
 			myNeedsList();
 			getMaxPage();
 		}
@@ -102,6 +106,8 @@ var maxPageCount;
 									<th>email</th>
 									<th>ipaddress</th>
 									<th>ban</th>
+									<th>操作</th>
+									<th>神操作</th>
 								</tr>
 				`;
 				
@@ -113,11 +119,13 @@ var maxPageCount;
 						var str=`
 								<tr>
 								<td>${j+1}</td>
-								<td>${result[j].account}</td>
-								<td>${result[j].password}</td>
-								<td>${result[j].email}</td>
-								<td>${result[j].ipaddress}</td>
-								<td>${result[j].ban}</td>
+								<td class="myAc">${result[j].account}</td>
+								<td class="myPa">${result[j].password}</td>
+								<td class="myEm">${result[j].email}</td>
+								<td class="myIp">${result[j].ipaddress}</td>
+								<td class="myBa">${result[j].ban}</td>
+								<td onclick="myUpdate(this)">修改</td>
+								<td style="cursor:pointer;" onclick="myDelete(this)">删除</td>
 							</tr>`;
 						$('.play_context table').append(str);
 					}
@@ -198,7 +206,98 @@ var maxPageCount;
 		myNeedsList();
 	})
 	
+	//点击修改弹框
+	function myUpdate(obj){
+		//拿值
+		var myac=$(obj).siblings('.myAc').html();
+		var mypa=$(obj).siblings('.myPa').html();
+		var myem=$(obj).siblings('.myEm').html();
+		var myip=$(obj).siblings('.myIp').html();
+		var myba=$(obj).siblings('.myBa').html();
+		console.log(myac);
+		//放值
+		$('.ac').val(myac);
+		$('.pa').val(mypa);
+		$('.em').val(myem);
+		$('.ip').val(myip);
+		$('.ba').val(myba);
+		
+		//表显示
+		$('.myupdate').show();
+	}
 	
+	$('.mycance').click(function(){
+		$('.myupdate').hide();					
+	})
+	
+	//点击提交
+	$('.updateBtn').click(function(){
+		//获取需要的值
+		var account=$('.ac').val();	
+		var password=$('.pa').val();
+		var email=$('.em').val();
+		var	ipaddress=$('.ip').val();
+		var	ban=$('.ba').val();	
+		
+		$.ajax({
+			type:"post",
+			url:"UpdateMyAccount.do",
+			data:{
+				account:account,
+				email:email,
+				password:password,
+				ipaddress:ipaddress,
+				ban:ban,
+			},
+			success:function(result){
+				var myneeds=JSON.parse(result);
+				if(myneeds.code==0){
+					alert(myneeds.msg);
+					$('.myupdate').hide();
+					//执行查询
+					myNeedsList();
+					getMaxPage();
+					
+				}else{
+					alert(myneeds.msg);
+					$('.myupdate').hide();
+					//执行查询
+					myNeedsList();
+					getMaxPage();
+				}
+			}				
+		})
+	})
+	
+	//删除
+	function myDelete(obj){
+		confirm("确定删除？");
+		//获得所需要的值
+		var account=$(obj).siblings('.myAc').html();
+		
+		$.ajax({
+			type:"post",
+			url:"DeleteMyAccount",
+			data:{
+				account:account,
+			},
+			success:function(result){
+				var myneeds=JSON.parse(result);
+				if(myneeds.code==0){
+					alert(myneeds.msg);
+					//执行查询
+					myNeedsList();
+					getMaxPage();
+					
+				}else{
+					alert(myneeds.msg);
+					//执行查询
+					myNeedsList();
+					getMaxPage();
+				}
+			}
+		})
+	}
 	
 	
 	

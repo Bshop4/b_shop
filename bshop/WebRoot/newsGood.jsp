@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="index.jsp">首页</a>
 					</li>
 					<li class="tab">
-						<a>新品</a>
+						<a href="/bshop/newsGood.jsp">新品</a>
 					</li>
 					<li class="tab">
 						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
 					</li>
 					<li class="tab">
-						<a>爆款</a>
+						<a href="/bshop/explosiveGood.jsp">爆款</a>
 					</li>
 					<li class="tab">
 						<a>嘿店移动版</a>

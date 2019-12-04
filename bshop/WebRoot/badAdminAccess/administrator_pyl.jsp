@@ -108,6 +108,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 					</center>
 				</div>
+				
+				<!--修改内容部分 -->
+				
+					<table class="myupdate">
+						<tr>
+							<td>account</td>
+							<td><input class="ac" disabled="disabled"/></td>
+						</tr>
+						<tr>
+							<td>password</td>
+							<td><input class="pa" /></td>
+						</tr>
+						<tr>
+							<td>email</td>
+							<td><input class="em" /></td>
+						</tr>
+						<tr>
+							<td>ipaddress</td>
+							<td><input class="ip" /></td>
+						</tr>
+						<tr>
+							<td>ban</td>
+							<td><input class="ba" /></td>
+						</tr>
+						<tr>
+							<td class="updateBtn" style="cursor: pointer;">修改</td>
+							<td class="mycance" style="cursor: pointer;">取消</td>
+						</tr>
+					</table>
+				
+
+				
 			</div>
 		</div>
 	</body>

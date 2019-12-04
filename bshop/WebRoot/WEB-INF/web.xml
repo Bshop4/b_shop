@@ -44,4 +44,13 @@
     <filter-name>sessionFilter</filter-name>
     <url-pattern>/badAccess/*</url-pattern>
   </filter-mapping>
+  
+  <filter>
+    <filter-name>adminFilter</filter-name>
+    <filter-class>bshow.web.filter.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>adminFilter</filter-name>
+    <url-pattern>/badAdminAccess/*</url-pattern>
+  </filter-mapping>
 </web-app>

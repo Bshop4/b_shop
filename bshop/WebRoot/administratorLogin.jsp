@@ -28,10 +28,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<img src="img/bg-logo2-black.png"/>
 			<form action="" class="admi_form">
-				<div id="">
+				<div>
 					<span>管理员：</span><input type="text" name="account" class="users"/>
+					<span class="mymsg"></span>
 				</div>
-				<div id="">
+				<div>
 					<span>密　码：</span><input type="password" name="password" class="pass"/>
 				</div>
 				<button class="admi_btn" onclick="admi_login()"><span class="admi_anim">登录</span></button>

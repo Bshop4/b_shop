@@ -1,10 +1,4 @@
-	function admi_login(){
-		
-		
-		
-	}
-	
-	
+
 	var Timer=null;
 	$('.admi_btn').mouseenter(function(){
 		Timer=setInterval(function(){
@@ -30,4 +24,51 @@
                 return 0; 
             break; 
   	  } 
+	}
+	
+	//失焦判断帐号是否存在
+	$('.users').blur(function(){
+		var user=$('.users').val();
+		$.ajax({
+			type:"post",
+			url:"AdminLogin",
+			data:{account:user},
+			success:function(result){
+				if(result){
+					var myneed=JSON.parse(result);
+					console.log(myneed);
+					if(myneed.code==0){
+						$('.admi_form>div>.mymsg').html(myneed.msg);
+					}
+				}
+				else{
+					$('.admi_form>div>.mymsg').html("");
+				}
+			}
+		})
+	})
+	
+	
+	//登录
+	function admi_login(){
+		
+		var user=$('.users').val();
+		var pass=$('.pass').val();
+		$.ajax({
+			type:"post",
+			url:"AdminDoLogin",
+			data:{
+				account:user,
+				password:pass,
+			},
+			success:function(result){
+				var needs=JSON.parse(result);
+				console.log(needs);
+				if(needs.code==0){
+					location.href="/bshop/badAdminAccess/administrator_pyl.jsp";
+				}else{
+					alert(needs.msg);
+				}
+			}
+		})
 	}

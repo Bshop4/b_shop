@@ -325,8 +325,8 @@ $('#btn-account').click(function() {
 				data : {"cart_id" : cart_id,"account":account_name,"address":dizhi},
 				success : function(result) {
 					var result=JSON.parse(result);
-					console.log(result);
-				}
+					console.log(result); 
+				} 
 			})
 		})
 		// 如果是选中则将收获信息的状态值改为1

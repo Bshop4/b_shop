@@ -73,7 +73,6 @@ public class FootPrintAction extends Action{
 		
 		//发送给前台
 		
-//		System.out.println(flag);
 
 		response.setCharacterEncoding("utf-8");
 //		response.setHeader("Content-Type", "application/json;charset=utf-8");

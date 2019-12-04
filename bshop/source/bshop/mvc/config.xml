@@ -306,4 +306,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 删除历史记录 -->
+	<PagePattern name="MyDelete">
+		<ActionForm>bshow.web.servlet.form.MyDeleteActionForm</ActionForm>
+		<Action>bshow.web.servlet.action.MyDeleteAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

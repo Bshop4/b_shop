@@ -348,11 +348,12 @@
  // 获取价格
  $(document).ready(function() {
 	var pay_money = getUrlVal("pay_money");
+	var uname = getUrlVal("pay_name");
 	document.getElementById('heji').innerHTML = "应付：￥"+pay_money;
 	$.ajax({
 		type:"POST",
 		url:"getMyAddress.do",
-		data:{"msg":2},
+		data:{"msg":2,"uname":uname},
 		success:function(result){
 			var result = JSON.parse(result);
 			console.log(result);

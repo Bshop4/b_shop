@@ -26,7 +26,6 @@ public class XsyInsertBillAction extends Action {
 		String cart_id = request.getParameter("cart_id");
 		String account = request.getParameter("account");
 		String address = request.getParameter("address");
-		System.out.println(address);
 
 		Cart_table ct = new Cart_table();
 		Bill_table bt = new Bill_table();

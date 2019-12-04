@@ -68,6 +68,7 @@ $('.logo').click(function(){
 
 //判断是否登陆成功,并获得所需要的值
 function judgementLogin(){
+	console.log("判断是否登录");
 	$.ajax({
 		type:"post",
 		url:"JudgementLogin",

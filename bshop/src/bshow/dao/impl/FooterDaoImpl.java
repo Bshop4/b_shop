@@ -42,4 +42,26 @@ public class FooterDaoImpl implements FooterDao{
 		return list;
 	}
 
+	@Override
+	public boolean deleteFooter(String goods_no,String footprint_time) {
+		boolean flag=false;
+		Connection conn=DBhelper.getConnection();
+		String sql="delete from footprint_table where footprint_goodsno=? and footprint_time=?";
+		try {
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, goods_no);
+			ps.setString(2, footprint_time);
+			int m=ps.executeUpdate();
+			if(m!=0){
+				flag=true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBhelper.closeConnection(conn);
+		}
+		return flag;
+	}
+
 }

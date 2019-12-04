@@ -19,9 +19,9 @@
 <!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/personInfo.css" />
+<link rel="stylesheet" href="/bshop/css/base.css" />
+<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
+<link rel="stylesheet" href="/bshop/css/personInfo.css" />
 
 </head>
 <body>
@@ -118,7 +118,7 @@
 			</div>
 			<div class="takeOver">
 				<label class="user-takeOver">收货地址:</label> <input type="text"
-					class="myAddress" readonly="readonly" />
+					class="myAddress" readonly="readonly" style="border:none;outline:none;"/>
 			</div>
 			<div class="savesuccess"><img class="greenImg" src="img/8.png"/><span class="savespan">保存成功</span></div>
 			<button class="cancel" id="cancel">取消</button>
@@ -377,12 +377,12 @@
 
 </body>
 </html>
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
-<script type="text/javascript" src="js/banner.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/personInfo.js"></script>
-<script type="text/javascript" src="js/infos.js"></script>
+<script src="/bshop/js/jquery.min.js"></script>
+<script type="text/javascript" src="/bshop/js/base.js"></script>
+<script type="text/javascript" src="/bshop/js/banner.js"></script>
+<script type="text/javascript" src="/bshop/js/bootstrap.js"></script>
+<script type="text/javascript" src="/bshop/js/personInfo.js"></script>
+<script type="text/javascript" src="/bshop/js/infos.js"></script>
 <script type="text/javascript">
 	function show(obj) {
 		var fr = new FileReader();

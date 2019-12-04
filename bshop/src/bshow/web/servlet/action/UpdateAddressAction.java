@@ -26,7 +26,7 @@ public class UpdateAddressAction extends Action {
 		String AllAddress = request.getParameter("AllAddress");
 		String account = request.getParameter("account");
 		String myAllAdress = name + "" + iphone + "" + postcode + "" + AllAddress;
-		System.out.println(myAllAdress);
+//		System.out.println(myAllAdress);
 		Basedao bd = new Basedaoimpl();
 		Receiver_table rt = new Receiver_table();
 		rt.setAccount(account);
@@ -34,7 +34,7 @@ public class UpdateAddressAction extends Action {
 		for (Object object : list) {
 			Receiver_table obj = (Receiver_table) object;
 			obj.setIscheck(0);
-			System.out.println(obj);
+//			System.out.println(obj);
 			bd.updataObject("updateaddressReceiver2", obj);
 		}
 		Receiver_table rt1 = new Receiver_table();

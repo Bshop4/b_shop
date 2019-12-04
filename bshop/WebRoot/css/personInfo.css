@@ -298,6 +298,7 @@
         	height: 512px;
         	margin: 16px 2px 0px;
         	position: relative;
+        	overflow: scroll;
         }
         
         
@@ -389,47 +390,57 @@
             position: absolute;
             left: 180px;
             top: 0px;
+            height: 680px;
             padding: 20px 0px 0px;
+            overflow: scroll;
         }
         .user-right4>.djtDate{
+        	width:100%;
         	font-size:20px;
         	font-weight:bold;
         	display:block;
         	padding-left:40px;
-        }
-        .user-right4>div{
         	float:left;
+        }
+        .user-right4 ul{
+        	margin-bottom: 20px;
+        
+        }
+        .user-right4 li{
+        	display:inline-block;
         	width:195px;
         	position:relative;
         	height:260px;
         	margin-left:30px;
         	margin-top:20px;
         	background:#f7f7f7;
+        	cursor:pointer;
+        	float:left;
         }
-        .user-right4>div>img{
+        .user-right4 li>img{
         	width:195px;
         	height:195px
         }
-        .user-right4>div>span.djtbrand{
+        .user-right4 li>span.djtbrand{
         	display:inline-block;
         	font-size:14px;
         	color:#f10;
         	margin-left:10px;
         	margin-top:15px;
         }
-        .user-right4>div>span.djtprice{
+        .user-right4 li>span.djtprice{
         	display:inline-block;
         	font-size:14px;
         	color:#111;
-        	margin-left: 50px;
         	margin-top:15px;
         }
-        .user-right4>div>p.djtname{
+        .user-right4 li>p.djtname{
         	font-size:12px;
         	padding-left:10px;
+        	margin-bottom: 0px;
         }
         
-        .user-right4>div>span.djtdelete{
+        .user-right4 li>span.djtdelete{
         	position:absolute;
         	top:0px;
         	left:0px;

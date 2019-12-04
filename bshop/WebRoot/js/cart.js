@@ -154,6 +154,7 @@ function clickAll() {
 					$(this).prop('checked', true);
 					// 给当前元素加个标识(自定义的属性)
 					$(this).attr('data-price', 'active');
+					$(this).attr('del-red','active')
 				});
 			} else {
 				// 选中所有的
@@ -161,6 +162,7 @@ function clickAll() {
 					$(this).prop('checked', false);
 					// 拿掉标识(自定义的属性)
 					$(this).attr('data-price', '');
+					$(this).attr('del-red', '');
 				});
 			}
 			;
@@ -195,12 +197,10 @@ function clickAll() {
 			// 找到tr删除自己
 			var tab = event.target.parentNode.parentNode.parentNode;
 			var tr = event.target.parentNode.parentNode;
-// console.log(returnResult);
 // console.log(returnResult.length+"哈哈");
 			$('.carts-number').text(--allMount);// 左上角购物车数量减一
 			// 得到删除的商品的id
 			var cart_id = $(event.target).attr("data-id");
-// console.log(cart_id)
 			$.ajax({
 				type:"POST",
 				url:"deleteCartGoods.do",
@@ -217,7 +217,6 @@ function clickAll() {
 		;
 	});
 	$('.footer').click(function(event) {
-		// console.log(event);
 		if (event.target.className == 'checkAll') {
 			if (event.target.checked == true) {
 				// 选中所有的
@@ -225,6 +224,7 @@ function clickAll() {
 					$(this).prop('checked', true);
 					// 给当前元素加个标识(自定义的属性)
 					$(this).attr('data-price', 'active');
+					$(this).attr('del-red','active')
 				});
 			} else {
 				// 选中所有的
@@ -232,6 +232,7 @@ function clickAll() {
 					$(this).prop('checked', false);
 					// 拿掉标识(自定义的属性)
 					$(this).attr('data-price', '');
+					$(this).attr('del-red','')
 				});
 			}
 			;
@@ -282,20 +283,17 @@ function delAll() {
 		console.log($(this));
 		var tab = $(this).parent().parent().parent();
 		var tr = $(this).parent().parent();
-// console.log(tab); 
-// console.log(tr.length);
-		
 		var cart_id = $('[del-red="active"]').attr("data-no");
 		console.log(cart_id) 
-// $.ajax({
-// type:"POST",
-// url:"deleteCartGoods.do",
-// data:{"cart_id":cart_id},
-// success:function(result){
-// var result = JSON.parse(result);
-// console.log(result);//true(删除成功)
-// }
-// });
+		 $.ajax({
+		 type:"POST",
+		 url:"deleteCartGoods.do",
+		 data:{"cart_id":cart_id},
+		 success:function(result){
+		 var result = JSON.parse(result);
+		 console.log(result);//true(删除成功)
+		 }
+		 });
 		tab.get(0).removeChild(tr.get(0));
 	});
 };
@@ -309,6 +307,7 @@ function allMounts() {
 }
 var cart_id;
 $('#open').click(function() {
+	console.log(888);
 	$('[data-price="active"]').each(function() {
 		console.log($(this));	
 		var tab = $(this).parent().parent().parent();
@@ -319,7 +318,7 @@ $('#open').click(function() {
 		$.ajax({
 			type : "POST",
 			url : "selectCartGoodsById.do",
-			data : {"cart_id" : cart_id},
+			data : {"cart_id" : cart_id}, 
 			success : function(result) {
 				var result=JSON.parse(result);
 				console.log(result);
@@ -327,5 +326,5 @@ $('#open').click(function() {
 		})
 		tab.get(0).removeChild(tr.get(0));
 	})
-	location.href="account.jsp?account_name="+account;
+	location.href="/bshop/badAccess/account.jsp?account_name="+account;
 })

@@ -4,13 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>购物车</title>
-<link rel="stylesheet" href="css/cart_account.css" />
-<link rel="stylesheet" href="css/animate.css" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/index.css" />
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/personInfo.css" />
+<link rel="stylesheet" href="/bshop/css/cart_account.css" />
+<link rel="stylesheet" href="/bshop/css/animate.css" />
+<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
+<link rel="stylesheet" href="/bshop/css/index.css" />
+<link rel="stylesheet" href="/bshop/css/base.css" />
+<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
+<link rel="stylesheet" href="/bshop/css/personInfo.css" />
 
 <meta charset="UTF-8">
 </head>
@@ -19,11 +19,30 @@
 	<div class="top">
 		<div class="top-bar">
 			<div class="btn">
-				<a>注册</a> <a>登录</a> <a class="glyphicon glyphicon-shopping-cart"></a>
+				<a href="/bshop/sign.jsp" target="_blank">注册</a> <a href="/bshop/Login.jsp"
+					target="_blank">登录</a> <a class="glyphicon glyphicon-shopping-cart"></a>
 			</div>
+			<div class="logBtn">
+				<a class="mingZi"></a> <a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;|
+				<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a> <span
+					class="badge store_number">0</span>
+				<ul class="last-span">
+					|&nbsp;&nbsp;&nbsp;我的嘿店
+					<p class="glyphicon glyphicon-chevron-down"></p>
+					<li>
+						<div class="personalInfo">
+							<a href="PersonInfo">个人中心</a> <a>我的订单</a> <a>我的收藏</a>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+			<!--整合logo-->
 			<div class="logo"></div>
 			<div class="search-wrap">
-				<input placeholder="搜索商品" />
+				<input placeholder="搜索商品" maxlength="4"
+					onkeyup="this.value=this.value.replace(/[^a-zA-Z\u4e00-\u9fa5]/g,'')" />
 				<button class="glyphicon glyphicon-search"></button>
 			</div>
 		</div>
@@ -32,27 +51,15 @@
 	<div class="taber-bar">
 		<!--上部分导航-->
 		<div class="tabs-list-top">
-				<ul class="tabs-list text-center">
-					<li class="tab">
-						<a href="index.jsp">首页</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/newsGood.jsp">新品</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
-					</li>
-					<li class="tab">
-						<a href="/bshop/explosiveGood.jsp">爆款</a>
-					</li>
-					<li class="tab">
-						<a>嘿店移动版</a>
-					</li>
-				</ul>
-			</div>
+			<ul class="tabs-list text-center">
+				<li class="tab"><a href="/bshop/index.jsp">首页</a></li>
+				<li class="tab"><a>新品</a></li>
+				<li class="tab"><a>男士</a></li>
+				<li class="tab"><a>女士</a></li>
+				<li class="tab"><a>品牌</a></li>
+				<li class="tab"><a>嘿店移动版</a></li>
+			</ul>
+		</div>
 		<!--下部分导航-->
 		<div class="tabs-list-buttom">
 			<ul class="tabs-list text-center">
@@ -61,9 +68,9 @@
 	</div>
 	<!--所有商品-->
 	<section class="section-merchandise">
-		<div class="merchandise">
-			<ul></ul>
-		</div>
+	<div class="merchandise">
+		<ul></ul>
+	</div>
 	</section>
 	<!--返回顶部-->
 	<!--<div class="toTop">
@@ -177,13 +184,13 @@
 		<!--底部三个图标-->
 		<div class="row-1">
 			<div class="ariplane">
-				<img src="img/airplane.png" /> 海外直销
+				<img src="/bshop/img/airplane.png" /> 海外直销
 			</div>
 			<div class="handshake">
-				<img src="img/handshake.png" /> 品质保证
+				<img src="/bshop/img/handshake.png" /> 品质保证
 			</div>
 			<div class="zheng">
-				<img src="img/zheng.png" /> 售后保障
+				<img src="/bshop/img/zheng.png" /> 售后保障
 			</div>
 		</div>
 	</div>
@@ -191,9 +198,9 @@
 	<div id="row-2">
 		<div class="row-2">
 			<div class="logo-wrap">
-				<img src="img/Bshop_logo1.png" class="logo-wrap-img1" /> <a><img
-					src="img/weixin.png" class="logo-wrap-img2" /></a> <a><img
-					src="img/weibo.png" class="logo-wrap-img3" /></a>
+				<img src="/bshop/img/Bshop_logo1.png" class="logo-wrap-img1" /> <a><img
+					src="/bshop/img/weixin.png" class="logo-wrap-img2" /></a> <a><img
+					src="/bshop/img/weibo.png" class="logo-wrap-img3" /></a>
 			</div>
 			<ul class="help-link-list">
 				<li class="link"><a>ceo邮箱</a></li>
@@ -207,9 +214,9 @@
 					<span>移动嘿店</span>
 				</div>
 				<ul>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
 				</ul>
 			</div>
 			<div class="contact-wrap">
@@ -235,30 +242,26 @@
 		<div class="row-4">
 			<div class="row-4-m">
 				<div class="row-4-service">
-					<a><img src="img/licence2.png" /> </a>
+					<a><img src="/bshop/img/licence2.png" /> </a>
 				</div>
 				<div class="row-4-service">
-					<a><img src="img/licence1.png"></a>
+					<a><img src="/bshop/img/licence1.png"></a>
 				</div>
-				<a class="row-4-service-2"><img src="img/police2.png"></a> <a
-					class="row-4-service-2"><img src="img/police1.png"></a> <a
-					class="row-4-service-2"><img src="img/rights.png"></a>
+				<a class="row-4-service-2"><img src="/bshop/img/police2.png"></a> <a
+					class="row-4-service-2"><img src="/bshop/img/police1.png"></a> <a
+					class="row-4-service-2"><img src="/bshop/img/rights.png"></a>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
 
-<script src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
-<script type="text/javascript" src="js/banner.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
-<script type="text/javascript" src="js/personInfo.js"></script>
-<script type="text/javascript" src="js/infos.js"></script>
+<script src="/bshop/js/jquery.min.js"></script>
+<script type="text/javascript" src="/bshop/js/bootstrap.js"></script>
+<script type="text/javascript" src="/bshop/js/base.js"></script>
+<script type="text/javascript" src="/bshop/js/banner.js"></script>
+<script type="text/javascript" src="/bshop/js/personInfo.js"></script>
+<script type="text/javascript" src="/bshop/js/infos.js"></script>
 
-<script src="js/cart_account.js"></script>
-<script>
+<script src="/bshop/js/cart_account.js"></script>
 
-
-
-</script>

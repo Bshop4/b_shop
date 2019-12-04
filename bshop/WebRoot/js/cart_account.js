@@ -25,11 +25,12 @@ $(document).ready(function() {
 	$(".btn-account").attr("disabled",true);
 	$(".btn-account").css({"cursor":"not-allowed"});
 	account_name = getUrlVal("account_name");
+	console.log(account_name);
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
 		url : "selectCartGoodsByState.do",
-//		data : {"account" : account_name},
+		data : {"account" : account_name},
 		success : function(result) {
 			var result=JSON.parse(result);
 			returnResult = result;
@@ -73,18 +74,21 @@ $(document).ready(function() {
 		data:{"account":account_name},
 		success:function(result){
 			var result = JSON.parse(result);
-			console.log(result);
+//			console.log(result);
 			var obj1 = eval(result);
 			$(".address-list").css({
 		    	"display":"inline-block",
 		  		"margin-left": "10px",
 		  		"position": "relative",
 		  	  })
+		  	$(".btn-no-data").css({
+		  		"display": "none",
+		  	})
 			 // 添加默认li标签
 		  	  for (var i = 0; i < obj1.length; i++) {
 			  	  var obj = $("<li onclick='defaultli(this)' style='float: left;margin-left: 20px;border:2px solid white;'></li>");
 			  	  $(".address-list").append(obj)
-			  	  console.log(obj1.length);
+//			  	  console.log(obj1.length);
 		  		  obj.append("收货人姓名：" + obj1[i].receiver);
 		  		  obj.append(document.createElement("br"));
 		  		  obj.append("收货人电话：" + obj1[i].telephone);
@@ -111,7 +115,7 @@ function clickAll() {
 			var cart_id = $(event.target).attr("data-id");
 			$.ajax({
 				type:"POST",
-				url:"deleteCartGoods.do",
+				url:"updateInac.do",
 				data:{"cart_id":cart_id},
 				success:function(result){
 					var result = JSON.parse(result);
@@ -209,7 +213,7 @@ var AllAddress="";
   		  $.ajax({
   			  type:"POST",
   			  url:"saveAddress.do",
-  			  data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
+  			  data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress,"account":account_name},
   			  success:function(result){
   				  console.log(result);
   			  }
@@ -311,40 +315,10 @@ var AllAddress="";
 // }
 	  	var mone = document.getElementById('sum-all').innerHTML;
 	  	var money = mone.substring(4);
+	  	console.log(money);
 	  	// 跳转
-	  	location.href="pay.jsp?pay_money="+money;
+	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name;
 	})
-  
-//  
-//function xsyli(obj){
-//	  $(obj).siblings('li').removeClass('selected');// 删除其他li的边框样式
-//      $(obj).addClass('selected');// 为当前li添加边框样式
-//      $(".btn-account").attr("disabled",false);// 取消禁用标志
-//      $(".btn-account").css({"cursor":"pointer"});
-//      console.log($(obj).prop("className"));
-//		
-//  	  // 如果是选中则将收获信息的状态值改为2
-//      if($(obj).prop("className")=='selected') {
-//    	 $.ajax({
-//    		 type:"POST",
-//    		 url:"updateAddress.do",
-//    		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
-//    		 success:function(result){
-//    			 console.log(result);
-//    		 }
-//    	  })
-//       }  
-//      if($(obj).prop("className")!="selected"){
-//    	  $.ajax({
-//     		 type:"POST",
-//     		 url:"updateAddress1.do",
-//     		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress},
-//     		 success:function(result){
-//     			 console.log(result);
-//     		 }
-//     	  })
-//      }
-//  }
 
 function defaultli(obj){
 	var str = $(obj).text();
@@ -369,3 +343,4 @@ function defaultli(obj){
   	  })
 //    }
 }
+  

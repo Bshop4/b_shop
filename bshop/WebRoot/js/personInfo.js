@@ -183,22 +183,23 @@ $("#mycollection").click(function() {
 		data : {"account" : account},
 		success : function (re) {
 			var obj = JSON.parse(re);
-			console.log(obj)
-			if(obj.length > 10){
-				var str="";
-				for(var i = 0; i < 10; i++){
-					str += `
-						<li class="pro-product"  >
-							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
-							<img src="img/show.png" class="pro-select" id="pro-hide">
-							<div class="pro-name">${obj[i].goods_name}</div>
-							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
-						</li>
-					`;
-					
-				}
-				$(".pro-list").append(str);
-			}else if(obj.length > 0 && obj.length <= 10){
+//			console.log(obj)
+//			if(obj.length > 10){
+//				var str="";
+//				for(var i = 0; i <obj.length; i++){
+//					str += `
+//						<li class="pro-product"  >
+//							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+//							<img src="img/show.png" class="pro-select" id="pro-hide">
+//							<div class="pro-name">${obj[i].goods_name}</div>
+//							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+//						</li>
+//					`;
+//					
+//				}
+//				$(".pro-list").append(str);
+//			}else
+				if(obj.length > 0){
 				var str="";
 				for(var i = 0; i < obj.length; i++){
 					str += `
@@ -330,7 +331,7 @@ $("#myaddress").click(function() {
 							"height" : "120px",
 							"margin-left" : "10px",
 							"position" : "relative",
-							"border" : "1px solid white"
+							"border" : "2px solid white"
 						})
 
 						$(".addresslist>li").css({
@@ -375,7 +376,7 @@ $("#myaddress").click(function() {
 					}
 				}
 				$("[data-ul='1']").css({
-					"border" : "1px solid black"
+					"border" : "2px solid black"
 				})
 			} else if (len > 2) {
 				return;
@@ -475,13 +476,15 @@ function mysaveclick() {
 				"msg" : JSON.stringify(reveiver)
 			},
 			success : function(result) {
-				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + obj[i].rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
+				$(".user-right2").append("<ul class='addresslist'><li><div class='insertName'>" + name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone + "</div><div class='insertPostcode'>邮编:" + postcode + "</div><div class='insertMyaddress'>收货地址:" + AllAddress + "</div><span class='binggou' onclick='changeBinggou(this)'>√</span><span class='redefult'>设为默认</span><div class='edit' onclick='editclick(this)' id='#editAddress' data-eid='" + result.rid + "'>编辑</div><div class='del' onclick='delclick(this)' data-rid='" + result + "'>删除</div></li></ul>");
 				$(".addresslist").css({
 					"width" : "1000px",
 					"height" : "120px",
 					"margin-left" : "10px",
 					"position" : "relative"
 				})
+				
+				
 
 				$(".addresslist>li").css({
 					"width" : "750px",
@@ -619,10 +622,10 @@ function changeBinggou(obj) {
 			//    	    		"color" : "red"
 			//    	    	})
 			$(".addresslist").css({
-				"border" : "1px solid white"
+				"border" : "2px solid white"
 			})
 			$(obj).parent().parent().css({
-				"border" : "1px solid black"
+				"border" : "2px solid black"
 			})
 
 		}
@@ -633,7 +636,7 @@ function changeBinggou(obj) {
 
 
 
-
+var zjl_shoucangflag=true;
 //取消收藏
 function clickmyheart(obj) {
 	var myid = $(obj).attr("data-myid");
@@ -686,7 +689,7 @@ function clickmyheart(obj) {
 	
 	
 function clickli(obj){
-	
+	if(zjl_shoucangflag){return;};
 	var id = $(obj).attr("data-url");
 	
 	location.href = "detail.jsp?goods_no=" + id;
@@ -695,10 +698,12 @@ function clickli(obj){
 
 
 function enterMyHeart(obj) {
+	zjl_shoucangflag=true;
 	$(obj).attr("src","img/6.png")
 }
 
 function leaveMyHeart(obj) {
+	zjl_shoucangflag=false;
 	$(obj).attr("src","img/7.png")
 }
 
@@ -930,6 +935,9 @@ $("#myfooter").click(function() {
 	getFooter();
 })
 
+
+
+var  footflag=false;
 //根据账号查看我的足迹
 function getFooter(){
 	$.ajax({
@@ -940,66 +948,120 @@ function getFooter(){
 				alert("你没有浏览过任何商品");
 				return;
 			}
+			
+			//清空记录
+			$('.user-right4').empty();
+			
 			console.log(result);
 			var mylength=result.length-1;
 			
+			var str=``;
 			for(var i=mylength;i>=0;i--){
 				if(i==mylength){
-					var str=`
-					<p class="djtDate">${result[i].footprint_time}</p>
-					<div onclick="djtclick(this)">
-						<img src="${result[i].goods_photo}">
-						<span class="djtbrand">${result[i].goods_brand}</span>
-						<span class="djtprice">￥${result[i].goods_price}</span>
-						<p class="djtname">${result[i].goods_name}</p>
-						<span class="djtdelete glyphicon glyphicon-trash"></span>
-					</div>
+					var strday=`
+					<p class="djtDate">${result[i].footprint_time}</p>`;
+					str+=`
+					<ul>
+						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+							<img src="${result[i].goods_photo}">
+							<span class="djtbrand">${result[i].goods_brand}</span>
+							<span class="djtprice">￥${result[i].goods_price}</span>
+							<p class="djtname">${result[i].goods_name}</p>
+							<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+						</li>
 					`;
-					$('.user-right4').append(str);
-				}else{
-					//日期不相等就创建日期
-					if(result[i+1].footprint_time!=result[i].footprint_time){
-						var str=`
-							<p class="djtDate">${result[i].footprint_time}</p>
-							<div onclick="djtclick(this)">
-								<img src="${result[i].goods_photo}">
-								<span class="djtbrand">${result[i].goods_brand}</span>
-								<span class="djtprice">￥${result[i].goods_price}</span>
-								<p class="djtname">${result[i].goods_name}</p>
-								<span class="djtdelete glyphicon glyphicon-trash"></span>
-							</div>
-						`;
-					$('.user-right4').append(str);
-					}else{
-						var str=`
-							<div onclick="djtclick(this)">
-								<img src="${result[i].goods_photo}">
-								<span class="djtbrand">${result[i].goods_brand}</span>
-								<span class="djtprice">￥${result[i].goods_price}</span>
-								<p class="djtname">${result[i].goods_name}</p>
-								<span class="djtdelete glyphicon glyphicon-trash"></span>
-							</div>
-						`;
-						$('.user-right4').append(str);
-					}
-					//显示删除
-					$('.user-right4>div').each(function(i){
-						$('.user-right4>div').eq(i).mouseover(function(){
-							$('.user-right4>div').eq(i).children('span.djtdelete').show();
-						})
-						$('.user-right4>div').eq(i).mouseout(function(){
-							$('.user-right4>div').eq(i).children('span.djtdelete').hide();
-						})
-					})
+					$('.user-right4').append(strday);
+					continue;
 				}
+				if(result[i+1].footprint_time!=result[i].footprint_time){
+					//日期不相等就创建日期
+					$('.user-right4').append(str);
+					var strday=`
+					<p class="djtDate">${result[i].footprint_time}</p>`;
+					str=`<ul>
+						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+							<img src="${result[i].goods_photo}">
+							<span class="djtbrand">${result[i].goods_brand}</span>
+							<span class="djtprice">￥${result[i].goods_price}</span>
+							<p class="djtname">${result[i].goods_name}</p>
+							<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+						</li>
+						`;
+					$('.user-right4').append(strday);
+				}else{
+						 str+=`
+							<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
+								<img src="${result[i].goods_photo}">
+								<span class="djtbrand">${result[i].goods_brand}</span>
+								<span class="djtprice">￥${result[i].goods_price}</span>
+								<p class="djtname">${result[i].goods_name}</p>
+								<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
+							</li>
+						`;
+//						$('.user-right4').append(str);
+				}
+				if(i==0){
+					$('.user-right4').append(str);
+				}
+			}
+			//显示删除
+			$('.user-right4>ul>li').each(function(i){
+				$('.user-right4>ul>li').eq(i).mouseover(function(){
+					$('.user-right4>ul>li').eq(i).children('span.djtdelete').show();
+				})
+				$('.user-right4>ul>li').eq(i).mouseout(function(){
+					$('.user-right4>ul>li').eq(i).children('span.djtdelete').hide();
+				})
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseover(function(){
+					footflag=false;
+				});
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseout(function(){
+					footflag=true;
+				});
+			})
+		}
+		
+	})
+}
+
+//点击跳转
+function djtclick(obj){
+	if(!footflag){return;};
+	var goods_no=$(obj).attr('djt-data-goods');
+	location.href="/bshop/detail.jsp?goods_no="+goods_no;
+}
+
+var goods_no;
+var footprint_time;
+//点击删除
+function mydjtdelete(obj){
+	goods_no=$(obj).parent().attr('djt-data-goods');
+	footprint_time=$(obj).attr("djt-mtdate");
+	djtAjaxDelete();
+}
+
+//通过ajax删除
+function djtAjaxDelete(){
+	$.ajax({
+		type : "post",
+		url : "MyDelete.do",
+		data:{
+			goods_no:goods_no,
+			footprint_time:footprint_time,
+		},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+			if(result==true){
+				alert("删除成功");
+				//重新查询
+				getFooter();
+				return;
+			}else{
+				alert("删除失败");
 			}
 		}
 	})
 }
-
-//
-
-
-
 
 

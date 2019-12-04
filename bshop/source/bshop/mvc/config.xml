@@ -299,4 +299,18 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 管理员查询帐号 -->
+	<PagePattern name="Administrator_selectAccount">
+		<ActionForm>bshow.web.servlet.form.Administrator_selectAccountForm</ActionForm>
+		<Action>bshow.web.servlet.action.Administrator_selectAccount</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 管理员查询最大页数 -->
+	<PagePattern name="AdminMaxPage">
+		<ActionForm>bshow.web.servlet.form.Administrator_selectAccountForm</ActionForm>
+		<Action>bshow.web.servlet.action.AdminMaxPageAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

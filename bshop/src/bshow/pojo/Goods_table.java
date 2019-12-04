@@ -22,16 +22,6 @@ public class Goods_table implements Serializable,Cloneable{
 	private String goods_brand;//（商品的品牌）
 	private String goods_place;//商品发货地
 	
-	@Override
-	public String toString() {
-		return "Goods_table [goods_id=" + goods_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
-				+ ", goods_like=" + goods_like + ", goods_photo=" + goods_photo + ", goods_category=" + goods_category
-				+  ", goods_color=" + goods_color + ", goods_size=" + goods_size
-				+ ", goods_explainphoto=" + goods_explainphoto + ", goods_discount=" + goods_discount + ", shop_no="
-				+ shop_no + ", goods_place=" + goods_place + ", goods_uptime=" + goods_uptime + ", goods_ban="
-				+ goods_ban + ", goods_location=" + goods_location + ", goods_no=" + goods_no + ", goods_brand="
-				+ goods_brand + "]";
-	}
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {

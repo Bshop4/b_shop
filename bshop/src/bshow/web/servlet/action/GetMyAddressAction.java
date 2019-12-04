@@ -22,7 +22,7 @@ public class GetMyAddressAction extends Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		String ischeck = request.getParameter("msg");
-		System.out.println(ischeck);
+//		System.out.println(ischeck);
 		int ic = Integer.parseInt(ischeck);
 		Receiver_table rt = new Receiver_table();
 		rt.setIscheck(ic);

@@ -25,7 +25,7 @@ public class InsertCartBuyAction extends Action{
 		InsertCartBuyForm icbf = (InsertCartBuyForm)form;
 		String msg = icbf.getMsg();
 		JSONObject obj = JSONObject.fromObject(msg);
-		System.out.println(obj);
+//		System.out.println(obj);
 		/**
 		 * "goodsNo":goodsNo,
         	"getnumber":getnumber,

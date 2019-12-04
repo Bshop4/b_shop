@@ -22,7 +22,7 @@ public class DefaultAddressAction extends Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		String account = request.getParameter("account");
-		System.out.println(account);
+//		System.out.println(account);
 		Receiver_table rt = new Receiver_table();
 		rt.setAccount(account);
 //		rt.setIscheck(1);

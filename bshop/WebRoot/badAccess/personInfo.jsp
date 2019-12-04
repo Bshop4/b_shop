@@ -158,8 +158,6 @@
 			<button id="user-myaddress"
 				class="btn btn-info navbar-btn navbar-left" data-toggle="modal"
 				data-target="#addAddress" style="background: black">+新增地址</button>
-
-
 		</div>
 
 		<div class="user-right3">

@@ -4,6 +4,7 @@ import bshow.web.servlet.core.ActionForm;
 
 public class GetMyAddressForm extends ActionForm {
 	private String msg;
+	private String uname;
 
 	public String getMsg() {
 		return msg;
@@ -11,5 +12,13 @@ public class GetMyAddressForm extends ActionForm {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 }

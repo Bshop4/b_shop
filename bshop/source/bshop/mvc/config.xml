@@ -328,10 +328,18 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+
 	<!--管理员修改账户信息-->
 	<PagePattern name="UpdateMyAccount">
 		<ActionForm>bshow.web.servlet.form.UpdateMyAccountForm</ActionForm>
 		<Action>bshow.web.servlet.action.UpdateMyAccountAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 支付 -->
+	<PagePattern name="paymentInterface">
+		<ActionForm>bshow.web.servlet.form.PaymentInterfaceForm</ActionForm>
+		<Action>bshow.web.servlet.action.PaymentInterfaceAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
 	

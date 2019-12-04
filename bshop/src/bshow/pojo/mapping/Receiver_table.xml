@@ -37,7 +37,7 @@
 	
 	<!-- 在最后页面找出地址 -->
 	<select id="afterAddress" resulttype="bshow.pojo.Receiver_table">
-		select * from receiver_table where 1=1 and ischeck=#{ischeck}
+		select * from receiver_table where 1=1 and ischeck=#{ischeck} and account=#{account}
 	</select>
 	
 	<!-- 从订单页设置 -->

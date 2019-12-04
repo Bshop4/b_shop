@@ -48,7 +48,25 @@ img {
 	position: relative;
 }
 
+/*µ×²¿°´Å¥*/
 .admi_anim{
 	position: absolute;
 	top: 8px;left: 172px;
+}
+
+.pageSkining>center>button{
+	display: inline-block;
+}
+.pageSkining>center>input{
+	display: inline-block;
+	width:47px;
+	margin-left:10px;
+	padding-bottom:5px;
+	border-radius: 4px;
+}
+.pageSkining>center>button.btnJump{
+	margin-right:10px;
+}
+.pageSkining>center>span{
+	line-height:38px;
 }

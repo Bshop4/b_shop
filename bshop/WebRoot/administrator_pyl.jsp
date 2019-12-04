@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<link rel="stylesheet" href="css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="css/administrator.css"/>
   </head>
   
@@ -67,8 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="use_play">
 					<center>
 						<div class="find_key">
-							<input type="text" name="" class="" placeholder="帐号查询" />
-							<input type="text" name="" class="" placeholder="昵称查询" />
+							<input type="text" name="" class="myaccount" placeholder="帐号查询" />
+							<input type="text" name="" class="myemail" placeholder="邮箱查询" />
 							<input type="text" name="" class="" placeholder="性别查询" />
 							<button class="find">搜索</button>
 						</div>
@@ -91,6 +92,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<td>1</td>
 								</tr>
 							</table>
+							
+							<!--跳转页面-->
+							<section class="pageSkining">
+								<center>
+									<span></span>
+									<button class="btn btnStart">首页</button>
+									<button class="btn btnPrev">上一页</button>
+									<input class="text-center pageNum" value="1" oninput="value=value.replace(/[^\d]|[\d]{4,}/g,'')" />
+									<button class="btn btnJump">跳转</button>
+									<button class="btn btnNext">下一页</button>
+									<button class="btn btnEnd">尾页</button>
+								</center>
+							</section>
 						</div>
 					</center>
 				</div>
@@ -98,5 +112,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</body>
 </html>
-<script src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 <script src="js/administrator_pyl.js"></script>

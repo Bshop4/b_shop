@@ -16,7 +16,7 @@
 
         .user{
             width: 1200px;
-            height: 750px;
+            height: 1000px;
             margin: 0px auto;
             /*border: 1px solid red;*/
             position: relative;
@@ -158,7 +158,122 @@
             top: 0px;
             padding: 20px 0px 0px;
         }
-
+        
+        
+        .user-right1 ul{
+        	height: 54px;
+        }
+         .user-right1 .title1 ul li{
+         	float:left;
+         	margin-left: 20px;
+         	border-radius: 5px;
+         	cursor: pointer;
+         }
+          .user-right1 .title1 ul li:HOVER{
+         	 box-shadow:5px 5px 10px #666;
+         }
+         
+         .dingdan1{
+         	margin-left:30px;
+         	width:980px;/* height:300px; */
+         	border:2px solid #3333;
+         	position: relative;
+         	margin-bottom: 20px;
+         }
+         
+         .dingdan1:HOVER{
+         	border-color: black;
+         }
+         .dingdan1_body:after{
+         	content:'';display:block;clear:both;
+         }
+         .diandan1_top{
+         	width:978px;height:30px;
+         	border-bottom: 1px solid #3333;
+         }
+          .dingdan1 .top_left{
+         	float:left;
+         } 
+         
+         .top_left>span{
+       		  margin-left:5px;
+         	font-weight: bold;
+         	font-size: 18px;
+         }
+         .dingdan1 .top_right>span{
+         	margin-right:16px;
+         	font-weight: bold;
+         	font-size: 18px;
+         }
+         
+         .dingdan1 .top_right{
+         	float:right;
+         } 
+        .dingdan1 .body_left{
+        	width:760px;
+        	/* border:1px solid; */
+         	/* float:left; */
+         }
+         .dingdan1 .body_right{
+         	float:right;
+         }
+         .body_left table{
+         	border-color:#3333;
+         	/* float:left; */
+         	width:760px;
+         	margin-bottom: 30px;
+         	border-top: none;
+         	border-left: none;
+         	
+         }
+         .body_left .table_1{
+			width: 150px;         
+         }
+         .body_left  img{
+			width: 100px;         
+         }
+         .body_left .table_2{
+			width: 260px;         
+         }
+         .body_left .table_3{
+			width: 220px;         
+         }
+        .diandan1_body .body_right{
+        	width:220px;
+        }
+        
+        .diandan1_body table .td_qian{
+        	font-weight: bold;
+        }
+        
+        .dingdan1 button{
+        	width:80px;height:30px;
+        	position: absolute;
+        	bottom: 10px;right: 25px;
+        	border-radius: 5px;
+        	outline:none;
+        	color:white;
+        	background-color: black;
+        }
+         .dingdan1 button:ACTIVE{
+         	background-color: white;
+         		color:black;
+         }
+        .dingdan1 .dizhi{
+        	font-size:16px;
+        	position: absolute;
+        	bottom: 1px;
+        	left: 1px;
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+		
         #myinfo{
             color: red;
         }

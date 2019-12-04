@@ -417,7 +417,7 @@
 						//location.href="/bshop/index.jsp";
 					}, 500)
 					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
-				}
+				} 
 				
 			}
 		})

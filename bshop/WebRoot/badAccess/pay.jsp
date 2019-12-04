@@ -336,6 +336,6 @@
 	 //console.log(222);
  // }
 	function paypass(){
-		var str = prompt("请填写支付密码", "");
+		var str = prompt("请填写支付密码", ""); 
 	}
 </script> 

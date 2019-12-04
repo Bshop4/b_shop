@@ -319,7 +319,7 @@ $('#open').click(function() {
 		$.ajax({
 			type : "POST",
 			url : "selectCartGoodsById.do",
-			data : {"cart_id" : cart_id},
+			data : {"cart_id" : cart_id}, 
 			success : function(result) {
 				var result=JSON.parse(result);
 				console.log(result);

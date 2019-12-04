@@ -407,7 +407,7 @@ function opration(){
         		success : function (re) {
         			
         			if(re == "1"){
-        				location.href = "account.jsp?account_name="+account;
+        				location.href = "badAccess/account.jsp?account_name="+account;
         			}
         			
         		}

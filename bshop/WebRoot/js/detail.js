@@ -415,7 +415,7 @@ function opration(){
         	
         }else{
             if(confirm('未登录，点击确定跳到登录界面')){
-                location.href = 'Login.jsp?goods_id=' + goodsId;
+                location.href = '/bshop/Login.jsp?goods_no=' + goodsno;
             };
         };
     })

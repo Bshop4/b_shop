@@ -97,6 +97,9 @@
 			.lblb{
 				cursor:pointer;
 			}
+			.msg{
+				display: none;
+			}
 		</style>
 		<link rel="stylesheet" href="/bshop/css/animate.css" />
 		<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
@@ -186,8 +189,46 @@
 				<p class="ple-pay">请选择支付方式</p>
 				<p class="zfb-wx"><label class="lblb"><span class="inputone"><input type="radio" class="el-radio_original" name="sex"/><img src="/bshop/img/zhifubao11.png"></span></label><label class="lblb"><span class="inputtwo"><input type="radio" class="el-radio_original" name="sex"/><img src="/bshop/img/weixin11.png"></span></label></p>
 			</div>
-			<div class="go-pay"><button type="button" class="pay-btn" id="pay-btn" onclick="paypass()">支付</button></div>
+			<div class="go-pay"><button type="button" class="pay-btn" id="pay-btn" data-toggle="modal" data-target="#payment1">支付</button></div>
 		</div>
+		
+		<div class="modal fade" id="payment1" data-backdrop="static"
+			id="addressform">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:500px;height:300px;">
+
+					<div class="modal-header">
+						<h2 class="text-success modal-title">
+							支付 <span class="close" data-dismiss="modal">&times;</span>
+						</h2>  
+					</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="form-group">
+									<label>请输入支付密码:</label> <input type="password" class="form-control"
+										id="paypass" /><span class="msg">正在支付...</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+					<center>
+						<button class="btn btn-success" id="paypay" onclick="goPay(this)">支付</button>
+					</center>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+		
+		
+		
 	<!--返回顶部-->
 		<div class="toTop">
 			<span class="glyphicon glyphicon-open"></span>
@@ -282,6 +323,7 @@
 
 </html>
 <script src="/bshop/js/jquery.min.js"></script>
+<script src="/bshop/js/bootstrap.js"></script>
 <script> 
  //倒计时
   function countDown( maxtime,fn ) {   
@@ -335,7 +377,61 @@
  // document.getElementById("#pay-btn").onclick = function(){
 	 //console.log(222);
  // }
-	function paypass(){
-		var str = prompt("请填写支付密码", ""); 
+	//function paypass(){
+	//	var str = prompt("请填写支付密码", ""); 
+	//}
+	
+	
+	function goPay(obj){
+		
+		var pay_money = getUrlVal("pay_money");
+		var pay_name = getUrlVal("pay_name");
+		var pay_pass = $("#paypass").val();
+		//console.log(pay_money)
+		//console.log(pay_name)
+		//console.log(pay_pass)
+		
+		
+		var test = {
+			"pay_money" : pay_money,
+			"pay_name" : pay_name,
+			"pay_pass" : pay_pass,
+		}
+		
+		$.ajax({
+			type : "post",
+			url : "paymentInterface.do",
+			data : {"msg" : JSON.stringify(test)},
+			success: function(re){
+				console.log(re);
+				if(re == "密码不正确！"){
+					$(".msg").html(re).show().css("color","red");
+				}
+				if(re == "余额不足"){
+					$(".msg").html(re).show().css("color","red");
+				}
+				if(re == "支付成功"){
+					$(".msg").html(re).show().css("color","green");
+					setTimeout(function() {
+						$("#payment1").modal("hide");
+						//location.href="/bshop/index.jsp";
+					}, 500)
+					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
+				}
+				
+			}
+		})
+	
+	
+	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script> 

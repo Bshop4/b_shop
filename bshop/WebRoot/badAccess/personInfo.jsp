@@ -118,7 +118,7 @@
 			</div>
 			<div class="takeOver">
 				<label class="user-takeOver">收货地址:</label> <input type="text"
-					class="myAddress" readonly="readonly" />
+					class="myAddress" readonly="readonly" style="border:none;outline:none;"/>
 			</div>
 			<div class="savesuccess"><img class="greenImg" src="img/8.png"/><span class="savespan">保存成功</span></div>
 			<button class="cancel" id="cancel">取消</button>

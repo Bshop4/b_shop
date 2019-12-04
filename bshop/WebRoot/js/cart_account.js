@@ -101,7 +101,7 @@ $(document).ready(function() {
 	})	
 	
 })
-
+var sum1=0;
 function clickAll() {
 	// 点击整个表格
 	$('table').click(function(event) {
@@ -113,22 +113,49 @@ function clickAll() {
 			var tr = event.target.parentNode.parentNode;
 			// 得到删除的商品的id
 			var cart_id = $(event.target).attr("data-id");
-			$.ajax({
-				type:"POST",
-				url:"updateInac.do",
-				data:{"cart_id":cart_id},
-				success:function(result){
-					var result = JSON.parse(result);
-				}
-			});
-			// 删除tr
-			tab.removeChild(tr);
-			// 调用总价
-			sumAll();
+//			$.ajax({
+//				type:"POST",
+//				url:"updateInac.do",
+//				data:{"cart_id":cart_id},
+//				success:function(result){
+//					var result = JSON.parse(result);
+//				}
+//			});
+//			console.log($(event.targer));
+			console.log($(event.target).parent().prev().children('.subtotal').html());
+//			sum1 -=parseInt($(event.target).siblings('.subtotal').html());
+			console.log(sum1);
+			$('.el-sure').click(function(){
+				console.log(111)
+				$.ajax({
+					type:"POST",
+					url:"deleteCartGoods.do",
+					data:{"cart_id":cart_id},
+					success:function(result){
+						var result = JSON.parse(result);
+						console.log(result);// true(删除成功)
+						$('.sum-all').html('合计：¥' + sum + '.00');
+						tab.removeChild(tr);// 删除tr
+					}
+				});
+			})
+//			// 调用总价
+//			sumAll();
 		}
 		;
 	});
 };
+
+//求总价方法
+//function sumAll() {
+//	var sum = 0;
+//	// 拿到所的 active
+//	$('[data-tr="active"]').each(function() {
+//		sum += parseInt($(this).children().siblings('.subtotal').html());
+//	});
+//	// 设置总价
+//	$('.sum-all').html('合计：¥' + sum + '.00');
+//};
 
 // 定义地址
 var name="";

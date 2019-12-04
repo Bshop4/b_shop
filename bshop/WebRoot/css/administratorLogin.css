@@ -16,7 +16,10 @@ img {
 #admi_top{
 	height: 100px;
 }
-
+.mymsg{
+	font-size:14px;
+	color:red;
+}
 
 .admi_form span{
 	font-weight: bold;

@@ -7,6 +7,7 @@ public class SaveAddressForm extends ActionForm {
 	private String iphone;
 	private String postcode;
 	private String AllAddress;
+	private String account;
 
 	public String getName() {
 		return name;
@@ -38,6 +39,14 @@ public class SaveAddressForm extends ActionForm {
 
 	public void setAllAddress(String allAddress) {
 		AllAddress = allAddress;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
 }

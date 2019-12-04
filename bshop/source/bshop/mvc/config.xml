@@ -89,6 +89,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- xsy从account.jsp页面点击删除更新订单表bill_table -->
+	<PagePattern name="updateInac">
+		<ActionForm>bshow.web.servlet.form.UpdateInacForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateInacAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 插入地址 -->
 	<PagePattern name="saveAddress">
 		<ActionForm>bshow.web.servlet.form.SaveAddressForm</ActionForm>

@@ -2,7 +2,6 @@
 var account = getUrlVal('account');
 
 (function() {
-//	var account = "zjl";
 	if(account != undefined){
 		$.ajax({
 			type : "post",
@@ -43,9 +42,6 @@ var account = getUrlVal('account');
 				$('.myAddress').attr("value", useraddress);
 			}
 		})
-
-
-		
 	}
 	
 })()
@@ -1084,7 +1080,47 @@ $(".waitpay").click(function(){
 			var obj = JSON.parse(re);
 			console.log(obj)
 			var len = obj.length;
+			if(obj == "1"){
+				var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+				$(".user-right1").append(str12)
+				return;
+			}
+			
 			if(len == 1){
+				var str = `
+					<div class="dingdan1">
+						<div class="diandan1_top">
+							<div class="top_left"><span>订单号：${obj[0].bill_code}</span></div>
+							<div class="top_right"><span>总价：${obj[0].goods_price}</span></div>
+						</div>
+						<div class="diandan1_body">
+							<div class="body_left">
+									<table class="tbname" border="1" style="text-align: center;">
+										<tr>
+											<th class="table_1">商品</th>
+											<th class="table_2">名称</th>
+											<th class="table_3">数量</th>
+											<th class="table_4">单价</th>
+										</tr>
+										<tr>
+											<td ><img src=${obj[0].goods_photo}></td>
+											<td ><p>${obj[0].goods_name}</p><p>${obj[0].goods_color}</p></td>
+											<td >${obj[0].cart_number}</td>
+											<td class="td_qian">￥${obj[0].goods_price}</td>
+										</tr>
+										
+									</table>
+									<div class="dizhi">收货地址：${obj[0].address}</div>
+							</div>
+						</div>
+						<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[0].bill_id}>取消订单<button>
+						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+					</div>
+					`;
+					
+					$(".user-right1").append(str)
+				
+				
 				
 			}else if(len>1){
 				var str = `
@@ -1106,7 +1142,7 @@ $(".waitpay").click(function(){
 									</table>
 							</div>
 						</div>
-						<button class="cancelBill">取消订单<button>
+						<button class="cancelBill"  onclick="cancelBill(this)" data-billid=${obj[0].bill_id}>取消订单<button>
 						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
 					</div>
 					`;
@@ -1124,7 +1160,7 @@ $(".waitpay").click(function(){
 					strtr += `
 						<tr>
 							<td ><img src=${obj[i].goods_photo}></td>
-							<td ><p>全球限量款</p><p>${obj[i].goods_color}</p></td>
+							<td ><p>${obj[i].goods_name}</p><p>${obj[i].goods_color}</p></td>
 							<td >${obj[i].cart_number}</td>
 							<td class="td_qian">￥${obj[i].goods_price}</td>
 						</tr>
@@ -1177,20 +1213,12 @@ function goPay1(obj){
 					$(".msg1").html(re).show().css("color","green");
 					setTimeout(function() {
 						$("#gotopay1").modal("hide");
-						//location.href="/bshop/index.jsp";
 					}, 500)
-					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
 				} 
 				
 			}
 		})
-//	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
-//	price = parseInt(price.slice(3));
-//	
-//	var pay_pass = $("#paypass1").val();
-//	var name = account;
-//	console.log(pay_pass);
-//	console.log(name);
+
 	
 }
 
@@ -1199,11 +1227,28 @@ function goPay2(obj){
 	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
 	price = parseInt(price.slice(3));
 	$("#paypay1").attr("allprice",price);
-//	$("#paypay1").attr("account",);
 	
 	
 }
 
+
+function cancelBill(obj){
+	var billid = $(obj).attr("data-billid");
+	if(confirm("确定要取消该订单吗？")){
+		$.ajax({
+		type : "post",
+		url : "deleteBillByBillId.do",
+		data : {"billid" : billid},
+		success : function (re) {
+				if(re == "取消成功"){
+					$(".user-right1").children().eq(1).remove();
+					var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+					$(".user-right1").append(str12)
+				}
+			}
+		})
+	}
+}
 
 
 

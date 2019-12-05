@@ -122,10 +122,10 @@ function clickAll() {
 //					var result = JSON.parse(result);
 //				}
 //			});
-//			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
-//			console.log(sum1);
-//			$('.el-sure').click(function(){
-//				console.log(111)
+			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
+			console.log(sum1);
+			$('.el-sure11').click(function(){
+				console.log(111)
 				$.ajax({
 					type:"POST",
 					url:"deleteCartGoods.do",
@@ -133,11 +133,11 @@ function clickAll() {
 					success:function(result){  
 						var result = JSON.parse(result);
 						console.log(result);// true(删除成功)
-//						$('.sum-all').html('合计：¥' + sum1 + '.00');
+						$('.sum-all').html('合计：¥' + sum1 + '.00');
 						tab.removeChild(tr);// 删除tr
 					}
 				});
-//			})
+			}) 
 //			// 调用总价
 //			sumAll();
 		}

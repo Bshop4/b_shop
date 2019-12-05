@@ -14,6 +14,41 @@
 
 <meta charset="UTF-8">
 
+<style>
+			.modal-header11{
+				border-bottom: none;
+				height:20px;
+				padding: 15px 15px 10px 15px;
+			}
+			.modal-body11{
+				border-bottom: none;
+				height: 20px;
+			}
+			.modal-footer11{
+				border-top: none;
+				width: 418px;
+				height: 40px;
+			}
+			.el-button11{
+				display: inline-block;
+			    cursor: pointer;
+			    background: #fff;
+			    border: 1px solid #dcdfe6;
+			    border-color: #dcdfe6;
+			    color: #606266;
+			    text-align: center;
+			    padding: 6px 10px;	
+			    font-size: 12px;
+			    border-radius: 4px;
+			    float: right;
+			    padding: 8px;
+			}
+			.el-sure11{
+				background: black;
+				color: white;
+			}
+		</style>
+
 
 </head>
 <body>
@@ -52,16 +87,28 @@
 	<!--导航-->
 	<div class="taber-bar">
 		<!--上部分导航-->
-		<div class="tabs-list-top">
-			<ul class="tabs-list text-center">
-				<li class="tab"><a href="/bshop/index.jsp">首页</a></li>
-				<li class="tab"><a>新品</a></li>
-				<li class="tab"><a>男士</a></li>
-				<li class="tab"><a>女士</a></li>
-				<li class="tab"><a>品牌</a></li>
-				<li class="tab"><a>嘿店移动版</a></li>
-			</ul>
-		</div>
+			<div class="tabs-list-top">
+				<ul class="tabs-list text-center">
+					<li class="tab">
+						<a href="index.jsp">首页</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/newsGood.jsp">新品</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/explosiveGood.jsp">爆款</a>
+					</li>
+					<li class="tab">
+						<a>嘿店移动版</a>
+					</li>
+				</ul>
+			</div>
 		<!--下部分导航-->
 		<div class="tabs-list-buttom">
 			<ul class="tabs-list text-center">
@@ -180,6 +227,32 @@
             </div>
         </div>
     </div>
+    
+    
+    
+    <!--删除模态框结构-->
+ 		<div class="modal fade" id="myModal">
+			<!--窗口层   大中小  默认为中-->
+			<div class="modal-dialog" style="width: 420px;">
+				<!--内容层-->
+				<div class="modal-content">
+					<!--头部，身体，底部-->
+					<div class="modal-header11">
+						<span class="close" data-dismiss="modal">&times;</span>
+					</div>
+					<div class="modal-body11">
+						<span>确认删除？</span>
+					</div>
+					<div class="modal-footer11">
+						<button type="button" class="el-button11 el-sure11" id="queren" data-dismiss="modal">确认</button>
+						<button type="button" class="el-button11 el-dissure" id="quxiao" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+    
+    
+    
 
 	<!--底部-->
 	<div id="row-1">

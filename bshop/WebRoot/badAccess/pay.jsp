@@ -112,9 +112,9 @@
 		<div class="top">
 			<div class="top-bar">
 				<div class="btn">
-					<a href="sign.jsp" target="_blank">注册</a>
-					<a href="Login.jsp" target="_blank">登录</a>
-					<a class="glyphicon glyphicon-shopping-cart"></a>
+					<a href="/bshop/sign.jsp" target="_blank">注册</a>
+					<a href="/bshop/Login.jsp" target="_blank">登录</a>
+					<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a>
 				</div>
 				<div class="logBtn">
 					<a class="mingZi"></a>
@@ -324,6 +324,8 @@
 </html>
 <script src="/bshop/js/jquery.min.js"></script>
 <script src="/bshop/js/bootstrap.js"></script>
+<script type="text/javascript" src="/bshop/js/banner.js"></script>
+<script src="/bshop/js/base.js"></script>
 <script> 
  //倒计时
   function countDown( maxtime,fn ) {   

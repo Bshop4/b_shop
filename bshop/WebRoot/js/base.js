@@ -96,8 +96,8 @@ function exitLogin(){
 			type:"post",
 			url:"ExitLogin.do",
 			success:function(result){
-				myflag=result;
-				if(myflag){
+				var needs=JSON.parse(result);
+				if(needs.code==0){
 					$('.top-bar>.btn').show();
 					$('.logBtn').hide();
 					location.reload();

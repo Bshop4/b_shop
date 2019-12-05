@@ -106,7 +106,7 @@
 	</section>
 	<div class="more">
 		<div class="gg">
-			<img src="img/zfwc.png"/>
+			<img src="/bshop/img/zfwc.png"/>
 		</div>
 			<p class="zfcg">支付成功!</p>
 			<p class="witer">感谢您够买嘿店商品，工作人员立即为您发货！</p>

@@ -93,7 +93,7 @@ function judgementLogin(){
 function exitLogin(){
 	$.ajax({
 		type:"post",
-		url:"ExitLogin",
+		url:"ExitLogin.do",
 		success:function(result){
 			myflag=result;
 			if(myflag){

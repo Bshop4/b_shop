@@ -3,47 +3,51 @@ var account = getUrlVal('account');
 
 (function() {
 //	var account = "zjl";
-	$.ajax({
-		type : "post",
-		url : "getInfo.do",
-		data : {
-			"account" : account
-		},
-		success : function(re) {
-			var obj = JSON.parse(re);
+	if(account != undefined){
+		$.ajax({
+			type : "post",
+			url : "getInfo.do",
+			data : {
+				"account" : account
+			},
+			success : function(re) {
+				var obj = JSON.parse(re);
 
-			//头像
-			$('#imgPhoto').attr("src", `${obj[3]}`);
-			//账号
-			$('.user-acc-input').attr("value", `${obj[2]}`)
-			//昵称
-			$('.user-in-nickName').attr("value", `${obj[1]}`);
+				//头像
+				$('#imgPhoto').attr("src", `${obj[3]}`);
+				//账号
+				$('.user-acc-input').attr("value", `${obj[2]}`)
+				//昵称
+				$('.user-in-nickName').attr("value", `${obj[1]}`);
 
-			//性别
-			var sex = `${obj[5]}`;
-			if (sex == "男") {
-				$('.man').prop("checked", "checked");
-				$('.woman').prop("checked", "");
+				//性别
+				var sex = `${obj[5]}`;
+				if (sex == "男") {
+					$('.man').prop("checked", "checked");
+					$('.woman').prop("checked", "");
+				}
+				if (sex == "女") {
+					$('.man').prop("checked", "");
+					$('.woman').prop("checked", "checked");
+				}
+
+				//生日
+				var userdate = `${obj[6]}`;
+				$(".userdate").attr("value", userdate);
+
+				//保存按钮保存personInfo_id
+				$(".save").attr("data-id", `${obj[0]}`);
+
+				//地址
+				var useraddress = `${obj[4]}`;
+				$('.myAddress').attr("value", useraddress);
 			}
-			if (sex == "女") {
-				$('.man').prop("checked", "");
-				$('.woman').prop("checked", "checked");
-			}
-
-			//生日
-			var userdate = `${obj[6]}`;
-			$(".userdate").attr("value", userdate);
-
-			//保存按钮保存personInfo_id
-			$(".save").attr("data-id", `${obj[0]}`);
-
-			//地址
-			var useraddress = `${obj[4]}`;
-			$('.myAddress').attr("value", useraddress);
-		}
-	})
+		})
 
 
+		
+	}
+	
 })()
 
 //更新个人信息

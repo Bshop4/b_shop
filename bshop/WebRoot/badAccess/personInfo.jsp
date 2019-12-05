@@ -129,88 +129,44 @@
 		<div class="user-right1">
 			<div class="title1">
 				<ul>
-					<li>所有订单</li>
-					<li>待支付</li>
-					<li>已支付</li>
+					<li class="allbill">所有订单</li>
+					<li class="waitpay">待支付</li>
+					<li class="alreadypay">已支付</li>
 				</ul>
 			</div>
-			<div class="dingdan1">
-				<div class="diandan1_top">
-					<div class="top_left"><span>订单号：5678577</span></div>
-					<div class="top_right"><span>总价：500</span></div>
-				</div>
-				<div class="diandan1_body">
-					<div class="body_left">
-							<table border="1" style="text-align: center;">
-								<tr>
-									<th class="table_1">商品</th>
-									<th class="table_2">名称</th>
-									<th class="table_3">数量</th>
-									<th class="table_4">单价</th>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-							</table>
-							<div class="dizhi">收货地址：大数据噶几哈萨克结构化上课讲换个卡但是但是改分</div>
+		</div> 
+		<div class="modal fade" id="gotopay1" data-backdrop="static"
+			id="addressform">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:500px;height:300px;">
+
+					<div class="modal-header">
+						<h2 class="text-success modal-title">
+							支付 <span class="close" data-dismiss="modal">&times;</span>
+						</h2>  
 					</div>
-				</div>
-				<button>去支付</button>
-			</div>
-			<div class="dingdan1">
-				<div class="diandan1_top">
-					<div class="top_left"><span>订单号：5678577</span></div>
-					<div class="top_right"><span>总价：500</span></div>
-				</div>
-				<div class="diandan1_body">
-					<div class="body_left">
-							<table border="1" style="text-align: center;">
-								<tr>
-									<th class="table_1">商品</th>
-									<th class="table_2">名称</th>
-									<th class="table_3">数量</th>
-									<th class="table_4">单价</th>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-								<tr>
-									<td ><img src="/bshop/img/clock11.png"></td>
-									<td ><p>全球限量款</p><p>红色</p></td>
-									<td >1</td>
-									<td class="td_qian">￥3000.00</td>
-								</tr>
-							</table>
-							<div class="dizhi">收货地址：大数据噶几哈萨克结构化上课讲换个卡但是但是改分</div>
+
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<div class="form-group">
+									<label>请输入支付密码:</label> <input type="password" class="form-control"
+										id="paypass1" /><span class="msg1">正在支付...</span>
+								</div>
+							</div>
+						</div>
 					</div>
+
+					<div class="modal-footer">
+					<center>
+						<button class="btn btn-success" id="paypay1" onclick="goPay1(this)">支付</button>
+					</center>
+					</div>
+
 				</div>
-				<button>去支付</button>
 			</div>
 		</div>
+
 
 		<div class="user-right2">
 			<div class="title2">

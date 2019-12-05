@@ -54,7 +54,7 @@ $(document).ready(function() {
 						<td>${result[i].cgoods_size}</td>
 			            <td>${result[i].cgoods_price}</td>
 			            <td class="subtotal">${result[i].cgoods_sub}</td>
-			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id}>删除</a></td>
+			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id} data-toggle="modal" data-target="#myModal">删除</a></td>
 			        </tr>
 					`;
 				 // 把每次组装好的添加进table
@@ -101,7 +101,7 @@ $(document).ready(function() {
 	})	
 	
 })
-
+var sum1=0;
 function clickAll() {
 	// 点击整个表格
 	$('table').click(function(event) {
@@ -111,24 +111,50 @@ function clickAll() {
 			// 找到tr
 			var tab = event.target.parentNode.parentNode.parentNode;
 			var tr = event.target.parentNode.parentNode;
+//			console.log(event.target.parentNode.previousElementSibling.innerText)
 			// 得到删除的商品的id
 			var cart_id = $(event.target).attr("data-id");
-			$.ajax({
-				type:"POST",
-				url:"updateInac.do",
-				data:{"cart_id":cart_id},
-				success:function(result){
-					var result = JSON.parse(result);
-				}
-			});
-			// 删除tr
-			tab.removeChild(tr);
-			// 调用总价
-			sumAll();
+//			$.ajax({
+//				type:"POST",
+//				url:"updateInac.do",
+//				data:{"cart_id":cart_id},
+//				success:function(result){
+//					var result = JSON.parse(result);
+//				}
+//			});
+			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
+			console.log(sum1);
+			$('.el-sure').click(function(){
+				console.log(111)
+				$.ajax({
+					type:"POST",
+					url:"deleteCartGoods.do",
+					data:{"cart_id":cart_id},
+					success:function(result){  
+						var result = JSON.parse(result);
+						console.log(result);// true(删除成功)
+						$('.sum-all').html('合计：¥' + sum1 + '.00');
+						tab.removeChild(tr);// 删除tr
+					}
+				});
+			})
+//			// 调用总价
+//			sumAll();
 		}
 		;
 	});
 };
+
+//求总价方法
+//function sumAll() {
+//	var sum = 0;
+//	// 拿到所的 active
+//	$('[data-tr="active"]').each(function() {
+//		sum += parseInt($(this).children().siblings('.subtotal').html());
+//	});
+//	// 设置总价
+//	$('.sum-all').html('合计：¥' + sum + '.00');
+//};
 
 // 定义地址
 var name="";

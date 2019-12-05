@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>支付成功</title>
 <link rel="stylesheet" href="/bshop/css/animate.css" />
 <link rel="stylesheet" href="/bshop/css/bootstrap.css" />
 <link rel="stylesheet" href="/bshop/css/index.css" />

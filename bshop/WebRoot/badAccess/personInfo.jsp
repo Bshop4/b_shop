@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>B-SHOP嘿店</title>
+<title>个人中心</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">

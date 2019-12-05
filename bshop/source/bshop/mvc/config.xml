@@ -343,6 +343,12 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 待支付 -->
+	<PagePattern name="waitpay">
+		<ActionForm>bshow.web.servlet.form.WaitpayForm</ActionForm>
+		<Action>bshow.web.servlet.action.WaitpayAction</Action>
+	</PagePattern>
+	
 	<!-- 判断是否登录-->
 	<PagePattern name="JudgementLogin">
 		<ActionForm>bshow.web.servlet.form.JudgementLoginForm</ActionForm>

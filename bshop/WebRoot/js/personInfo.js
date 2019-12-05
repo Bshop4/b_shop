@@ -1069,3 +1069,143 @@ function djtAjaxDelete(){
 }
 
 
+
+//待支付
+$(".waitpay").click(function(){
+	
+	$('.user-right1').children().eq(1).remove();
+	
+	$.ajax({
+		
+		type : "post",
+		url : "waitpay.do",
+		data : {"account" : account},
+		success : function(re){
+			var obj = JSON.parse(re);
+			console.log(obj)
+			var len = obj.length;
+			if(len == 1){
+				
+			}else if(len>1){
+				var str = `
+					<div class="dingdan1">
+						<div class="diandan1_top">
+							
+						</div>
+						<div class="diandan1_body">
+							<div class="body_left">
+									<table class="tbname" border="1" style="text-align: center;">
+										<tr>
+											<th class="table_1">商品</th>
+											<th class="table_2">名称</th>
+											<th class="table_3">数量</th>
+											<th class="table_4">单价</th>
+										</tr>
+										
+										
+									</table>
+							</div>
+						</div>
+						<button class="cancelBill">取消订单<button>
+						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+					</div>
+					`;
+					
+					$(".user-right1").append(str)
+					var code = obj[1].bill_code;
+					var strcode = `	
+						<div class="top_left"><span>订单号：${code}</span></div>
+					`;
+					$(".diandan1_top").append(strcode);
+					
+				var strtr = "";
+				var allprice=0;
+				for(var i=0;i<len;i++){
+					strtr += `
+						<tr>
+							<td ><img src=${obj[i].goods_photo}></td>
+							<td ><p>全球限量款</p><p>${obj[i].goods_color}</p></td>
+							<td >${obj[i].cart_number}</td>
+							<td class="td_qian">￥${obj[i].goods_price}</td>
+						</tr>
+					`;
+					allprice += parseFloat(obj[i].goods_price);
+				}
+				$(".tbname").append(strtr);
+				var strAllprice = `
+						<div class="top_right"><span>总价：${allprice}</span></div>
+					`;
+				$(".diandan1_top").append(strAllprice)
+				var addr = obj[1].address;
+				var address = `
+					<div class="dizhi">收货地址：${addr}</div>
+				`;
+				$('.body_left').append(address);
+			}
+			
+		}
+		
+		
+	})
+	
+	
+})
+
+function goPay1(obj){
+	$(".msg1").show();
+	var pay_pass = $("#paypass1").val();
+	var price=$(obj).attr("allprice");
+	var test = {
+			"pay_money" : price,
+			"pay_name" : account,
+			"pay_pass" : pay_pass,
+		}
+		
+		$.ajax({
+			type : "post",
+			url : "paymentInterface.do",
+			data : {"msg" : JSON.stringify(test)},
+			success: function(re){
+				console.log(re);
+				if(re == "密码不正确！"){
+					$(".msg1").html(re).show().css("color","red");
+				}
+				if(re == "余额不足"){
+					$(".msg1").html(re).show().css("color","red");
+				}
+				if(re == "支付成功"){
+					$(".msg1").html(re).show().css("color","green");
+					setTimeout(function() {
+						$("#gotopay1").modal("hide");
+						//location.href="/bshop/index.jsp";
+					}, 500)
+					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
+				} 
+				
+			}
+		})
+//	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
+//	price = parseInt(price.slice(3));
+//	
+//	var pay_pass = $("#paypass1").val();
+//	var name = account;
+//	console.log(pay_pass);
+//	console.log(name);
+	
+}
+
+function goPay2(obj){
+	
+	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
+	price = parseInt(price.slice(3));
+	$("#paypay1").attr("allprice",price);
+//	$("#paypay1").attr("account",);
+	
+	
+}
+
+
+
+
+
+

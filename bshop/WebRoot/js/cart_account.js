@@ -130,7 +130,7 @@ function clickAll() {
 					type:"POST",
 					url:"deleteCartGoods.do",
 					data:{"cart_id":cart_id},
-					success:function(result){
+					success:function(result){  
 						var result = JSON.parse(result);
 						console.log(result);// true(删除成功)
 						$('.sum-all').html('合计：¥' + sum1 + '.00');

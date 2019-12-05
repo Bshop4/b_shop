@@ -1195,7 +1195,7 @@ function goPay2(obj){
 	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
 	price = parseInt(price.slice(3));
 	$("#paypay1").attr("allprice",price);
-//	$("#paypay1").attr("account",);
+//	$("#paypay1").attr("account",); 
 	
 	
 }

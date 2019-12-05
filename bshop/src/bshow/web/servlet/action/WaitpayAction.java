@@ -54,14 +54,29 @@ public class WaitpayAction extends Action{
 					b.setGoods_color(colorArr[i]);
 					listo.add(b);
 				}
+			}else{
+				Bill_table b = new Bill_table();
+				b.setBill_code(bt1.getBill_code());//订单号
+				b.setGoods_price(bt1.getGoods_price());//单价
+				b.setGoods_name(bt1.getGoods_name());
+				b.setCart_number(bt1.getCart_number());
+				b.setGoods_photo(bt1.getGoods_photo());
+				b.setAddress(bt1.getAddress());
+				b.setGoods_color(bt1.getGoods_color());
+				b.setBill_id(bt1.getBill_id());
+				listo.add(b);
 			}
 			
 		}
 		
-		
-		for (Object object : listo) {
-			System.out.println(object);
+		if(list.size() == 0){
+			listo.add("1");
 		}
+		
+		
+//		for (Object object : listo) {
+//			System.out.println(object);
+//		}
 		
 		response.setCharacterEncoding("UTF-8");
 		

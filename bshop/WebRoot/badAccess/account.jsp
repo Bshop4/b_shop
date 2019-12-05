@@ -15,19 +15,21 @@
 <meta charset="UTF-8">
 
 <style>
-			.modal-header{
+			.modal-header11{
 				border-bottom: none;
 				height:20px;
 				padding: 15px 15px 10px 15px;
 			}
-			.modal-body{
+			.modal-body11{
 				border-bottom: none;
 				height: 20px;
 			}
-			.modal-footer{
+			.modal-footer11{
 				border-top: none;
+				width: 418px;
+				height: 40px;
 			}
-			.el-button{
+			.el-button11{
 				display: inline-block;
 			    cursor: pointer;
 			    background: #fff;
@@ -38,12 +40,16 @@
 			    padding: 6px 10px;	
 			    font-size: 12px;
 			    border-radius: 4px;
+			    float: right;
+			    padding: 8px;
 			}
-			.el-sure{
+			.el-sure11{
 				background: black;
 				color: white;
 			}
 		</style>
+
+
 </head>
 <body>
 	<!--头部-->
@@ -210,26 +216,31 @@
         </div>
     </div>
     
-<!--删除模态框结构-->
-		<div class="modal fade" id="myModal">
+    
+    
+    <!--删除模态框结构-->
+ 		<div class="modal fade" id="myModal">
 			<!--窗口层   大中小  默认为中-->
 			<div class="modal-dialog" style="width: 420px;">
 				<!--内容层-->
 				<div class="modal-content">
 					<!--头部，身体，底部-->
-					<div class="modal-header">
+					<div class="modal-header11">
 						<span class="close" data-dismiss="modal">&times;</span>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body11">
 						<span>确认删除？</span>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="el-button el-dissure" id="quxiao" data-dismiss="modal">取消</button>
-						<button type="button" class="el-button el-sure" id="queren" data-dismiss="modal">确认</button>
+					<div class="modal-footer11">
+						<button type="button" class="el-button11 el-sure11" id="queren" data-dismiss="modal">确认</button>
+						<button type="button" class="el-button11 el-dissure" id="quxiao" data-dismiss="modal">取消</button>
 					</div>
 				</div>
 			</div>
 		</div>
+    
+    
+    
 
 	<!--底部-->
 	<div id="row-1">
@@ -312,7 +323,8 @@
 <script type="text/javascript" src="/bshop/js/bootstrap.js"></script>
 <script type="text/javascript" src="/bshop/js/base.js"></script>
 <script type="text/javascript" src="/bshop/js/banner.js"></script>
-<script type="text/javascript" src="/bshop/js/personInfo.js"></script>
+<!--<script type="text/javascript" src="/bshop/js/personInfo.js"></script>  -->
+<script type="text/javascript" src="/bshop/js/mtk.js"></script>
 <script type="text/javascript" src="/bshop/js/infos.js"></script>
 
 <script src="/bshop/js/cart_account.js"></script>

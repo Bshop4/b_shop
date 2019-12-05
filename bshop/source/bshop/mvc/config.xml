@@ -363,4 +363,10 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 删除订单-->
+	<PagePattern name="deleteBillByBillId">
+		<ActionForm>bshow.web.servlet.form.DeleteBillByBillIdForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteBillByBillIdAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 </properties>

@@ -124,7 +124,7 @@ function clickAll() {
 //			});
 			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
 			console.log(sum1);
-			$('.el-sure').click(function(){
+			$('.el-sure11').click(function(){
 				console.log(111)
 				$.ajax({
 					type:"POST",
@@ -137,7 +137,7 @@ function clickAll() {
 						tab.removeChild(tr);// 删除tr
 					}
 				});
-			})
+			}) 
 //			// 调用总价
 //			sumAll();
 		}
@@ -155,6 +155,8 @@ function clickAll() {
 //	// 设置总价
 //	$('.sum-all').html('合计：¥' + sum + '.00');
 //};
+
+
 
 // 定义地址
 var name="";

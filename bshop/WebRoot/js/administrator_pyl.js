@@ -271,32 +271,33 @@ var maxPageCount;
 	
 	//删除
 	function myDelete(obj){
-		confirm("确定删除？");
-		//获得所需要的值
-		var account=$(obj).siblings('.myAc').html();
-		
-		$.ajax({
-			type:"post",
-			url:"DeleteMyAccount",
-			data:{
-				account:account,
-			},
-			success:function(result){
-				var myneeds=JSON.parse(result);
-				if(myneeds.code==0){
-					alert(myneeds.msg);
-					//执行查询
-					myNeedsList();
-					getMaxPage();
-					
-				}else{
-					alert(myneeds.msg);
-					//执行查询
-					myNeedsList();
-					getMaxPage();
+		if(confirm("确定删除？")){
+			//获得所需要的值
+			var account=$(obj).siblings('.myAc').html();
+			
+			$.ajax({
+				type:"post",
+				url:"DeleteMyAccount",
+				data:{
+					account:account,
+				},
+				success:function(result){
+					var myneeds=JSON.parse(result);
+					if(myneeds.code==0){
+						alert(myneeds.msg);
+						//执行查询
+						myNeedsList();
+						getMaxPage();
+						
+					}else{
+						alert(myneeds.msg);
+						//执行查询
+						myNeedsList();
+						getMaxPage();
+					}
 				}
-			}
-		})
+			})
+		}
 	}
 	
 	

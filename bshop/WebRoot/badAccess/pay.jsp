@@ -388,10 +388,6 @@
 		var pay_money = getUrlVal("pay_money");
 		var pay_name = getUrlVal("pay_name");
 		var pay_pass = $("#paypass").val();
-		//console.log(pay_money)
-		//console.log(pay_name)
-		//console.log(pay_pass)
-		
 		
 		var test = {
 			"pay_money" : pay_money,

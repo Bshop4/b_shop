@@ -343,4 +343,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 待支付 -->
+	<PagePattern name="waitpay">
+		<ActionForm>bshow.web.servlet.form.WaitpayForm</ActionForm>
+		<Action>bshow.web.servlet.action.WaitpayAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

@@ -9,8 +9,8 @@ public class Bill_table implements Serializable {
 	private double allprice;// 订单总价格
 	private String account; // 用户帐号
 	private String goods_name;// 商品名称
-	private double goods_price;// 商品单价
-	private int cart_number;// （购车里的商品数量）
+	private String goods_price;// 商品单价
+	private String cart_number;// （购车里的商品数量）
 	private int bill_state;// 1表示选中，0表示未选中
 	private String bill_code;// 订单编码
 	private String goods_photo;// 商品图片
@@ -80,19 +80,21 @@ public class Bill_table implements Serializable {
 		this.goods_name = goods_name;
 	}
 
-	public double getGoods_price() {
+
+
+	public String getGoods_price() {
 		return goods_price;
 	}
 
-	public void setGoods_price(double goods_price) {
+	public void setGoods_price(String goods_price) {
 		this.goods_price = goods_price;
 	}
 
-	public int getCart_number() {
+	public String getCart_number() {
 		return cart_number;
 	}
 
-	public void setCart_number(int cart_number) {
+	public void setCart_number(String cart_number) {
 		this.cart_number = cart_number;
 	}
 
@@ -142,6 +144,15 @@ public class Bill_table implements Serializable {
 
 	public void setGoods_size(String goods_size) {
 		this.goods_size = goods_size;
+	}
+
+	@Override
+	public String toString() {
+		return "Bill_table [bill_id=" + bill_id + ", address=" + address + ", bill_time=" + bill_time + ", allprice="
+				+ allprice + ", account=" + account + ", goods_name=" + goods_name + ", goods_price=" + goods_price
+				+ ", cart_number=" + cart_number + ", bill_state=" + bill_state + ", bill_code=" + bill_code
+				+ ", goods_photo=" + goods_photo + ", goods_id=" + goods_id + ", bill_isclearing=" + bill_isclearing
+				+ ", goods_color=" + goods_color + ", goods_size=" + goods_size + ", goods_no=" + goods_no + "]";
 	}
 
 	public String getGoods_no() {

@@ -45,4 +45,10 @@
 		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
 		</select> and account_id=#{account_id} -->
 
+	
+	<delete id="deleteBillById">
+		delete  from bill_table where bill_id=#{bill_id}
+	</delete>
+
+
 </class>

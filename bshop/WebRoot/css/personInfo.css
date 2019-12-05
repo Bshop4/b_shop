@@ -584,3 +584,13 @@
         	display: none
         }
         
+        .havanobill{
+        	width: 300px;
+        	height: 200px;
+        	font-size: 25px;
+        	/* position: absolute;
+        	top: 0px;
+        	left: 100px; */
+        	margin: 150px auto;
+        }
+        

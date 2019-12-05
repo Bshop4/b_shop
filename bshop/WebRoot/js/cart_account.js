@@ -138,6 +138,7 @@ function clickAll() {
 					}
 				});
 			}) 
+			
 //			// 调用总价
 //			sumAll();
 		}

@@ -88,7 +88,7 @@ public class XsyInsertBillAction extends Action {
 		
 		bt.setBill_isclearing(0);
 		bt.setBill_state(0);
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		bt.setBill_time(sdf.format(new Date()));
 		bt.setBill_isclearing(0);
 		String bill_code=GenericPrimaryKey.getSuiJinumber();

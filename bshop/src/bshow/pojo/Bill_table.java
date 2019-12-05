@@ -146,6 +146,15 @@ public class Bill_table implements Serializable {
 		this.goods_size = goods_size;
 	}
 
+	@Override
+	public String toString() {
+		return "Bill_table [bill_id=" + bill_id + ", address=" + address + ", bill_time=" + bill_time + ", allprice="
+				+ allprice + ", account=" + account + ", goods_name=" + goods_name + ", goods_price=" + goods_price
+				+ ", cart_number=" + cart_number + ", bill_state=" + bill_state + ", bill_code=" + bill_code
+				+ ", goods_photo=" + goods_photo + ", goods_id=" + goods_id + ", bill_isclearing=" + bill_isclearing
+				+ ", goods_color=" + goods_color + ", goods_size=" + goods_size + ", goods_no=" + goods_no + "]";
+	}
+
 	public String getGoods_no() {
 		return goods_no;
 	}

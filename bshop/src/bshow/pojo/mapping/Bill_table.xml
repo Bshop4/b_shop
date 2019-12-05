@@ -37,6 +37,10 @@
 		select * from bill_table where
 		1=1 and account=#{account}
 	</select>
+	<select id="selecttwo" resulttype="bshow.pojo.Bill_table">
+		select * from bill_table where
+		1=1 and account=#{account} and bill_isclearing=#{bill_isclearing}
+	</select>
 	<!-- <select id="selecttow" resulttype="bshow.pojo.Account_table"> select 
 		* from account_table where 1=1 and account_id=#{account_id} and password=#{password} 
 		</select> and account_id=#{account_id} -->

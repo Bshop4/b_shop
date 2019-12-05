@@ -246,7 +246,22 @@
         	font-weight: bold;
         }
         
-        .dingdan1 button{
+        .dingdan1 .cancelBill{
+        	width:80px;height:30px;
+        	position: absolute;
+        	bottom: 48px;right: 25px;
+        	border-radius: 5px;
+        	outline:none;
+        	color:white;
+        	background-color: red;
+        
+        }
+        
+          .dingdan1 .cancelBill:ACTIVE{
+         	background-color: white;
+         		color:black;
+         }
+        .dingdan1 .activeBill{
         	width:80px;height:30px;
         	position: absolute;
         	bottom: 10px;right: 25px;
@@ -255,7 +270,7 @@
         	color:white;
         	background-color: black;
         }
-         .dingdan1 button:ACTIVE{
+         .dingdan1 .activeBill:ACTIVE{
          	background-color: white;
          		color:black;
          }
@@ -562,5 +577,10 @@
         	font-size:20px;
         	cursor: pointer;
         	display:none;
+        }
+        
+        
+        .msg1{
+        	display: none
         }
         

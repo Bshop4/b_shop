@@ -38,11 +38,11 @@ public class JudgementLoginAction extends Action{
 				}
 			}
 		}
+		
 		if(account==null){
 			HttpSession session=request.getSession();
 			account=(String)session.getAttribute("account");
 		}
-
 		
 		if (account == null) {
 			nickname = "noPeopleLogin";

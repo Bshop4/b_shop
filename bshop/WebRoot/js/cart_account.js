@@ -137,7 +137,7 @@ function clickAll() {
 						tab.removeChild(tr);// 删除tr
 					}
 				});
-			})
+			}) 
 //			// 调用总价
 //			sumAll();
 		}

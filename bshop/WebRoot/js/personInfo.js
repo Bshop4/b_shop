@@ -2,7 +2,6 @@
 var account = getUrlVal('account');
 
 (function() {
-//	var account = "zjl";
 	if(account != undefined){
 		$.ajax({
 			type : "post",
@@ -43,13 +42,6 @@ var account = getUrlVal('account');
 				$('.myAddress').attr("value", useraddress);
 			}
 		})
-<<<<<<< HEAD
-	}
-=======
-
->>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
-
-		
 	}
 	
 })()

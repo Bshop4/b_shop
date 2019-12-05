@@ -29,8 +29,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="top">
 			<div class="top-bar">
 				<div class="btn">
-					<a href="sign.jsp" target="_blank">注册</a>
-					<a href="Login.jsp" target="_blank">登录</a>
+					<a href="sign.jsp">注册</a>
+					<a href="Login.jsp">登录</a>
 					<a class="glyphicon glyphicon-shopping-cart"></a>
 				</div>
 				<div class="logBtn">

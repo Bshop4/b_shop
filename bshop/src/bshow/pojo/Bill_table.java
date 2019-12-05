@@ -10,6 +10,8 @@ public class Bill_table implements Serializable {
 	private String account; // 用户帐号
 	private String goods_name;// 商品名称
 	private String goods_price;// 商品单价
+//	private double goods_price;// 商品单价
+//	private int cart_number;// （购车里的商品数量）
 	private String cart_number;// （购车里的商品数量）
 	private int bill_state;// 1表示选中，0表示未选中
 	private String bill_code;// 订单编码
@@ -79,8 +81,6 @@ public class Bill_table implements Serializable {
 	public void setGoods_name(String goods_name) {
 		this.goods_name = goods_name;
 	}
-
-
 
 	public String getGoods_price() {
 		return goods_price;

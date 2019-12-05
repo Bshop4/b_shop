@@ -5,7 +5,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title></title>
+		<title>我的支付界面</title>
 		<style>
 			* {
 				margin: 0px;
@@ -411,7 +411,7 @@
 					$(".msg").html(re).show().css("color","green");
 					setTimeout(function() {
 						$("#payment1").modal("hide");
-						//location.href="/bshop/index.jsp";
+						location.href="/bshop/badAccess/successful.jsp";
 					}, 500)
 					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
 				} 

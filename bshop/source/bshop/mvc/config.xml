@@ -343,4 +343,11 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 判断是否登录-->
+	<PagePattern name="JudgementLogin">
+		<ActionForm>bshow.web.servlet.form.JudgementLoginForm</ActionForm>
+		<Action>bshow.web.servlet.action.JudgementLoginAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 </properties>

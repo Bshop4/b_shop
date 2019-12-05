@@ -71,7 +71,7 @@ function judgementLogin(){
 	console.log("判断是否登录");
 	$.ajax({
 		type:"post",
-		url:"JudgementLogin",
+		url:"JudgementLogin.do",
 		success:function(result){
 //			console.log(result);
 			if(result[0]=="noPeopleLogin"){

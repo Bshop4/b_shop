@@ -3,7 +3,7 @@
 <html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>购物车</title>
+<title>我的订单</title>
 <link rel="stylesheet" href="/bshop/css/cart_account.css" />
 <link rel="stylesheet" href="/bshop/css/animate.css" />
 <link rel="stylesheet" href="/bshop/css/bootstrap.css" />
@@ -13,6 +13,37 @@
 <link rel="stylesheet" href="/bshop/css/personInfo.css" />
 
 <meta charset="UTF-8">
+
+<style>
+			.modal-header{
+				border-bottom: none;
+				height:20px;
+				padding: 15px 15px 10px 15px;
+			}
+			.modal-body{
+				border-bottom: none;
+				height: 20px;
+			}
+			.modal-footer{
+				border-top: none;
+			}
+			.el-button{
+				display: inline-block;
+			    cursor: pointer;
+			    background: #fff;
+			    border: 1px solid #dcdfe6;
+			    border-color: #dcdfe6;
+			    color: #606266;
+			    text-align: center;
+			    padding: 6px 10px;	
+			    font-size: 12px;
+			    border-radius: 4px;
+			}
+			.el-sure{
+				background: black;
+				color: white;
+			}
+		</style>
 </head>
 <body>
 	<!--头部-->
@@ -178,6 +209,27 @@
             </div>
         </div>
     </div>
+    
+<!--删除模态框结构-->
+		<div class="modal fade" id="myModal">
+			<!--窗口层   大中小  默认为中-->
+			<div class="modal-dialog" style="width: 420px;">
+				<!--内容层-->
+				<div class="modal-content">
+					<!--头部，身体，底部-->
+					<div class="modal-header">
+						<span class="close" data-dismiss="modal">&times;</span>
+					</div>
+					<div class="modal-body">
+						<span>确认删除？</span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="el-button el-dissure" id="quxiao" data-dismiss="modal">取消</button>
+						<button type="button" class="el-button el-sure" id="queren" data-dismiss="modal">确认</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<!--底部-->
 	<div id="row-1">

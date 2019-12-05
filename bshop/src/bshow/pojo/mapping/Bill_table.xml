@@ -49,6 +49,10 @@
 	<delete id="deleteBillById">
 		delete  from bill_table where bill_id=#{bill_id}
 	</delete>
+	
+	<update id="updateClearing">
+		update bill_table set bill_isclearing=@{bill_isclearing} where bill_code=#{bill_code}
+	</update>
 
 
 </class>

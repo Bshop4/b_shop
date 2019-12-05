@@ -17,7 +17,7 @@ import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
 import net.sf.json.JSONArray;
 
-public class WaitpayAction extends Action{
+public class SelectalreadypayAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
@@ -27,7 +27,7 @@ public class WaitpayAction extends Action{
 		
 		Bill_table bt = new Bill_table();
 		bt.setAccount(account);
-		bt.setBill_isclearing(0);
+		bt.setBill_isclearing(1);
 		
 		Basedao bd = new Basedaoimpl();
 		

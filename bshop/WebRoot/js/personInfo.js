@@ -2,7 +2,7 @@
 var account = getUrlVal('account');
 
 (function() {
-	if(account != undefined){
+	if (account != undefined) {
 		$.ajax({
 			type : "post",
 			url : "getInfo.do",
@@ -43,7 +43,7 @@ var account = getUrlVal('account');
 			}
 		})
 	}
-	
+
 })()
 
 //更新个人信息
@@ -81,14 +81,16 @@ $('.save').click(function() {
 			"msg" : JSON.stringify(personInfo)
 		},
 		success : function(result) {
-			
-			$(".savesuccess").animate({opacity: "1"},500,function(){
+
+			$(".savesuccess").animate({
+				opacity : "1"
+			}, 500, function() {
 				setTimeout(function() {
-					$('.savesuccess').css("opacity",0);
+					$('.savesuccess').css("opacity", 0);
 				}, 1500)
 			})
-			
-			
+
+
 		},
 	});
 
@@ -149,7 +151,7 @@ window.onload = function() {
 
 //切换
 $("#mycollection").click(function() {
-	
+
 	$("#mycollection").css({
 		color : "red"
 	});
@@ -157,7 +159,7 @@ $("#mycollection").click(function() {
 	$("#myinfo").css({
 		color : "black"
 	})
-	
+
 	$("#mymenu").css({
 		color : "black"
 	})
@@ -172,36 +174,37 @@ $("#mycollection").click(function() {
 	$(".user-right1").hide();
 	$(".user-right2").hide();
 	$(".user-right4").hide();
-	
+
 	$(".pro-list").html("");
-	
-	
+
+
 	$.ajax({
-		
 		type : "post",
 		url : "selectCollectionByAccount.do",
-		data : {"account" : account},
-		success : function (re) {
+		data : {
+			"account" : account
+		},
+		success : function(re) {
 			var obj = JSON.parse(re);
-//			console.log(obj)
-//			if(obj.length > 10){
-//				var str="";
-//				for(var i = 0; i <obj.length; i++){
-//					str += `
-//						<li class="pro-product"  >
-//							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
-//							<img src="img/show.png" class="pro-select" id="pro-hide">
-//							<div class="pro-name">${obj[i].goods_name}</div>
-//							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
-//						</li>
-//					`;
-//					
-//				}
-//				$(".pro-list").append(str);
-//			}else
-				if(obj.length > 0){
-				var str="";
-				for(var i = 0; i < obj.length; i++){
+			//			console.log(obj)
+			//			if(obj.length > 10){
+			//				var str="";
+			//				for(var i = 0; i <obj.length; i++){
+			//					str += `
+			//						<li class="pro-product"  >
+			//							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+			//							<img src="img/show.png" class="pro-select" id="pro-hide">
+			//							<div class="pro-name">${obj[i].goods_name}</div>
+			//							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+			//						</li>
+			//					`;
+			//					
+			//				}
+			//				$(".pro-list").append(str);
+			//			}else
+			if (obj.length > 0) {
+				var str = "";
+				for (var i = 0; i < obj.length; i++) {
 					str += `
 						<li class="pro-product"  >
 							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
@@ -212,16 +215,15 @@ $("#mycollection").click(function() {
 					`;
 				}
 				$(".pro-list").append(str);
-			}else if(obj.length == 0){
-				
+			} else if (obj.length == 0) {
+
 				var str = `
 					<div class="descr">-_-您现在暂无收藏</div>
 				`;
-				
+
 				$(".pro-list").append(str);
 			}
 		}
-		
 	})
 })
 
@@ -295,7 +297,7 @@ $("#myaddress").click(function() {
 	$(".user-right3").hide();
 	$(".user-right4").hide();
 	//从数据库查找地址数据然后显示在页面
-//	var account = "zjl";
+	//	var account = "zjl";
 	$.ajax({
 		type : "post",
 		url : "selectReceiverByAccount.do",
@@ -460,7 +462,7 @@ function mysaveclick() {
 		document.getElementById("save1").setAttribute("data-dismiss", "modal");
 
 		//插入数据库
-//		var account = "zjl"
+		//		var account = "zjl"
 
 		var reveiver = {
 			"name" : name,
@@ -483,8 +485,8 @@ function mysaveclick() {
 					"margin-left" : "10px",
 					"position" : "relative"
 				})
-				
-				
+
+
 
 				$(".addresslist>li").css({
 					"width" : "750px",
@@ -578,16 +580,15 @@ function delclick(obj) {
 }
 
 
-$(".user-acc-input").focus(function () {
+$(".user-acc-input").focus(function() {
 	$(".notModify").show();
 })
-$(".user-acc-input").blur(function () {
+$(".user-acc-input").blur(function() {
 	$(".notModify").hide();
 })
 
 
 function changeBinggou(obj) {
-
 	var s1 = $(obj).parent().find("div").eq(0).html()
 	var s2 = $(obj).parent().find("div").eq(1).html()
 	var s3 = $(obj).parent().find("div").eq(2).html()
@@ -636,21 +637,24 @@ function changeBinggou(obj) {
 
 
 
-var zjl_shoucangflag=true;
+var zjl_shoucangflag = true;
 //取消收藏
 function clickmyheart(obj) {
 	var myid = $(obj).attr("data-myid");
-	
+
 	$.ajax({
 		type : "post",
 		url : "deleteCollectionById.do",
-		data : {"account" : account, "myid" : myid},
-		success : function(re){
+		data : {
+			"account" : account,
+			"myid" : myid
+		},
+		success : function(re) {
 			$(".pro-list").html("");
 			var obj = JSON.parse(re);
-			if(obj.length > 10){
-				var str="";
-				for(var i = 0; i < 10; i++){
+			if (obj.length > 10) {
+				var str = "";
+				for (var i = 0; i < 10; i++) {
 					str += `
 						<li class="pro-product"  >
 							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
@@ -659,12 +663,12 @@ function clickmyheart(obj) {
 							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
 						</li>
 					`;
-					
+
 				}
 				$(".pro-list").append(str);
-			}else if(obj.length > 0 && obj.length <= 10){
-				var str="";
-				for(var i = 0; i < obj.length; i++){
+			} else if (obj.length > 0 && obj.length <= 10) {
+				var str = "";
+				for (var i = 0; i < obj.length; i++) {
 					str += `
 						<li class="pro-product"  onclick="clickli(this)">
 							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
@@ -675,42 +679,45 @@ function clickmyheart(obj) {
 					`;
 				}
 				$(".pro-list").append(str);
-			}else if(obj.length == 0){
-				
+			} else if (obj.length == 0) {
+
 				var str = `
 					<div class="descr">-_-您现在暂无收藏</div>
 				`;
-				
+
 				$(".pro-list").append(str);
 			}
 		}
 	})
 }
-	
-	
-function clickli(obj){
-	if(zjl_shoucangflag){return;};
+
+
+function clickli(obj) {
+	if (zjl_shoucangflag) {
+		return;
+	}
+	;
 	var id = $(obj).attr("data-url");
-	
+
 	location.href = "detail.jsp?goods_no=" + id;
-	
+
 }
 
 
 function enterMyHeart(obj) {
-	zjl_shoucangflag=true;
-	$(obj).attr("src","img/6.png")
+	zjl_shoucangflag = true;
+	$(obj).attr("src", "img/6.png")
 }
 
 function leaveMyHeart(obj) {
-	zjl_shoucangflag=false;
-	$(obj).attr("src","img/7.png")
+	zjl_shoucangflag = false;
+	$(obj).attr("src", "img/7.png")
 }
 
 
 function editclick(obj) {
 	console.log(obj.attr("data-eid"))
-	
+
 }
 
 //下拉列表
@@ -757,42 +764,43 @@ function getArea1(t) {
 
 
 
-var eid="";
+var eid = "";
 function editclick(obj) {
 	getPro1();
 	$("#editAddress").modal('show');
-//	console.log(eid);
+	//	console.log(eid);
 	eid = $(obj).attr('data-eid')
 	console.log(eid);
-	
+
 	$.ajax({
-		
 		type : "post",
 		url : "editModal.do",
-		data : {"eid" : eid},
-		success : function (re) {
+		data : {
+			"eid" : eid
+		},
+		success : function(re) {
 			var obj = JSON.parse(re);
-			
+
 			var address = obj.address;
 			var postal = obj.postal;
 			var receiver = obj.receiver;
 			var tel = obj.telephone;
-			
-			$("#myname1").attr("value",receiver);
-			$("#myiphone1").attr("value",tel);
-			$("#mypostcode1").attr("value",postal);
-			
+
+			$("#myname1").attr("value", receiver);
+			$("#myiphone1").attr("value", tel);
+			$("#mypostcode1").attr("value", postal);
+
 			var p;
 			var pname;
 			for (var i = 0; i < infos.length; i++) {
-				if(address.indexOf(infos[i].name) != -1){
+				if (address.indexOf(infos[i].name) != -1) {
 					p = infos[i].code;
 					pname = infos[i].name;
-					$("#province1").find("option[value='"+p+"']").attr("selected",true);
+					$("#province1").find("option[value='" + p + "']").attr("selected", true);
 					break;
 				}
 			}
-			
+
 			var c;
 			var c1;
 			var cname;
@@ -801,7 +809,7 @@ function editclick(obj) {
 					c1 = infos[i].city;
 					//遍历city
 					for (var j = 0; j < c1.length; j++) {
-						if(address.indexOf(c1[j].name) != -1){
+						if (address.indexOf(c1[j].name) != -1) {
 							c = c1[j].code;
 							cname = c1[j].name;
 							city1.innerHTML = "<option value='" + c1[j].code + "'>" + c1[j].name + "</option>";
@@ -810,12 +818,12 @@ function editclick(obj) {
 					break;
 				}
 			}
-			
+
 			var aname;
 			for (var j = 0; j < c1.length; j++) {
 				if (c == c1[j].code) {
 					for (var k = 0; k < c1[j].area.length; k++) {
-						if(address.indexOf(c1[j].area[k].name) != -1){
+						if (address.indexOf(c1[j].area[k].name) != -1) {
 							aname = c1[j].area[k].name;
 							area1.innerHTML = "<option value='" + c1[j].area[k].code + "'>" + c1[j].area[k].name + "</option>";
 						}
@@ -823,13 +831,13 @@ function editclick(obj) {
 					break;
 				}
 			}
-			
+
 			var dname;
 			dname = address.replace(pname, "");
 			dname = dname.replace(cname, "");
-			dname = dname.replace(aname,"");
-			
-			$("#mydetailaddress1").attr("value",dname);
+			dname = dname.replace(aname, "");
+
+			$("#mydetailaddress1").attr("value", dname);
 		}
 	})
 }
@@ -842,15 +850,15 @@ function mysaveclick1() {
 	var city = document.getElementById("city1").value;
 	var area = document.getElementById("area1").value;
 	var detailaddress = document.getElementById("mydetailaddress1").value;
-	
-//	console.log(name)
-//	console.log(iphone)
-//	console.log(postcode)
-//	console.log(pro)
-//	console.log(city)
-//	console.log(area)
-//	console.log(detailaddress)
-	
+
+	//	console.log(name)
+	//	console.log(iphone)
+	//	console.log(postcode)
+	//	console.log(pro)
+	//	console.log(city)
+	//	console.log(area)
+	//	console.log(detailaddress)
+
 	var getPro;
 	var getCity;
 	var getArea;
@@ -863,8 +871,8 @@ function mysaveclick1() {
 			cities1 = infos[i].city;
 		}
 	}
-	
-//	var area1 = document.getElementById("area1");
+
+	//	var area1 = document.getElementById("area1");
 	for (var j = 0; j < cities1.length; j++) {
 		if (cities1[j].code == $('#city1').val()) {
 			getCity = cities1[j].name; //城市
@@ -878,9 +886,9 @@ function mysaveclick1() {
 	AllAddress = getPro + getCity + getArea + detailaddress;
 	document.getElementById("save2").setAttribute("data-dismiss", "modal");
 
-//	console.log(AllAddress)
-//	console.log(eid)
-	
+	//	console.log(AllAddress)
+	//	console.log(eid)
+
 	var test = {
 		"name" : name,
 		"iphone" : iphone,
@@ -889,22 +897,22 @@ function mysaveclick1() {
 		"account" : account,
 		"eid" : eid,
 	}
-	
+
 	$.ajax({
-		
 		type : "post",
 		url : "updateAllAddress.do",
-		data : {"msg" : JSON.stringify(test)},
-		success : function (re) {
-			if(re == "1"){
-				var l = $("[data-eid='"+eid+"']").parent().children();
-				$(l).eq(0).html(name+"&nbsp;&nbsp;&nbsp;&nbsp;"+iphone)
-				$(l).eq(1).html("邮编："+postcode);
-				$(l).eq(2).html("收货地址："+AllAddress);
-				
+		data : {
+			"msg" : JSON.stringify(test)
+		},
+		success : function(re) {
+			if (re == "1") {
+				var l = $("[data-eid='" + eid + "']").parent().children();
+				$(l).eq(0).html(name + "&nbsp;&nbsp;&nbsp;&nbsp;" + iphone)
+				$(l).eq(1).html("邮编：" + postcode);
+				$(l).eq(2).html("收货地址：" + AllAddress);
+
 			}
 		}
-		
 	})
 }
 
@@ -931,36 +939,36 @@ $("#myfooter").click(function() {
 	$(".user-right2").hide();
 	$(".user-right3").hide();
 	$(".user-right4").show();
-	
+
 	getFooter();
 })
 
 
 
-var  footflag=false;
+var footflag = false;
 //根据账号查看我的足迹
-function getFooter(){
+function getFooter() {
 	$.ajax({
 		type : "post",
 		url : "MyFooter",
-		success:function(result){
-			if(result==null){
+		success : function(result) {
+			if (result == null) {
 				alert("你没有浏览过任何商品");
 				return;
 			}
-			
+
 			//清空记录
 			$('.user-right4').empty();
-			
+
 			console.log(result);
-			var mylength=result.length-1;
-			
-			var str=``;
-			for(var i=mylength;i>=0;i--){
-				if(i==mylength){
-					var strday=`
+			var mylength = result.length - 1;
+
+			var str = ``;
+			for (var i = mylength; i >= 0; i--) {
+				if (i == mylength) {
+					var strday = `
 					<p class="djtDate">${result[i].footprint_time}</p>`;
-					str+=`
+					str += `
 					<ul>
 						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
 							<img src="${result[i].goods_photo}">
@@ -973,12 +981,12 @@ function getFooter(){
 					$('.user-right4').append(strday);
 					continue;
 				}
-				if(result[i+1].footprint_time!=result[i].footprint_time){
+				if (result[i + 1].footprint_time != result[i].footprint_time) {
 					//日期不相等就创建日期
 					$('.user-right4').append(str);
-					var strday=`
+					var strday = `
 					<p class="djtDate">${result[i].footprint_time}</p>`;
-					str=`<ul>
+					str = `<ul>
 						<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
 							<img src="${result[i].goods_photo}">
 							<span class="djtbrand">${result[i].goods_brand}</span>
@@ -988,8 +996,8 @@ function getFooter(){
 						</li>
 						`;
 					$('.user-right4').append(strday);
-				}else{
-						 str+=`
+				} else {
+					str += `
 							<li djt-data-goods="${result[i].goods_no}" onclick="djtclick(this)">
 								<img src="${result[i].goods_photo}">
 								<span class="djtbrand">${result[i].goods_brand}</span>
@@ -998,66 +1006,68 @@ function getFooter(){
 								<span djt-mtdate="${result[i].footprint_time}" class="djtdelete glyphicon glyphicon-trash" onclick="mydjtdelete(this)"></span>
 							</li>
 						`;
-//						$('.user-right4').append(str);
+				//						$('.user-right4').append(str);
 				}
-				if(i==0){
+				if (i == 0) {
 					$('.user-right4').append(str);
 				}
 			}
 			//显示删除
-			$('.user-right4>ul>li').each(function(i){
-				$('.user-right4>ul>li').eq(i).mouseover(function(){
+			$('.user-right4>ul>li').each(function(i) {
+				$('.user-right4>ul>li').eq(i).mouseover(function() {
 					$('.user-right4>ul>li').eq(i).children('span.djtdelete').show();
 				})
-				$('.user-right4>ul>li').eq(i).mouseout(function(){
+				$('.user-right4>ul>li').eq(i).mouseout(function() {
 					$('.user-right4>ul>li').eq(i).children('span.djtdelete').hide();
 				})
-				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseover(function(){
-					footflag=false;
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseover(function() {
+					footflag = false;
 				});
-				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseout(function(){
-					footflag=true;
+				$('.user-right4>ul>li').eq(i).children('span.djtdelete').mouseout(function() {
+					footflag = true;
 				});
 			})
 		}
-		
 	})
 }
 
 //点击跳转
-function djtclick(obj){
-	if(!footflag){return;};
-	var goods_no=$(obj).attr('djt-data-goods');
-	location.href="/bshop/detail.jsp?goods_no="+goods_no;
+function djtclick(obj) {
+	if (!footflag) {
+		return;
+	}
+	;
+	var goods_no = $(obj).attr('djt-data-goods');
+	location.href = "/bshop/detail.jsp?goods_no=" + goods_no;
 }
 
 var goods_no;
 var footprint_time;
 //点击删除
-function mydjtdelete(obj){
-	goods_no=$(obj).parent().attr('djt-data-goods');
-	footprint_time=$(obj).attr("djt-mtdate");
+function mydjtdelete(obj) {
+	goods_no = $(obj).parent().attr('djt-data-goods');
+	footprint_time = $(obj).attr("djt-mtdate");
 	djtAjaxDelete();
 }
 
 //通过ajax删除
-function djtAjaxDelete(){
+function djtAjaxDelete() {
 	$.ajax({
 		type : "post",
 		url : "MyDelete.do",
-		data:{
-			goods_no:goods_no,
-			footprint_time:footprint_time,
+		data : {
+			goods_no : goods_no,
+			footprint_time : footprint_time,
 		},
-		dataType:"json",
-		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-		success:function(result){
-			if(result==true){
+		dataType : "json",
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		success : function(result) {
+			if (result == true) {
 				alert("删除成功");
 				//重新查询
 				getFooter();
 				return;
-			}else{
+			} else {
 				alert("删除失败");
 			}
 		}
@@ -1067,180 +1077,207 @@ function djtAjaxDelete(){
 
 
 //待支付
-$(".waitpay").click(function(){
-	
-	$('.user-right1').children().eq(1).remove();
-	
+$(".waitpay").click(function() {
+	$(".waitpay").css({
+		"color" : "white",
+		"background" : "black"
+	})
+	$(".alreadypay").css({
+		"color" : "black",
+		"background" : "white"
+	})
+	$('.user-right1').children().eq(0).siblings().remove();
 	$.ajax({
-		
 		type : "post",
 		url : "waitpay.do",
-		data : {"account" : account},
-		success : function(re){
+		data : {
+			"account" : account
+		},
+		success : function(re) {
 			var obj = JSON.parse(re);
-			console.log(obj)
-			var len = obj.length;
-			if(obj == "1"){
+			//			console.log(obj);
+			//			return;
+			if (obj == "1") {
 				var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
-				$(".user-right1").append(str12)
+				$(".user-right1").append(str12);
 				return;
 			}
-			
-			if(len == 1){
-				var str = `
-					<div class="dingdan1">
-						<div class="diandan1_top">
-							<div class="top_left"><span>订单号：${obj[0].bill_code}</span></div>
-							<div class="top_right"><span>总价：${obj[0].goods_price}</span></div>
-						</div>
-						<div class="diandan1_body">
-							<div class="body_left">
-									<table class="tbname" border="1" style="text-align: center;">
-										<tr>
-											<th class="table_1">商品</th>
-											<th class="table_2">名称</th>
-											<th class="table_3">数量</th>
-											<th class="table_4">单价</th>
-										</tr>
-										<tr>
-											<td ><img src=${obj[0].goods_photo}></td>
-											<td ><p>${obj[0].goods_name}</p><p>${obj[0].goods_color}</p></td>
-											<td >${obj[0].cart_number}</td>
-											<td class="td_qian">￥${obj[0].goods_price}</td>
-										</tr>
-										
-									</table>
-									<div class="dizhi">收货地址：${obj[0].address}</div>
+			;
+			var strbill = ``;
+			for (var i = 0; i < obj.length; i++) {
+				strbill = `<div class="dingdan1" id="dd` + i + `">
+							<div class="diandan1_top">
+								<div class="top_left"><span>订单号：${obj[i].billcode}</span> <span>时间:${obj[i].time}</span></div>
+								<div class="top_right"><span>总价：${obj[i].allprice}</span></div>
 							</div>
-						</div>
-						<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[0].bill_id}>取消订单<button>
-						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
-					</div>
-					`;
-					
-					$(".user-right1").append(str)
-				
-				
-				
-			}else if(len>1){
-				var str = `
-					<div class="dingdan1">
-						<div class="diandan1_top">
-							
-						</div>
-						<div class="diandan1_body">
-							<div class="body_left">
-									<table class="tbname" border="1" style="text-align: center;">
-										<tr>
-											<th class="table_1">商品</th>
-											<th class="table_2">名称</th>
-											<th class="table_3">数量</th>
-											<th class="table_4">单价</th>
-										</tr>
-										
-										
-									</table>
-							</div>
-						</div>
-						<button class="cancelBill"  onclick="cancelBill(this)" data-billid=${obj[0].bill_id}>取消订单<button>
-						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
-					</div>
-					`;
-					
-					$(".user-right1").append(str)
-					var code = obj[1].bill_code;
-					var strcode = `	
-						<div class="top_left"><span>订单号：${code}</span></div>
-					`;
-					$(".diandan1_top").append(strcode);
-					
-				var strtr = "";
-				var allprice=0;
-				for(var i=0;i<len;i++){
-					strtr += `
-						<tr>
-							<td ><img src=${obj[i].goods_photo}></td>
-							<td ><p>${obj[i].goods_name}</p><p>${obj[i].goods_color}</p></td>
-							<td >${obj[i].cart_number}</td>
-							<td class="td_qian">￥${obj[i].goods_price}</td>
-						</tr>
-					`;
-					allprice += parseFloat(obj[i].goods_price);
+							<div class="diandan1_body">
+								<div class="body_left">
+										<table class="tbname" border="1" style="text-align: center;">
+											<tr>
+												<th class="table_1">商品</th>
+												<th class="table_2">名称</th>
+												<th class="table_3">数量</th>
+												<th class="table_4">单价</th>
+											</tr>`;
+				for (var j = 0; j < obj[i].goods.length; j++) {
+					strbill += `
+								<tr>
+									<td ><img src=${obj[i].goods[j].photo}></td>
+									<td ><p>${obj[i].goods[j].name}</p><p>${obj[i].goods[j].color}</p></td>
+									<td >${obj[i].goods[j].num}</td>
+									<td class="td_qian">￥${obj[i].goods[j].price}</td>
+								</tr>
+						`;
 				}
-				$(".tbname").append(strtr);
-				var strAllprice = `
-						<div class="top_right"><span>总价：${allprice}</span></div>
-					`;
-				$(".diandan1_top").append(strAllprice)
-				var addr = obj[1].address;
-				var address = `
-					<div class="dizhi">收货地址：${addr}</div>
-				`;
-				$('.body_left').append(address);
+				strbill += `</table>
+										<div class="dizhi">收货地址：${obj[i].address}</div>
+								</div>
+							</div>
+							<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[i].billcode}>取消订单<button>
+							<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+						</div>`;
+				$('.user-right1').append(strbill);
 			}
-			
+			;
+
 		}
-		
-		
 	})
-	
-	
+
+
 })
 
-function goPay1(obj){
+function goPay1(obj) {
 	$(".msg1").show();
 	var pay_pass = $("#paypass1").val();
-	var price=$(obj).attr("allprice");
+	var price = $(obj).attr("allprice");
 	var test = {
-			"pay_money" : price,
-			"pay_name" : account,
-			"pay_pass" : pay_pass,
+		"pay_money" : price,
+		"pay_name" : account,
+		"pay_pass" : pay_pass,
+	}
+
+	$.ajax({
+		type : "post",
+		url : "paymentInterface.do",
+		data : {
+			"msg" : JSON.stringify(test)
+		},
+		success : function(re) {
+			if (re == "密码不正确！") {
+				$(".msg1").html(re).show().css("color", "red");
+			}
+			if (re == "余额不足") {
+				$(".msg1").html(re).show().css("color", "red");
+			}
+			if (re == "支付成功") {
+				$(".msg1").html(re).show().css("color", "green");
+				setTimeout(function() {
+					$("#gotopay1").modal("hide");
+					$("#paypass1").val("");
+					$(".msg1").html("正在支付...").hide();
+				}, 500)
+
+				var billcode = $(obj).attr("data-billcode");
+
+				$.ajax({
+					type : "post",
+					url : "updateBillClearing.do",
+					data : {
+						"billcode" : billcode
+					},
+					success : function(re) {
+						if (re == "1") {
+
+							$(".user-right1").children().eq(0).siblings().remove();
+							$.ajax({
+								type : "post",
+								url : "waitpay.do",
+								data : {
+									"account" : account
+								},
+								success : function(re) {
+									var obj = JSON.parse(re);
+									if (obj == "1") {
+										var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+										$(".user-right1").append(str12);
+										return;
+									}
+									;
+									var strbill = ``;
+									for (var i = 0; i < obj.length; i++) {
+										strbill = `<div class="dingdan1" id="dd` + i + `">
+														<div class="diandan1_top">
+															<div class="top_left"><span>订单号：${obj[i].billcode}</span> <span>时间:${obj[i].time}</span></div>
+															<div class="top_right"><span>总价：${obj[i].allprice}</span></div>
+														</div>
+														<div class="diandan1_body">
+															<div class="body_left">
+																	<table class="tbname" border="1" style="text-align: center;">
+																		<tr>
+																			<th class="table_1">商品</th>
+																			<th class="table_2">名称</th>
+																			<th class="table_3">数量</th>
+																			<th class="table_4">单价</th>
+																		</tr>`;
+										for (var j = 0; j < obj[i].goods.length; j++) {
+											strbill += `
+															<tr>
+																<td ><img src=${obj[i].goods[j].photo}></td>
+																<td ><p>${obj[i].goods[j].name}</p><p>${obj[i].goods[j].color}</p></td>
+																<td >${obj[i].goods[j].num}</td>
+																<td class="td_qian">￥${obj[i].goods[j].price}</td>
+															</tr>
+													`;
+										}
+										strbill += `</table>
+																	<div class="dizhi">收货地址：${obj[i].address}</div>
+															</div>
+														</div>
+														<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[i].billcode}>取消订单<button>
+														<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+													</div>`;
+										$('.user-right1').append(strbill);
+									}
+									;
+
+								}
+							})
+						}
+					}
+				})
+
+			}
+
 		}
-		
+	})
+
+}
+
+function goPay2(obj) {
+	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
+	var bcode = $(obj).siblings(".diandan1_top").children(".top_left").children("span").eq(0).html();
+	var idrr = $(obj).parent().attr("id");
+	console.log(idrr);
+	bcode = bcode.slice(4);
+	price = parseInt(price.slice(3));
+	$("#paypay1").attr("allprice", price);
+	$("#paypay1").attr("data-billcode", bcode);
+	$("#paypay1").attr("romoveid", idrr);
+}
+
+
+function cancelBill(obj) {
+	var billid = $(obj).attr("data-billid");
+	console.log(12)
+	if (confirm("确定要取消该订单吗？")) {
 		$.ajax({
 			type : "post",
-			url : "paymentInterface.do",
-			data : {"msg" : JSON.stringify(test)},
-			success: function(re){
-				console.log(re);
-				if(re == "密码不正确！"){
-					$(".msg1").html(re).show().css("color","red");
-				}
-				if(re == "余额不足"){
-					$(".msg1").html(re).show().css("color","red");
-				}
-				if(re == "支付成功"){
-					$(".msg1").html(re).show().css("color","green");
-					setTimeout(function() {
-						$("#gotopay1").modal("hide");
-					}, 500)
-				} 
-				
-			}
-		})
-
-	
-}
-
-function goPay2(obj){
-	
-	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
-	price = parseInt(price.slice(3));
-	$("#paypay1").attr("allprice",price);
-	
-	
-}
-
-
-function cancelBill(obj){
-	var billid = $(obj).attr("data-billid");
-	if(confirm("确定要取消该订单吗？")){
-		$.ajax({
-		type : "post",
-		url : "deleteBillByBillId.do",
-		data : {"billid" : billid},
-		success : function (re) {
-				if(re == "取消成功"){
+			url : "deleteBillByBillId.do",
+			data : {
+				"billid" : billid
+			},
+			success : function(re) {
+				if (re == "取消成功") {
 					$(".user-right1").children().eq(1).remove();
 					var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
 					$(".user-right1").append(str12)
@@ -1250,7 +1287,73 @@ function cancelBill(obj){
 	}
 }
 
+$(".alreadypay").click(function() {
+	
+	$(".alreadypay").css({
+		"color" : "white",
+		"background" : "black"
+	})
+	$(".waitpay").css({
+		"color" : "black",
+		"background" : "white"
+	})
+	
+	$('.user-right1').children().eq(0).siblings().remove();
+	$.ajax({
+		type : "post",
+		url : "selectalreadypay.do",
+		data : {
+			"account" : account
+		},
+		success : function(re) {
+			var obj = JSON.parse(re);
+			//			console.log(obj);
+			//			return;
+			if (obj == "1") {
+				var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+				$(".user-right1").append(str12);
+				return;
+			}
+			;
+			var strbill = ``;
+			for (var i = 0; i < obj.length; i++) {
+				strbill = `<div class="dingdan1" id="dd` + i + `">
+							<div class="diandan1_top">
+								<div class="top_left"><span>订单号：${obj[i].billcode} 时间:${obj[i].time}</span></div>
+								<div class="top_right"><span>总价：${obj[i].allprice}</span></div>
+							</div>
+							<div class="diandan1_body">
+								<div class="body_left">
+										<table class="tbname" border="1" style="text-align: center;">
+											<tr>
+												<th class="table_1">商品</th>
+												<th class="table_2">名称</th>
+												<th class="table_3">数量</th>
+												<th class="table_4">单价</th>
+											</tr>`;
+				for (var j = 0; j < obj[i].goods.length; j++) {
+					strbill += `
+								<tr>
+									<td ><img src=${obj[i].goods[j].photo}></td>
+									<td ><p>${obj[i].goods[j].name}</p><p>${obj[i].goods[j].color}</p></td>
+									<td >${obj[i].goods[j].num}</td>
+									<td class="td_qian">￥${obj[i].goods[j].price}</td>
+								</tr>
+						`;
+				}
+				strbill += `</table>
+										<div class="dizhi">收货地址：${obj[i].address}</div>
+								</div>
+							</div>
+						</div>`;
+				//				<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[i].billcode}>取消订单<button>
+				//				<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+				$('.user-right1').append(strbill);
 
+			}
+			;
 
+		}
+	})
 
-
+})

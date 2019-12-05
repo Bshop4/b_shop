@@ -3,7 +3,7 @@
 <html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>购物车</title>
+<title>我的订单</title>
 <link rel="stylesheet" href="/bshop/css/cart_account.css" />
 <link rel="stylesheet" href="/bshop/css/animate.css" />
 <link rel="stylesheet" href="/bshop/css/bootstrap.css" />

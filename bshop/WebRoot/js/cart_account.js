@@ -123,7 +123,7 @@ function clickAll() {
 //				}
 //			});
 			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
-			console.log(sum1);
+			console.log(sum1); 
 			$('.el-sure').click(function(){
 				console.log(111)
 				$.ajax({

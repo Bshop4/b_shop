@@ -310,25 +310,54 @@ function defaultli(obj){
   	  })
 //    }
 }
+
+var bill_code="";
 //点击支付订单存入数据并且跳转到倒计时页面
 $('#btn-account').click(function() { 
-		$('[data-tr="active"]').each(function() {
-			var tab = $(this).parent();
-			var tr = $(this);
-			//var sss = name+iphone+postcode+AllAddress;
-			cart_id = $(this).find("td:first").attr("data-id");
-			console.log(cart_id);
-			// 把订单cart_id,account,address传给需要插入的action
-			$.ajax({
-				type : "POST",
-				url : "xsyinsertBill.do",
-				data : {"cart_id" : cart_id,"account":account_name,"address":dizhi},
-				success : function(result) {
-					var result=JSON.parse(result);
-					console.log(result); 
-				} 
-			})
-		})
+//		$('[data-tr="active"]').each(function() {
+	var activearr=$('[data-tr="active"]');
+	console.log(activearr);
+	var cart_ids="";
+	for(var i=0;i<activearr.length;i++){
+		if(i==activearr.length-1){
+			cart_ids+=$(activearr[i]).find("td:first").attr("data-id");
+			break;
+		};
+		cart_ids+=($(activearr[i]).find("td:first").attr("data-id")+",");
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "xsyinsertBill.do",
+		data : {"cart_id" : cart_ids,"account":account_name,"address":dizhi},
+		success : function(result) {
+			var obj=JSON.parse(result);
+			if(obj.code==0){
+				bill_code =obj.data.bill_code;
+			}
+			if(obj.code==419){
+				console.log(obj.msg);
+			}
+			
+		} 
+	})
+	
+//	var tab = $(this).parent();
+//	var tr = $(this);
+//	//var sss = name+iphone+postcode+AllAddress;
+//	cart_id = $(this).find("td:first").attr("data-id");
+//	console.log(cart_id);
+//	// 把订单cart_id,account,address传给需要插入的action
+//	$.ajax({
+//		type : "POST",
+//		url : "xsyinsertBill.do",
+//		data : {"cart_id" : cart_id,"account":account_name,"address":dizhi},
+//		success : function(result) {
+//			var result=JSON.parse(result);
+//			console.log(result); 
+//		} 
+//	})
+//		})
 		// 如果是选中则将收获信息的状态值改为1
 //if($('li').class='selected') {
 //$.ajax({
@@ -344,5 +373,5 @@ $('#btn-account').click(function() {
 	  	var money = mone.substring(4);
 	  	console.log(money);
 	  	// 跳转
-	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name;
+	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name+"&bill_code="+bill_code;
 	})

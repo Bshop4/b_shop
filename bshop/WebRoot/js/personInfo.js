@@ -43,8 +43,15 @@ var account = getUrlVal('account');
 				$('.myAddress').attr("value", useraddress);
 			}
 		})
+<<<<<<< HEAD
 	}
+=======
 
+>>>>>>> branch 'master' of https://github.com/Bshop4/b_shop.git
+
+		
+	}
+	
 })()
 
 //更新个人信息

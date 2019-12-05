@@ -17,7 +17,7 @@ var myflag;
 				if(i < result.length - 1) {
 					str = `
 					<li class="category">
-						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
+						<a href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
 						<div class="list-content left">
 							<div class="inner-content">
 								<h1>${result[i]}</h1>
@@ -30,7 +30,7 @@ var myflag;
 				} else {
 					str = `
 					<li class="category">
-						<a target="_blank" href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
+						<a href="/bshop/classify.jsp?middle_type=${result[i]}">${result[i]}</a>
 						<div class="list-content right">
 							<div class="inner-content">
 								<h1>${result[i]}</h1>
@@ -91,18 +91,20 @@ function judgementLogin(){
 
 //退出登录
 function exitLogin(){
-	$.ajax({
-		type:"post",
-		url:"ExitLogin.do",
-		success:function(result){
-			myflag=result;
-			if(myflag){
-				$('.top-bar>.btn').show();
-				$('.logBtn').hide();
-				location.reload();
+	if(confirm("是否退出登录？")){
+		$.ajax({
+			type:"post",
+			url:"ExitLogin.do",
+			success:function(result){
+				myflag=result;
+				if(myflag){
+					$('.top-bar>.btn').show();
+					$('.logBtn').hide();
+					location.reload();
+				}
 			}
-		}
-	})
+		})
+	}
 }
 
 

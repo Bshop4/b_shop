@@ -31,9 +31,7 @@ public class GetInfoAction extends Action{
 		pt.setAccount(account);
 		Basedao bd = new Basedaoimpl();
 		List<Object> list = bd.select("selectByAccount", pt);
-//		if()
 		Personinfo_table pt1 = (Personinfo_table)list.get(0);
-//		System.out.println(pt1);
 //		int person_id = pt1.getPersonInfo_id();
 //		System.out.println(person_id);
 		List<Object> list1 = new ArrayList<Object>();

@@ -40,8 +40,8 @@ public class PaymentInterfaceAction extends Action{
 			e.printStackTrace();
 		}
 		
-		System.out.println(bs);
 		double balance = bs.queryAccount(pay_name, pay_pass);
+		System.out.println(balance);
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter pw = response.getWriter();
 		

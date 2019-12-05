@@ -210,7 +210,7 @@
         </div>
     </div>
     
-    <!--删除模态框结构-->
+<!--删除模态框结构-->
 		<div class="modal fade" id="myModal">
 			<!--窗口层   大中小  默认为中-->
 			<div class="modal-dialog" style="width: 420px;">

@@ -54,7 +54,7 @@ $(document).ready(function() {
 						<td>${result[i].cgoods_size}</td>
 			            <td>${result[i].cgoods_price}</td>
 			            <td class="subtotal">${result[i].cgoods_sub}</td>
-			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id}>删除</a></td>
+			            <td><a href="javascript:;" class="del" data-id=${result[i].cart_id} data-toggle="modal" data-target="#myModal">删除</a></td>
 			        </tr>
 					`;
 				 // 把每次组装好的添加进table
@@ -111,6 +111,7 @@ function clickAll() {
 			// 找到tr
 			var tab = event.target.parentNode.parentNode.parentNode;
 			var tr = event.target.parentNode.parentNode;
+//			console.log(event.target.parentNode.previousElementSibling.innerText)
 			// 得到删除的商品的id
 			var cart_id = $(event.target).attr("data-id");
 //			$.ajax({
@@ -121,9 +122,7 @@ function clickAll() {
 //					var result = JSON.parse(result);
 //				}
 //			});
-//			console.log($(event.targer));
-			console.log($(event.target).parent().prev().children('.subtotal').html());
-//			sum1 -=parseInt($(event.target).siblings('.subtotal').html());
+			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
 			console.log(sum1);
 			$('.el-sure').click(function(){
 				console.log(111)
@@ -134,7 +133,7 @@ function clickAll() {
 					success:function(result){
 						var result = JSON.parse(result);
 						console.log(result);// true(删除成功)
-						$('.sum-all').html('合计：¥' + sum + '.00');
+						$('.sum-all').html('合计：¥' + sum1 + '.00');
 						tab.removeChild(tr);// 删除tr
 					}
 				});

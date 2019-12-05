@@ -49,10 +49,14 @@ public class ExitLoginAction extends Action{
 		}
 		//传给前端
 		response.setCharacterEncoding("utf-8");
-		response.setHeader("Content-Type", "application/json;charset=utf-8");
-		JSONObject jo=JSONObject.fromObject(flag&flag1&flag2);
 		PrintWriter out=response.getWriter();
-		out.print(URLDecoder.decode(jo.toString(), "utf-8"));
+		if(flag&flag1&flag2){
+			String json="{\"code\":\"0\"}";
+			out.print(json);
+		}else{
+			String json="{\"code\":\"1\"}";
+			out.print(json);
+		}
 		return null;
 	}
 

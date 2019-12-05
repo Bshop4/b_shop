@@ -54,7 +54,9 @@ public class PaymentInterfaceAction extends Action{
 				boolean f = bs.update(b);
 				if(f){
 					pw.print("支付成功");
+					
 				}
+				
 			}else{
 				pw.print("余额不足");
 			}

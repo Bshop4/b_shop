@@ -128,27 +128,88 @@
 
 		<div class="user-right1">
 			<div class="title1">
-				<p>我的订单</p>
+				<ul>
+					<li>所有订单</li>
+					<li>待支付</li>
+					<li>已支付</li>
+				</ul>
 			</div>
-			<table border="1" width="1000" cellspacing="0" height="80"
-				style="margin-left: 10px">
-				<tr style="text-align: center">
-					<th>订单编号</th>
-					<th>商品</th>
-					<th>单价</th>
-					<th>数量</th>
-					<th>小计</th>
-					<th>时间</th>
-				</tr>
-				<tr style="text-align: center">
-					<td>111</td>
-					<td>222</td>
-					<td>333</td>
-					<td>444</td>
-					<td>555</td>
-					<td>666</td>
-				</tr>
-			</table>
+			<div class="dingdan1">
+				<div class="diandan1_top">
+					<div class="top_left"><span>订单号：5678577</span></div>
+					<div class="top_right"><span>总价：500</span></div>
+				</div>
+				<div class="diandan1_body">
+					<div class="body_left">
+							<table border="1" style="text-align: center;">
+								<tr>
+									<th class="table_1">商品</th>
+									<th class="table_2">名称</th>
+									<th class="table_3">数量</th>
+									<th class="table_4">单价</th>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+							</table>
+							<div class="dizhi">收货地址：大数据噶几哈萨克结构化上课讲换个卡但是但是改分</div>
+					</div>
+				</div>
+				<button>去支付</button>
+			</div>
+			<div class="dingdan1">
+				<div class="diandan1_top">
+					<div class="top_left"><span>订单号：5678577</span></div>
+					<div class="top_right"><span>总价：500</span></div>
+				</div>
+				<div class="diandan1_body">
+					<div class="body_left">
+							<table border="1" style="text-align: center;">
+								<tr>
+									<th class="table_1">商品</th>
+									<th class="table_2">名称</th>
+									<th class="table_3">数量</th>
+									<th class="table_4">单价</th>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+								<tr>
+									<td ><img src="/bshop/img/clock11.png"></td>
+									<td ><p>全球限量款</p><p>红色</p></td>
+									<td >1</td>
+									<td class="td_qian">￥3000.00</td>
+								</tr>
+							</table>
+							<div class="dizhi">收货地址：大数据噶几哈萨克结构化上课讲换个卡但是但是改分</div>
+					</div>
+				</div>
+				<button>去支付</button>
+			</div>
 		</div>
 
 		<div class="user-right2">

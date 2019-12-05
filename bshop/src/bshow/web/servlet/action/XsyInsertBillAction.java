@@ -57,7 +57,7 @@ public class XsyInsertBillAction extends Action {
 			Bcart_color.append(ctarr[i].getCgoods_color());
 			Bcart_name.append(ctarr[i].getCgoods_desc());
 			Bcart_no.append(ctarr[i].getCgoods_no());
-			Bcart_photo.append(ctarr[i].getCgoods_no());
+			Bcart_photo.append(ctarr[i].getCgoods_photo());
 			Bcart_size.append(ctarr[i].getCgoods_size());
 			if(i==ctarr.length-1){
 				break;

@@ -966,6 +966,7 @@ function getFooter() {
 			var str = ``;
 			for (var i = mylength; i >= 0; i--) {
 				if (i == mylength) {
+					
 					var strday = `
 					<p class="djtDate">${result[i].footprint_time}</p>`;
 					str += `
@@ -979,6 +980,9 @@ function getFooter() {
 						</li>
 					`;
 					$('.user-right4').append(strday);
+					if(mylength == 0){
+						$('.user-right4').append(str);
+					}
 					continue;
 				}
 				if (result[i + 1].footprint_time != result[i].footprint_time) {

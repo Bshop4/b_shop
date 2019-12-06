@@ -6,7 +6,21 @@
 var goodsno = getUrlVal('goods_no');
 var account="";
 var token = "";
-(function(){
+(function(){//添加足迹
+	$.ajax({
+		type:"post",
+		url:"FootPrint.do",
+		data:{
+			footprint_goodsno:goodsno,
+		},
+		dataType:"json",
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success:function(result){
+//			console.log(result)
+		}
+	})
+}, 
+function(){
 	
 	$.ajax({
 		type:"POST",
@@ -627,19 +641,6 @@ function collection(obj) {
 	}	
 }
 
-//添加足迹
-(function(){
-	$.ajax({
-		type:"post",
-		url:"FootPrint.do",
-		data:{
-			footprint_goodsno:goodsno,
-		},
-		dataType:"json",
-		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-		success:function(result){
-//			console.log(result)
-		}
-	})
-})();
+//
+//()();
 

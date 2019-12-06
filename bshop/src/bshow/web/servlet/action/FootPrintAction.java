@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -58,18 +59,32 @@ public class FootPrintAction extends Action{
 			account=account;
 		}
 		
-		
-		if(account!=null){
-			ft.setAccount(account);
-			ft.setFootprint_goodsno(footprint_goodsno);
-			ft.setFootprint_time(date);
-			
+		if(account != null){
+			Footprint_table ft1 = new Footprint_table();
+			ft1.setAccount(account);
+			ft1.setFootprint_goodsno(footprint_goodsno);
+			ft1.setFootprint_time(date);
 			Basedao bd=new Basedaoimpl();
-			flag=bd.saveObject("insertone", ft);
-			 
+			List<Object> list1 = bd.select("selectit", ft1);
+			if(list1.size() == 0){
+				flag=bd.saveObject("insertone", ft1);
+			}
 		}else{
 			flag=false;
 		}
+		
+		
+//		if(account!=null){
+//			ft.setAccount(account);
+//			ft.setFootprint_goodsno(footprint_goodsno);
+//			ft.setFootprint_time(date);
+//			
+//			Basedao bd=new Basedaoimpl();
+//			flag=bd.saveObject("insertone", ft);
+//			 
+//		}else{
+//			flag=false;
+//		}
 		
 		//发送给前台
 		

@@ -8,9 +8,14 @@
 	<insert id="insertone">
 		insert into footprint_table(footprint_goodsno,footprint_time,account) values(#{footprint_goodsno},#{footprint_time},#{account})
 	</insert>
-	<select id="selectone" resulttype="bshow.pojo.Shop_table">
+	<select id="selectone" resulttype="bshow.pojo.Footprint_table">
 		select * from footprint_table where 1=1 and footprint_id=#{footprint_id}
 	</select>
+	
+	<select id="selectit" resulttype="bshow.pojo.Footprint_table">
+		select * from footprint_table where 1=1 and footprint_goodsno=#{footprint_goodsno} and footprint_time=#{footprint_time} and account=#{account}
+	</select>
+	
 	<!--
 	
 	<select id="selecttow" resulttype="bshow.pojo.Account_table">

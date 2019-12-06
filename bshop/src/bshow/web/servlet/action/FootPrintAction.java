@@ -46,7 +46,6 @@ public class FootPrintAction extends Action{
 		//通过cookie或者session拿帐号
 		HttpSession session=request.getSession();
 		String account=(String)session.getAttribute("account");
-		
 		Cookie[] cookies=request.getCookies();
 		if(account==null){
 			for (Cookie cookie : cookies) {

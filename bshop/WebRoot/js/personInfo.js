@@ -621,7 +621,7 @@ function changeBinggou(obj) {
 
 
 
-var zjl_shoucangflag = true;
+var zjl_shoucangflag = false;
 //取消收藏
 function clickmyheart(obj) {
 	var myid = $(obj).attr("data-myid");

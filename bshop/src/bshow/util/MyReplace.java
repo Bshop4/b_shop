@@ -68,7 +68,6 @@ public class MyReplace implements Runnable,Subject{
 					for (int i = 0; i < myname.length; i++) {
 						ps.setString(++index, "%"+myname[i]+"%");
 						ps.setString(++index, "%"+myname[i]+"%");
-						ps.setString(++index, "%"+myname[i]+"%");
 					}
 				}
 			}

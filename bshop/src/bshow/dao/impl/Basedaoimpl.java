@@ -61,7 +61,6 @@ public class Basedaoimpl implements Basedao, Looker {
 				String methodname = "get" + filedname.substring(0, 1).toUpperCase() + filedname.substring(1);
 				Method method = c.getMethod(methodname, null);
 				ps.setObject(i + 1, method.invoke(o, null));
-
 			}
 
 			int psint = ps.executeUpdate();
@@ -231,13 +230,13 @@ public class Basedaoimpl implements Basedao, Looker {
 				char[] myname = name.toCharArray();
 				for (int i = 0; i < myname.length; i++) {
 					if (i == 0 && myname.length - 1 > 0) {
-						sb.append(" and ( (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
+						sb.append(" and ( (c.goods_name like ? or c.goods_brand like ?)");
 					} else if (i == 0) {
-						sb.append(" and (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
+						sb.append(" and (c.goods_name like ? or c.goods_brand like ?)");
 					} else if (i == myname.length - 1) {
-						sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?) )");
+						sb.append(" or (c.goods_name like ? or c.goods_brand like ?) )");
 					} else {
-						sb.append(" or (c.goods_name like ? or c.goods_brand like ? or c.middle_type like ?)");
+						sb.append(" or (c.goods_name like ? or c.goods_brand like ?)");
 					}
 				}
 			}

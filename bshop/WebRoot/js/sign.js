@@ -235,6 +235,7 @@
 		if(!pyl_flag_email){return};//当邮箱正确时才能发送验证码
 		if(pyl_flag_sendEmailcode){return;}//还在倒计时60S时不能发送验证码
 		clickSendcode++;
+		$(".sendemailcode").html("正在发送验证码");
 		pyl_flag_sendEmailcode=true;
 		console.log("发送验证码");
 		email1=$('.email').val();

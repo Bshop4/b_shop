@@ -82,6 +82,7 @@ function judgementLogin(){
 				alert("该用户已经被禁用，请联系管理员");
 				$('.top-bar>.btn').show();
 				$('.logBtn').hide();
+				forceExitLogin();
 				return;
 			}else{
 				$('.mingZi').html('你好,'+result[0]);
@@ -109,6 +110,22 @@ function exitLogin(){
 			}
 		})
 	}
+}
+
+//强制退出登录
+function forceExitLogin(){
+		$.ajax({
+			type:"post",
+			url:"ExitLogin.do",
+			success:function(result){
+				var needs=JSON.parse(result);
+				if(needs.code==0){
+					$('.top-bar>.btn').show();
+					$('.logBtn').hide();
+					myflush();
+				}
+			}
+		})
 }
 
 //页面刷新

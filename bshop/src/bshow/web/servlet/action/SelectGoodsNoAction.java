@@ -31,8 +31,10 @@ public class SelectGoodsNoAction extends Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String goodsno = request.getParameter("goodsno");
-//		String account = request.getParameter("account");
+		String goodsno = null;
+		if(request.getParameter("goodsno") != null){
+			goodsno = request.getParameter("goodsno");
+		}
 		String account = "";
 		String token = "";
 		Cookie[] cookies = request.getCookies();
@@ -55,6 +57,7 @@ public class SelectGoodsNoAction extends Action{
 		Goods_table gt = new Goods_table();
 		gt.setGoods_no(goodsno);
 		Basedao ba = new Basedaoimpl();
+		
 		List<Object> list =  ba.select("selectAllByGoodsNo", gt);
 		
 		Middle_table mt  =new Middle_table();
@@ -94,7 +97,10 @@ public class SelectGoodsNoAction extends Action{
 		rt.setRepertory_color(color);
 		rt.setRepertory_size(size);
 		List<Object> listrt =  ba.select("selectNum", rt);
-		Repertory_table rt1 = (Repertory_table)listrt.get(0);
+		Repertory_table rt1 = null;
+		if(listrt.size()>0){
+			rt1 = (Repertory_table)listrt.get(0);
+		}
 		int num = rt1.getRepertory_number();
 		
 		String exp = new String(gt1.getGoods_explainphoto());

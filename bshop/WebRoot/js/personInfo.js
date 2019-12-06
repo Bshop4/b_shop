@@ -1,6 +1,8 @@
 
 var account = getUrlVal('account');
-
+var page=1;
+var pagesize=10;
+var maxPageCount;
 (function() {
 	if (account != undefined) {
 		$.ajax({
@@ -44,6 +46,19 @@ var account = getUrlVal('account');
 		})
 	}
 
+	$.ajax({
+		type : "post",
+		url : "getMaxPageColletion.do",
+		data:{
+			page:page,
+			pagesize:pagesize,
+			account:account,
+		},
+		success:function(result){
+				maxPageCount=result;
+		}
+	})
+	
 })()
 
 //更新个人信息
@@ -149,6 +164,8 @@ window.onload = function() {
 
 
 
+
+
 //切换
 $("#mycollection").click(function() {
 
@@ -182,7 +199,9 @@ $("#mycollection").click(function() {
 		type : "post",
 		url : "selectCollectionByAccount.do",
 		data : {
-			"account" : account
+			"account" : account,
+			"pagesize" : pagesize,
+			"page" : page
 		},
 		success : function(re) {
 			var obj = JSON.parse(re);
@@ -210,6 +229,119 @@ $("#mycollection").click(function() {
 		}
 	})
 })
+
+
+//(function(){
+//	$.ajax({
+//		type : "post",
+//		url : "getMaxPageColletion.do",
+//		data : {
+//			data:{
+//				page:page,
+//				pagesize:pagesize,
+//				account:account,
+//			},
+//			success:function(result){
+//				maxPageCount=result;
+//			}
+//		}
+//		
+//	})
+	
+	
+//})()
+
+
+$(".nextpage").click(function(){
+	$(".pro-list").children().remove()
+	page++;
+	if(page >= maxPageCount) {
+		page = maxPageCount;
+	}
+	
+	//获取需要的值
+	$.ajax({
+		type : "post",
+		url : "selectCollectionByAccount.do",
+		data : {
+			"account" : account,
+			"pagesize" : pagesize,
+			"page" : page
+		},
+		success : function(re) {
+			var obj = JSON.parse(re);
+			if (obj.length > 0) {
+				var str = "";
+				for (var i = 0; i < obj.length; i++) {
+					str += `
+						<li class="pro-product"  >
+							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+							<img src="img/show.png" class="pro-select" id="pro-hide">
+							<div class="pro-name">${obj[i].goods_name}</div>
+							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+						</li>
+					`;
+				}
+				$(".pro-list").append(str);
+			} else if (obj.length == 0) {
+
+				var str = `
+					<div class="descr">-_-您现在暂无收藏</div>
+				`;
+
+				$(".pro-list").append(str);
+			}
+		}
+	})
+	
+})
+
+
+	//鼠标点击上一页
+	$('.prevpage').click(function() {
+		$(".pro-list").children().remove()
+		page--;
+		if(page < 1) {
+			page = 1;
+		}
+		//获取需要的值
+		$.ajax({
+			type : "post",
+			url : "selectCollectionByAccount.do",
+			data : {
+				"account" : account,
+				"pagesize" : pagesize,
+				"page" : page
+			},
+			success : function(re) {
+				var obj = JSON.parse(re);
+				if (obj.length > 0) {
+					var str = "";
+					for (var i = 0; i < obj.length; i++) {
+						str += `
+							<li class="pro-product"  >
+								<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
+								<img src="img/show.png" class="pro-select" id="pro-hide">
+								<div class="pro-name">${obj[i].goods_name}</div>
+								<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
+							</li>
+						`;
+					}
+					$(".pro-list").append(str);
+				} else if (obj.length == 0) {
+
+					var str = `
+						<div class="descr">-_-您现在暂无收藏</div>
+					`;
+
+					$(".pro-list").append(str);
+				}
+			}
+		})
+		
+		
+	})
+
 
 
 $("#myinfo").click(function() {

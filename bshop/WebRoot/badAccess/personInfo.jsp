@@ -196,8 +196,8 @@
 			<div class="my_collection">
 				<ul class="pro-list"></ul>
 				<center>
-					<button>上一页</button>
-					<button>下一页</button>
+					<button class="prevpage">上一页</button>
+					<button class="nextpage">下一页</button>
 				</center>
 			</div>
 		</div>

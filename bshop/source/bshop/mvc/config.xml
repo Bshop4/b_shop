@@ -68,6 +68,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 进入购物车将商品状态设置为零 -->
+	<PagePattern name="setStatezero">
+		<ActionForm>bshow.web.servlet.form.SetStatezeroForm</ActionForm>
+		<Action>bshow.web.servlet.action.SetStatezeroAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 根据商品id和状态值查询购物车的商品 -->
 	<PagePattern name="selectCartGoodsByState">
 		<ActionForm>bshow.web.servlet.form.SelectCartGoodsByStateForm</ActionForm>

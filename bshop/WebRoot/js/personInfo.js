@@ -527,7 +527,7 @@ function mysaveclick() {
 		$(".namelable").hide();
 	}
 
-	var reiphone = /^1[0-9]{10}/;
+	var reiphone = /^1[358][0-9]{9}$/;
 	if (reiphone.test(iphone) != true) {
 		$(".iplabel").show();
 		return;

@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="utf-8" />
 		<title>我的支付界面</title>
@@ -358,7 +357,7 @@
 		data:{"msg":2,"uname":uname},
 		success:function(result){
 			var result = JSON.parse(result);
-			console.log(result);
+			//console.log(result);
 			var obj1 = eval(result);
 			//设置收货地址
 			document.getElementById('sh-msg').innerHTML = "收货人:"+obj1[0].receiver +"  "+"电话:"+ obj1[0].telephone+"  "+"邮编:"+ obj1[0].postal+"  "+"地址:"+ obj1[0].address; 
@@ -389,6 +388,7 @@
 		
 		var pay_money = getUrlVal("pay_money");
 		var pay_name = getUrlVal("pay_name");
+		var billcode = getUrlVal("bill_code");
 		var pay_pass = $("#paypass").val();
 		
 		var test = {
@@ -402,7 +402,7 @@
 			url : "paymentInterface.do",
 			data : {"msg" : JSON.stringify(test)},
 			success: function(re){
-				console.log(re);
+				//console.log(re);
 				if(re == "密码不正确！"){
 					$(".msg").html(re).show().css("color","red");
 				}
@@ -411,18 +411,28 @@
 				}
 				if(re == "支付成功"){
 					$(".msg").html(re).show().css("color","green");
-					setTimeout(function() {
-						$("#payment1").modal("hide");
-						location.href="/bshop/badAccess/successful.jsp";
-					}, 500)
+				
+				//去修改订单的支付情况	
+				$.ajax({
+					type : "post",
+					url : "updateBillClearing.do",
+					data : {
+						"billcode" : billcode
+					},
+					success : function(re) {
+					}
+				});
+				
+				setTimeout(function() {
+					$("#payment1").modal("hide");
+					location.href="/bshop/badAccess/successful.jsp";
+				}, 600);
+					
 					//document.getElementById("paypay").setAttribute("data-dismiss", "modal");
 				} 
 				
 			}
 		})
-	
-	
-	
 	}
 	
 	

@@ -46,7 +46,7 @@ $(document).ready(function() {
 					<tr>
 						<td class="left">
 							<input type="checkbox" class="check" data-no=${result[i].cart_id}></input>
-							<img src=${result[i].cgoods_photo} style="width:100px;height:100px"/>
+							<img src=${result[i].cgoods_photo} style="width:100px;height:100px" onclick="forwarddetail(${result[i].cgoods_no})"/>
 						</td>
 						<td class="desc">${result[i].cgoods_desc}</td>
 			            <td class="calculate">

@@ -68,7 +68,7 @@
 					<p class="glyphicon glyphicon-chevron-down"></p>
 					<li>
 						<div class="personalInfo">
-							<a href="PersonInfo">个人中心</a> <a>我的订单</a> <a>我的收藏</a>
+							<a href="/bshop/PersonInfo">个人中心</a> <a>我的订单</a> <a>我的收藏</a>
 						</div>
 					</li>
 				</ul>

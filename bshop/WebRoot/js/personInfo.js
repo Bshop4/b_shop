@@ -1049,9 +1049,11 @@ var goods_no;
 var footprint_time;
 //点击删除
 function mydjtdelete(obj) {
-	goods_no = $(obj).parent().attr('djt-data-goods');
-	footprint_time = $(obj).attr("djt-mtdate");
-	djtAjaxDelete();
+	if(confirm("是否删除?")){
+		goods_no = $(obj).parent().attr('djt-data-goods');
+		footprint_time = $(obj).attr("djt-mtdate");
+		djtAjaxDelete();
+	}
 }
 
 //通过ajax删除
@@ -1067,7 +1069,6 @@ function djtAjaxDelete() {
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		success : function(result) {
 			if (result == true) {
-				alert("删除成功");
 				//重新查询
 				getFooter();
 				return;
@@ -1200,50 +1201,8 @@ function goPay1(obj) {
 									"account" : account
 								},
 								success : function(re) {
-									var obj = JSON.parse(re);
-									if (obj == "1") {
-										var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
-										$(".user-right1").append(str12);
-										return;
-									}
-									;
-									var strbill = ``;
-									for (var i = 0; i < obj.length; i++) {
-										strbill = `<div class="dingdan1" id="dd` + i + `">
-														<div class="diandan1_top">
-															<div class="top_left"><span>订单号：${obj[i].billcode}</span> <span>时间:${obj[i].time}</span></div>
-															<div class="top_right"><span>总价：${obj[i].allprice}</span></div>
-														</div>
-														<div class="diandan1_body">
-															<div class="body_left">
-																	<table class="tbname" border="1" style="text-align: center;">
-																		<tr>
-																			<th class="table_1">商品</th>
-																			<th class="table_2">名称</th>
-																			<th class="table_3">数量</th>
-																			<th class="table_4">单价</th>
-																		</tr>`;
-										for (var j = 0; j < obj[i].goods.length; j++) {
-											strbill += `
-															<tr>
-																<td ><img src=${obj[i].goods[j].photo}></td>
-																<td ><p>${obj[i].goods[j].name}</p><p>${obj[i].goods[j].color}</p></td>
-																<td >${obj[i].goods[j].num}</td>
-																<td class="td_qian">￥${obj[i].goods[j].price}</td>
-															</tr>
-													`;
-										}
-										strbill += `</table>
-																	<div class="dizhi">收货地址：${obj[i].address}</div>
-															</div>
-														</div>
-														<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[i].billcode}>取消订单<button>
-														<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
-													</div>`;
-										$('.user-right1').append(strbill);
-									}
-									;
-
+									findNoPayBill(re);
+									
 								}
 							})
 						}
@@ -1272,20 +1231,24 @@ function goPay2(obj) {
 
 function cancelBill(obj) {
 	var billid = $(obj).attr("data-billid");
-	console.log(12)
 	if (confirm("确定要取消该订单吗？")) {
+		$(".user-right1").children().eq(0).siblings().remove();
 		$.ajax({
 			type : "post",
 			url : "deleteBillByBillId.do",
 			data : {
-				"billid" : billid
+				"billid" : billid,
+				"account":account
 			},
 			success : function(re) {
-				if (re == "取消成功") {
-					$(".user-right1").children().eq(1).remove();
-					var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
-					$(".user-right1").append(str12)
+				if (re == "取消失败") {
+					console.log("取消失败");
+					return;
+//					$(".user-right1").children().eq(1).remove();
+//					var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+//					$(".user-right1").append(str12)
 				}
+				findNoPayBill(re);
 			}
 		})
 	}
@@ -1361,3 +1324,51 @@ $(".alreadypay").click(function() {
 	})
 
 })
+
+//来部署未付款订单的前段样式的方法
+function findNoPayBill(re){
+
+	var obj = JSON.parse(re);
+	if (obj == "1") {
+		var str12 = `<div class="havanobill">当前没有待支付订单-_-</div>`;
+		$(".user-right1").append(str12);
+		return;
+	}
+	;
+	var strbill = ``;
+	for (var i = 0; i < obj.length; i++) {
+		strbill = `<div class="dingdan1" id="dd` + i + `">
+						<div class="diandan1_top">
+							<div class="top_left"><span>订单号：${obj[i].billcode}</span> <span>时间:${obj[i].time}</span></div>
+							<div class="top_right"><span>总价：${obj[i].allprice}</span></div>
+						</div>
+						<div class="diandan1_body">
+							<div class="body_left">
+									<table class="tbname" border="1" style="text-align: center;">
+										<tr>
+											<th class="table_1">商品</th>
+											<th class="table_2">名称</th>
+											<th class="table_3">数量</th>
+											<th class="table_4">单价</th>
+										</tr>`;
+		for (var j = 0; j < obj[i].goods.length; j++) {
+			strbill += `
+							<tr>
+								<td ><img src=${obj[i].goods[j].photo}></td>
+								<td ><p>${obj[i].goods[j].name}</p><p>${obj[i].goods[j].color}</p></td>
+								<td >${obj[i].goods[j].num}</td>
+								<td class="td_qian">￥${obj[i].goods[j].price}</td>
+							</tr>
+					`;
+		}
+		strbill += `</table>
+									<div class="dizhi">收货地址：${obj[i].address}</div>
+							</div>
+						</div>
+						<button class="cancelBill" onclick="cancelBill(this)" data-billid=${obj[i].billcode}>取消订单<button>
+						<button data-toggle="modal" data-target="#gotopay1" class="activeBill" onclick="goPay2(this)">去支付</button>
+					</div>`;
+		$('.user-right1').append(strbill);
+	}
+	;
+}

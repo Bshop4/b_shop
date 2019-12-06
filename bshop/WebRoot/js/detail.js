@@ -19,7 +19,8 @@ var token = "";
 //			console.log(result)
 		}
 	})
-}, 
+} )();
+(
 function(){
 	
 	$.ajax({

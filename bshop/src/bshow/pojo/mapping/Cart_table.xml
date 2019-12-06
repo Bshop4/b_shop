@@ -101,7 +101,7 @@
 		resulttype="bshow.pojo.Cart_table">
 		select * from cart_table where 1=1 and
 		cgoods_no=#{cgoods_no} and cgoods_color=#{cgoods_color} and
-		cgoods_size=#{cgoods_size}
+		cgoods_size=#{cgoods_size} and account=#{account}
 	</select>
 
 	<update id="updateCart1">

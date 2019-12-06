@@ -37,6 +37,8 @@ public class InsertCartAction extends Action{
 		String getsize = obj.getString("getsize");
 		String account = obj.getString("account");
 		
+		System.out.println(account);
+		
 		Cart_table ct = new Cart_table();
 		ct.setAccount(account);
 		ct.setCgoods_color(getcolor);
@@ -48,13 +50,16 @@ public class InsertCartAction extends Action{
 		ct.setCgoods_size(getsize);
 		ct.setCgoods_no(goodsNo);
 		ct.setCgoods_state(0);
-		
+		System.out.println("ct" + ct);
 		Basedao bd = new Basedaoimpl();
 		List<Object> list = bd.select("selectCartByGoodsno", ct);
+		System.out.println("list" + list.size());
 		if(list.size() == 0){
-			bd.saveObject("insertToCart", ct);
+			boolean f = bd.saveObject("insertToCart", ct);
+			System.out.println(f);
 		}else if(list.size() == 1){
 			Cart_table ct1 = (Cart_table)list.get(0);
+			System.out.println(ct1);
 			int id = ct1.getCart_id();
 			int num = ct1.getCgoods_number();
 			num += Integer.parseInt(getnumber);
@@ -62,6 +67,7 @@ public class InsertCartAction extends Action{
 			int allprice = num * Integer.parseInt(getprice);
 			ct1.setCgoods_sub(Double.valueOf(allprice));
 			boolean f = bd.updataObject("updateCart1", ct1);
+			System.out.println("1" + f);
 		}
 		
 		

@@ -9,9 +9,7 @@ import bshow.pojo.Bank;
 
 public interface BankService extends Remote{
 	  
-	
-	
-	public static final String ADDRESS = "rmi://192.168.43.153:20000/bankService";
+	public static final String ADDRESS = "rmi://192.168.43.155:20000/bankService";
 	
 	public double queryAccount(String account,String pass) throws RemoteException;
 	

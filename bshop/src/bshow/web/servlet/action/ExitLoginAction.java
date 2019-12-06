@@ -29,11 +29,15 @@ public class ExitLoginAction extends Action{
 			//移除cookie中账号
 			for (Cookie cookie : cookies) {
 				if("account".equals(cookie.getName())){
+					cookie.setDomain("localhost");
+					cookie.setPath("/bshop");
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
 					flag=true;  
 				}
 				if("token".equals(cookie.getName())){
+					cookie.setDomain("localhost");
+					cookie.setPath("/bshop");
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
 					flag2=true;

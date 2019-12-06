@@ -421,7 +421,7 @@
 					},
 					success : function(re) {
 					}
-				});
+				}); 
 				
 				setTimeout(function() {
 					$("#payment1").modal("hide");

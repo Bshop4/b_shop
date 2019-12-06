@@ -137,11 +137,9 @@ $('.logBtn>.last-span').mouseenter(function(){
 	}
 })
 $('.logBtn>.last-span').mouseleave(function(){
-	if(!mylock){
 		$('.personalInfo').fadeOut(300,function(){
 			mylock=true;
 		});
-	}
 })
 
 //点击搜寻

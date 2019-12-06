@@ -676,6 +676,7 @@ function clickmyheart(obj) {
 }
 
 
+
 function clickli(obj) {
 	if (zjl_shoucangflag) {
 		return;

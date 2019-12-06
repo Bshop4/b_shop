@@ -98,6 +98,9 @@ $('.btnJump').click(function() {
 			page = 1;
 	}
 	$('.pageNum').val(page);
+	//获取需要的值
+	getNeedsList();
+	
 	getGoodsList();
 	//返回顶部
 	$('body').animate({

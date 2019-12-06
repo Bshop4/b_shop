@@ -112,21 +112,21 @@
 		<div class="top">
 			<div class="top-bar">
 				<div class="btn">
-					<a href="/bshop/sign.jsp" target="_blank">注册</a>
-					<a href="/bshop/Login.jsp" target="_blank">登录</a>
-					<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a>
+					<a href="sign.jsp">注册</a>
+					<a href="Login.jsp">登录</a>
+					<a class="glyphicon glyphicon-shopping-cart"></a>
 				</div>
 				<div class="logBtn">
 					<a class="mingZi"></a>
-					<!-- <a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;| -->
+					<a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;|
 					<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a>
 					<span class="badge store_number">0</span>
 					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
-								<a href="/bshop/badAccess/personInfo.jsp">个人中心</a>
-								<a href="/bshop/badAccess/personInfo.jsp">我的订单</a>
-								<a href="/bshop/badAccess/personInfo.jsp">我的收藏</a>
+								<a href="PersonInfo">个人中心</a>
+								<a>我的订单</a>
+								<a>我的收藏</a>
 							</div>
 						</li>
 					</ul>

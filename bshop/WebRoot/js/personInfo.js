@@ -290,7 +290,7 @@ $("#myaddress").click(function() {
 		},
 		success : function(re) {
 			var obj = JSON.parse(re)
-			console.log(obj)
+//			console.log(obj)
 			var len = $(".user-right2").children().length;
 			if (len == 2) {
 				if (obj.length == 0) {
@@ -701,7 +701,7 @@ function leaveMyHeart(obj) {
 
 
 function editclick(obj) {
-	console.log(obj.attr("data-eid"))
+//	console.log(obj.attr("data-eid"))
 
 }
 
@@ -755,7 +755,7 @@ function editclick(obj) {
 	$("#editAddress").modal('show');
 	//	console.log(eid);
 	eid = $(obj).attr('data-eid')
-	console.log(eid);
+//	console.log(eid);
 
 	$.ajax({
 		type : "post",
@@ -1205,7 +1205,7 @@ function goPay2(obj) {
 	var price = $(obj).siblings(".diandan1_top").children(".top_right").children("span").html();
 	var bcode = $(obj).siblings(".diandan1_top").children(".top_left").children("span").eq(0).html();
 	var idrr = $(obj).parent().attr("id");
-	console.log(idrr);
+//	console.log(idrr);
 	bcode = bcode.slice(4);
 	price = parseInt(price.slice(3));
 	$("#paypay1").attr("allprice", price);

@@ -100,13 +100,17 @@ function exitLogin(){
 				if(needs.code==0){
 					$('.top-bar>.btn').show();
 					$('.logBtn').hide();
-					location.reload(true);
+					myflush();
 				}
 			}
 		})
 	}
 }
 
+//页面刷新
+function myflush(){
+	window.location.reload();
+}
 
 
 //获得地址栏参数值?  cat_id=55&name=xiaoming

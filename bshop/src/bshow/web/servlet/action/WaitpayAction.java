@@ -28,9 +28,7 @@ public class WaitpayAction extends Action{
 		Bill_table bt = new Bill_table();
 		bt.setAccount(account);
 		bt.setBill_isclearing(0);
-		
 		Basedao bd = new Basedaoimpl();
-		
 		List<Object> list = bd.select("selecttwo", bt);
 //		List<Object> listbill = new ArrayList<Object>();
 		List<Object> listbills = new ArrayList<Object>();

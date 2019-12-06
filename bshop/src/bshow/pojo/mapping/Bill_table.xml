@@ -47,7 +47,7 @@
 
 	
 	<delete id="deleteBillById">
-		delete  from bill_table where bill_id=#{bill_id}
+		delete from bill_table where bill_code=#{bill_code}
 	</delete>
 	
 	<update id="updateClearing">

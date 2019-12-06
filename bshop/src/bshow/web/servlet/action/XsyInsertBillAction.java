@@ -1,6 +1,7 @@
 package bshow.web.servlet.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -95,11 +96,15 @@ public class XsyInsertBillAction extends Action {
 		bt.setBill_code(bill_code);
 		// 存入数据库
 		boolean flag=bd.saveObject("insertone", bt);
+		
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		if(flag){
 			String json="{\"code\":\"0\",\"msg\":\"订单生成成功\",\"data\":{\"bill_code\":\""+bill_code+"\",\"account\":\""+account+"\"}}";
+			out.print(json);
 		}else{
 			String json="{\"code\":\"419\",\"msg\":\"订单生成失败\"}";
-			
+			out.print(json);
 		}
 		
 		return null;

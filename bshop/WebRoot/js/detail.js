@@ -447,7 +447,7 @@ function opration(){
             	"goods_no" : goods_no,
             	"color" : color,
             	"size" : size,
-            }
+            } 
             
             $.ajax({
             	type : "post",

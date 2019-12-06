@@ -21,7 +21,11 @@ public class SelectCartGoodsByStateAction extends Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-		String account = request.getParameter("account");
+		
+		String account = null;
+		if(request.getParameter("account") != null){
+			account = request.getParameter("account");
+		}
 		Cart_table ct = new Cart_table();
 		ct.setAccount(account);
 		Basedao bd = new Basedaoimpl();

@@ -21,11 +21,12 @@ public class DefaultAddressAction extends Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {
-		String account = request.getParameter("account");
-//		System.out.println(account);
+		String account = null;
+		if(request.getParameter("account") != null){
+			account = request.getParameter("account");
+		}
 		Receiver_table rt = new Receiver_table();
 		rt.setAccount(account);
-//		rt.setIscheck(1);
 		Basedao bd = new Basedaoimpl();
 		List<Object> obj = bd.select("defaultAddress", rt);
 		JSONArray ja = JSONArray.fromObject(obj);

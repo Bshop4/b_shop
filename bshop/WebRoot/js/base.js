@@ -100,7 +100,7 @@ function exitLogin(){
 				if(needs.code==0){
 					$('.top-bar>.btn').show();
 					$('.logBtn').hide();
-					location.reload();
+					location.reload(true);
 				}
 			}
 		})

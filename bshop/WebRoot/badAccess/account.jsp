@@ -17,17 +17,19 @@
 <style>
 			.modal-header11{
 				border-bottom: none;
-				height:20px;
-				padding: 15px 15px 10px 15px;
+				height:16px;
+				padding: 10px 15px 10px 15px;
 			}
 			.modal-body11{
 				border-bottom: none;
 				height: 20px;
+				padding-left:15px;
+				padding-top:5px;
 			}
 			.modal-footer11{
 				border-top: none;
 				width: 418px;
-				height: 40px;
+				height: 38px;
 			}
 			.el-button11{
 				display: inline-block;
@@ -46,6 +48,7 @@
 			.el-sure11{
 				background: black;
 				color: white;
+				margin-left:5px;
 			}
 		</style>
 
@@ -60,7 +63,7 @@
 					target="_blank">登录</a> <a class="glyphicon glyphicon-shopping-cart"></a>
 			</div>
 			<div class="logBtn">
-				<a class="mingZi"></a> <a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;|
+				<a class="mingZi"></a> <!-- <a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;| -->
 				<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a> <span
 					class="badge store_number">0</span>
 				<ul class="last-span">
@@ -68,7 +71,9 @@
 					<p class="glyphicon glyphicon-chevron-down"></p>
 					<li>
 						<div class="personalInfo">
-							<a href="/bshop/PersonInfo">个人中心</a> <a>我的订单</a> <a>我的收藏</a>
+							<a href="/bshop/badAccess/personInfo.jsp">个人中心</a> <a href="/bshop/badAccess/personInfo.jsp">我的订单</a> <a href="/bshop/badAccess/personInfo.jsp">我的收藏</a>
+							<a>我的订单</a>
+							<a>我的收藏</a>
 						</div>
 					</li>
 				</ul>

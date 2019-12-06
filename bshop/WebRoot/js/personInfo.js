@@ -186,22 +186,6 @@ $("#mycollection").click(function() {
 		},
 		success : function(re) {
 			var obj = JSON.parse(re);
-			//			console.log(obj)
-			//			if(obj.length > 10){
-			//				var str="";
-			//				for(var i = 0; i <obj.length; i++){
-			//					str += `
-			//						<li class="pro-product"  >
-			//							<img class="pro-logo" onclick="clickli(this)" data-url=${obj[i].goods_no} src=${obj[i].goods_photo}>
-			//							<img src="img/show.png" class="pro-select" id="pro-hide">
-			//							<div class="pro-name">${obj[i].goods_name}</div>
-			//							<div class="heart"><img title="取消收藏" onclick="clickmyheart(this)" onmouseleave="leaveMyHeart(this)" onmouseenter="enterMyHeart(this)" data-myid=${obj[i].cid} class="imgheart" src="img/7.png"/></div>
-			//						</li>
-			//					`;
-			//					
-			//				}
-			//				$(".pro-list").append(str);
-			//			}else
 			if (obj.length > 0) {
 				var str = "";
 				for (var i = 0; i < obj.length; i++) {
@@ -692,6 +676,7 @@ function clickmyheart(obj) {
 }
 
 
+
 function clickli(obj) {
 	if (zjl_shoucangflag) {
 		return;
@@ -960,7 +945,7 @@ function getFooter() {
 			//清空记录
 			$('.user-right4').empty();
 
-			console.log(result);
+//			console.log(result);
 			var mylength = result.length - 1;
 
 			var str = ``;

@@ -118,15 +118,15 @@
 				</div>
 				<div class="logBtn">
 					<a class="mingZi"></a>
-					<a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;|
+					<!-- <a class="exitM">[退出]</a>&nbsp;&nbsp;&nbsp;| -->
 					<a class="glyphicon glyphicon-shopping-cart" href="/bshop/badAccess/cart.jsp"></a>
 					<span class="badge store_number">0</span>
 					<ul class="last-span">|&nbsp;&nbsp;&nbsp;我的嘿店<p class="glyphicon glyphicon-chevron-down"></p>
 						<li>
 							<div class="personalInfo">
-								<a href="PersonInfo">个人中心</a>
-								<a>我的订单</a>
-								<a>我的收藏</a>
+								<a href="/bshop/badAccess/personInfo.jsp">个人中心</a>
+								<a href="/bshop/badAccess/personInfo.jsp">我的订单</a>
+								<a href="/bshop/badAccess/personInfo.jsp">我的收藏</a>
 							</div>
 						</li>
 					</ul>

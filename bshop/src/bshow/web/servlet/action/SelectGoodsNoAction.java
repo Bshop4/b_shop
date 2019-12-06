@@ -60,8 +60,10 @@ public class SelectGoodsNoAction extends Action{
 		Middle_table mt  =new Middle_table();
 		mt.setGoods_no(goodsno);
 		List<Object> listb = ba.select("selectAllSm", mt);
-		
-		String allimgurl = new String(((Middle_table)listb.get(0)).getGoods_smallphoto());
+		String allimgurl = "";
+		if(listb.size() != 0){
+			allimgurl = new String(((Middle_table)listb.get(0)).getGoods_smallphoto());
+		}
 		String[] strArr = allimgurl.split(",");
 		List<Object> listbb = new ArrayList<Object>();
 		
@@ -75,8 +77,10 @@ public class SelectGoodsNoAction extends Action{
 			}
 		}
 		
-		
-		Goods_table gt1 = (Goods_table) list.get(0);
+		Goods_table gt1 = null;
+		if(list.size() != 0){
+			gt1 = (Goods_table) list.get(0);
+		}
 //		System.out.println(gt1.getGoods_color());
 //		System.out.println(gt1.getGoods_size());
 		String colorstr = gt1.getGoods_color();

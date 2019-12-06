@@ -124,12 +124,24 @@ $('.logBtn>.exitM').click(function(){
 	exitLogin();
 })
 
+
+//上锁
+var mylock=true;
+
 //鼠标进入
 $('.logBtn>.last-span').mouseenter(function(){
-	$('.personalInfo').fadeIn(300);
+	if(mylock){
+		$('.personalInfo').fadeIn(300,function(){
+			mylock=false;
+		});
+	}
 })
 $('.logBtn>.last-span').mouseleave(function(){
-	$('.personalInfo').fadeOut(300);
+	if(!mylock){
+		$('.personalInfo').fadeOut(300,function(){
+			mylock=true;
+		});
+	}
 })
 
 //点击搜寻

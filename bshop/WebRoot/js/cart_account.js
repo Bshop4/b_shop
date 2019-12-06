@@ -25,7 +25,7 @@ $(document).ready(function() {
 	$(".btn-account").attr("disabled",true);
 	$(".btn-account").css({"cursor":"not-allowed"});
 	account_name = getUrlVal("account_name");
-	console.log(account_name);
+//	console.log(account_name);
 	createXMLHttp();
 	$.ajax({
 		type : "POST",
@@ -123,16 +123,16 @@ function clickAll() {
 //				}
 //			});
 			sum1 =sum - event.target.parentNode.previousElementSibling.innerText
-			console.log(sum1);
+//			console.log(sum1);
 			$('.el-sure11').click(function(){
-				console.log(111)
+//				console.log(111)
 				$.ajax({
 					type:"POST",
 					url:"deleteCartGoods.do",
 					data:{"cart_id":cart_id},
 					success:function(result){  
 						var result = JSON.parse(result);
-						console.log(result);// true(删除成功)
+//						console.log(result);// true(删除成功)
 						$('.sum-all').html('合计：¥' + sum1 + '.00');
 						tab.removeChild(tr);// 删除tr
 					}
@@ -242,7 +242,7 @@ var AllAddress="";
   			  url:"saveAddress.do",
   			  data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress,"account":account_name},
   			  success:function(result){
-  				  console.log(result);
+//  				  console.log(result);
   			  }
   		  })
   		  // 添加li标签
@@ -325,7 +325,7 @@ function defaultli(obj){
     $(".btn-account").attr("disabled",false);// 取消禁用标志
     $(".btn-account").css({"cursor":"pointer"});
     dizhi = AllAddress;
-    console.log(dizhi);
+//    console.log(dizhi);
 	  // 如果是选中则将收获信息的状态值改为2
 //    if($(obj).prop("className")=='selected') {
   	 $.ajax({
@@ -333,7 +333,7 @@ function defaultli(obj){
   		 url:"updateAddress.do",
   		 data:{"name":name,"iphone":iphone,"postcode":postcode,"AllAddress":AllAddress,"account":account_name},
   		 success:function(result){
-  			 console.log(result);
+//  			 console.log(result);
   		 }
   	  })
 //    }
@@ -344,7 +344,7 @@ var bill_code="";
 $('#btn-account').click(function() { 
 //		$('[data-tr="active"]').each(function() {
 	var activearr=$('[data-tr="active"]');
-	console.log(activearr);
+//	console.log(activearr);
 	var cart_ids="";
 	for(var i=0;i<activearr.length;i++){
 		if(i==activearr.length-1){
@@ -362,6 +362,11 @@ $('#btn-account').click(function() {
 			var obj=JSON.parse(result);
 			if(obj.code==0){
 				bill_code =obj.data.bill_code;
+				var mone = document.getElementById('sum-all').innerHTML;
+				var money = mone.substring(4);
+//	  	console.log(money);
+				// 跳转
+				location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name+"&bill_code="+bill_code;
 			}
 			if(obj.code==419){
 				console.log(obj.msg);
@@ -397,9 +402,4 @@ $('#btn-account').click(function() {
 //}
 //})
 //}
-	  	var mone = document.getElementById('sum-all').innerHTML;
-	  	var money = mone.substring(4);
-	  	console.log(money);
-	  	// 跳转
-	  	location.href="/bshop/badAccess/pay.jsp?pay_money="+money+"&pay_name="+account_name+"&bill_code="+bill_code;
 	})

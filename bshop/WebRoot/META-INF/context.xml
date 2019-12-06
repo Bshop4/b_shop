@@ -4,8 +4,8 @@
 	 factory="org.apache.naming.factory.BeanFactory"
 	 initialPoolSize="5" maxPoolSize="30" checkoutTimeout="8000"
 	 maxIdleTime="1800"
-	 user="root" password="" driverClass="com.mysql.jdbc.Driver"
-	 jdbcUrl="jdbc:mysql://127.0.0.1:3306/bshow?characterEncoding=utf8"
+	 user="root" password="1234" driverClass="com.mysql.jdbc.Driver"
+	 jdbcUrl="jdbc:mysql://192.168.43.87:3306/bshow?characterEncoding=utf8"
 	/>
 <!-- 	 jdbcUrl="jdbc:mysql://127.0.0.1:3306/bshow" -->
 </Context>

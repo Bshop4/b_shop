@@ -78,6 +78,10 @@ public class Login_Action extends Action{
 					session.setAttribute("token", uid);
 					Cookie cookie=new Cookie("account", outAccountObject.getAccount());
 					Cookie cookiea=new Cookie("token",uid);
+					cookie.setDomain("localhost");//设置域名 ip地址
+					cookie.setPath("/bshop");//工程名
+					cookiea.setDomain("localhost");//设置域名 ip地址
+					cookiea.setPath("/bshop");//工程名
 					cookie.setMaxAge(60*60*24);
 					cookiea.setMaxAge(60*60*24);
 					response.addCookie(cookie);

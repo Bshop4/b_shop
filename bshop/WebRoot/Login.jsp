@@ -44,10 +44,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="pyl_navbar_nav navbar-left navbar-collapse collapse" id="pyl_nav">
 				<ul class="nav navbar-nav">
 					<li><a href="index.jsp"><span>首页</span></a></li>
-					<li><a href="">新品</a></li>
-					<li><a href="">女士</a></li>
-					<li><a href="">男士</a></li>
-					<li><a href="">品牌</a></li>
+					<li><a href="/bshop/newsGood.jsp">新品</a></li>
+					<li><a href="/bshop/classify.jsp?middle_type=女装">女装</a></li>
+					<li><a href="/bshop/classify.jsp?middle_type=男装">男装</a></li>
+					<li><a href="/bshop/explosiveGood.jsp">爆款</a></li>
 				</ul>
 			</div>
 				

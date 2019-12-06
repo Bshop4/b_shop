@@ -1,4 +1,13 @@
- //请求数据库的购物车数据
+$(document).ready(function(){
+	$.ajax({
+		type:"post",
+		url:"setStatezero.do",
+		success:function(result){
+			console.log(result);
+		}
+	})
+})
+//请求数据库的购物车数据
 var XMLHttp;
 // 创建ajax对象
 function createXMLHttp() {

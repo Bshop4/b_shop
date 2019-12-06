@@ -385,7 +385,7 @@
 	
 	
 	function goPay(obj){
-		
+		$(".msg").html("正在支付...").show().css("color","green");
 		var pay_money = getUrlVal("pay_money");
 		var pay_name = getUrlVal("pay_name");
 		var billcode = getUrlVal("bill_code");

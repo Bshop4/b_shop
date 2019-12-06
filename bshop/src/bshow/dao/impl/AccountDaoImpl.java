@@ -52,5 +52,26 @@ public class AccountDaoImpl implements AccountDao{
 		}
 		return cartNum;
 	}
+
+	@Override
+	public int getIsBan(String account) {
+		int myban=0;
+		Connection conn= DBhelper.getConnection();
+		String sql="select * from account_table where account=?";
+		try {
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, account);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				myban=rs.getInt("ban");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBhelper.closeConnection(conn);
+		}
+		return myban;
+	}
 	
 }

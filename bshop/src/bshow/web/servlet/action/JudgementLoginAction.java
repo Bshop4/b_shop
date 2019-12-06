@@ -28,6 +28,7 @@ public class JudgementLoginAction extends Action{
 		String account = null;
 		String nickname = null;
 		int cartNum = 0;
+		int ban=0;
 		
 		//获取account在session和cookie的值
 		Cookie[] cookies = request.getCookies();
@@ -55,10 +56,14 @@ public class JudgementLoginAction extends Action{
 
 			// 根据账号查购物车商品数量
 			cartNum = ad.getCartNumberByAccont(account);
+			
+			//判断账号是否被禁
+			ban=ad.getIsBan(account);
 		}
 
 		list.add(nickname);
 		list.add(String.valueOf(cartNum));
+		list.add(String.valueOf(ban));
 		
 //		for(int i=0;i<list.size();i++){
 //			System.out.println(list.get(i));

@@ -78,12 +78,16 @@ function judgementLogin(){
 				$('.top-bar>.btn').show();
 				$('.logBtn').hide();
 				return;
+			}else if(result[2]=="1"){
+				alert("该用户已经被禁用，请联系管理员");
+				$('.top-bar>.btn').show();
+				$('.logBtn').hide();
+				return;
 			}else{
 				$('.mingZi').html('你好,'+result[0]);
 				$('.store_number').html(result[1]);
 				$('.logBtn').show();
-				$('.top-bar>.btn').hide();
-				
+				$('.top-bar>.btn').hide();	
 			}
 		}
 	})

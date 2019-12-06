@@ -76,6 +76,13 @@
 		cgoods_state=1 where cart_id=#{cart_id}
 	</update>
 	
+	
+	<!-- 一进购物车状态就为零 -->
+	<update id="updateStatezero" resulttype="bshow.pojo.Cart_table">
+		update cart_table set
+		cgoods_state=0 where 1=1
+	</update>
+	
 	<!-- 在account.jsp界面点击删除更新购物车商品的状态值 -->
 	<update id="updateInac" resulttype="bshow.pojo.Cart_table">
 		update cart_table set

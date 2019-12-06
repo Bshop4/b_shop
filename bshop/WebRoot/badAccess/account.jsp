@@ -95,7 +95,7 @@
 			<div class="tabs-list-top">
 				<ul class="tabs-list text-center">
 					<li class="tab">
-						<a href="index.jsp">首页</a>
+						<a href="/bshop/index.jsp">首页</a>
 					</li>
 					<li class="tab">
 						<a href="/bshop/newsGood.jsp">新品</a>

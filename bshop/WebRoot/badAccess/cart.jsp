@@ -21,11 +21,11 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <title>B-SHOP嘿店——购物车</title>
-<link rel="stylesheet" href="css/cart.css" />
-<link rel="stylesheet" href="css/animate.css" />
-<link rel="stylesheet" href="css/bootstrap.css" />
-<link rel="stylesheet" href="css/index.css" />
-<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="/bshop/css/cart.css" />
+<link rel="stylesheet" href="/bshop/css/animate.css" />
+<link rel="stylesheet" href="/bshop/css/bootstrap.css" />
+<link rel="stylesheet" href="/bshop/css/index.css" />
+<link rel="stylesheet" href="/bshop/css/base.css" />
 <!--<link rel="stylesheet" href="css/footer.css" />-->
 
 <style>
@@ -98,7 +98,7 @@
 			<div class="tabs-list-top">
 				<ul class="tabs-list text-center">
 					<li class="tab">
-						<a href="index.jsp">首页</a>
+						<a href="/bshop/index.jsp">首页</a>
 					</li>
 					<li class="tab">
 						<a href="/bshop/newsGood.jsp">新品</a>
@@ -196,9 +196,9 @@
 	<div id="row-2">
 		<div class="row-2">
 			<div class="logo-wrap">
-				<img src="img/Bshop_logo1.png" class="logo-wrap-img1" /> <a><img
-					src="img/weixin.png" class="logo-wrap-img2" /></a> <a><img
-					src="img/weibo.png" class="logo-wrap-img3" /></a>
+				<img src="/bshop/img/Bshop_logo1.png" class="logo-wrap-img1" /> <a><img
+					src="/bshop/img/weixin.png" class="logo-wrap-img2" /></a> <a><img
+					src="/bshop/img/weibo.png" class="logo-wrap-img3" /></a>
 			</div>
 			<ul class="help-link-list">
 				<li class="link"><a>ceo邮箱</a></li>
@@ -212,9 +212,9 @@
 					<span>移动嘿店</span>
 				</div>
 				<ul>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
-					<li class="qrcpde"><img src="img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
+					<li class="qrcpde"><img src="/bshop/img/erweima.png"></li>
 				</ul>
 			</div>
 			<div class="contact-wrap">
@@ -240,20 +240,20 @@
 		<div class="row-4">
 			<div class="row-4-m">
 				<div class="row-4-service">
-					<a><img src="img/licence2.png"></a>
+					<a><img src="/bshop/img/licence2.png"></a>
 				</div>
 				<div class="row-4-service">
-					<a><img src="img/licence1.png"></a>
+					<a><img src="/bshop/img/licence1.png"></a>
 				</div>
-				<a class="row-4-service-2"><img src="img/police2.png"></a> <a
-					class="row-4-service-2"><img src="img/police1.png"></a> <a
-					class="row-4-service-2"><img src="img/rights.png"></a>
+				<a class="row-4-service-2"><img src="/bshop/img/police2.png"></a> <a
+					class="row-4-service-2"><img src="/bshop/img/police1.png"></a> <a
+					class="row-4-service-2"><img src="/bshop/img/rights.png"></a>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/base.js"></script>
-<script src="js/cart.js"></script>
+<script src="/bshop/js/jquery-3.4.1.min.js"></script>
+<script src="/bshop/js/bootstrap.js"></script>
+<script src="/bshop/js/base.js"></script>
+<script src="/bshop/js/cart.js"></script>

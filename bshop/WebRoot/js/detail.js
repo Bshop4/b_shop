@@ -254,7 +254,6 @@ function opration(){
     //注册
     $('.zjl-register').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
-        console.log(goodsNo);
         location.href = 'sign.jsp?goods_no=' + goodsNo;
     })
 
@@ -262,7 +261,6 @@ function opration(){
     //登录
     $('.zjl-login').click(function(){
     	var goodsNo = $('#addCartBtn').children().attr('data-goods-no');
-        console.log(goodsNo);
         
         location.href = 'Login.jsp?goods_no=' + goodsNo;
     })

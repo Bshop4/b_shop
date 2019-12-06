@@ -40,6 +40,13 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- 结算了就删除购物车商品 -->
+	<PagePattern name="deleteGoods">
+		<ActionForm>bshow.web.servlet.form.DeleteGoodsForm</ActionForm>
+		<Action>bshow.web.servlet.action.DeleteGoodsAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
 	<!-- 增加购物车商品 -->
 	<PagePattern name="addCartGoods">
 		<ActionForm>bshow.web.servlet.form.AddCartGoodsForm</ActionForm>

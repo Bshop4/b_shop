@@ -383,6 +383,12 @@
 		<Redirect>false</Redirect>
 	</PagePattern>
 	
+	<!-- maxpage -->
+	<PagePattern name="getMaxPageColletion">
+		<ActionForm>bshow.web.servlet.form.GetMaxPageColletionForm</ActionForm>
+		<Action>bshow.web.servlet.action.GetMaxPageColletionAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
 	
 	
 </properties>

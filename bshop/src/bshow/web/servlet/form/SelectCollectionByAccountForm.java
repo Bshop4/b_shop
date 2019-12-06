@@ -5,6 +5,24 @@ import bshow.web.servlet.core.ActionForm;
 public class SelectCollectionByAccountForm extends ActionForm{
 	
 	private String account;
+	private String page;
+	private String pagesize;
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getPagesize() {
+		return pagesize;
+	}
+
+	public void setPagesize(String pagesize) {
+		this.pagesize = pagesize;
+	}
 
 	public String getAccount() {
 		return account;

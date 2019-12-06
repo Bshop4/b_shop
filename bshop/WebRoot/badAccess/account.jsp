@@ -87,16 +87,28 @@
 	<!--导航-->
 	<div class="taber-bar">
 		<!--上部分导航-->
-		<div class="tabs-list-top">
-			<ul class="tabs-list text-center">
-				<li class="tab"><a href="/bshop/index.jsp">首页</a></li>
-				<li class="tab"><a>新品</a></li>
-				<li class="tab"><a>男士</a></li>
-				<li class="tab"><a>女士</a></li>
-				<li class="tab"><a>品牌</a></li>
-				<li class="tab"><a>嘿店移动版</a></li>
-			</ul>
-		</div>
+			<div class="tabs-list-top">
+				<ul class="tabs-list text-center">
+					<li class="tab">
+						<a href="index.jsp">首页</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/newsGood.jsp">新品</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/classify.jsp?middle_type=男装">男装</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/classify.jsp?middle_type=女装">女装</a>
+					</li>
+					<li class="tab">
+						<a href="/bshop/explosiveGood.jsp">爆款</a>
+					</li>
+					<li class="tab">
+						<a>嘿店移动版</a>
+					</li>
+				</ul>
+			</div>
 		<!--下部分导航-->
 		<div class="tabs-list-buttom">
 			<ul class="tabs-list text-center">

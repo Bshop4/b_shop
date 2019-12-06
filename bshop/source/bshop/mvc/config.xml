@@ -369,4 +369,20 @@
 		<Action>bshow.web.servlet.action.DeleteBillByBillIdAction</Action>
 		<Redirect>false</Redirect>
 	</PagePattern>
+	<!-- 修改订单付款状态 -->
+	<PagePattern name="updateBillClearing">
+		<ActionForm>bshow.web.servlet.form.UpdateBillClearingForm</ActionForm>
+		<Action>bshow.web.servlet.action.UpdateBillClearingAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	<!-- 查找已支付订单 -->
+	<PagePattern name="selectalreadypay">
+		<ActionForm>bshow.web.servlet.form.SelectalreadypayForm</ActionForm>
+		<Action>bshow.web.servlet.action.SelectalreadypayAction</Action>
+		<Redirect>false</Redirect>
+	</PagePattern>
+	
+	
+	
 </properties>

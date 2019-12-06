@@ -49,6 +49,12 @@
 		delete from cart_table where
 		cart_id=#{cart_id}
 	</delete>
+	
+	<!-- 提交订单删除商品 -->
+	<delete id="deletegoods" resulttype="bshow.pojo.Cart_table">
+		delete from cart_table where
+		cart_id=#{cart_id}
+	</delete>
 
 	<!-- 增加购物车商品 -->
 	<update id="addone" resulttype="bshow.pojo.Cart_table">

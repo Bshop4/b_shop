@@ -392,7 +392,19 @@ $('#btn-account').click(function() {
 //	})
 //		})
 		// 如果是选中则将收获信息的状态值改为1
-//if($('li').class='selected') {
+	$('[data-tr="active"]').each(function() {
+		console.log(1);
+		console.log($(this).children(":first").attr("data-id"));
+		var cart_id =  $(this).children(":first").attr("data-id");
+		$.ajax({
+			typr:"POST",
+			url:"deleteGoods.do",
+			data:{"cart_id":cart_id},
+			success:function(result){
+				console.log(result);
+			}
+		})
+	})
 //$.ajax({
 //type:"POST",
 //url:"updateAddress.do",

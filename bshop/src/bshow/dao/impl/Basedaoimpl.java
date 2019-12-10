@@ -34,7 +34,6 @@ public class Basedaoimpl implements Basedao, Looker {
 	@Override
 	public boolean saveObject(String id, Object o) {
 		// TODO Auto-generated method stub
-
 		Connection conn = DBhelper.getConnection();
 		try {
 			// 拿到对应的文档xml

@@ -110,6 +110,16 @@
 		$('.pyl_sign_password').siblings('.pyl_true').hide();
 		if($('.pyl_sign_password').val()=='')return;
 		if($('.pyl_sign_password').val().length<6||$('.pyl_sign_password').val().length>20){$('.pass-tips').html('&otimes; 长度只能在6-20之间').css('color','orange');return;};
+		if($('.truepassword').val()==''&&$('.pyl_sign_password').val()==""){$('.truepass-tips').hide();$('.truepassword').siblings('.pyl_true').hide();pyl_flag_pass=false;return;};
+		if($('.truepassword').val()==$('.pyl_sign_password').val()){
+			$('.truepassword').siblings('.pyl_true').show();
+			$('.truepass-tips').hide();
+			pyl_flag_pass=true;//成功返回不变false，最后注册验证
+		}else{
+			$('.truepass-tips').css('color','orange').show();
+			$('.truepassword').siblings('.pyl_true').hide();
+			pyl_flag_pass=false;
+		}
 		var re1_6_20=/^(\d{6,20}|[A-z]{6,10}|[\W]{6,10})$/g;
 		if(re1_6_20.test($('.pyl_sign_password').val())){
 			$('.pass-tips').html('<i></i>&Theta; 有被盗风险，建议使用数字、字母、和符号两种及以上的组合').css('color','orange');
@@ -143,6 +153,7 @@
 	
 	//确认密码获焦
 	$('.truepassword').focus(function(){
+		if($('.truepassword').val()==''&&$('.pyl_sign_password').val()==""){$('.truepass-tips').hide();$('.truepassword').siblings('.pyl_true').hide();pyl_flag_pass=false;return;};
 		$('.truepassword').parent().css('box-shadow','3px 3px 7px #666');
 		$('.truepassword').parent().css('border-radius','5px');
 	});
@@ -152,8 +163,7 @@
 	$('.truepassword').blur(function(){
 		$('.truepassword').parent().css('box-shadow','');
 		$('.truepassword').parent().css('border-radius','');
-//		$('.truepassword').parent().css('border-bottom','1px solid gainsboro');
-		if($('.truepassword').val()==''){$('.truepass-tips').hide();$('.truepassword').siblings('.pyl_true').hide();return;};
+		if($('.truepassword').val()==''&&$('.pyl_sign_password').val()==""){$('.truepass-tips').hide();$('.truepassword').siblings('.pyl_true').hide();return;};
 		if($('.truepassword').val()==$('.pyl_sign_password').val()){
 			$('.truepassword').siblings('.pyl_true').show();
 			$('.truepass-tips').hide();
@@ -162,8 +172,8 @@
 		}else{
 			$('.truepass-tips').css('color','orange').show();
 			$('.truepassword').siblings('.pyl_true').hide();
+			pyl_flag_pass=false;
 		}
-		console.log('密码变false');
 		pyl_flag_pass=false;
 	});
 	

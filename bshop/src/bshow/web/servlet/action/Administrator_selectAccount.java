@@ -9,11 +9,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import bshow.dao.Basedao;
 import bshow.dao.impl.Basedaoimpl;
 import bshow.pojo.Account_table;
 import bshow.service.AccountService;
 import bshow.service.impl.AccountServiceimpl;
+import bshow.test.Test;
 import bshow.web.servlet.core.Action;
 import bshow.web.servlet.core.ActionForm;
 import bshow.web.servlet.core.ActionForward;
@@ -21,7 +24,7 @@ import bshow.web.servlet.form.Administrator_selectAccountForm;
 import net.sf.json.JSONArray;
 
 public class Administrator_selectAccount extends Action{
-
+	private static final Logger log = Logger.getLogger(Test.class);
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response, ActionForm form)
 			throws ServletException, IOException {

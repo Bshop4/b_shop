@@ -18,7 +18,7 @@ public class FooterDaoImpl implements FooterDao{
 	public List<GoodsAndFooter> getFooterByAccount(String account) {
 		Connection conn=DBhelper.getConnection();
 		List<GoodsAndFooter> list=new ArrayList<GoodsAndFooter>();
-		String sql="select b.goods_photo,b.goods_brand,b.goods_name,b.goods_price,b.goods_no,c.footprint_time from goods_table as b inner join (select a.footprint_goodsno,a.footprint_time from footprint_table as a where account=?) as c on b.goods_no=c.footprint_goodsno";
+		String sql="select c.footprint_id,b.goods_photo,b.goods_brand,b.goods_name,b.goods_price,b.goods_no,c.footprint_time from goods_table as b inner join (select a.footprint_id,a.footprint_goodsno,a.footprint_time from footprint_table as a where account=?) as c on b.goods_no=c.footprint_goodsno order by c.footprint_id";
 		try {
 			PreparedStatement ps=conn.prepareStatement(sql);
 			ps.setString(1, account);
@@ -32,6 +32,7 @@ public class FooterDaoImpl implements FooterDao{
 				gaf.setGoods_photo(rs.getString("goods_photo"));
 				gaf.setGoods_price(rs.getDouble("goods_price"));
 				list.add(gaf);
+				System.out.println(gaf);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

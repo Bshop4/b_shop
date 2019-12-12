@@ -61,6 +61,9 @@ public class MyFooter extends HttpServlet {
 		
 		FooterDao dao=new FooterDaoImpl();
 		List<GoodsAndFooter> mylist=dao.getFooterByAccount(account);
+//		for (GoodsAndFooter goodsAndFooter : mylist) {
+//			System.out.println(goodsAndFooter);
+//		}
 		if(mylist!=null){
 			response.setCharacterEncoding("utf-8");
 			response.setHeader("Content-Type", "application/json;charset=utf-8");

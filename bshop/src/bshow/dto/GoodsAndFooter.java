@@ -45,4 +45,12 @@ public class GoodsAndFooter implements Serializable{
 	public void setGoods_name(String goods_name) {
 		this.goods_name = goods_name;
 	}
+	@Override
+	public String toString() {
+		return "GoodsAndFooter [footprint_time=" + footprint_time + ", goods_no=" + goods_no + ", goods_brand="
+				+ goods_brand + ", goods_photo=" + goods_photo + ", goods_price=" + goods_price + ", goods_name="
+				+ goods_name + "]";
+	}
+	
+	
 }
